@@ -6,8 +6,6 @@
 
   <ItemGroup>
     <Folder Include="DataBase\" />
-    <Folder Include="Model\" />
-    <Folder Include="BL\" />
   </ItemGroup>
 
   <ItemGroup>
