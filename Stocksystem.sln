@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stock.Libarary", "Stock.Libarary\Stock.Libarary.csproj", "{82EE453C-FF7E-49FC-AEC7-5F68EB0ABA6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockSystem.Libarary", "Stock.Libarary\StockSystem.Libarary.csproj", "{82EE453C-FF7E-49FC-AEC7-5F68EB0ABA6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockUI.WPFCore", "StockUI.WPFCore\StockUI.WPFCore.csproj", "{02479F44-82E6-459B-8118-703B62E10FC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockUI.WPFCore", "StockUI.WPFCore\StockUI.WPFCore.csproj", "{02479F44-82E6-459B-8118-703B62E10FC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

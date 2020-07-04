@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Stock.Libarary.Model
+namespace StockSystem.Libarary.Model
 {
   public  class Unit
     {
