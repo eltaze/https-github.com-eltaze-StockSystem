@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocksystem", "Stocksystem\Stocksystem.csproj", "{6D40772D-061D-4C31-B7AC-7097DBBC199A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stock.Libarary", "Stock.Libarary\Stock.Libarary.csproj", "{82EE453C-FF7E-49FC-AEC7-5F68EB0ABA6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockUI.WPFCore", "StockUI.WPFCore\StockUI.WPFCore.csproj", "{02479F44-82E6-459B-8118-703B62E10FC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6D40772D-061D-4C31-B7AC-7097DBBC199A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D40772D-061D-4C31-B7AC-7097DBBC199A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D40772D-061D-4C31-B7AC-7097DBBC199A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D40772D-061D-4C31-B7AC-7097DBBC199A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{82EE453C-FF7E-49FC-AEC7-5F68EB0ABA6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{82EE453C-FF7E-49FC-AEC7-5F68EB0ABA6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82EE453C-FF7E-49FC-AEC7-5F68EB0ABA6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82EE453C-FF7E-49FC-AEC7-5F68EB0ABA6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02479F44-82E6-459B-8118-703B62E10FC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02479F44-82E6-459B-8118-703B62E10FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02479F44-82E6-459B-8118-703B62E10FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02479F44-82E6-459B-8118-703B62E10FC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
