@@ -28,7 +28,7 @@ namespace StockUI.WinForm
             var currentContainer = new UnityContainer();
             //currentContainer.RegisterType<FrmTreasury>();
             //currentContainer.RegisterType<FrmAccountHolder>();
-            //currentContainer.RegisterType<Form1>();
+            currentContainer.RegisterType<Form1>();
             //currentContainer.RegisterType<FrmRecite>();
             //currentContainer.RegisterType<FrmCrResite>();
             //currentContainer.RegisterType<FrmReport>();
