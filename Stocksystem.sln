@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockSystem.Libarary", "Sto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockUI.WPFCore", "StockUI.WPFCore\StockUI.WPFCore.csproj", "{02479F44-82E6-459B-8118-703B62E10FC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockUI.WinForm", "StockUI.WinForm\StockUI.WinForm.csproj", "{4F51656D-F370-4618-8B79-4AF518722341}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{02479F44-82E6-459B-8118-703B62E10FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02479F44-82E6-459B-8118-703B62E10FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02479F44-82E6-459B-8118-703B62E10FC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F51656D-F370-4618-8B79-4AF518722341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F51656D-F370-4618-8B79-4AF518722341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F51656D-F370-4618-8B79-4AF518722341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F51656D-F370-4618-8B79-4AF518722341}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
