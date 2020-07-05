@@ -3,6 +3,7 @@ using StockSystem.Libarary.DataBase;
 using StockSystem.Libarary.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace StockSystem.Libarary.BL
@@ -15,34 +16,85 @@ namespace StockSystem.Libarary.BL
         {
             this.sql = sql;
         }
-        public override Unit Delete(Unit t)
+        public override void Delete(Unit t)
         {
             //spUnitDelete
-            throw new NotImplementedException();
+            try
+            {
+                sql.Execute<Unit, dynamic>("spUnitDelete", t);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
         public override List<Unit> GetAll()
         {
             //spUnitGetAll
-            throw new NotImplementedException();
+            try
+            {
+              var output =  sql.ReadingData<Unit, dynamic>("spUnitGetAll", new { });
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
         public override Unit GetByID(int id)
         {
             //spUnitGetById
-            throw new NotImplementedException();
+            try
+            {
+                var output = sql.ReadingData<Unit, dynamic>("spUnitGetById", new { id }).FirstOrDefault();
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
-        public override Unit Save(Unit t)
+        public override void Save(Unit t)
         {
             //spUnitInsert
-            throw new NotImplementedException();
+            try
+            {
+                sql.Execute<Unit, dynamic>("spUnitInsert", t);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
         public override Unit Update(Unit t)
         {
             //spUnitUpdate
-            throw new NotImplementedException();
+            try
+            {
+                sql.Execute<Unit, dynamic>("spUnitUpdate", t);
+                return t;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+        public override Unit GetByName(string Name)
+        {
+            //spUnitGetByName
+            try
+            {
+                var output = sql.ReadingData<Unit, dynamic>("spUnitGetByName", new { Name }).FirstOrDefault();
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
     }
 }

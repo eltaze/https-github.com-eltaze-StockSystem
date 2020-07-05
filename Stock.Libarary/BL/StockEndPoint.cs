@@ -2,6 +2,7 @@
 using StockSystem.Libarary.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace StockSystem.Libarary.BL
@@ -14,34 +15,85 @@ namespace StockSystem.Libarary.BL
         {
             this.sql = sql;
         }
-        public override Stock Delete(Stock t)
+        public override void Delete(Stock t)
         {
             //spStockDelete
-            throw new NotImplementedException();
+            try
+            {
+                sql.Execute<Stock, dynamic>("spStockDelete", t);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
         public override List<Stock> GetAll()
         {
             //spStockGetAll
-            throw new NotImplementedException();
+            try
+            {
+                var output=sql.ReadingData<Stock, dynamic>("spStockGetAll", new { });
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
         public override Stock GetByID(int id)
         {
             //spStockGetById
-            throw new NotImplementedException();
+            try
+            {
+                var output = sql.ReadingData<Stock, dynamic>("spStockGetById", new { id }).FirstOrDefault();
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
-        public override Stock Save(Stock t)
+        public override void Save(Stock t)
         {
             //spStockInsert
-            throw new NotImplementedException();
+            try
+            {
+                sql.Execute<Stock, dynamic>("spStockInsert", t);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
         public override Stock Update(Stock t)
         {
             //spStockUpdate
-            throw new NotImplementedException();
+            try
+            {
+                sql.Execute<Stock, dynamic>("spStockUpdate", t);
+                return t;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+        public override Stock GetByName(string Name)
+        {
+            //spStockGetByName
+            try
+            {
+                var output = sql.ReadingData<Stock, dynamic>("spStockGetById", new { Name }).FirstOrDefault();
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
     }
 }

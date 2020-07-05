@@ -1,14 +1,14 @@
 ﻿using Caliburn.Micro;
+using StockSystem.Libarary.BL;
 using StockUI.WPFCore.ViewModels;
-using StockUI.WPFCore.Views;
-using System;
 using System.Collections.Generic;
+using System;
 using System.Linq;
-using System.Text;
+using StockSystem.Libarary.DataBase;
 
 namespace StockUI.WPFCore
 {
-  public  class Bootstrapper : BootstrapperBase
+    public  class Bootstrapper : BootstrapperBase
     {
         private SimpleContainer container = new SimpleContainer();
         public Bootstrapper()
@@ -20,8 +20,9 @@ namespace StockUI.WPFCore
             container.Instance(container);
             container
                 .Singleton<IWindowManager, WindowManager>()
+                .Singleton<ISqlDataAccess, SqlDataAccess>()
                 .Singleton<IEventAggregator, EventAggregator>();
-            GetType().Assembly.GetTypes()
+                GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
                 .Where(type => type.Name.EndsWith("ViewModel"))
                 .ToList().ForEach(ViewModelType => container.RegisterPerRequest(

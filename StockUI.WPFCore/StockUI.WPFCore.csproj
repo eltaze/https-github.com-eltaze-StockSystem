@@ -18,4 +18,8 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Stock.Libarary\StockSystem.Libarary.csproj" />
+  </ItemGroup>
+
 </Project>

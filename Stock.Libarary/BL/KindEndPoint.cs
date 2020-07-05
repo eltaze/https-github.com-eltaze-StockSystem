@@ -3,6 +3,7 @@ using StockSystem.Libarary.DataBase;
 using StockSystem.Libarary.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace StockSystem.Libarary.BL
@@ -15,34 +16,81 @@ namespace StockSystem.Libarary.BL
         {
             this.sql = sql;
         }
-        public override Kind Delete(Kind t)
+        public override void Delete(Kind t)
         {
             //spKindDelete
-            throw new NotImplementedException();
+            try
+            {
+                sql.Execute<Kind, dynamic>("spKindDelete", t);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
-
         public override List<Kind> GetAll()
         {
             //spKindGetAll
-            throw new NotImplementedException();
+            try
+            {
+                var output = sql.ReadingData<Kind, dynamic>("spKindGetAll", new { });
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
-
         public override Kind GetByID(int id)
         {
             //spKindGetById
-            throw new NotImplementedException();
+            try
+            {
+                var output = sql.ReadingData<Kind, dynamic>("spKindGetAll", new { id }).FirstOrDefault();
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
-
-        public override Kind Save(Kind t)
+        public override void Save(Kind t)
         {
             //spKindInsert
-            throw new NotImplementedException();
+            try
+            {
+                sql.Execute<Kind, dynamic>("spKindInsert", t);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
-
         public override Kind Update(Kind t)
         {
             //spKindUpdate
-            throw new NotImplementedException();
+            try
+            {
+                sql.Execute<Kind, dynamic>("spKindUpdate", t);
+                return t;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+        public override Kind GetByName(string Name)
+        {
+            //spKindGetByName
+            try
+            {
+                var output = sql.ReadingData<Kind, dynamic>("spKindGetByName", new { Name }).FirstOrDefault();
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
     }
 }

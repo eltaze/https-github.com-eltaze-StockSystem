@@ -3,6 +3,7 @@ using StockSystem.Libarary.DataBase;
 using StockSystem.Libarary.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace StockSystem.Libarary.BL
@@ -15,34 +16,72 @@ namespace StockSystem.Libarary.BL
         {
             this.sql = sql;
         }
-        public override stockitem Delete(stockitem t)
+        public override void Delete(stockitem t)
         {
             //spStockItemDelete
-            throw new NotImplementedException();
+            try
+            {
+                sql.Execute<stockitem, dynamic>("spStockItemDelete", t);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
         public override List<stockitem> GetAll()
         {
             //spStockItemGetAll
-            throw new NotImplementedException();
+            try
+            {
+                var output = sql.ReadingData<stockitem, dynamic>("spStockItemGetAll", new { });
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
         public override stockitem GetByID(int id)
         {
             //spStockItemGetById
-            throw new NotImplementedException();
+            try
+            {
+               var output = sql.ReadingData<stockitem, dynamic>("spStockItemGetById", new { id }).FirstOrDefault();
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
-        public override stockitem Save(stockitem t)
+        public override void Save(stockitem t)
         {
             //spStockItemInsert
-            throw new NotImplementedException();
+            try
+            {
+                sql.Execute<stockitem, dynamic>("spStockItemInsert", t);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
         public override stockitem Update(stockitem t)
         {
             //spStockItemUpdate
-            throw new NotImplementedException();
+            try
+            {
+                sql.Execute<stockitem, dynamic>("spStockItemUpdate", t);
+                return t;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
     }
 }

@@ -9,10 +9,11 @@ namespace StockSystem.Libarary.BL
     {
         T GetByID(int id);
         List<T> GetAll();
-        T Save(T t);
+        void Save(T t);
         T Update(T t);
-        T Delete(T t);
+        void Delete(T t);
         List<T> GetBySearch(String search);
+        T GetByName(String Name);
     }
 }
 
