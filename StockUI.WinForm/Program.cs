@@ -1,4 +1,10 @@
 ﻿using AutoMapper;
+using StockSystem.Libarary.BL;
+using StockSystem.Libarary.DataBase;
+using StockSystem.Libarary.Interfaces;
+using StockSystem.Libarary.Model;
+using StockUI.Libarary.Model;
+using StockUI.WinForm.FrmUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,31 +26,26 @@ namespace StockUI.WinForm
             var container = BuildContainer();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FrmStock());
         }
-
         public static IUnityContainer BuildContainer()
         {
             var currentContainer = new UnityContainer();
-            //currentContainer.RegisterType<FrmTreasury>();
-            //currentContainer.RegisterType<FrmAccountHolder>();
-            currentContainer.RegisterType<Form1>();
-            //currentContainer.RegisterType<FrmRecite>();
-            //currentContainer.RegisterType<FrmCrResite>();
-            //currentContainer.RegisterType<FrmReport>();
-            //currentContainer.RegisterType<FrmDataGrid>();
-            //currentContainer.RegisterSingleton<ISqlDataAccess, SqlDataAccess>();
-            //currentContainer.RegisterType<IAccountHolderEndPoint, AccountHolderEndPoint>();
-            //currentContainer.RegisterType<ItreasuryDetailEndPoint, treasuryDetailEndPoint>();
-            //currentContainer.RegisterType<IAccountBankTreasuryEndPoint, AccountBankTreasuryEndPoint>();
-            //currentContainer.RegisterType<ITreasuryEndPoint, TreasuryEndPoint>();
-            //currentContainer.RegisterType<IReciteEndPoint, ReciteEndPoint>();
-            //currentContainer.RegisterType<ICrReciteEndPoint, CrReciteEndPoint>();
-            //currentContainer.RegisterType<IBankEndPoint, BankEndPoint>();
-            //currentContainer.RegisterType<IDashPortEndPoint, DashPortEndPoint>();
-            //currentContainer.RegisterType<IBankTreasuryEndPoint, BankTreasuryEndPoint>();
-            //currentContainer.RegisterType<ReciteReport>();
+            currentContainer.RegisterType<FrmStock>();
+            //Registering Database Layer
+            currentContainer.RegisterSingleton<ISqlDataAccess, SqlDataAccess>();
+            //Configuration AutoMapper
             currentContainer.RegisterInstance(ConfigurAtuoMaper());
+            //Registering BL DataAccess Clasess
+            currentContainer.RegisterType<IDepartmentEndPoint, DepartmentEndPoint>();
+            currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
+            currentContainer.RegisterType<IItemEndPoint, ItemEndPoint>();
+            currentContainer.RegisterType<IKindEndPoint, KindEndPoint>();
+            currentContainer.RegisterType<IStockEndPoint, StockEndPoint>();
+            currentContainer.RegisterType<IStockItemEndPoint, StockItemEndPoint>();
+            currentContainer.RegisterType<IUnitEndPoint, UnitEndPoint>();
+            //currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
+            //currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             // note: registering types could be moved off to app config if you want as well
             return currentContainer;
         }
@@ -52,13 +53,13 @@ namespace StockUI.WinForm
         {
             var config = new MapperConfiguration(cfg =>
             {
-                //cfg.CreateMap<AccountHolder, AccountHolderDisplay>();
-                //cfg.CreateMap<TreasuryDetail, TreasuryDetailDisplay>();
-                //cfg.CreateMap<AccountBankTreasury, AccountBankTreasuryDisplay>();
-                //cfg.CreateMap<Treasurey, TreasureyDisplay>();
-                //cfg.CreateMap<Recite, ReciteDisplay>();
-                //cfg.CreateMap<CrResite, CrResiteDisplay>();
-                //cfg.CreateMap<Bank, BankDisplay>();
+                cfg.CreateMap<BaseStockITem, BaseStockITemDisplay>();
+                cfg.CreateMap<department, departmentDisplay>();
+                cfg.CreateMap<Item, ItemDisplay>();
+                cfg.CreateMap<Kind, KindDisplay>();
+                cfg.CreateMap<Stock, StockDisplay>();
+                cfg.CreateMap<stockitem, stockitemDisplay>();
+                cfg.CreateMap<Unit, UnitDisplay>();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>().ReverseMap();
                 //cfg.CreateMap<BankTreasury, BankTreasuryDisplay>();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>();

@@ -1,4 +1,5 @@
 ﻿using StockSystem.Libarary.DataBase;
+using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using System;
 using System.Collections.Generic;
@@ -6,11 +7,11 @@ using System.Text;
 
 namespace StockSystem.Libarary.BL
 {
-    public class BaseStockItemEndPoint
+    public class BaseStockItemEndPoint : IBaseStockItemEndPoint
     {
         private readonly ISqlDataAccess sql;
 
-        public BaseStockItemEndPoint(ISqlDataAccess  sql)
+        public BaseStockItemEndPoint(ISqlDataAccess sql)
         {
             this.sql = sql;
         }

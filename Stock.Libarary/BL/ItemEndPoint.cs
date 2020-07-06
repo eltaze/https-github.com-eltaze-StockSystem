@@ -1,5 +1,6 @@
 ﻿
 using StockSystem.Libarary.DataBase;
+using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace StockSystem.Libarary.BL
 {
-    public class ItemEndPoint : Reposit<Item>
+    public class ItemEndPoint : Reposit<Item>, IItemEndPoint
     {
         private readonly ISqlDataAccess sql;
 
@@ -33,7 +34,7 @@ namespace StockSystem.Libarary.BL
             //spItemGetAll
             try
             {
-                var output =sql.ReadingData<Item, dynamic>("spItemGetAll", new { });
+                var output = sql.ReadingData<Item, dynamic>("spItemGetAll", new { });
                 return output;
             }
             catch (Exception ex)
@@ -59,7 +60,7 @@ namespace StockSystem.Libarary.BL
             //[spItemInsert]
             try
             {
-                sql.Execute<Item, dynamic>("spItemInsert", t); 
+                sql.Execute<Item, dynamic>("spItemInsert", t);
             }
             catch (Exception ex)
             {

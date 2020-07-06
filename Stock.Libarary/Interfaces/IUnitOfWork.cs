@@ -1,4 +1,6 @@
-﻿namespace StockSystem.Libarary.BL
+﻿using StockSystem.Libarary.BL;
+
+namespace StockSystem.Libarary.Interfaces
 {
     public interface IUnitOfWork
     {

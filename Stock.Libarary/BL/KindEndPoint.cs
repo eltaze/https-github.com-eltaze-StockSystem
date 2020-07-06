@@ -1,5 +1,6 @@
 ﻿
 using StockSystem.Libarary.DataBase;
+using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace StockSystem.Libarary.BL
 {
-    public class KindEndPoint : Reposit<Kind>
+    public class KindEndPoint : Reposit<Kind>, IKindEndPoint
     {
         private readonly ISqlDataAccess sql;
 

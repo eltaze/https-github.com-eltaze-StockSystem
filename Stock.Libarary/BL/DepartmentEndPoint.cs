@@ -1,4 +1,5 @@
 ﻿using StockSystem.Libarary.DataBase;
+using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace StockSystem.Libarary.BL
 {
-    public class DepartmentEndPoint : Reposit<department>
+    public class DepartmentEndPoint : Reposit<department>, IDepartmentEndPoint
     {
         private readonly ISqlDataAccess sql;
 
@@ -32,7 +33,7 @@ namespace StockSystem.Libarary.BL
             //spDepartmentGetAll
             try
             {
-               var output =sql.ReadingData<department, dynamic>("spDepartmentGetAll", new { });
+                var output = sql.ReadingData<department, dynamic>("spDepartmentGetAll", new { });
                 return output;
             }
             catch (Exception ex)
@@ -53,12 +54,12 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
-        public override void  Save(department t)
+        public override void Save(department t)
         {
             //spDepartmentInsert
             try
             {
-                 sql.Execute<department, dynamic>("spDepartmentInsert", t);
+                sql.Execute<department, dynamic>("spDepartmentInsert", t);
             }
             catch (Exception ex)
             {

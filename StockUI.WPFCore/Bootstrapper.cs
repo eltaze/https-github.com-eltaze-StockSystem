@@ -4,8 +4,10 @@ using StockUI.WPFCore.ViewModels;
 using System.Collections.Generic;
 using System;
 using System.Linq;
-using StockSystem.Libarary.DataBase;
+
 using StockSystem.Libarary.Model;
+using StockSystem.Libarary.Interfaces;
+using StockSystem.Libarary.DataBase;
 
 namespace StockUI.WPFCore
 {
@@ -23,7 +25,7 @@ namespace StockUI.WPFCore
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<ISqlDataAccess, SqlDataAccess>()
                 //this is example for this registerations
-                .PerRequest<IReposit<Item>, ItemEndPoint>()
+               // .PerRequest<IReposit<Item>, ItemEndPoint>()
                 .Singleton<IEventAggregator, EventAggregator>();
                 GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)

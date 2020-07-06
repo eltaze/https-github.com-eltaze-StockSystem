@@ -80,12 +80,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmUI\FrmStock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +113,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Stock.Libarary\StockSystem.Libarary.csproj">
+      <Project>{82EE453C-FF7E-49FC-AEC7-5F68EB0ABA6C}</Project>
+      <Name>StockSystem.Libarary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StockUI.Libarary\StockUI.Libarary.csproj">
+      <Project>{F75D0148-BBF2-4476-A3C1-6A7646FEE833}</Project>
+      <Name>StockUI.Libarary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
