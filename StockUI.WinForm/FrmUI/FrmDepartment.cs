@@ -1,62 +1,69 @@
 ﻿using AutoMapper;
+using StockSystem.Libarary.BL;
 using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using StockUI.Libarary.BL;
 using StockUI.Libarary.Model;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StockUI.WinForm.FrmUI
 {
-    public partial class FrmKind : Form
+    public partial class FrmDepartment : Form
     {
         private readonly IMapper mapper;
+        private readonly IDepartmentEndPoint departmentEndPoint;
         private readonly Validation validation;
-        private readonly IKindEndPoint kindEndPoint;
-        private List<KindDisplay> kindDisplays = new List<KindDisplay>();
+        private List<DepartmentDisplay> departmentDisplays = new List<DepartmentDisplay>();
         int count = 0;
-        public FrmKind(IMapper mapper, Validation validation,IKindEndPoint kindEndPoint)
+
+        public FrmDepartment(IMapper mapper,IDepartmentEndPoint departmentEndPoint,Validation validation)
         {
             InitializeComponent();
             this.mapper = mapper;
+            this.departmentEndPoint = departmentEndPoint;
             this.validation = validation;
-            this.kindEndPoint = kindEndPoint;
         }
-        private void FrmKind_Load(object sender, EventArgs e)
+
+        private void FrmDepartment_Load(object sender, EventArgs e)
         {
-            var output = kindEndPoint.GetAll().ToList();
-            kindDisplays = mapper.Map<List<KindDisplay>>(output);
-            if (kindDisplays.Count>0)
+            var output = departmentEndPoint.GetAll();
+            departmentDisplays = mapper.Map<List<DepartmentDisplay>>(output);
+            if (departmentDisplays.Count>0)
             {
                 navigation(0);
                 count = 0;
             }
         }
-        #region Navigation for system
+        #region Navigation
         private void navigation(int id)
         {
-            if (id>=0 && id<kindDisplays.Count-1)
+            if (id >=0 && id <= departmentDisplays.Count-1)
             {
-                TxtId.Text = kindDisplays[id].Id.ToString();
-                TxtName.Text = kindDisplays[id].Name;
-                TxtNote.Text = kindDisplays[id].Note;
-                label5.Text = $"{count + 1} Of {kindDisplays.Count}";
+                TxtId.Text = departmentDisplays[id].Id.ToString();
+                TxtName.Text = departmentDisplays[id].Name;
+                TxtNote.Text = departmentDisplays[id].Note;
+                label5.Text = $"{count + 1} Of {departmentDisplays.Count}";
             }
         }
         private void BtnNext_Click(object sender, EventArgs e)
         {
-            if(count>0)
+            if (count > 0)
             {
-                count = -1;
+                count -= 1;
                 navigation(count);
             }
         }
         private void BtnPrev_Click(object sender, EventArgs e)
         {
-            if (count < kindDisplays.Count)
+            if (count<departmentDisplays.Count)
             {
                 count += 1;
                 navigation(count);
@@ -69,29 +76,31 @@ namespace StockUI.WinForm.FrmUI
         }
         private void BtnFirst_Click(object sender, EventArgs e)
         {
-            count = kindDisplays.Count - 1;
+            count = departmentDisplays.Count - 1;
             navigation(count);
         }
         #endregion
+
         private void button2_Click(object sender, EventArgs e)
         {
             TxtId.Text = "";
             TxtName.Text = "";
             TxtNote.Text = "";
         }
+
         private void button4_Click(object sender, EventArgs e)
         {
-            Kind kind = new Kind
+            department department = new department
             {
                 Name = TxtName.Text,
-                Note=TxtNote.Text
+                Note = TxtNote.Text
             };
-            if (validation.validateKind(kind))
+            if (validation.validatedepartment(department))
             {
-                kindEndPoint.Save(kind);
-                kind = kindEndPoint.GetByName(kind.Name);
-                kindDisplays.Add(mapper.Map<KindDisplay>(kind));
-                count = kindDisplays.Count - 1;
+                departmentEndPoint.Save(department);
+                var output = departmentEndPoint.GetByName(department.Name);
+                departmentDisplays.Add(mapper.Map<DepartmentDisplay>(output));
+                count = departmentDisplays.Count - 1;
                 navigation(count);
                 MessageBox.Show("تم الحفظ بنجاح");
             }
@@ -100,19 +109,20 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show(validation.massege);
             }
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            Kind kind = new Kind
+            department department = new department
             {
                 Name = TxtName.Text,
                 Note = TxtNote.Text
             };
-            if (validation.validateKind(kind))
+            if (validation.validatedepartment(department))
             {
-                kindEndPoint.Update(kind);
-                kindDisplays[count].Name = TxtName.Text;
-                kindDisplays[count].Note = TxtNote.Text;
-                MessageBox.Show("تم التعديل بنجاح");
+                departmentEndPoint.Update(department);
+                departmentDisplays[count].Name = department.Name;
+                departmentDisplays[count].Note = department.Note;
+                MessageBox.Show("تم الحفظ التعديل بنجاح");
             }
             else
             {

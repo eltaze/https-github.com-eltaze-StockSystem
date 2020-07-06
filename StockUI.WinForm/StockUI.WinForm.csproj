@@ -102,6 +102,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmUI\FrmDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUI\FrmDepartment.Designer.cs">
+      <DependentUpon>FrmDepartment.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUI\FrmKind.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmUI\FrmDepartment.resx">
+      <DependentUpon>FrmDepartment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmUI\FrmKind.resx">
       <DependentUpon>FrmKind.cs</DependentUpon>
     </EmbeddedResource>

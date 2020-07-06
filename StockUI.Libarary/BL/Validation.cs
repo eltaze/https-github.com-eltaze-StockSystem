@@ -1,4 +1,5 @@
 ﻿using StockSystem.Libarary.BL;
+using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using System;
 using System.Collections.Generic;
@@ -8,27 +9,70 @@ namespace StockUI.Libarary.BL
 {
    public class Validation
     {
-        public Validation(StockEndPoint stockEndPoint)
+        public string massege;
+        private readonly IStockEndPoint stockEndPoint;
+        private readonly IKindEndPoint kindEndPoint;
+
+        public Validation(IStockEndPoint stockEndPoint,IKindEndPoint kindEndPoint)
         {
             this.stockEndPoint = stockEndPoint;
+            this.kindEndPoint = kindEndPoint;
         }
-        public string massege;
-        private readonly StockEndPoint stockEndPoint ;
-
-        public bool validatestock(Stock stock)
+        private bool validateName(string name )
         {
-            if(string.IsNullOrEmpty(stock.Name) )
+            if (string.IsNullOrEmpty(name))
             {
                 massege = "لايمكن ترك اسم المخزن فارغا";
                 return false;
             }
-            if (stock.Name ==" ")
+            if (name == " ")
+            {
+                massege = "لايمكن ترك اسم المخزن فارغا";
+                return false;
+            }
+            return true;
+        }
+        public bool validatestock(Stock stock)
+        {
+            if (!validateName(stock.Name))
             {
                 massege = "لايمكن ترك اسم المخزن فارغا";
                 return false;
             }
             var output = stockEndPoint.GetByName(stock.Name);
             if (output !=null)
+            {
+                massege = "الإسم موجود مسبقا يرجي التاكد من الاسم";
+                return false;
+            }
+            massege = "";
+            return true;
+        }
+        public bool validateKind(Kind kind)
+        {
+            if (validateName(kind.Name))
+            {
+                massege = "لايمكن ترك اسم المخزن فارغا";
+                return false;
+            }
+            var output = kindEndPoint.GetByName(kind.Name);
+            if (output != null)
+            {
+                massege = "الإسم موجود مسبقا يرجي التاكد من الاسم";
+                return false;
+            }
+            massege = "";
+            return true;
+        }
+        public bool validatedepartment( department department)
+        {
+            if (validateName(department.Name))
+            {
+                massege = "لايمكن ترك اسم النوع فارغا";
+                return false;
+            }
+            var output = kindEndPoint.GetByName(department.Name);
+            if (output != null)
             {
                 massege = "الإسم موجود مسبقا يرجي التاكد من الاسم";
                 return false;

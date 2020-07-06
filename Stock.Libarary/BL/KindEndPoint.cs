@@ -60,7 +60,7 @@ namespace StockSystem.Libarary.BL
             //spKindInsert
             try
             {
-                sql.Execute<Kind, dynamic>("spKindInsert", t);
+                sql.Execute<Kind, dynamic>("spKindInsert", new {Name=t.Name,Note=t.Note });
             }
             catch (Exception ex)
             {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StockUI.Libarary.Model
 {
- public   class departmentDisplay
+ public   class DepartmentDisplay
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -59,7 +59,7 @@ namespace StockSystem.Libarary.BL
             //spDepartmentInsert
             try
             {
-                sql.Execute<department, dynamic>("spDepartmentInsert", t);
+                sql.Execute<department, dynamic>("spDepartmentInsert", new { Name=t.Name,Note=t.Note});
             }
             catch (Exception ex)
             {
