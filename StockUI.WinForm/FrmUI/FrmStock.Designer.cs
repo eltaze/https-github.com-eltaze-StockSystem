@@ -36,9 +36,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.TxtId = new System.Windows.Forms.TextBox();
+            this.TxtName = new System.Windows.Forms.TextBox();
+            this.TxtNote = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -62,10 +62,16 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(408, 418);
             this.dataGridView1.TabIndex = 0;
             // 
@@ -126,27 +132,27 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "ملاحظات";
             // 
-            // textBox1
+            // TxtId
             // 
-            this.textBox1.Location = new System.Drawing.Point(140, 92);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 20);
-            this.textBox1.TabIndex = 7;
+            this.TxtId.Location = new System.Drawing.Point(140, 92);
+            this.TxtId.Name = "TxtId";
+            this.TxtId.Size = new System.Drawing.Size(232, 20);
+            this.TxtId.TabIndex = 7;
             // 
-            // textBox2
+            // TxtName
             // 
-            this.textBox2.Location = new System.Drawing.Point(140, 131);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(232, 20);
-            this.textBox2.TabIndex = 8;
+            this.TxtName.Location = new System.Drawing.Point(140, 131);
+            this.TxtName.Name = "TxtName";
+            this.TxtName.Size = new System.Drawing.Size(232, 20);
+            this.TxtName.TabIndex = 8;
             // 
-            // textBox3
+            // TxtNote
             // 
-            this.textBox3.Location = new System.Drawing.Point(140, 170);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(232, 69);
-            this.textBox3.TabIndex = 9;
+            this.TxtNote.Location = new System.Drawing.Point(140, 170);
+            this.TxtNote.Multiline = true;
+            this.TxtNote.Name = "TxtNote";
+            this.TxtNote.Size = new System.Drawing.Size(232, 69);
+            this.TxtNote.TabIndex = 9;
             // 
             // button4
             // 
@@ -156,6 +162,7 @@
             this.button4.TabIndex = 53;
             this.button4.Text = "حفظ";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -175,6 +182,7 @@
             this.button1.TabIndex = 51;
             this.button1.Text = "تعديل";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -184,6 +192,7 @@
             this.button2.TabIndex = 50;
             this.button2.Text = "جديد";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label5
             // 
@@ -206,6 +215,7 @@
             this.BtnPrev.TabIndex = 57;
             this.BtnPrev.Text = ">";
             this.BtnPrev.UseVisualStyleBackColor = true;
+            this.BtnPrev.Click += new System.EventHandler(this.BtnPrev_Click);
             // 
             // BtnNext
             // 
@@ -215,6 +225,7 @@
             this.BtnNext.TabIndex = 56;
             this.BtnNext.Text = "<";
             this.BtnNext.UseVisualStyleBackColor = true;
+            this.BtnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
             // BtnLast
             // 
@@ -224,6 +235,7 @@
             this.BtnLast.TabIndex = 55;
             this.BtnLast.Text = "<<";
             this.BtnLast.UseVisualStyleBackColor = true;
+            this.BtnLast.Click += new System.EventHandler(this.BtnLast_Click);
             // 
             // BtnFirst
             // 
@@ -233,6 +245,7 @@
             this.BtnFirst.TabIndex = 54;
             this.BtnFirst.Text = ">>";
             this.BtnFirst.UseVisualStyleBackColor = true;
+            this.BtnFirst.Click += new System.EventHandler(this.BtnFirst_Click);
             // 
             // FrmStock
             // 
@@ -248,9 +261,9 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TxtNote);
+            this.Controls.Add(this.TxtName);
+            this.Controls.Add(this.TxtId);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -284,9 +297,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox TxtId;
+        private System.Windows.Forms.TextBox TxtName;
+        private System.Windows.Forms.TextBox TxtNote;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button1;

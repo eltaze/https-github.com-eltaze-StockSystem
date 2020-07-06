@@ -3,6 +3,7 @@ using StockSystem.Libarary.BL;
 using StockSystem.Libarary.DataBase;
 using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
+using StockUI.Libarary.BL;
 using StockUI.Libarary.Model;
 using StockUI.WinForm.FrmUI;
 using System;
@@ -26,12 +27,16 @@ namespace StockUI.WinForm
             var container = BuildContainer();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmStock());
+            //Application.Run(new FrmStock());
+            Application.Run(container.Resolve<FrmKind>());
         }
         public static IUnityContainer BuildContainer()
         {
             var currentContainer = new UnityContainer();
             currentContainer.RegisterType<FrmStock>();
+            currentContainer.RegisterType<FrmKind>();
+            currentContainer.RegisterType<Validation>();
+            currentContainer.RegisterType<StockDisplay>();
             //Registering Database Layer
             currentContainer.RegisterSingleton<ISqlDataAccess, SqlDataAccess>();
             //Configuration AutoMapper

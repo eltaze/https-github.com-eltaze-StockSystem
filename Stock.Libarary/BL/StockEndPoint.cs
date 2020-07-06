@@ -62,7 +62,7 @@ namespace StockSystem.Libarary.BL
             //spStockInsert
             try
             {
-                sql.Execute<Stock, dynamic>("spStockInsert", t);
+                sql.Execute<Stock, dynamic>("spStockInsert", new { Name = t.Name,Note = t.Note});
             }
             catch (Exception ex)
             {
@@ -88,7 +88,7 @@ namespace StockSystem.Libarary.BL
             //spStockGetByName
             try
             {
-                var output = sql.ReadingData<Stock, dynamic>("spStockGetById", new { Name }).FirstOrDefault();
+                var output = sql.ReadingData<Stock, dynamic>("spStockGetByName", new { Name }).FirstOrDefault();
                 return output;
             }
             catch (Exception ex)

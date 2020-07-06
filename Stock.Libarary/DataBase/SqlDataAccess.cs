@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,15 +13,14 @@ namespace StockSystem.Libarary.DataBase
 {
     public class SqlDataAccess : ISqlDataAccess
     {
-        private readonly Configuration configuration;
-
-        public SqlDataAccess(Configuration configuration)
+        
+        public SqlDataAccess()
         {
-            this.configuration = configuration;
+            
         }
-        private string connection()
+        private string connection(string id = "DefaultConnection")
         {
-            return configuration.ConnectionStrings.ToString();
+            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
         public List<T> ReadingData<T, U>(string str, U Parmater)
         {

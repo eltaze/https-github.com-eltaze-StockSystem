@@ -17,6 +17,10 @@ namespace StockUI.Libarary.Model
             this.mapper = mapper;
             this.baseStockItemEndPoint = baseStockItemEndPoint;
         }
+        public StockDisplay()
+        {
+
+        }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Note { get; set; }
@@ -24,7 +28,12 @@ namespace StockUI.Libarary.Model
         {
             get
             {
-                var output = mapper.Map<List<BaseStockITemDisplay>>(baseStockItemEndPoint.GetAllItemStock(Id));
+                List<BaseStockITemDisplay> output = new List<BaseStockITemDisplay>();
+                var x = baseStockItemEndPoint?.GetAllItemStock(Id);
+                if (x !=null)
+                {
+                     output = mapper.Map<List<BaseStockITemDisplay>>(x);
+                }
                 return output;
             } 
          }
