@@ -19,7 +19,7 @@ namespace StockUI.Libarary.Model
         public int UnitId { get; set; }
         public int DepartmentId { get; set; }
         public string Note { get; set; }
-
+        public int kindId { get; set; }
     }
 }
     
