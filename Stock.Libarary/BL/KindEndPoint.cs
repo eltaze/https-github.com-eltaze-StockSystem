@@ -72,7 +72,7 @@ namespace StockSystem.Libarary.BL
             //spKindUpdate
             try
             {
-                sql.Execute<Kind, dynamic>("spKindUpdate", t);
+                sql.Execute<Kind, dynamic>("spKindUpdate", new { Id=t.Id,Name=t.Name,Note=t.Note});
                 return t;
             }
             catch (Exception ex)

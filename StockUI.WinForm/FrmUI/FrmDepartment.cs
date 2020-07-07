@@ -114,6 +114,7 @@ namespace StockUI.WinForm.FrmUI
         {
             department department = new department
             {
+                Id = int.Parse(TxtId.Text.ToString()),
                 Name = TxtName.Text,
                 Note = TxtNote.Text
             };

@@ -71,7 +71,7 @@ namespace StockSystem.Libarary.BL
             //spDepartmentUpdate
             try
             {
-                sql.Execute<department, dynamic>("spDepartmentGetById", t);
+                sql.Execute<department, dynamic>("spDepartmentUpdate", t);
                 return t;
             }
             catch (Exception ex)

@@ -38,7 +38,7 @@ namespace StockUI.WinForm.FrmUI
         #region Navigation for system
         private void navigation(int id)
         {
-            if (id>=0 && id<kindDisplays.Count-1)
+            if (id>=0 && id<=kindDisplays.Count-1)
             {
                 TxtId.Text = kindDisplays[id].Id.ToString();
                 TxtName.Text = kindDisplays[id].Name;
@@ -104,6 +104,7 @@ namespace StockUI.WinForm.FrmUI
         {
             Kind kind = new Kind
             {
+                Id = int.Parse(TxtId.Text.ToString()),
                 Name = TxtName.Text,
                 Note = TxtNote.Text
             };
@@ -112,12 +113,28 @@ namespace StockUI.WinForm.FrmUI
                 kindEndPoint.Update(kind);
                 kindDisplays[count].Name = TxtName.Text;
                 kindDisplays[count].Note = TxtNote.Text;
-                MessageBox.Show("تم التعديل بنجاح");
+                MessageBox.Show("تم الحفظ   التعديل بنجاح");
             }
             else
             {
                 MessageBox.Show(validation.massege);
             }
+            //Kind kind = new Kind
+            //{
+            //    Name = TxtName.Text,
+            //    Note = TxtNote.Text
+            //};
+            //if (validation.validateKind(kind))
+            //{
+            //    kindEndPoint.Update(kind);
+            //    kindDisplays[count].Name = TxtName.Text;
+            //    kindDisplays[count].Note = TxtNote.Text;
+            //    MessageBox.Show("تم التعديل بنجاح");
+            //}
+            //else
+            //{
+            //    MessageBox.Show(validation.massege);
+            //}
         }
     }
 }

@@ -28,15 +28,17 @@ namespace StockUI.WinForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FrmStock());
-            Application.Run(container.Resolve<FrmKind>());
+            Application.Run(container.Resolve<FrmUnit>());
         }
         public static IUnityContainer BuildContainer()
         {
             var currentContainer = new UnityContainer();
             currentContainer.RegisterType<FrmStock>();
             currentContainer.RegisterType<FrmKind>();
+            currentContainer.RegisterType<FrmDepartment>();
             currentContainer.RegisterType<Validation>();
             currentContainer.RegisterType<StockDisplay>();
+            currentContainer.RegisterType<FrmUnit>();
             //Registering Database Layer
             currentContainer.RegisterSingleton<ISqlDataAccess, SqlDataAccess>();
             //Configuration AutoMapper
@@ -59,7 +61,7 @@ namespace StockUI.WinForm
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<BaseStockITem, BaseStockITemDisplay>();
-                cfg.CreateMap<department, departmentDisplay>();
+                cfg.CreateMap<department, DepartmentDisplay>();
                 cfg.CreateMap<Item, ItemDisplay>();
                 cfg.CreateMap<Kind, KindDisplay>();
                 cfg.CreateMap<Stock, StockDisplay>();
