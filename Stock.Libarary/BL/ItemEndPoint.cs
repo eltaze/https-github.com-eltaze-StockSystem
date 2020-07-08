@@ -93,5 +93,18 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
+        public  Item GetByBarcode(string Barcode)
+        {
+            //spItemGetByBarCode
+            try
+            {
+                var output = sql.ReadingData<Item, dynamic>("spItemGetByBarCode", new { Barcode }).FirstOrDefault();
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
     }
 }

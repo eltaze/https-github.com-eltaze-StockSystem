@@ -7,6 +7,7 @@ namespace StockUI.Libarary.Model
    public class OrderDetailDisplay
     {
         public int Id { get; set; }
+        public int orderid { get; set; }
         public int ItemId { get; set; }
         public int UnitId { get; set; }
         public Decimal Qty { get; set; }

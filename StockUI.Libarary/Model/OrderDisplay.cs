@@ -10,6 +10,6 @@ namespace StockUI.Libarary.Model
         public DateTime ODate { get; set; }
         public int StockId { get; set; }
         public string Note { get; set; }
-        public List<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        public List<OrderDetailDisplay> OrderDetails { get; set; } = new List<OrderDetailDisplay>();
     }
 }
