@@ -28,6 +28,7 @@ namespace StockSystem.Libarary.DataBase
             {
                 using (IDbConnection conn = new SqlConnection(connection()))
                 {
+                   // conn.QueryAsync<T>(str, Parmater, null, conn.ConnectionTimeout, CommandType.StoredProcedure).to
                     List<T> output = conn.Query<T>(str, Parmater, null, true, null, CommandType.StoredProcedure).ToList();
                     return output;
                 }

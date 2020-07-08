@@ -14,13 +14,17 @@ namespace StockUI.Libarary.BL
         private readonly IUnitEndPoint unitEndPoint;
         private readonly IDepartmentEndPoint departmentEndPoint;
         private readonly IKindEndPoint kindEndPoint;
+        private readonly ItemEndPoint itemEndPoint;
 
-        public Validation(IStockEndPoint stockEndPoint,IUnitEndPoint unitEndPoint,IDepartmentEndPoint departmentEndPoint,IKindEndPoint kindEndPoint)
+        public Validation(IStockEndPoint stockEndPoint
+            ,IUnitEndPoint unitEndPoint,IDepartmentEndPoint departmentEndPoint
+            ,IKindEndPoint kindEndPoint,ItemEndPoint itemEndPoint)
         {
             this.stockEndPoint = stockEndPoint;
             this.unitEndPoint = unitEndPoint;
             this.departmentEndPoint = departmentEndPoint;
             this.kindEndPoint = kindEndPoint;
+            this.itemEndPoint = itemEndPoint;
         }
         private bool validateName(string name )
         {
@@ -92,6 +96,22 @@ namespace StockUI.Libarary.BL
                 return false;
             }
             var output = unitEndPoint.GetByName(unit.Name);
+            if (output != null)
+            {
+                massege = "الإسم موجود مسبقا يرجي التاكد من الاسم";
+                return false;
+            }
+            massege = "";
+            return true;
+        }
+        public bool validateItem(Item item)
+        {
+            if (!validateName(item.Name))
+            {
+                massege = "لايمكن ترك اسم الصنف فارغا";
+                return false;
+            }
+            var output = itemEndPoint.GetByName(item.Name);
             if (output != null)
             {
                 massege = "الإسم موجود مسبقا يرجي التاكد من الاسم";
