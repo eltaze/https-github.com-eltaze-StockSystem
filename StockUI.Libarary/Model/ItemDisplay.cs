@@ -7,7 +7,6 @@ namespace StockUI.Libarary.Model
 {
     public class ItemDisplay
     {
-     
         public int Id { get; set; }
         public string Barcode { get; set; }
         public string Name { get; set; }
