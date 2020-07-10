@@ -18,14 +18,18 @@ namespace StockUI.WinForm.FrmUI
         private readonly IUnitEndPoint unitEndPoint;
         private readonly IItemEndPoint itemEndPoint;
         private readonly IBaseStockItemEndPoint baseStockItemEndPoint;
+        private readonly IDepartmentEndPoint departmentEndPoint;
         private readonly IStockEndPoint stockEndPoint;
         private readonly IStockItemEndPoint stockItemEndPoint;
+        private List<ItemDisplay> items = new List<ItemDisplay>();
         private List<OrderDisplay> orderDisplays = new List<OrderDisplay>();
         private List<UnitDisplay> unitDisplays = new List<UnitDisplay>();
         private List<OrderDetailDisplay> orderDetailDisplays = new List<OrderDetailDisplay>();
         int count = 0;
         public FrmOrder(IMapper mapper,IOrderEndPoint orderEndPoint,IOrderDetailEndPoint orderDetailEndPoint
-            ,IUnitEndPoint unitEndPoint,IItemEndPoint itemEndPoint,IBaseStockItemEndPoint baseStockItemEndPoint,
+            ,IUnitEndPoint unitEndPoint,IItemEndPoint itemEndPoint
+            ,IBaseStockItemEndPoint baseStockItemEndPoint
+            ,IDepartmentEndPoint departmentEndPoint,
             IStockEndPoint stockEndPoint,IStockItemEndPoint stockItemEndPoint)
         {
             InitializeComponent();
@@ -35,6 +39,7 @@ namespace StockUI.WinForm.FrmUI
             this.unitEndPoint = unitEndPoint;
             this.itemEndPoint = itemEndPoint;
             this.baseStockItemEndPoint = baseStockItemEndPoint;
+            this.departmentEndPoint = departmentEndPoint;
             this.stockEndPoint = stockEndPoint;
             this.stockItemEndPoint = stockItemEndPoint;
         }
@@ -42,20 +47,23 @@ namespace StockUI.WinForm.FrmUI
         {
             var output = stockEndPoint.GetAll().ToList();
             CmbStock.DataSource = output.ToList();
-            CmbStock.DisplayMember = "Name";
             CmbStock.ValueMember = "Id";
+            CmbStock.DisplayMember = "Name";
         }
-        private void loadItem()
+      
+        private void LoadDepartment()
         {
-            var output = itemEndPoint.GetAll().ToList();
-            CmbItemName.DataSource = output.ToList();
-            CmbItemName.DisplayMember = "Name";
-            CmbItemName.ValueMember = "Id";
+            var output = departmentEndPoint.GetAll();
+            CmbDepartment.DataSource = output.ToList();
+            CmbDepartment.ValueMember = "Id";
+            CmbDepartment.DisplayMember = "Name";
         }
         private void FrmOrder_Load(object sender, EventArgs e)
         {
+            items =mapper.Map<List<ItemDisplay>>(itemEndPoint.GetAll().ToList());
             loadstock();
-            loadItem();
+            LoadDepartment();
+            //loadItem();
             var output = orderEndPoint.GetAll().ToList();
             orderDisplays = mapper.Map<List<OrderDisplay>>(output);
             if(orderDisplays.Count>0)
@@ -158,9 +166,9 @@ namespace StockUI.WinForm.FrmUI
                     unit.Qty = loadBalance();
                 }
             }
-            CmbUnitId.DataSource = unitDisplays;
-            CmbUnitId.DisplayMember = "Name";
+            CmbUnitId.DataSource = unitDisplays.ToList();
             CmbUnitId.ValueMember = "Id";
+            CmbUnitId.DisplayMember = "Name";
             CmbUnitId.SelectedValue = item.UnitId;
         }
         private void CmbItemName_SelectedIndexChanged(object sender, EventArgs e)
@@ -192,16 +200,23 @@ namespace StockUI.WinForm.FrmUI
                     MessageBox.Show("رقم الصنف لايمكن ان يكون الا حروف");
                     return;
                 }
-                l = int.Parse(TxtItemId.Text.ToString());
-                var x = CmbItemName.Items.IndexOf(l);
-                if (x >= 0)
+                int bb = items.FindIndex(x => x.Id == l);
+                
+                if (bb ==-1)
                 {
-                    CmbItemName.SelectedIndex = x;
+                    MessageBox.Show("لايوجد رقم يرجي التاكد من الرقم الصحيح");
+                    TxtItemId.Text = "";
+                    TxtItemId.Focus();
                 }
                 else
                 {
-                    TxtItemId.Text = "";
-                    MessageBox.Show("رقم الصنف غير صحيح");
+                    CmbDepartment.SelectedValue = items[bb].DepartmentId;
+                    List<ItemDisplay> output = new List<ItemDisplay>();
+                     output.Add(items[bb]);
+                    CmbItemName.DataSource = output;
+                    CmbItemName.ValueMember = "Id";
+                    CmbItemName.DisplayMember = "Name";
+                    loadBalance();
                 }
             }
         }
@@ -209,7 +224,6 @@ namespace StockUI.WinForm.FrmUI
         {
            int kk = int.Parse(TxtItemId.Text.ToString());
             var output = stockItemEndPoint.GetItemByStock(kk).ToList();
-            
             if(int.TryParse(CmbStock.SelectedValue?.ToString(),out kk))
             {
                 var y = output.Where(x => x.StockId == kk).FirstOrDefault();
@@ -224,7 +238,6 @@ namespace StockUI.WinForm.FrmUI
             }
             return 0;
         }
-
         private void CmbStock_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (TxtItemId.Text.Length>0)
@@ -232,19 +245,52 @@ namespace StockUI.WinForm.FrmUI
 //                loadBalance();
             }
         }
-
         private void CmbUnitId_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                var x = unitDisplays.FindIndex(b => b.Id == int.Parse(CmbUnitId.SelectedValue.ToString()));
+                int bbb;
+                if (int.TryParse(CmbUnitId.SelectedValue.ToString(),out bbb))
+                {
+                    var x = unitDisplays.FindIndex(b => b.Id == bbb);
                     TxtItemQtyInStock.Text = unitDisplays[x].Qty.ToString();
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw new Exception(ex.Message.ToString());
             }
         }
-        
+        private void loadItem()
+        {
+            try
+            {
+                int bb;
+                if (int.TryParse(CmbDepartment.SelectedValue.ToString(),out bb))
+                {
+                    var output = from b in items
+                                 where b.DepartmentId == int.Parse(CmbDepartment.SelectedValue.ToString())
+                                 select b;
+                    CmbItemName.DataSource = null;
+                    CmbItemName.DataSource = output.ToList();
+                    CmbItemName.ValueMember = "Id";
+                    CmbItemName.DisplayMember = "Name"; 
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadItem();
+        }
     }
 }

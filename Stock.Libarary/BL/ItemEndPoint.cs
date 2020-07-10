@@ -106,5 +106,17 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
+        public List<Item> GetItemByDepartment(int id)
+        {
+            try
+            {
+                var output = sql.ReadingData<Item, dynamic>("spItemGetByName", new { id });
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
     }
 }

@@ -47,9 +47,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label10 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.TxtTotal = new System.Windows.Forms.TextBox();
             this.TxtItemId = new System.Windows.Forms.TextBox();
@@ -73,6 +70,8 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
+            this.CmbDepartment = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -210,7 +209,7 @@
             // 
             this.label5.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label5.Location = new System.Drawing.Point(263, 48);
+            this.label5.Location = new System.Drawing.Point(263, 81);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 20);
             this.label5.TabIndex = 131;
@@ -220,7 +219,7 @@
             // 
             this.label6.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label6.Location = new System.Drawing.Point(263, 82);
+            this.label6.Location = new System.Drawing.Point(263, 115);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(116, 20);
             this.label6.TabIndex = 132;
@@ -230,7 +229,7 @@
             // 
             this.label7.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label7.Location = new System.Drawing.Point(263, 154);
+            this.label7.Location = new System.Drawing.Point(263, 187);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(116, 20);
             this.label7.TabIndex = 133;
@@ -240,7 +239,7 @@
             // 
             this.label8.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label8.Location = new System.Drawing.Point(263, 188);
+            this.label8.Location = new System.Drawing.Point(263, 221);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(116, 20);
             this.label8.TabIndex = 135;
@@ -260,36 +259,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(408, 518);
             this.dataGridView1.TabIndex = 136;
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label10.Location = new System.Drawing.Point(263, 220);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(116, 20);
-            this.label10.TabIndex = 137;
-            this.label10.Text = "الموافقه";
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(193, 223);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(55, 17);
-            this.checkBox2.TabIndex = 138;
-            this.checkBox2.Text = "إعتماد";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(125, 223);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(48, 17);
-            this.checkBox3.TabIndex = 139;
-            this.checkBox3.Text = "رفض";
-            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // label11
             // 
@@ -320,14 +289,14 @@
             // 
             // TxtQty
             // 
-            this.TxtQty.Location = new System.Drawing.Point(8, 155);
+            this.TxtQty.Location = new System.Drawing.Point(8, 188);
             this.TxtQty.Name = "TxtQty";
             this.TxtQty.Size = new System.Drawing.Size(246, 20);
             this.TxtQty.TabIndex = 141;
             // 
             // TxtUnitPrice
             // 
-            this.TxtUnitPrice.Location = new System.Drawing.Point(8, 189);
+            this.TxtUnitPrice.Location = new System.Drawing.Point(8, 222);
             this.TxtUnitPrice.Name = "TxtUnitPrice";
             this.TxtUnitPrice.Size = new System.Drawing.Size(246, 20);
             this.TxtUnitPrice.TabIndex = 141;
@@ -336,7 +305,7 @@
             // CmbItemName
             // 
             this.CmbItemName.FormattingEnabled = true;
-            this.CmbItemName.Location = new System.Drawing.Point(8, 49);
+            this.CmbItemName.Location = new System.Drawing.Point(8, 82);
             this.CmbItemName.Name = "CmbItemName";
             this.CmbItemName.Size = new System.Drawing.Size(246, 21);
             this.CmbItemName.TabIndex = 128;
@@ -345,7 +314,7 @@
             // CmbUnitId
             // 
             this.CmbUnitId.FormattingEnabled = true;
-            this.CmbUnitId.Location = new System.Drawing.Point(8, 83);
+            this.CmbUnitId.Location = new System.Drawing.Point(8, 116);
             this.CmbUnitId.Name = "CmbUnitId";
             this.CmbUnitId.Size = new System.Drawing.Size(246, 21);
             this.CmbUnitId.TabIndex = 128;
@@ -373,6 +342,8 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.CmbDepartment);
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.CmbItemName);
             this.panel1.Controls.Add(this.CmbUnitId);
@@ -386,9 +357,6 @@
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.TxtItemId);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.checkBox2);
-            this.panel1.Controls.Add(this.checkBox3);
             this.panel1.Location = new System.Drawing.Point(4, 273);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(388, 257);
@@ -405,7 +373,7 @@
             // 
             // TxtItemQtyInStock
             // 
-            this.TxtItemQtyInStock.Location = new System.Drawing.Point(8, 120);
+            this.TxtItemQtyInStock.Location = new System.Drawing.Point(8, 153);
             this.TxtItemQtyInStock.Name = "TxtItemQtyInStock";
             this.TxtItemQtyInStock.ReadOnly = true;
             this.TxtItemQtyInStock.Size = new System.Drawing.Size(246, 20);
@@ -415,7 +383,7 @@
             // 
             this.label12.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label12.Location = new System.Drawing.Point(263, 119);
+            this.label12.Location = new System.Drawing.Point(263, 152);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(116, 20);
             this.label12.TabIndex = 133;
@@ -508,6 +476,7 @@
             this.button8.TabIndex = 154;
             this.button8.Text = "إضافة";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // BtnSave
             // 
@@ -518,6 +487,25 @@
             this.BtnSave.TabIndex = 125;
             this.BtnSave.Text = "حفظ";
             this.BtnSave.UseVisualStyleBackColor = true;
+            // 
+            // CmbDepartment
+            // 
+            this.CmbDepartment.FormattingEnabled = true;
+            this.CmbDepartment.Location = new System.Drawing.Point(7, 48);
+            this.CmbDepartment.Name = "CmbDepartment";
+            this.CmbDepartment.Size = new System.Drawing.Size(246, 21);
+            this.CmbDepartment.TabIndex = 152;
+            this.CmbDepartment.SelectedIndexChanged += new System.EventHandler(this.CmbDepartment_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label10.Location = new System.Drawing.Point(262, 47);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(116, 20);
+            this.label10.TabIndex = 153;
+            this.label10.Text = "إسم المجموعة";
             // 
             // FrmOrder
             // 
@@ -590,9 +578,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox TxtTotal;
         private System.Windows.Forms.TextBox TxtItemId;
@@ -616,5 +601,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox CmbDepartment;
+        private System.Windows.Forms.Label label10;
     }
 }

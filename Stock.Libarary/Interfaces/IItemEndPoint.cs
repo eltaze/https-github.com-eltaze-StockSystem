@@ -12,5 +12,6 @@ namespace StockSystem.Libarary.Interfaces
         void Save(Item t);
         Item Update(Item t);
         Item GetByBarcode(string Barcode);
+        List<Item> GetItemByDepartment(int id);
     }
 }

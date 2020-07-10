@@ -95,5 +95,18 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
+        public OrderDetail GetLastPriceByItem(int id)
+        {
+            // spOrderdetailsGetLastPrice
+            try
+            {
+                var output = sql.ReadingData<OrderDetail, dynamic>("spOrderdetailsGetLastPrice", new { id }).FirstOrDefault();
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }
