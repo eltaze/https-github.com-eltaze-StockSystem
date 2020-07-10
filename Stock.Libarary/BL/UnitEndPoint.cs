@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace StockSystem.Libarary.BL
 {
@@ -29,7 +30,6 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
-
         public override List<Unit> GetAll()
         {
             //spUnitGetAll
@@ -43,7 +43,6 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
-
         public override Unit GetByID(int id)
         {
             //spUnitGetById
@@ -57,7 +56,32 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
-
+        public  List<Unit> GetByUnitID(int id)
+        {
+            //spUnitGetByUnitId
+            try
+            {
+                var output = sql.ReadingData<Unit, dynamic>("spUnitGetByUnitId", new { id });
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+        public List<Unit> GetByUnitIdTest(int id)
+        {
+            //spUnitByUnitIdTest
+            try
+            {
+                var output = sql.ReadingData<Unit, dynamic>("spUnitByUnitIdTest", new { idd=id });
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
         public override void Save(Unit t)
         {
             //spUnitInsert
@@ -70,7 +94,6 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
-
         public override Unit Update(Unit t)
         {
             //spUnitUpdate

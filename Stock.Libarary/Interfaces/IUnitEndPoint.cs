@@ -11,5 +11,7 @@ namespace StockSystem.Libarary.Interfaces
         Unit GetByName(string Name);
         void Save(Unit t);
         Unit Update(Unit t);
+        List<Unit> GetByUnitID(int id);
+        List<Unit> GetByUnitIdTest(int id);
     }
 }

@@ -10,5 +10,6 @@ namespace StockSystem.Libarary.Interfaces
         stockitem GetByID(int id);
         void Save(stockitem t);
         stockitem Update(stockitem t);
+        List<stockitem> GetItemByStock(int id);
     }
 }

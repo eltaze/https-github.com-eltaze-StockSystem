@@ -3,9 +3,7 @@ using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Text;
 
 namespace StockSystem.Libarary.BL
 {

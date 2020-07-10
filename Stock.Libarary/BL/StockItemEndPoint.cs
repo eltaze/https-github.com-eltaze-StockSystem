@@ -5,7 +5,6 @@ using StockSystem.Libarary.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace StockSystem.Libarary.BL
 {
@@ -78,6 +77,19 @@ namespace StockSystem.Libarary.BL
             {
                 sql.Execute<stockitem, dynamic>("spStockItemUpdate", t);
                 return t;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+        public List<stockitem> GetItemByStock(int id)
+        {
+            //spStockItemGetByItemId
+            try
+            {
+                var output = sql.ReadingData<stockitem, dynamic>("spStockItemGetByItemId", new { id });
+                return output;
             }
             catch (Exception ex)
             {
