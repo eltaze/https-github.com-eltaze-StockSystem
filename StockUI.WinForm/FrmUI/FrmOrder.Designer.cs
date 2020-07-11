@@ -54,7 +54,6 @@
             this.TxtUnitPrice = new System.Windows.Forms.TextBox();
             this.CmbItemName = new System.Windows.Forms.ComboBox();
             this.CmbUnitId = new System.Windows.Forms.ComboBox();
-            this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.CmbDepartment = new System.Windows.Forms.ComboBox();
@@ -320,23 +319,16 @@
             this.CmbUnitId.TabIndex = 128;
             this.CmbUnitId.SelectedIndexChanged += new System.EventHandler(this.CmbUnitId_SelectedIndexChanged);
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(799, 542);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(72, 23);
-            this.button6.TabIndex = 143;
-            this.button6.Text = "حذف";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(686, 542);
+            this.button7.Enabled = false;
+            this.button7.Location = new System.Drawing.Point(733, 542);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(72, 23);
             this.button7.TabIndex = 142;
             this.button7.Text = "تعديل";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // panel1
             // 
@@ -470,16 +462,19 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(577, 542);
+            this.button5.Enabled = false;
+            this.button5.Location = new System.Drawing.Point(624, 542);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(72, 23);
             this.button5.TabIndex = 153;
             this.button5.Text = "جديد";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(463, 542);
+            this.button8.Enabled = false;
+            this.button8.Location = new System.Drawing.Point(510, 542);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(72, 23);
             this.button8.TabIndex = 154;
@@ -512,7 +507,6 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.TxtTotal);
             this.Controls.Add(this.label11);
@@ -575,7 +569,6 @@
         private System.Windows.Forms.TextBox TxtUnitPrice;
         private System.Windows.Forms.ComboBox CmbItemName;
         private System.Windows.Forms.ComboBox CmbUnitId;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox TxtItemQtyInStock;

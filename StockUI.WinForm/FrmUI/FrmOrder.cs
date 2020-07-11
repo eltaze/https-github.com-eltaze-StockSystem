@@ -27,6 +27,7 @@ namespace StockUI.WinForm.FrmUI
         private List<OrderDetailDisplay> orderDetailDisplays = new List<OrderDetailDisplay>();
         private OrderDisplay neworder = new OrderDisplay();
         int count = 0;
+        int modification = -1;
         public FrmOrder(IMapper mapper,IOrderEndPoint orderEndPoint
             ,IOrderDetailEndPoint orderDetailEndPoint
             ,IUnitEndPoint unitEndPoint,IItemEndPoint itemEndPoint
@@ -185,6 +186,10 @@ namespace StockUI.WinForm.FrmUI
                 BtnSave.Enabled = false;
                 BtnUpdate.Enabled = true;
                 Navigation(count);
+                button5.Enabled = false;
+                button6.Enabled = false;
+                button7.Enabled = false;
+                button8.Enabled = false;
             }
             else
             {
@@ -192,6 +197,10 @@ namespace StockUI.WinForm.FrmUI
                 BtnSave.Enabled = true;
                 BtnUpdate.Enabled = false;
                 neworder = new OrderDisplay();
+                button5.Enabled = true;
+                button6.Enabled = true;
+                button7.Enabled = true;
+                button8.Enabled = true;
             }
         }
         private void CmbItemName_SelectedIndexChanged(object sender, EventArgs e)
@@ -379,20 +388,44 @@ namespace StockUI.WinForm.FrmUI
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dataGridView1.Columns["حذف"].Index) return;
-            //إسم_الصنف = b.ItemName,
-            //            الكمية = b.Qty,
-            //            سعر_الوحدة = b.UnitPrice,
-            //            السعر_السابق = b.LastPrice,
-            //            الوحدة = b.UnitName,
-            //            الإجمال = b.Qty * b.UnitPrice
-            string x = (string)dataGridView1[0, e.RowIndex].Value.ToString();
-            string c = (string)dataGridView1[4, e.RowIndex].Value.ToString();
-            int z = neworder.OrderDetails.FindIndex(b => b.ItemName == x && b.UnitName ==c);
-            neworder.OrderDetails.RemoveAt(z);
-            filldatagrid();
-          
-            //MessageBox.Show(x);
+            if (e.RowIndex < 0 || e.ColumnIndex != dataGridView1.Columns["حذف"].Index)
+            {
+                string x = (string)dataGridView1[0, e.RowIndex].Value.ToString();
+                string c = (string)dataGridView1[4, e.RowIndex].Value.ToString();
+                int z = neworder.OrderDetails.FindIndex(b => b.ItemName == x && b.UnitName == c);
+                TxtItemId.Text = neworder.OrderDetails[z].ItemId.ToString();
+                TxtQty.Text = neworder.OrderDetails[z].Qty.ToString();
+                TxtUnitPrice.Text = neworder.OrderDetails[z].UnitPrice.ToString();
+                Item item = new Item();
+                item = itemEndPoint.GetByID(neworder.OrderDetails[z].ItemId);
+                CmbDepartment.SelectedValue = item.DepartmentId;
+                CmbItemName.SelectedValue = item.Id;
+                CmbUnitId.SelectedValue = neworder.OrderDetails[z].UnitId;
+                modification = z;
+            }
+            else
+            {
+                string x = (string)dataGridView1[0, e.RowIndex].Value.ToString();
+                string c = (string)dataGridView1[4, e.RowIndex].Value.ToString();
+                int z = neworder.OrderDetails.FindIndex(b => b.ItemName == x && b.UnitName == c);
+                neworder.OrderDetails.RemoveAt(z);
+                filldatagrid();
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if(modification ==-1)
+            {
+                return;
+            }
+            neworder.OrderDetails.RemoveAt(modification);
+            orderdetails();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
