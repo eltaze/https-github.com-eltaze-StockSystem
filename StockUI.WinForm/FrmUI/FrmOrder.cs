@@ -187,7 +187,7 @@ namespace StockUI.WinForm.FrmUI
                 BtnUpdate.Enabled = true;
                 Navigation(count);
                 button5.Enabled = false;
-                button6.Enabled = false;
+                //button6.Enabled = false;
                 button7.Enabled = false;
                 button8.Enabled = false;
             }
@@ -198,7 +198,7 @@ namespace StockUI.WinForm.FrmUI
                 BtnUpdate.Enabled = false;
                 neworder = new OrderDisplay();
                 button5.Enabled = true;
-                button6.Enabled = true;
+                //button6.Enabled = true;
                 button7.Enabled = true;
                 button8.Enabled = true;
             }
@@ -338,7 +338,6 @@ namespace StockUI.WinForm.FrmUI
                 filldatagrid();
                 return;
             }
-
             OrderDetailDisplay displays = new OrderDetailDisplay
             {
                 ItemId=int.Parse(TxtItemId.Text.ToString()),
@@ -385,7 +384,6 @@ namespace StockUI.WinForm.FrmUI
             decimal c;
             return decimal.TryParse(id, out c);
         }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex != dataGridView1.Columns["حذف"].Index)
@@ -412,7 +410,6 @@ namespace StockUI.WinForm.FrmUI
                 filldatagrid();
             }
         }
-
         private void button7_Click(object sender, EventArgs e)
         {
             if(modification ==-1)
@@ -422,10 +419,12 @@ namespace StockUI.WinForm.FrmUI
             neworder.OrderDetails.RemoveAt(modification);
             orderdetails();
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
-
+            TxtQty.Text = "0.00";
+            TxtUnitPrice.Text = "0.00";
+            CmbStock.SelectedIndex = 0;
+            CmbDepartment.SelectedIndex = 0;
         }
     }
 }
