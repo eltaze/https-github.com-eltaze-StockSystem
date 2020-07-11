@@ -36,7 +36,7 @@ namespace StockUI.Libarary.Model
         {
             get 
             {
-                var output = orderDetailEndPoint.GetLastPriceByItem(Id);
+                var output = orderDetailEndPoint?.GetLastPriceByItem(Id);
                 if (output !=null)
                 {
                     return output.UnitPrice;
@@ -47,12 +47,24 @@ namespace StockUI.Libarary.Model
                 }
             }
         }
+        private string _ItemName;
         public string ItemName
         {
             get
             {
-                var x = itemEndPoint.GetByID(ItemId);
-                return x.Name;
+                if (itemEndPoint !=null)
+                {
+                    var x = itemEndPoint?.GetByID(ItemId);
+                    return x.Name;
+                }
+                else
+                {
+                    return _ItemName;
+                }
+            }
+           set
+            {
+                _ItemName = value;
             }
         }
         public string UnitName { get; set; }

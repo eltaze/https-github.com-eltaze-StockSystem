@@ -57,7 +57,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.CmbDepartment = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.TxtItemQtyInStock = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -70,8 +71,6 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
-            this.CmbDepartment = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -257,8 +256,9 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(408, 518);
+            this.dataGridView1.Size = new System.Drawing.Size(516, 518);
             this.dataGridView1.TabIndex = 136;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // label11
             // 
@@ -281,9 +281,9 @@
             // 
             // TxtItemId
             // 
-            this.TxtItemId.Location = new System.Drawing.Point(80, 15);
+            this.TxtItemId.Location = new System.Drawing.Point(8, 15);
             this.TxtItemId.Name = "TxtItemId";
-            this.TxtItemId.Size = new System.Drawing.Size(174, 20);
+            this.TxtItemId.Size = new System.Drawing.Size(246, 20);
             this.TxtItemId.TabIndex = 141;
             this.TxtItemId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtItemId_KeyDown);
             // 
@@ -322,7 +322,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(740, 542);
+            this.button6.Location = new System.Drawing.Point(799, 542);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(72, 23);
             this.button6.TabIndex = 143;
@@ -331,7 +331,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(627, 542);
+            this.button7.Location = new System.Drawing.Point(686, 542);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(72, 23);
             this.button7.TabIndex = 142;
@@ -344,7 +344,6 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.CmbDepartment);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.CmbItemName);
             this.panel1.Controls.Add(this.CmbUnitId);
             this.panel1.Controls.Add(this.label1);
@@ -362,14 +361,24 @@
             this.panel1.Size = new System.Drawing.Size(388, 257);
             this.panel1.TabIndex = 145;
             // 
-            // button1
+            // CmbDepartment
             // 
-            this.button1.Location = new System.Drawing.Point(8, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(66, 23);
-            this.button1.TabIndex = 151;
-            this.button1.Text = "<";
-            this.button1.UseVisualStyleBackColor = true;
+            this.CmbDepartment.FormattingEnabled = true;
+            this.CmbDepartment.Location = new System.Drawing.Point(7, 48);
+            this.CmbDepartment.Name = "CmbDepartment";
+            this.CmbDepartment.Size = new System.Drawing.Size(246, 21);
+            this.CmbDepartment.TabIndex = 152;
+            this.CmbDepartment.SelectedIndexChanged += new System.EventHandler(this.CmbDepartment_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label10.Location = new System.Drawing.Point(262, 47);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(116, 20);
+            this.label10.TabIndex = 153;
+            this.label10.Text = "إسم القسم";
             // 
             // TxtItemQtyInStock
             // 
@@ -461,7 +470,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(518, 542);
+            this.button5.Location = new System.Drawing.Point(577, 542);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(72, 23);
             this.button5.TabIndex = 153;
@@ -470,7 +479,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(404, 542);
+            this.button8.Location = new System.Drawing.Point(463, 542);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(72, 23);
             this.button8.TabIndex = 154;
@@ -488,30 +497,11 @@
             this.BtnSave.Text = "حفظ";
             this.BtnSave.UseVisualStyleBackColor = true;
             // 
-            // CmbDepartment
-            // 
-            this.CmbDepartment.FormattingEnabled = true;
-            this.CmbDepartment.Location = new System.Drawing.Point(7, 48);
-            this.CmbDepartment.Name = "CmbDepartment";
-            this.CmbDepartment.Size = new System.Drawing.Size(246, 21);
-            this.CmbDepartment.TabIndex = 152;
-            this.CmbDepartment.SelectedIndexChanged += new System.EventHandler(this.CmbDepartment_SelectedIndexChanged);
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label10.Location = new System.Drawing.Point(262, 47);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(116, 20);
-            this.label10.TabIndex = 153;
-            this.label10.Text = "إسم المجموعة";
-            // 
             // FrmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(818, 572);
+            this.ClientSize = new System.Drawing.Size(923, 572);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label14);
@@ -600,7 +590,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button BtnSave;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox CmbDepartment;
         private System.Windows.Forms.Label label10;
     }
