@@ -53,6 +53,8 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<IStockEndPoint, StockEndPoint>();
             currentContainer.RegisterType<IStockItemEndPoint, StockItemEndPoint>();
             currentContainer.RegisterType<IUnitEndPoint, UnitEndPoint>();
+            currentContainer.RegisterType<ImoveorderEndPoint, moveorderEndPoint>();
+            currentContainer.RegisterType<ImoveorderdetailEndPoint, moveorderdetailEndPoint>();
             //currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             //currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             // note: registering types could be moved off to app config if you want as well
@@ -71,6 +73,8 @@ namespace StockUI.WinForm
                 cfg.CreateMap<Unit, UnitDisplay>();
                 cfg.CreateMap<OrderDetail, OrderDetailDisplay>().ReverseMap();
                 cfg.CreateMap<Order,OrderDisplay>().ReverseMap();
+                cfg.CreateMap<moveorder, moveorderDisplay>().ReverseMap();
+                cfg.CreateMap<moveorderdetail, moveorderdetailDisplay>().ReverseMap();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>().ReverseMap();
                 //cfg.CreateMap<BankTreasury, BankTreasuryDisplay>();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>();
