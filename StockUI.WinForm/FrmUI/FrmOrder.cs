@@ -263,8 +263,7 @@ namespace StockUI.WinForm.FrmUI
                 button5.Enabled = true;
                 //button6.Enabled = true;
                 button7.Enabled = true;
-                button8.Enabled = true;
-                
+                button8.Enabled = true;                
             }
         }
         private void CmbItemName_SelectedIndexChanged(object sender, EventArgs e)
@@ -436,7 +435,6 @@ namespace StockUI.WinForm.FrmUI
             Navigation(count);
             MessageBox.Show("تم الحفظ بنجاح");
         }
-
         private void BtnPrint_Click(object sender, EventArgs e)
         {
             neworder.StockName = stockEndPoint.GetByID(neworder.StockId).Name;
