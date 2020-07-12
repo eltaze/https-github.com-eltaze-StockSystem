@@ -38,6 +38,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<FrmUnit>();
             currentContainer.RegisterType<FrmOrder>();
             currentContainer.RegisterType<FrmItems>();
+            currentContainer.RegisterType<ReportForms>();
             //Registering Database Layer
             currentContainer.RegisterSingleton<ISqlDataAccess, SqlDataAccess>();
             //Configuration AutoMapper
@@ -68,8 +69,8 @@ namespace StockUI.WinForm
                 cfg.CreateMap<Stock, StockDisplay>();
                 cfg.CreateMap<stockitem, stockitemDisplay>();
                 cfg.CreateMap<Unit, UnitDisplay>();
-                cfg.CreateMap<OrderDetail, OrderDetailDisplay>();
-                cfg.CreateMap<Order, OrderDetail>();
+                cfg.CreateMap<OrderDetail, OrderDetailDisplay>().ReverseMap();
+                cfg.CreateMap<Order,OrderDisplay>().ReverseMap();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>().ReverseMap();
                 //cfg.CreateMap<BankTreasury, BankTreasuryDisplay>();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>();

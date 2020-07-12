@@ -13,9 +13,7 @@ namespace StockSystem.Libarary.Model
         public Decimal Qty { get; set; }
         public Decimal UnitPrice { get; set; }
         public string Note { get; set; }
-        public bool FirstApprove { get; set; }
-        public bool SecondApprove { get; set; }
-        public bool ThirdApprove { get; set; }
+      
 
     }
 }

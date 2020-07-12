@@ -21,6 +21,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly IDepartmentEndPoint departmentEndPoint;
         private readonly IStockEndPoint stockEndPoint;
         private readonly IStockItemEndPoint stockItemEndPoint;
+        private readonly ReportForms reportForms;
         private List<ItemDisplay> items = new List<ItemDisplay>();
         private List<OrderDisplay> orderDisplays = new List<OrderDisplay>();
         private List<UnitDisplay> unitDisplays = new List<UnitDisplay>();
@@ -33,7 +34,7 @@ namespace StockUI.WinForm.FrmUI
             ,IUnitEndPoint unitEndPoint,IItemEndPoint itemEndPoint
             ,IBaseStockItemEndPoint baseStockItemEndPoint
             ,IDepartmentEndPoint departmentEndPoint,
-            IStockEndPoint stockEndPoint,IStockItemEndPoint stockItemEndPoint)
+            IStockEndPoint stockEndPoint,IStockItemEndPoint stockItemEndPoint,ReportForms reportForms)
         {
             InitializeComponent();
             this.mapper = mapper;
@@ -45,7 +46,9 @@ namespace StockUI.WinForm.FrmUI
             this.departmentEndPoint = departmentEndPoint;
             this.stockEndPoint = stockEndPoint;
             this.stockItemEndPoint = stockItemEndPoint;
+            this.reportForms = reportForms;
         }
+
         private void loadstock()
         {
             var output = stockEndPoint.GetAll().ToList();
@@ -115,6 +118,62 @@ namespace StockUI.WinForm.FrmUI
             }
             return output;
         }
+        private void orderdetails()
+        {
+            int xx = neworder.OrderDetails.FindIndex(b => b.ItemId == int.Parse(TxtItemId.Text.ToString()) && b.UnitId == int.Parse(CmbUnitId.SelectedValue.ToString()));
+            if (xx >= 0)
+            {
+                neworder.OrderDetails[xx].Qty += decimal.Parse(TxtQty.Text.ToString());
+                filldatagrid();
+                return;
+            }
+            OrderDetailDisplay displays = new OrderDetailDisplay
+            {
+                ItemId = int.Parse(TxtItemId.Text.ToString()),
+                UnitPrice = decimal.Parse(TxtUnitPrice.Text.ToString()),
+                Qty = decimal.Parse(TxtQty.Text.ToString()),
+                UnitId = int.Parse(CmbUnitId.SelectedValue.ToString()),
+                ItemName = CmbItemName.Text,
+                UnitName = CmbUnitId.Text,
+            };
+            neworder.OrderDetails.Add(displays);
+            filldatagrid();
+        }
+        private void filldatagrid()
+        {
+            dataGridView1.DataSource = "";
+            dataGridView1.Columns.Clear();
+            var x = from b in neworder.OrderDetails
+                    select new
+                    {
+                        إسم_الصنف = b.ItemName,
+                        الكمية = b.Qty,
+                        سعر_الوحدة = b.UnitPrice,
+                        السعر_السابق = b.LastPrice,
+                        الوحدة = b.UnitName,
+                        الإجمال = b.Total.ToString("0.00")
+                    };
+            dataGridView1.DataSource = x.ToList();
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.HeaderText = "";
+            buttonColumn.Name = "حذف";
+            buttonColumn.Text = "حذف";
+            buttonColumn.UseColumnTextForButtonValue = true;
+            buttonColumn.Text = "حذف";
+            dataGridView1.Columns.Add(buttonColumn);
+            string xx = neworder.OrderDetails.Sum(b => b?.Qty * b?.UnitPrice).ToString();
+            TxtTotal.Text = xx.PadLeft(2, '0');
+        }
+        private bool Validateint(string id)
+        {
+            int c;
+            return int.TryParse(id, out c);
+        }
+        private bool Validatedecimal(string id)
+        {
+            decimal c;
+            return decimal.TryParse(id, out c);
+        }
         #region Navigation To Orders
         private void Navigation(int id)
         {
@@ -125,19 +184,22 @@ namespace StockUI.WinForm.FrmUI
                 dateTimePicker1.Value = orderDisplays[id].ODate.Date;
                 CmbStock.SelectedValue = orderDisplays[id].StockId;
                 loadDetail(orderDisplays[id].Id);
+                label14.Text = $"{count + 1} Of {orderDisplays.Count}";
             }
         }
         private void loadDetail(int id)
         {
             var output = orderDetailEndPoint.GetByID(id).ToList();
-            var t = mapper.Map<List<OrderDetailDisplay>>(output);
-            var x = (from b in t
-                    select new 
-                    { اسم = b.ItemName, الكمية = b.Qty,
-                        سعرالوحدة = b.UnitPrice, الوحدة = b.UnitName
-                    }).ToList();
-            dataGridView1.DataSource = x;
-            TxtTotal.Text = x.Sum(b => b.سعرالوحدة * b.الكمية).ToString("0.00");
+            orderDisplays[count].OrderDetails = mapper.Map<List<OrderDetailDisplay>>(output);
+            neworder = new OrderDisplay();
+            neworder = orderDisplays[count];
+            foreach (var orde in neworder.OrderDetails)
+            {
+                orde.ItemName = itemEndPoint.GetByID(orde.ItemId).Name;
+                orde.UnitName = unitEndPoint.GetByID(orde.UnitId).Name;
+            }
+            filldatagrid();
+            TxtTotal.Text = orderDisplays[count].OrderDetails.Sum(b => b.Total).ToString("0.00");
         }
         private void BtnNext_Click(object sender, EventArgs e)
         {
@@ -179,6 +241,7 @@ namespace StockUI.WinForm.FrmUI
             CmbStock.SelectedIndex = -1;
             CmbUnitId.SelectedIndex = -1;
             dataGridView1.DataSource = "";
+            dataGridView1.Columns.Clear();
             orderDetailDisplays.Clear();
             if (BtnNew.Text == "إلغاء")
             {
@@ -201,6 +264,7 @@ namespace StockUI.WinForm.FrmUI
                 //button6.Enabled = true;
                 button7.Enabled = true;
                 button8.Enabled = true;
+                
             }
         }
         private void CmbItemName_SelectedIndexChanged(object sender, EventArgs e)
@@ -298,7 +362,7 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show("يرجي مراجعة الكمية وسعر الوحدة ");
                 return;
             }
-            if(Validateint(CmbStock.SelectedValue.ToString())==false)
+            if(Validateint(CmbStock.SelectedValue?.ToString())==false)
             {
                 MessageBox.Show("يرجي إختيار المخزن");
                 return;
@@ -313,77 +377,9 @@ namespace StockUI.WinForm.FrmUI
                 neworder.ODate = dateTimePicker1.Value.Date;
                 neworder.StockId = int.Parse(CmbStock.SelectedValue.ToString());
                 orderdetails();
-                TxtTotal.Text = neworder.OrderDetails.Sum(x => x.Qty * x.UnitPrice).ToString();
+                TxtTotal.Text = neworder.OrderDetails.Sum(x => x.Qty * x.UnitPrice).ToString("0.00");
             }
-        }
-        ///// <summary>
-        ///// Returns true is all the properties of the object are null, empty or "smaller or equal to" zero (for int and double)
-        ///// </summary>
-        ///// <param name="obj">Any type of object</param>
-        ///// <returns></returns>
-        //public static bool IsObjectEmpty(this object obj)
-        //{
-        //    if (Object.ReferenceEquals(obj, null))
-        //        return true;
-
-        //    return obj.GetType().GetProperties()
-        //        .All(x => IsNullOrEmpty(x.GetValue(obj)));
-        //}
-        private void orderdetails()
-        {
-            int xx = neworder.OrderDetails.FindIndex(b =>b.ItemId == int.Parse(TxtItemId.Text.ToString()) && b.UnitId == int.Parse(CmbUnitId.SelectedValue.ToString()));
-            if (xx >=0)
-            {
-                neworder.OrderDetails[xx].Qty += decimal.Parse(TxtQty.Text.ToString());
-                filldatagrid();
-                return;
-            }
-            OrderDetailDisplay displays = new OrderDetailDisplay
-            {
-                ItemId=int.Parse(TxtItemId.Text.ToString()),
-                UnitPrice =decimal.Parse(TxtUnitPrice.Text.ToString()),
-                Qty = decimal.Parse(TxtQty.Text.ToString()),
-                UnitId = int.Parse(CmbUnitId.SelectedValue.ToString()),
-                ItemName = CmbItemName.Text,
-                UnitName = CmbUnitId.Text,
-            };
-            neworder.OrderDetails.Add(displays);
-            filldatagrid();
-        }
-        private void filldatagrid()
-        {
-            dataGridView1.DataSource = "";
-            dataGridView1.Columns.Clear();
-            var x = from b in neworder.OrderDetails
-                    select new
-                    {
-                        إسم_الصنف = b.ItemName,
-                        الكمية = b.Qty,
-                        سعر_الوحدة = b.UnitPrice,
-                        السعر_السابق = b.LastPrice,
-                        الوحدة = b.UnitName,
-                        الإجمال = b.Qty * b.UnitPrice
-                    };
-            dataGridView1.DataSource = x.ToList();
-            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.HeaderText = "";
-            buttonColumn.Name = "حذف";
-            buttonColumn.Text = "حذف";
-            buttonColumn.UseColumnTextForButtonValue = true;
-            buttonColumn.Text = "حذف";
-            dataGridView1.Columns.Add(buttonColumn);
-            TxtTotal.Text = neworder.OrderDetails.Sum(b => b?.Qty * b?.UnitPrice).ToString();
-        }
-        private bool Validateint(string id)
-        {
-            int c;
-            return int.TryParse(id, out c);
-        }
-        private bool Validatedecimal(string id)
-        {
-            decimal c;
-            return decimal.TryParse(id, out c);
-        }
+        }      
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex != dataGridView1.Columns["حذف"].Index)
@@ -425,6 +421,34 @@ namespace StockUI.WinForm.FrmUI
             TxtUnitPrice.Text = "0.00";
             CmbStock.SelectedIndex = 0;
             CmbDepartment.SelectedIndex = 0;
+        }
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            Order order = new Order();
+            List<OrderDetail> details = new List<OrderDetail>();
+            details = mapper.Map<List<OrderDetail>>(neworder.OrderDetails);
+            order = mapper.Map<Order>(neworder);
+            var x = orderEndPoint.Save(order);
+            neworder.Id = x.Id;
+            orderDisplays.Add(neworder);
+            neworder = new OrderDisplay();
+            count = orderDisplays.Count - 1;
+            Navigation(count);
+            MessageBox.Show("تم الحفظ بنجاح");
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            neworder.StockName = stockEndPoint.GetByID(neworder.StockId).Name;
+            neworder.Total = neworder.OrderDetails.Sum(x => x.Total);
+            int i = 1;
+            foreach (var item in neworder.OrderDetails)
+            {
+                item.Counter = i;
+                i += 1;
+            }
+            reportForms.OrderDisplay = neworder;
+            reportForms.ShowDialog();
         }
     }
 }

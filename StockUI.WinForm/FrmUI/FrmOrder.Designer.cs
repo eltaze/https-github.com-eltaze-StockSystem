@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.BtnPrint = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnUpdate = new System.Windows.Forms.Button();
@@ -40,15 +38,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.CmbStock = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label11 = new System.Windows.Forms.Label();
-            this.TxtTotal = new System.Windows.Forms.TextBox();
             this.TxtItemId = new System.Windows.Forms.TextBox();
             this.TxtQty = new System.Windows.Forms.TextBox();
             this.TxtUnitPrice = new System.Windows.Forms.TextBox();
@@ -67,44 +62,32 @@
             this.BtnNext = new System.Windows.Forms.Button();
             this.BtnLast = new System.Windows.Forms.Button();
             this.BtnFirst = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.TxtTotal = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(138, 249);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 127;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label9.Location = new System.Drawing.Point(6, 246);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(116, 20);
-            this.label9.TabIndex = 126;
-            this.label9.Text = "الية الطلب";
             // 
             // BtnPrint
             // 
+            this.BtnPrint.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BtnPrint.Location = new System.Drawing.Point(320, 12);
             this.BtnPrint.Name = "BtnPrint";
             this.BtnPrint.Size = new System.Drawing.Size(72, 37);
             this.BtnPrint.TabIndex = 125;
             this.BtnPrint.Text = "طباعة";
             this.BtnPrint.UseVisualStyleBackColor = true;
+            this.BtnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
             // 
             // BtnDelete
             // 
             this.BtnDelete.Enabled = false;
+            this.BtnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BtnDelete.Location = new System.Drawing.Point(163, 12);
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(72, 37);
@@ -114,6 +97,7 @@
             // 
             // BtnUpdate
             // 
+            this.BtnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BtnUpdate.Location = new System.Drawing.Point(85, 12);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Size = new System.Drawing.Size(72, 37);
@@ -123,6 +107,7 @@
             // 
             // BtnNew
             // 
+            this.BtnNew.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BtnNew.Location = new System.Drawing.Point(7, 12);
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.Size = new System.Drawing.Size(72, 37);
@@ -136,7 +121,7 @@
             this.TxtNote.Location = new System.Drawing.Point(138, 146);
             this.TxtNote.Multiline = true;
             this.TxtNote.Name = "TxtNote";
-            this.TxtNote.Size = new System.Drawing.Size(255, 61);
+            this.TxtNote.Size = new System.Drawing.Size(255, 50);
             this.TxtNote.TabIndex = 121;
             // 
             // TxtId
@@ -185,19 +170,11 @@
             this.CmbStock.TabIndex = 128;
             this.CmbStock.SelectedIndexChanged += new System.EventHandler(this.CmbStock_SelectedIndexChanged);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(138, 246);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(255, 21);
-            this.comboBox1.TabIndex = 129;
-            // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Location = new System.Drawing.Point(263, 14);
+            this.label1.Location = new System.Drawing.Point(264, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 20);
             this.label1.TabIndex = 130;
@@ -207,7 +184,7 @@
             // 
             this.label5.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label5.Location = new System.Drawing.Point(263, 81);
+            this.label5.Location = new System.Drawing.Point(264, 56);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 20);
             this.label5.TabIndex = 131;
@@ -217,7 +194,7 @@
             // 
             this.label6.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label6.Location = new System.Drawing.Point(263, 115);
+            this.label6.Location = new System.Drawing.Point(262, 46);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(116, 20);
             this.label6.TabIndex = 132;
@@ -227,7 +204,7 @@
             // 
             this.label7.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label7.Location = new System.Drawing.Point(263, 187);
+            this.label7.Location = new System.Drawing.Point(264, 96);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(116, 20);
             this.label7.TabIndex = 133;
@@ -237,7 +214,7 @@
             // 
             this.label8.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label8.Location = new System.Drawing.Point(263, 221);
+            this.label8.Location = new System.Drawing.Point(264, 135);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(116, 20);
             this.label8.TabIndex = 135;
@@ -250,7 +227,7 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(404, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(410, 47);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
@@ -259,28 +236,9 @@
             this.dataGridView1.TabIndex = 136;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // label11
-            // 
-            this.label11.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label11.Location = new System.Drawing.Point(6, 218);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(116, 20);
-            this.label11.TabIndex = 140;
-            this.label11.Text = "اجمالي الطلب";
-            // 
-            // TxtTotal
-            // 
-            this.TxtTotal.Location = new System.Drawing.Point(138, 215);
-            this.TxtTotal.Name = "TxtTotal";
-            this.TxtTotal.ReadOnly = true;
-            this.TxtTotal.Size = new System.Drawing.Size(255, 20);
-            this.TxtTotal.TabIndex = 141;
-            this.TxtTotal.Text = "0.00";
-            // 
             // TxtItemId
             // 
-            this.TxtItemId.Location = new System.Drawing.Point(8, 15);
+            this.TxtItemId.Location = new System.Drawing.Point(9, 19);
             this.TxtItemId.Name = "TxtItemId";
             this.TxtItemId.Size = new System.Drawing.Size(246, 20);
             this.TxtItemId.TabIndex = 141;
@@ -288,14 +246,14 @@
             // 
             // TxtQty
             // 
-            this.TxtQty.Location = new System.Drawing.Point(8, 188);
+            this.TxtQty.Location = new System.Drawing.Point(9, 97);
             this.TxtQty.Name = "TxtQty";
             this.TxtQty.Size = new System.Drawing.Size(246, 20);
             this.TxtQty.TabIndex = 141;
             // 
             // TxtUnitPrice
             // 
-            this.TxtUnitPrice.Location = new System.Drawing.Point(8, 222);
+            this.TxtUnitPrice.Location = new System.Drawing.Point(9, 136);
             this.TxtUnitPrice.Name = "TxtUnitPrice";
             this.TxtUnitPrice.Size = new System.Drawing.Size(246, 20);
             this.TxtUnitPrice.TabIndex = 141;
@@ -304,7 +262,7 @@
             // CmbItemName
             // 
             this.CmbItemName.FormattingEnabled = true;
-            this.CmbItemName.Location = new System.Drawing.Point(8, 82);
+            this.CmbItemName.Location = new System.Drawing.Point(9, 57);
             this.CmbItemName.Name = "CmbItemName";
             this.CmbItemName.Size = new System.Drawing.Size(246, 21);
             this.CmbItemName.TabIndex = 128;
@@ -313,7 +271,7 @@
             // CmbUnitId
             // 
             this.CmbUnitId.FormattingEnabled = true;
-            this.CmbUnitId.Location = new System.Drawing.Point(8, 116);
+            this.CmbUnitId.Location = new System.Drawing.Point(7, 47);
             this.CmbUnitId.Name = "CmbUnitId";
             this.CmbUnitId.Size = new System.Drawing.Size(246, 21);
             this.CmbUnitId.TabIndex = 128;
@@ -321,13 +279,15 @@
             // 
             // button7
             // 
+            this.button7.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(733, 542);
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button7.Location = new System.Drawing.Point(68, 172);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(72, 23);
             this.button7.TabIndex = 142;
             this.button7.Text = "تعديل";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // panel1
@@ -336,27 +296,19 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.CmbDepartment);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.CmbItemName);
             this.panel1.Controls.Add(this.CmbUnitId);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.TxtUnitPrice);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.TxtItemQtyInStock);
-            this.panel1.Controls.Add(this.TxtQty);
             this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.TxtItemId);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Location = new System.Drawing.Point(4, 273);
+            this.panel1.Location = new System.Drawing.Point(7, 202);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(388, 257);
+            this.panel1.Size = new System.Drawing.Size(386, 114);
             this.panel1.TabIndex = 145;
             // 
             // CmbDepartment
             // 
             this.CmbDepartment.FormattingEnabled = true;
-            this.CmbDepartment.Location = new System.Drawing.Point(7, 48);
+            this.CmbDepartment.Location = new System.Drawing.Point(7, 10);
             this.CmbDepartment.Name = "CmbDepartment";
             this.CmbDepartment.Size = new System.Drawing.Size(246, 21);
             this.CmbDepartment.TabIndex = 152;
@@ -366,7 +318,7 @@
             // 
             this.label10.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label10.Location = new System.Drawing.Point(262, 47);
+            this.label10.Location = new System.Drawing.Point(262, 9);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 20);
             this.label10.TabIndex = 153;
@@ -374,7 +326,7 @@
             // 
             // TxtItemQtyInStock
             // 
-            this.TxtItemQtyInStock.Location = new System.Drawing.Point(8, 153);
+            this.TxtItemQtyInStock.Location = new System.Drawing.Point(7, 84);
             this.TxtItemQtyInStock.Name = "TxtItemQtyInStock";
             this.TxtItemQtyInStock.ReadOnly = true;
             this.TxtItemQtyInStock.Size = new System.Drawing.Size(246, 20);
@@ -384,7 +336,7 @@
             // 
             this.label12.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label12.Location = new System.Drawing.Point(263, 152);
+            this.label12.Location = new System.Drawing.Point(262, 83);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(116, 20);
             this.label12.TabIndex = 133;
@@ -422,6 +374,7 @@
             // 
             // BtnPrev
             // 
+            this.BtnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnPrev.Location = new System.Drawing.Point(251, 542);
             this.BtnPrev.Name = "BtnPrev";
             this.BtnPrev.Size = new System.Drawing.Size(66, 23);
@@ -432,6 +385,7 @@
             // 
             // BtnNext
             // 
+            this.BtnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnNext.Location = new System.Drawing.Point(78, 542);
             this.BtnNext.Name = "BtnNext";
             this.BtnNext.Size = new System.Drawing.Size(66, 23);
@@ -442,6 +396,7 @@
             // 
             // BtnLast
             // 
+            this.BtnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLast.Location = new System.Drawing.Point(4, 542);
             this.BtnLast.Name = "BtnLast";
             this.BtnLast.Size = new System.Drawing.Size(66, 23);
@@ -452,6 +407,7 @@
             // 
             // BtnFirst
             // 
+            this.BtnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFirst.Location = new System.Drawing.Point(325, 542);
             this.BtnFirst.Name = "BtnFirst";
             this.BtnFirst.Size = new System.Drawing.Size(66, 23);
@@ -460,45 +416,96 @@
             this.BtnFirst.UseVisualStyleBackColor = true;
             this.BtnFirst.Click += new System.EventHandler(this.BtnFirst_Click);
             // 
-            // button5
-            // 
-            this.button5.Enabled = false;
-            this.button5.Location = new System.Drawing.Point(624, 542);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(72, 23);
-            this.button5.TabIndex = 153;
-            this.button5.Text = "جديد";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // button8
             // 
+            this.button8.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.button8.Enabled = false;
-            this.button8.Location = new System.Drawing.Point(510, 542);
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button8.Location = new System.Drawing.Point(279, 172);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(72, 23);
             this.button8.TabIndex = 154;
             this.button8.Text = "إضافة";
-            this.button8.UseVisualStyleBackColor = true;
+            this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // BtnSave
             // 
             this.BtnSave.Enabled = false;
+            this.BtnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BtnSave.Location = new System.Drawing.Point(242, 12);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(72, 37);
             this.BtnSave.TabIndex = 125;
             this.BtnSave.Text = "حفظ";
             this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.TxtItemId);
+            this.panel2.Controls.Add(this.button5);
+            this.panel2.Controls.Add(this.button8);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.CmbItemName);
+            this.panel2.Controls.Add(this.TxtUnitPrice);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.TxtQty);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.button7);
+            this.panel2.Location = new System.Drawing.Point(7, 322);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(386, 213);
+            this.panel2.TabIndex = 155;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.button5.Enabled = false;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button5.Location = new System.Drawing.Point(181, 172);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(72, 23);
+            this.button5.TabIndex = 153;
+            this.button5.Text = "جديد";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // TxtTotal
+            // 
+            this.TxtTotal.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.TxtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTotal.ForeColor = System.Drawing.Color.Maroon;
+            this.TxtTotal.Location = new System.Drawing.Point(593, 12);
+            this.TxtTotal.Name = "TxtTotal";
+            this.TxtTotal.ReadOnly = true;
+            this.TxtTotal.Size = new System.Drawing.Size(273, 26);
+            this.TxtTotal.TabIndex = 157;
+            this.TxtTotal.Text = "0.00";
+            // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.label11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label11.Location = new System.Drawing.Point(452, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(116, 23);
+            this.label11.TabIndex = 156;
+            this.label11.Text = "اجمالي الطلب";
             // 
             // FrmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 572);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button5);
+            this.ClientSize = new System.Drawing.Size(938, 572);
+            this.Controls.Add(this.TxtTotal);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.BtnPrev);
             this.Controls.Add(this.BtnNext);
@@ -507,14 +514,8 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.TxtTotal);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.CmbStock);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.BtnPrint);
             this.Controls.Add(this.BtnDelete);
@@ -536,15 +537,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button BtnPrint;
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnUpdate;
@@ -555,15 +555,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox CmbStock;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox TxtTotal;
         private System.Windows.Forms.TextBox TxtItemId;
         private System.Windows.Forms.TextBox TxtQty;
         private System.Windows.Forms.TextBox TxtUnitPrice;
@@ -580,10 +577,13 @@
         private System.Windows.Forms.Button BtnNext;
         private System.Windows.Forms.Button BtnLast;
         private System.Windows.Forms.Button BtnFirst;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.ComboBox CmbDepartment;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox TxtTotal;
+        private System.Windows.Forms.Label label11;
     }
 }

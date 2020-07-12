@@ -29,9 +29,7 @@ namespace StockUI.Libarary.Model
         public Decimal Qty { get; set; }
         public Decimal UnitPrice { get; set; }
         public string Note { get; set; }
-        public bool FirstApprove { get; set; }
-        public bool SecondApprove { get; set; }
-        public bool ThirdApprove { get; set; }
+       
         public decimal  LastPrice
         {
             get 
@@ -68,12 +66,13 @@ namespace StockUI.Libarary.Model
             }
         }
         public string UnitName { get; set; }
-        //{
-        //    get
-        //    {
-        //        var x = unitEndPoint.GetByID(UnitId);
-        //        return x.Name;
-        //    }
-        //}
+        public int Counter { get; set; }
+        public decimal Total
+        {
+            get
+            {
+                return Qty * UnitPrice;
+            }
+        }
     }
 }

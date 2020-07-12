@@ -12,12 +12,20 @@ namespace StockSystem.Libarary.BL
     public class OrderEndPoint : IOrderEndPoint
     {
         private readonly IOrderDetailEndPoint orderDetailEndPoint;
+        private readonly IItemEndPoint itemEndPoint;
+        private readonly IUnitEndPoint unitEndPoint;
         private readonly ISqlDataAccess sql;
+        private readonly IStockItemEndPoint stockItemEndPoint;
 
-        public OrderEndPoint(IOrderDetailEndPoint orderDetailEndPoint,ISqlDataAccess sql)
+        public OrderEndPoint(IOrderDetailEndPoint orderDetailEndPoint,
+                             IItemEndPoint itemEndPoint,IUnitEndPoint unitEndPoint
+                             ,ISqlDataAccess sql,IStockItemEndPoint stockItemEndPoint)
         {
             this.orderDetailEndPoint = orderDetailEndPoint;
+            this.itemEndPoint = itemEndPoint;
+            this.unitEndPoint = unitEndPoint;
             this.sql = sql;
+            this.stockItemEndPoint = stockItemEndPoint;
         }
         public void Delete(Order t)
         {
@@ -72,8 +80,8 @@ namespace StockSystem.Libarary.BL
             try
             {
                 sql.starttransaction();
-                int x = sql.SaveTrans<Order, dynamic>("spOrdersInsert", t);
-                foreach (var item in t.OrderDetails)
+                int x = sql.SaveTrans<Order, dynamic>("spOrdersInsert", new  {stockid=t.StockId,odate=t.ODate,note=t.Note });
+                foreach (OrderDetail item in t.OrderDetails)
                 {
                     item.orderid = x;
                     sql.SaveTrans<OrderDetail, dynamic>("sporderdetailInsert", item);
