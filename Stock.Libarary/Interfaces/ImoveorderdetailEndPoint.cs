@@ -5,12 +5,12 @@ namespace StockSystem.Libarary.Interfaces
 {
     public interface ImoveorderdetailEndPoint
     {
-        void Delete(moveorderdetail t);
-        List<moveorderdetail> GetAll();
-        moveorderdetail GetByID(int id);
-        List<moveorderdetail> GetByItemId(int Id);
-        List<moveorderdetail> GetBySeGetByOrderDetailId(int id);
-        void Save(moveorderdetail t);
-        moveorderdetail Update(moveorderdetail t);
+        void Delete(MoveOrderDetail t);
+        List<MoveOrderDetail> GetAll();
+        MoveOrderDetail GetByID(int id);
+        List<MoveOrderDetail> GetByItemId(int Id);
+        List<MoveOrderDetail> GetBySeGetByOrderDetailId(int id);
+        void Save(MoveOrderDetail t);
+        MoveOrderDetail Update(MoveOrderDetail t);
     }
 }

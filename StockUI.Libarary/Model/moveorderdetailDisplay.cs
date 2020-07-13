@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StockUI.Libarary.Model
 {
-    public class moveorderdetailDisplay
+    public class MoveOrderDetailDisplay
     {
         public int Id { get; set; }
         public int Moveorderid { get; set; }

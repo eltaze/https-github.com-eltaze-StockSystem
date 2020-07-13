@@ -25,7 +25,7 @@ namespace StockUI.WinForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FrmStock());
-            Application.Run(container.Resolve<FrmOrder>());
+            Application.Run(container.Resolve<FrmMoveOrder>());
         }
         public static IUnityContainer BuildContainer()
         {
@@ -38,6 +38,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<FrmUnit>();
             currentContainer.RegisterType<FrmOrder>();
             currentContainer.RegisterType<FrmItems>();
+            currentContainer.RegisterType<FrmMoveOrder>();
             currentContainer.RegisterType<ReportForms>();
             //Registering Database Layer
             currentContainer.RegisterSingleton<ISqlDataAccess, SqlDataAccess>();
@@ -73,8 +74,8 @@ namespace StockUI.WinForm
                 cfg.CreateMap<Unit, UnitDisplay>();
                 cfg.CreateMap<OrderDetail, OrderDetailDisplay>().ReverseMap();
                 cfg.CreateMap<Order,OrderDisplay>().ReverseMap();
-                cfg.CreateMap<moveorder, moveorderDisplay>().ReverseMap();
-                cfg.CreateMap<moveorderdetail, moveorderdetailDisplay>().ReverseMap();
+                cfg.CreateMap<MoveOrder, MoveorderDisplay>().ReverseMap();
+                cfg.CreateMap<MoveOrderDetail, MoveOrderDetailDisplay>().ReverseMap();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>().ReverseMap();
                 //cfg.CreateMap<BankTreasury, BankTreasuryDisplay>();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>();

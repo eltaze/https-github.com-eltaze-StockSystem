@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace StockSystem.Libarary.Model
 {
-   public class moveorder
+   public class MoveOrder
     {
         public int Id { get; set; }
         public string BarCode { get; set; }
@@ -14,7 +14,7 @@ namespace StockSystem.Libarary.Model
         public DateTime Odate { get; set; }
         public int StockId { get; set; }
         public string Note { get; set; }
-        public List<moveorderdetail> moveorderdetails = new List<moveorderdetail>();
+        public List<MoveOrderDetail> moveorderdetails = new List<MoveOrderDetail>();
     }
 
 }

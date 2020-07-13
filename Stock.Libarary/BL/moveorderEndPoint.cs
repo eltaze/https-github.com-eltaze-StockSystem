@@ -16,17 +16,17 @@ namespace StockSystem.Libarary.BL
             this.sql = sql;
         }
 
-        public void Delete(moveorder t)
+        public void Delete(MoveOrder t)
         {
             throw new NotImplementedException();
         }
 
-        public List<moveorder> GetAll()
+        public List<MoveOrder> GetAll()
         {
             //spmoveorderGetAll
             try
             {
-                var output = sql.ReadingData<moveorder, dynamic>("spmoveorderGetAll", new { });
+                var output = sql.ReadingData<MoveOrder, dynamic>("spmoveorderGetAll", new { });
                 return output;
             }
             catch (Exception ex)
@@ -34,12 +34,12 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-        public moveorder GetByID(int id)
+        public MoveOrder GetByID(int id)
         {
             //spmoveorderGetById
             try
             {
-                var output = sql.ReadingData<moveorder, dynamic>("spmoveorderGetById", new { id }).FirstOrDefault();
+                var output = sql.ReadingData<MoveOrder, dynamic>("spmoveorderGetById", new { id }).FirstOrDefault();
                 return output;
             }
             catch (Exception ex)
@@ -47,12 +47,12 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-        public moveorder GetByBarcode(string barcde)
+        public MoveOrder GetByBarcode(string barcde)
         {
             //spmoveorderGetByBarCode
             try
             {
-                var output = sql.ReadingData<moveorder, dynamic>("spmoveorderGetByBarCode", new { barcde }).FirstOrDefault();
+                var output = sql.ReadingData<MoveOrder, dynamic>("spmoveorderGetByBarCode", new { barcde }).FirstOrDefault();
                 return output;
             }
             catch (Exception ex)
@@ -60,12 +60,12 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-        public List<moveorder> GetByStockId(int stockid)
+        public List<MoveOrder> GetByStockId(int stockid)
         {
             //spmoveorderGetBystockId
             try
             {
-                var output = sql.ReadingData<moveorder, dynamic>("spmoveorderGetBystockId", new { stockid }).ToList();
+                var output = sql.ReadingData<MoveOrder, dynamic>("spmoveorderGetBystockId", new { stockid }).ToList();
                 return output;
             }
             catch (Exception ex)
@@ -73,17 +73,17 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-        public int Save(moveorder t)
+        public int Save(MoveOrder t)
         {
             //spmoveorderInsert
             try
             {
                 sql.starttransaction();
-                var id = sql.SaveTrans<moveorder, dynamic>("spmoveorderInsert", t);
-                foreach (moveorderdetail item in t.moveorderdetails)
+                var id = sql.SaveTrans<MoveOrder, dynamic>("spmoveorderInsert", t);
+                foreach (MoveOrderDetail item in t.moveorderdetails)
                 {
                     item.Moveorderid = id;
-                    sql.ExecuteTrans<moveorderdetail, dynamic>("spmoveorderdetailinsert", item);
+                    sql.ExecuteTrans<MoveOrderDetail, dynamic>("spmoveorderdetailinsert", item);
                 }
                 sql.commitrasaction();
                 return id;
@@ -93,12 +93,12 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-        public moveorder Update(moveorder t)
+        public MoveOrder Update(MoveOrder t)
         {
             //spomveorderUpdate
             try
             {
-                sql.Execute<moveorder, dynamic>("spomveorderUpdate", t);
+                sql.Execute<MoveOrder, dynamic>("spomveorderUpdate", t);
                 return t;
             }
             catch (Exception ex)

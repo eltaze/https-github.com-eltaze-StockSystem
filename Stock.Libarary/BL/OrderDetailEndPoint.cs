@@ -108,5 +108,18 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
+        public List<OrderDetail> GetOrderDetailsByMoveOrder()
+        {
+            //spOrderDetailsMoveOrder
+            try
+            {
+                var output = sql.ReadingData<OrderDetail, dynamic>("spOrderDetailsMoveOrder", new { }).ToList();
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }

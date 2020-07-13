@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StockSystem.Libarary.Model
 {
-   public class moveorderdetail
+   public class MoveOrderDetail
     {
         public int Id { get; set; }
         public int Moveorderid { get; set; }

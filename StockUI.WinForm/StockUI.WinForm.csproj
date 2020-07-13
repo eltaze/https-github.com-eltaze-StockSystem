@@ -132,6 +132,12 @@
     <Compile Include="FrmUI\FrmKind.Designer.cs">
       <DependentUpon>FrmKind.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUI\FrmMoveOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUI\FrmMoveOrder.Designer.cs">
+      <DependentUpon>FrmMoveOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUI\FrmOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUI\FrmKind.resx">
       <DependentUpon>FrmKind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUI\FrmMoveOrder.resx">
+      <DependentUpon>FrmMoveOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUI\FrmOrder.resx">
       <DependentUpon>FrmOrder.cs</DependentUpon>
