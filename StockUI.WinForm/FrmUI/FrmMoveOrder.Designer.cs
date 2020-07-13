@@ -50,6 +50,9 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.TxtItemName = new System.Windows.Forms.TextBox();
+            this.CmbUnitId = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.TxtItemId = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -58,9 +61,6 @@
             this.TxtQty = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
-            this.CmbUnitId = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.TxtItemName = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.BtnPrev = new System.Windows.Forms.Button();
             this.BtnNext = new System.Windows.Forms.Button();
@@ -304,6 +304,34 @@
             this.panel2.Size = new System.Drawing.Size(483, 192);
             this.panel2.TabIndex = 164;
             // 
+            // TxtItemName
+            // 
+            this.TxtItemName.Location = new System.Drawing.Point(17, 41);
+            this.TxtItemName.Name = "TxtItemName";
+            this.TxtItemName.Size = new System.Drawing.Size(309, 20);
+            this.TxtItemName.TabIndex = 157;
+            // 
+            // CmbUnitId
+            // 
+            this.CmbUnitId.FormattingEnabled = true;
+            this.CmbUnitId.Location = new System.Drawing.Point(17, 105);
+            this.CmbUnitId.Name = "CmbUnitId";
+            this.CmbUnitId.Size = new System.Drawing.Size(309, 21);
+            this.CmbUnitId.TabIndex = 155;
+            this.CmbUnitId.SelectedIndexChanged += new System.EventHandler(this.CmbUnitId_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label10.Location = new System.Drawing.Point(335, 105);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(116, 20);
+            this.label10.TabIndex = 156;
+            this.label10.Text = "الوحدة";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
             // TxtItemId
             // 
             this.TxtItemId.Location = new System.Drawing.Point(17, 9);
@@ -334,6 +362,7 @@
             this.button8.TabIndex = 154;
             this.button8.Text = "إضافة";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // label7
             // 
@@ -386,34 +415,6 @@
             this.button7.TabIndex = 142;
             this.button7.Text = "تعديل";
             this.button7.UseVisualStyleBackColor = false;
-            // 
-            // CmbUnitId
-            // 
-            this.CmbUnitId.FormattingEnabled = true;
-            this.CmbUnitId.Location = new System.Drawing.Point(17, 105);
-            this.CmbUnitId.Name = "CmbUnitId";
-            this.CmbUnitId.Size = new System.Drawing.Size(309, 21);
-            this.CmbUnitId.TabIndex = 155;
-            this.CmbUnitId.SelectedIndexChanged += new System.EventHandler(this.CmbUnitId_SelectedIndexChanged);
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label10.Location = new System.Drawing.Point(335, 105);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(116, 20);
-            this.label10.TabIndex = 156;
-            this.label10.Text = "الوحدة";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label10.Click += new System.EventHandler(this.label10_Click);
-            // 
-            // TxtItemName
-            // 
-            this.TxtItemName.Location = new System.Drawing.Point(17, 41);
-            this.TxtItemName.Name = "TxtItemName";
-            this.TxtItemName.Size = new System.Drawing.Size(309, 20);
-            this.TxtItemName.TabIndex = 157;
             // 
             // label11
             // 

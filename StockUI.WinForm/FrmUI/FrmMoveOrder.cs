@@ -26,6 +26,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly IItemEndPoint itemEndPoint;
         private readonly IUnitEndPoint unitEndPoint;
         private List<MoveorderDisplay> moveorderDisplays = new List<MoveorderDisplay>();
+        private List<MoveOrderDetailDisplay> moveOrderDetailDisplays = new List<MoveOrderDetailDisplay>();
         private List<OrderDetailDisplay> orderDetailDisplays = new List<OrderDetailDisplay>();
         private List<UnitDisplay> unitDisplays = new List<UnitDisplay>();
         int count = 0;
@@ -64,7 +65,6 @@ namespace StockUI.WinForm.FrmUI
                 Navigation(0);
             }
         }
-
         #region Navigation forms and movement
         private void Navigation(int id)
         {
@@ -137,8 +137,7 @@ namespace StockUI.WinForm.FrmUI
                 //button6.Enabled = true;
                 button7.Enabled = true;
                 button8.Enabled = true;
-            }
-           
+            }           
         }
        private void fillDataGridOrder()
         {
@@ -146,8 +145,7 @@ namespace StockUI.WinForm.FrmUI
             foreach (OrderDetailDisplay item in orderDetailDisplays)
             {
                 item.UnitName = unitEndPoint.GetByID(item.UnitId).Name;
-                item.ItemName = itemEndPoint.GetByID(item.ItemId).Name;
-                
+                item.ItemName = itemEndPoint.GetByID(item.ItemId).Name;               
             }
             var x = (from b in orderDetailDisplays
                      select new { 
@@ -169,16 +167,9 @@ namespace StockUI.WinForm.FrmUI
             ////buttonColumn = "حذف";
             //dataGridView2.Columns.Add(buttonColumn);
         }
-
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-            //Item item = new Item();
-            //item = itemEndPoint.GetByID(neworder.OrderDetails[z].ItemId);
-            //CmbDepartment.SelectedValue = item.DepartmentId;
-            //CmbItemName.SelectedValue = item.Id;
-            //CmbUnitId.SelectedValue = neworder.OrderDetails[z].UnitId;
-            //modification = z;
+           
         }
         private void calcunit(int id, int itemid)
         {
@@ -200,14 +191,40 @@ namespace StockUI.WinForm.FrmUI
             CmbUnitId.ValueMember = "Id";
             CmbUnitId.DisplayMember = "Name";
         }
-
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            TxtItemName.Text = (string)dataGridView2[0, e.RowIndex].Value.ToString();
-            TxtQty.Text = (string)dataGridView2[1, e.RowIndex].Value.ToString();
-            TxtItemId.Text = (string)dataGridView2[4, e.RowIndex].Value.ToString();
-            calcunit(int.Parse((string)dataGridView2[3, e.RowIndex].Value.ToString()), int.Parse((string)dataGridView2[4, e.RowIndex].Value.ToString()));
-            
+            if(e.RowIndex <= dataGridView2.Rows.Count -1 && e.RowIndex >=0)
+            {
+                TxtItemName.Text = (string)dataGridView2[0, e.RowIndex].Value.ToString();
+                TxtQty.Text = (string)dataGridView2[1, e.RowIndex].Value.ToString();
+                TxtItemId.Text = (string)dataGridView2[4, e.RowIndex].Value.ToString();
+                calcunit(int.Parse((string)dataGridView2[3, e.RowIndex].Value.ToString()), int.Parse((string)dataGridView2[4, e.RowIndex].Value.ToString()));
+            }
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var x = orderDetailDisplays.FindIndex(b => b.ItemName == TxtItemName.Text && b.ItemId == int.Parse(TxtItemId.Text.ToString()));
+            MoveOrderDetailDisplay detailDisplay = new MoveOrderDetailDisplay
+            {
+                Note = "",
+                ItemId = orderDetailDisplays[x].ItemId,
+                OrderDetailId = orderDetailDisplays[x].Id,
+                Qty =decimal.Parse(TxtQty.Text.ToString()),
+                UnitId =orderDetailDisplays[x].UnitId,
+                barcode = itemEndPoint.GetByID(orderDetailDisplays[x].ItemId).Barcode,
+                ItemName =orderDetailDisplays[x].ItemName,
+                UnitName =orderDetailDisplays[x].UnitName
+            };
+            moveOrderDetailDisplays.Add(detailDisplay);
+            datagridfill();
+
+        }
+        private void datagridfill()
+        {
+            var x = from b in moveOrderDetailDisplays
+                    select new { إسم_الصنف = b.ItemName, إسم_الوحدة = b.UnitName, الكمية = b.Qty, باركود = b.barcode };
+            dataGridView1.DataSource = x.ToList();
+            dataGridView1.Columns[3].DefaultCellStyle.Font= new Font("IDAHC39M Code 39 Barcode", 8.5F, GraphicsUnit.Pixel);
         }
     }
 }
