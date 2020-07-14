@@ -54,7 +54,6 @@
             this.CmbUnitId = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.TxtItemId = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -81,6 +80,7 @@
             this.BtnSave.TabIndex = 129;
             this.BtnSave.Text = "حفظ";
             this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // BtnPrint
             // 
@@ -91,6 +91,7 @@
             this.BtnPrint.TabIndex = 130;
             this.BtnPrint.Text = "طباعة";
             this.BtnPrint.UseVisualStyleBackColor = true;
+            this.BtnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
             // 
             // BtnDelete
             // 
@@ -266,6 +267,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(483, 317);
             this.dataGridView1.TabIndex = 162;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // dataGridView2
             // 
@@ -292,7 +294,6 @@
             this.panel2.Controls.Add(this.CmbUnitId);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.TxtItemId);
-            this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.button8);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label8);
@@ -308,17 +309,18 @@
             // 
             this.TxtItemName.Location = new System.Drawing.Point(17, 41);
             this.TxtItemName.Name = "TxtItemName";
+            this.TxtItemName.ReadOnly = true;
             this.TxtItemName.Size = new System.Drawing.Size(309, 20);
             this.TxtItemName.TabIndex = 157;
             // 
             // CmbUnitId
             // 
+            this.CmbUnitId.Enabled = false;
             this.CmbUnitId.FormattingEnabled = true;
             this.CmbUnitId.Location = new System.Drawing.Point(17, 105);
             this.CmbUnitId.Name = "CmbUnitId";
             this.CmbUnitId.Size = new System.Drawing.Size(309, 21);
             this.CmbUnitId.TabIndex = 155;
-            this.CmbUnitId.SelectedIndexChanged += new System.EventHandler(this.CmbUnitId_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -330,26 +332,14 @@
             this.label10.TabIndex = 156;
             this.label10.Text = "الوحدة";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // TxtItemId
             // 
             this.TxtItemId.Location = new System.Drawing.Point(17, 9);
             this.TxtItemId.Name = "TxtItemId";
+            this.TxtItemId.ReadOnly = true;
             this.TxtItemId.Size = new System.Drawing.Size(309, 20);
             this.TxtItemId.TabIndex = 141;
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button5.Enabled = false;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button5.Location = new System.Drawing.Point(225, 149);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(72, 23);
-            this.button5.TabIndex = 153;
-            this.button5.Text = "جديد";
-            this.button5.UseVisualStyleBackColor = false;
             // 
             // button8
             // 
@@ -415,6 +405,7 @@
             this.button7.TabIndex = 142;
             this.button7.Text = "تعديل";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // label11
             // 
@@ -543,7 +534,6 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox TxtItemId;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;

@@ -22,6 +22,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly ImoveorderdetailEndPoint moveorderdetailEndPoint;
         private readonly ImoveorderEndPoint moveorderEndPoint;
         private readonly IOrderDetailEndPoint orderDetailEndPoint;
+        private readonly ReportForms reportForms;
         private readonly IStockEndPoint stockEndPoint;
         private readonly IItemEndPoint itemEndPoint;
         private readonly IUnitEndPoint unitEndPoint;
@@ -32,7 +33,7 @@ namespace StockUI.WinForm.FrmUI
         int count = 0;
 
         public FrmMoveOrder(IMapper mapper,ImoveorderdetailEndPoint moveorderdetailEndPoint,
-            ImoveorderEndPoint moveorderEndPoint,IOrderDetailEndPoint orderDetailEndPoint
+            ImoveorderEndPoint moveorderEndPoint,IOrderDetailEndPoint orderDetailEndPoint,ReportForms reportForms
             ,IStockEndPoint stockEndPoint,IItemEndPoint itemEndPoint,IUnitEndPoint unitEndPoint)
         {
             InitializeComponent();
@@ -40,17 +41,10 @@ namespace StockUI.WinForm.FrmUI
             this.moveorderdetailEndPoint = moveorderdetailEndPoint;
             this.moveorderEndPoint = moveorderEndPoint;
             this.orderDetailEndPoint = orderDetailEndPoint;
+            this.reportForms = reportForms;
             this.stockEndPoint = stockEndPoint;
             this.itemEndPoint = itemEndPoint;
             this.unitEndPoint = unitEndPoint;
-        }
-        private void CmbUnitId_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void label10_Click(object sender, EventArgs e)
-        {
-
         }
         private void FrmMoveOrder_Load(object sender, EventArgs e)
         {
@@ -72,11 +66,23 @@ namespace StockUI.WinForm.FrmUI
             {
                 TxtId.Text = moveorderDisplays[id].Id.ToString();
                 CmbStock.SelectedValue = moveorderDisplays[id].StockId;
-                dateTimePicker1.Value = moveorderDisplays[id].Odate.Date;
+                //dateTimePicker1.Value = moveorderDisplays[id].Odate.Date;
                 TxtNote.Text = moveorderDisplays[id].Note;
                 TxtDriveName.Text = moveorderDisplays[id].DriverName;
                 TxtCarBlate.Text = moveorderDisplays[id].CarBlate;
                 TxtCity.Text = "";
+                label11.Text = $"{count + 1} Of {moveorderDisplays.Count}";
+                loadMoveOrderDetails(moveorderDisplays[id].Id);
+                datagridfill();
+            }
+        }
+        private void loadMoveOrderDetails(int id)
+        {
+            moveOrderDetailDisplays = mapper.Map<List<MoveOrderDetailDisplay>>(moveorderdetailEndPoint.GetByMoveOrderId(id));
+            foreach (MoveOrderDetailDisplay item in moveOrderDetailDisplays)
+            {
+                item.ItemName = itemEndPoint.GetByID(item.Id).Name;
+                item.UnitName = unitEndPoint.GetByID(item.UnitId).Name;
             }
         }
         private void BtnNext_Click(object sender, EventArgs e)
@@ -121,7 +127,7 @@ namespace StockUI.WinForm.FrmUI
                 BtnSave.Enabled = false;
                 BtnUpdate.Enabled = true;
                 Navigation(count);
-                button5.Enabled = false;
+                //button5.Enabled = false;
                 //button6.Enabled = false;
                 dataGridView2.DataSource = null;
                 button7.Enabled = false;
@@ -133,7 +139,7 @@ namespace StockUI.WinForm.FrmUI
                 BtnSave.Enabled = true;
                 BtnUpdate.Enabled = false;
                 fillDataGridOrder();
-                button5.Enabled = true;
+               // button5.Enabled = true;
                 //button6.Enabled = true;
                 button7.Enabled = true;
                 button8.Enabled = true;
@@ -203,28 +209,144 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            var x = orderDetailDisplays.FindIndex(b => b.ItemName == TxtItemName.Text && b.ItemId == int.Parse(TxtItemId.Text.ToString()));
-            MoveOrderDetailDisplay detailDisplay = new MoveOrderDetailDisplay
+            if (TxtItemId.Text.Length <=0)
             {
-                Note = "",
-                ItemId = orderDetailDisplays[x].ItemId,
-                OrderDetailId = orderDetailDisplays[x].Id,
-                Qty =decimal.Parse(TxtQty.Text.ToString()),
-                UnitId =orderDetailDisplays[x].UnitId,
-                barcode = itemEndPoint.GetByID(orderDetailDisplays[x].ItemId).Barcode,
-                ItemName =orderDetailDisplays[x].ItemName,
-                UnitName =orderDetailDisplays[x].UnitName
-            };
-            moveOrderDetailDisplays.Add(detailDisplay);
-            datagridfill();
-
+                MessageBox.Show("يرجي إختيار الصنف أولا");
+                return;
+            }
+            var x = orderDetailDisplays.FindIndex(b =>  b.ItemId == int.Parse(TxtItemId.Text.ToString()) && b.UnitName ==CmbUnitId.Text);
+            int xx = moveOrderDetailDisplays.FindIndex(b => b.ItemId == orderDetailDisplays[x].ItemId && b.UnitName == CmbUnitId.Text);
+            if (xx>=0)
+            {
+                if (orderDetailDisplays[x].Qty < (decimal.Parse(TxtQty.Text.ToString()) + moveOrderDetailDisplays[xx].Qty))
+                {
+                    MessageBox.Show("لايمكن إضافة قيمة أكبر من طلب الشراء");
+                    return;
+                }
+                MoveOrderDetailDisplay detailDisplay = new MoveOrderDetailDisplay
+                {
+                    Note = "",
+                    ItemId = orderDetailDisplays[x].ItemId,
+                    OrderDetailId = orderDetailDisplays[x].Id,
+                    Qty = decimal.Parse(TxtQty.Text.ToString())+moveOrderDetailDisplays[xx].Qty,
+                    UnitId = orderDetailDisplays[x].UnitId,
+                    barcode = itemEndPoint.GetByID(orderDetailDisplays[x].ItemId).Barcode,
+                    ItemName = orderDetailDisplays[x].ItemName,
+                    UnitName = orderDetailDisplays[x].UnitName
+                };
+                moveOrderDetailDisplays.RemoveAt(xx);
+                moveOrderDetailDisplays.Add(detailDisplay);
+                datagridfill();
+            }
+            else
+            {
+                if (orderDetailDisplays[x].Qty < decimal.Parse(TxtQty.Text.ToString()))
+                {
+                    MessageBox.Show("لايمكن إضافة قيمة أكبر من طلب الشراء");
+                    return;
+                }
+               MoveOrderDetailDisplay detailDisplay = new MoveOrderDetailDisplay
+                {
+                    Note = "",
+                    ItemId = orderDetailDisplays[x].ItemId,
+                    OrderDetailId = orderDetailDisplays[x].Id,
+                    Qty = decimal.Parse(TxtQty.Text.ToString()),
+                    UnitId = orderDetailDisplays[x].UnitId,
+                    barcode = itemEndPoint.GetByID(orderDetailDisplays[x].ItemId).Barcode,
+                    ItemName = orderDetailDisplays[x].ItemName,
+                    UnitName = orderDetailDisplays[x].UnitName
+                };
+                moveOrderDetailDisplays.Add(detailDisplay);
+                datagridfill();
+            }
         }
         private void datagridfill()
         {
+            dataGridView1.DataSource = null;
             var x = from b in moveOrderDetailDisplays
-                    select new { إسم_الصنف = b.ItemName, إسم_الوحدة = b.UnitName, الكمية = b.Qty, باركود = b.barcode };
+                    select new {
+                        إسم_الصنف = b.ItemName, 
+                        إسم_الوحدة = b.UnitName,
+                        الكمية = b.Qty, 
+                        باركود = b.barcode ,
+                        b.UnitId,
+                        b.ItemId
+                    };
             dataGridView1.DataSource = x.ToList();
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].Visible = false;
             dataGridView1.Columns[3].DefaultCellStyle.Font= new Font("IDAHC39M Code 39 Barcode", 8.5F, GraphicsUnit.Pixel);
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex <= dataGridView2.Rows.Count - 1 && e.RowIndex >= 0)
+            {
+                TxtItemName.Text = (string)dataGridView1[0, e.RowIndex].Value.ToString();
+                TxtQty.Text = (string)dataGridView1[2, e.RowIndex].Value.ToString();
+                TxtItemId.Text = (string)dataGridView1[5, e.RowIndex].Value.ToString();
+                calcunit(int.Parse((string)dataGridView1[4, e.RowIndex].Value.ToString()), int.Parse((string)dataGridView1[5, e.RowIndex].Value.ToString()));
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            int x = moveOrderDetailDisplays.FindIndex(b => b.ItemId == int.Parse(TxtItemId.Text.ToString()) && b.UnitName == CmbUnitId.Text);
+            if(x>=0)
+            {
+                moveOrderDetailDisplays[x].Qty = decimal.Parse(TxtQty.Text.ToString());
+                datagridfill();
+            }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            if (CmbStock.SelectedIndex == -1 ||TxtDriveName.Text.Length ==0 || TxtCarBlate.Text.Length==0 || TxtCity.Text.Length ==0 )
+            {
+                MessageBox.Show("لايمكن أن يكون اسم المخزن أو اسم السائق أو رقم العربة أو المدينة خالية");
+                return;
+            }
+            MoveorderDisplay moveOrder = new MoveorderDisplay
+            {
+                BarCode="",
+                StockId = int.Parse(CmbStock.SelectedValue.ToString()),
+                DriverName =TxtDriveName.Text,
+                CarBlate = TxtCarBlate.Text,
+                Odate =dateTimePicker1.Value,
+                Note = TxtNote.Text
+            };
+            moveOrder.moveorderdetailDisplays = moveOrderDetailDisplays;
+            try
+            {
+                MoveOrder order = new MoveOrder();
+                order = mapper.Map<MoveOrder>(moveOrder);
+                order.moveorderdetails = mapper.Map<List<MoveOrderDetail>>(moveOrderDetailDisplays);
+                int x = moveorderEndPoint.Save(order);
+                moveOrder.Id = x;
+                moveorderDisplays.Add(moveOrder);
+                count = moveorderDisplays.Count - 1;
+                Navigation(count);
+                MessageBox.Show("تم الحفظ بنجاح");
+            }
+          catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            moveorderDisplays[count].City = TxtCity.Text;
+            moveorderDisplays[count].stockName = stockEndPoint.GetByID(moveorderDisplays[count].StockId).Name;
+            moveorderDisplays[count].moveorderdetailDisplays = moveOrderDetailDisplays;
+            int i = 1;
+            foreach (var item in moveorderDisplays[count].moveorderdetailDisplays)
+            {
+                item.Counter = i;
+                i++;
+            }
+            reportForms.start = 2;
+            reportForms.MoveorderDisplay = moveorderDisplays[count];
+            reportForms.ShowDialog();
         }
     }
 }

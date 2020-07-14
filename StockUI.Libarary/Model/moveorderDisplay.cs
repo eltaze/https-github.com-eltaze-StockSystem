@@ -13,6 +13,8 @@ namespace StockUI.Libarary.Model
         public DateTime Odate { get; set; }
         public int StockId { get; set; }
         public string Note { get; set; }
-        List<MoveOrderDetailDisplay> moveorderdetailDisplays = new List<MoveOrderDetailDisplay>();
+        public string City { get; set; }
+        public String stockName { get; set; }
+        public List<MoveOrderDetailDisplay> moveorderdetailDisplays { get; set; } = new List<MoveOrderDetailDisplay>();
     }
 }

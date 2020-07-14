@@ -16,5 +16,6 @@ namespace StockUI.Libarary.Model
         public string barcode { get; set; }
         public string ItemName { get; set; }
         public string UnitName { get; set; }
+        public int Counter { get; set; }
     }
 }

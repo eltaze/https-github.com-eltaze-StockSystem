@@ -94,5 +94,19 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
+        public List<MoveOrderDetail> GetByMoveOrderId(int id)
+        {
+            //spmoveorderdetailGetByMoveOrderId
+            try
+            {
+                //spmoveorderdetailGetByOrderDetailId
+                var output = sql.ReadingData<MoveOrderDetail, dynamic>("spmoveorderdetailGetByOrderDetailId", new { id });
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }

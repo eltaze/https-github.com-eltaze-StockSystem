@@ -445,6 +445,7 @@ namespace StockUI.WinForm.FrmUI
                 item.Counter = i;
                 i += 1;
             }
+            reportForms.start = 1;
             reportForms.OrderDisplay = neworder;
             reportForms.ShowDialog();
         }
