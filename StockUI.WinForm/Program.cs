@@ -25,7 +25,7 @@ namespace StockUI.WinForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FrmStock());
-            Application.Run(container.Resolve<FrmMoveOrder>());
+            Application.Run(container.Resolve<FrmItemRecit>());
         }
         public static IUnityContainer BuildContainer()
         {
@@ -36,6 +36,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<Validation>();
             currentContainer.RegisterType<StockDisplay>();
             currentContainer.RegisterType<FrmUnit>();
+            currentContainer.RegisterType<FrmItemRecit>();
             currentContainer.RegisterType<FrmOrder>();
             currentContainer.RegisterType<FrmItems>();
             currentContainer.RegisterType<FrmMoveOrder>();
@@ -47,6 +48,7 @@ namespace StockUI.WinForm
             //Registering BL DataAccess Clasess
             currentContainer.RegisterType<IDepartmentEndPoint, DepartmentEndPoint>();
             currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
+            currentContainer.RegisterType<UnitConversions>();
             currentContainer.RegisterType<IItemEndPoint, ItemEndPoint>();
             currentContainer.RegisterType<IOrderDetailEndPoint, OrderDetailEndPoint>();
             currentContainer.RegisterType<IOrderEndPoint, OrderEndPoint>();
@@ -56,6 +58,8 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<IUnitEndPoint, UnitEndPoint>();
             currentContainer.RegisterType<ImoveorderEndPoint, moveorderEndPoint>();
             currentContainer.RegisterType<ImoveorderdetailEndPoint, moveorderdetailEndPoint>();
+            currentContainer.RegisterType<IRecitItemDetailEndPoint, RecitItemDetailEndPoint>();
+            currentContainer.RegisterType<IRecitItemEndPoint, RecitItemEndPoint>();
             //currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             //currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             // note: registering types could be moved off to app config if you want as well
@@ -76,6 +80,8 @@ namespace StockUI.WinForm
                 cfg.CreateMap<Order,OrderDisplay>().ReverseMap();
                 cfg.CreateMap<MoveOrder, MoveorderDisplay>().ReverseMap();
                 cfg.CreateMap<MoveOrderDetail, MoveOrderDetailDisplay>().ReverseMap();
+                cfg.CreateMap<ItemRecit, ItemReciteDisplay>().ReverseMap();
+                cfg.CreateMap<ItemRecitDetail, ItemRecitDetailDisplay>().ReverseMap();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>().ReverseMap();
                 //cfg.CreateMap<BankTreasury, BankTreasuryDisplay>();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>();

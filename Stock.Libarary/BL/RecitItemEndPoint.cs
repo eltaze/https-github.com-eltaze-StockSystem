@@ -96,7 +96,7 @@ namespace StockSystem.Libarary.BL
                 foreach (ItemRecitDetail item in t.recitItemDetails)
                 {
                     item.RecitItemId = x;
-                    sql.ExecuteTrans<ItemRecitDetail, dynamic>("", item);
+                    sql.ExecuteTrans<ItemRecitDetail, dynamic>("spRecitItemDetailInsert", item);
                 }
                 foreach (stockitem item in stockitems)
                 {
