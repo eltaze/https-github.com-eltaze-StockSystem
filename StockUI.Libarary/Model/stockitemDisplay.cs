@@ -11,6 +11,7 @@ namespace StockUI.Libarary.Model
         public int ItemId { get; set; }
         public decimal Balance { get; set; }
         public string Note { get; set; }
+        public int UnitId { get; set; }
     }
 }
   

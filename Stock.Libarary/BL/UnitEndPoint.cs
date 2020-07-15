@@ -120,5 +120,18 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
+        public List<Unit> GetByUnitIdPernt(int id)
+        {
+            //spunitTestParent
+            try
+            {
+                var output = sql.ReadingData<Unit, dynamic>("spunitTestParent", new { idd = id });
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
     }
 }

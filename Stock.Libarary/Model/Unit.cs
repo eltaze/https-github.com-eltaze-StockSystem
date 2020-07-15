@@ -11,6 +11,7 @@ namespace StockSystem.Libarary.Model
         public string Note { get; set; }
         public Nullable<int> UnitId { get; set; }
         public Nullable<decimal> Qty { get; set; }
+        public Nullable<decimal>QTYTOPARENT { get; set; }
         //public int KindId { get; set; }
     }   
 }

@@ -13,5 +13,6 @@ namespace StockSystem.Libarary.Interfaces
         Unit Update(Unit t);
         List<Unit> GetByUnitID(int id);
         List<Unit> GetByUnitIdTest(int id);
+        List<Unit> GetByUnitIdPernt(int id);
     }
 }
