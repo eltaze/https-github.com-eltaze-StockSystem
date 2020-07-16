@@ -57,6 +57,8 @@
             this.CmbUnitId = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.TxtFrom = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -72,6 +74,7 @@
             this.BtnSave.TabIndex = 129;
             this.BtnSave.Text = "حفظ";
             this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // BtnPrint
             // 
@@ -117,7 +120,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(132, 111);
+            this.dateTimePicker1.Location = new System.Drawing.Point(132, 125);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(255, 20);
             this.dateTimePicker1.TabIndex = 155;
@@ -126,7 +129,7 @@
             // 
             this.label13.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label13.Location = new System.Drawing.Point(4, 111);
+            this.label13.Location = new System.Drawing.Point(4, 125);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(116, 20);
             this.label13.TabIndex = 154;
@@ -135,14 +138,14 @@
             // CmbStock
             // 
             this.CmbStock.FormattingEnabled = true;
-            this.CmbStock.Location = new System.Drawing.Point(132, 85);
+            this.CmbStock.Location = new System.Drawing.Point(132, 100);
             this.CmbStock.Name = "CmbStock";
             this.CmbStock.Size = new System.Drawing.Size(255, 21);
             this.CmbStock.TabIndex = 153;
             // 
             // TxtNote
             // 
-            this.TxtNote.Location = new System.Drawing.Point(132, 138);
+            this.TxtNote.Location = new System.Drawing.Point(132, 150);
             this.TxtNote.Multiline = true;
             this.TxtNote.Name = "TxtNote";
             this.TxtNote.Size = new System.Drawing.Size(255, 50);
@@ -150,7 +153,7 @@
             // 
             // TxtId
             // 
-            this.TxtId.Location = new System.Drawing.Point(132, 57);
+            this.TxtId.Location = new System.Drawing.Point(132, 50);
             this.TxtId.Name = "TxtId";
             this.TxtId.Size = new System.Drawing.Size(255, 20);
             this.TxtId.TabIndex = 151;
@@ -159,7 +162,7 @@
             // 
             this.label4.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label4.Location = new System.Drawing.Point(4, 138);
+            this.label4.Location = new System.Drawing.Point(4, 150);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 20);
             this.label4.TabIndex = 150;
@@ -169,7 +172,7 @@
             // 
             this.label3.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label3.Location = new System.Drawing.Point(4, 85);
+            this.label3.Location = new System.Drawing.Point(4, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(116, 20);
             this.label3.TabIndex = 149;
@@ -179,7 +182,7 @@
             // 
             this.label2.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Location = new System.Drawing.Point(4, 57);
+            this.label2.Location = new System.Drawing.Point(4, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 20);
             this.label2.TabIndex = 148;
@@ -198,7 +201,7 @@
             this.panel2.Controls.Add(this.TxtQty);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.button7);
-            this.panel2.Location = new System.Drawing.Point(1, 282);
+            this.panel2.Location = new System.Drawing.Point(1, 296);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(386, 165);
             this.panel2.TabIndex = 157;
@@ -302,7 +305,7 @@
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.CmbUnitId);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Location = new System.Drawing.Point(2, 193);
+            this.panel1.Location = new System.Drawing.Point(2, 209);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(386, 83);
             this.panel1.TabIndex = 156;
@@ -357,15 +360,34 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(407, 442);
+            this.dataGridView1.Size = new System.Drawing.Size(407, 458);
             this.dataGridView1.TabIndex = 158;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // TxtFrom
+            // 
+            this.TxtFrom.Location = new System.Drawing.Point(133, 75);
+            this.TxtFrom.Name = "TxtFrom";
+            this.TxtFrom.Size = new System.Drawing.Size(255, 20);
+            this.TxtFrom.TabIndex = 160;
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label8.Location = new System.Drawing.Point(5, 75);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(116, 20);
+            this.label8.TabIndex = 159;
+            this.label8.Text = "إستلام من ";
             // 
             // FrmItemRecit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(807, 452);
+            this.ClientSize = new System.Drawing.Size(807, 467);
+            this.Controls.Add(this.TxtFrom);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -430,5 +452,7 @@
         private System.Windows.Forms.ComboBox CmbUnitId;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox TxtFrom;
+        private System.Windows.Forms.Label label8;
     }
 }

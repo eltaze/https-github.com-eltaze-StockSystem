@@ -1,11 +1,11 @@
-﻿using StockSystem.Libarary.Interfaces;
+﻿using AutoMapper;
+using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using StockUI.Libarary.BL;
 using StockUI.Libarary.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace StockUI.WinForm.FrmUI
@@ -15,6 +15,8 @@ namespace StockUI.WinForm.FrmUI
         private readonly IRecitItemDetailEndPoint recitItemDetailEndPoint;
         private readonly IDepartmentEndPoint departmentEndPoint;
         private readonly IRecitItemEndPoint recitItemEndPoint;
+        private readonly IMapper mapper;
+        private readonly IStockItemEndPoint stockItemEndPoint;
         private readonly IItemEndPoint itemEndPoint;
         private readonly IUnitEndPoint unitEndPoint;
         private readonly UnitConversions unitConversions;
@@ -24,13 +26,15 @@ namespace StockUI.WinForm.FrmUI
         private List<ItemRecitDetailDisplay> itemRecitDetailsDisplay = new List<ItemRecitDetailDisplay>();
 
         public FrmItemRecit(IRecitItemDetailEndPoint recitItemDetailEndPoint, IDepartmentEndPoint departmentEndPoint
-            , IRecitItemEndPoint recitItemEndPoint,
+            , IRecitItemEndPoint recitItemEndPoint,IMapper mapper,IStockItemEndPoint stockItemEndPoint,
             IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint, UnitConversions unitConversions, IStockEndPoint stockEndPoint)
         {
             InitializeComponent();
             this.recitItemDetailEndPoint = recitItemDetailEndPoint;
             this.departmentEndPoint = departmentEndPoint;
             this.recitItemEndPoint = recitItemEndPoint;
+            this.mapper = mapper;
+            this.stockItemEndPoint = stockItemEndPoint;
             this.itemEndPoint = itemEndPoint;
             this.unitEndPoint = unitEndPoint;
             this.unitConversions = unitConversions;
@@ -98,7 +102,6 @@ namespace StockUI.WinForm.FrmUI
             {
                 itemRecitDetailsDisplay.Clear();
                 dataGridView1.DataSource = null;
-
                 BtnNew.Text = "إلغاء";
                 BtnSave.Enabled = true;
                 BtnUpdate.Enabled = false;
@@ -109,6 +112,10 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button8_Click(object sender, EventArgs e)
         {
+            if (!validate())
+            {
+                return;
+            }
             int x = itemRecitDetailsDisplay.FindIndex(b => b.ItemId == int.Parse(TxtItemId.Text.ToString()));
             if (x >= 0)
             {
@@ -138,7 +145,6 @@ namespace StockUI.WinForm.FrmUI
                     select new { الصنف = b.ItemName, الكمية = b.Qty.ToString("0.000"), الوحدة = b.UnitName };
             dataGridView1.DataSource = x.ToList();
         }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int x = 0;
@@ -158,8 +164,75 @@ namespace StockUI.WinForm.FrmUI
             Unit unit1 = unitEndPoint.GetByID(itemRecitDetailsDisplay[x].UnitId);
             itemRecitDetailsDisplay[x].UnitId = unit.Id;
             itemRecitDetailsDisplay[x].UnitName = unit.Name;
-            itemRecitDetailsDisplay[x].Qty =  decimal.Parse(TxtQty.Text.ToString());
+            itemRecitDetailsDisplay[x].Qty = decimal.Parse(TxtQty.Text.ToString());
             loadgrid();
+        }
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            if (itemRecitDetailsDisplay.Count == 0 )
+            {
+                MessageBox.Show("لايمكن إصدار إذن إستلام مخزن من دون أصناف يجب إختيار الأصناف");
+                return;
+            }
+            if (CmbStock.SelectedIndex == -1)
+            {
+                MessageBox.Show("يجب إختيار المخزن أولا");
+                return;
+            }
+            ItemRecit itemRecit = new ItemRecit
+            {
+                Note =TxtNote.Text,
+                Odate =dateTimePicker1.Value.Date,
+                RecitFrom = TxtFrom.Text,
+                StockId = int.Parse(CmbStock.SelectedValue.ToString())
+            };
+            itemRecit.recitItemDetails.AddRange(mapper.Map<List<ItemRecitDetail>>(itemRecitDetailsDisplay));
+            List<stockitem> stockitems = new List<stockitem>();
+            foreach (var item in itemRecitDetailsDisplay)
+            {
+                var x = stockItemEndPoint.GetByStockItem(itemRecit.StockId, item.Id);
+                if (x == null)
+                {
+                    x = new stockitem();
+                    x.ItemId = item.ItemId;
+                    x.StockId = itemRecit.StockId;
+                    x.UnitId = item.UnitId;
+                    x.Balance = 0;
+                }
+                if (x.UnitId == item.UnitId)
+                {
+                    x.Balance += item.Qty;
+                }
+                else
+                {
+                    x.Balance = unitConversions.GetConvert(unitEndPoint.GetByID(x.UnitId),
+                        unitEndPoint.GetByID(item.UnitId), x.Balance);
+                    x.UnitId = item.UnitId;
+                    x.Balance += item.Qty;
+                }
+                stockitems.Add(x);
+            }
+            recitItemEndPoint.Save(itemRecit, stockitems);
+            MessageBox.Show("تم الحفظ بنجاح");
+        }
+        private bool validate()
+        {
+            if (CmbDepartment.SelectedIndex >= 0 && CmbUnitId.SelectedIndex >= 0 && CmbItemName.SelectedIndex >= 0)
+            {
+                Decimal x = 0;
+                int i = 0;
+                if (!decimal.TryParse(TxtQty.Text.ToString(), out x) || !int.TryParse(TxtItemId.Text.ToString(), out i) || x == 0)
+                {
+                    MessageBox.Show("يرجي إختيار الكمية الصحيحه أو أختيار رقم الصنف");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("يجب إختيار المخزن و الوحدة و اسم الصنف");
+                return false;
+            }
+            return true;
         }
     }
 }

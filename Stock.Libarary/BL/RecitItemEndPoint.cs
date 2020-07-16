@@ -92,7 +92,7 @@ namespace StockSystem.Libarary.BL
             try
             {
                 sql.starttransaction();
-                int x = sql.SaveTrans<ItemRecit, dynamic>("spRecitItemsInsert", t);
+                int x = sql.SaveTrans<ItemRecit, dynamic>("spRecitItemsInsert",new {id= t.Id, MoveOrderId=t.MoveOrderId,Note=t.Note,Odate=t.Odate, RecitFrom = t.RecitFrom,stockId=t.StockId });
                 foreach (ItemRecitDetail item in t.recitItemDetails)
                 {
                     item.RecitItemId = x;
@@ -100,7 +100,14 @@ namespace StockSystem.Libarary.BL
                 }
                 foreach (stockitem item in stockitems)
                 {
-                    sql.ExecuteTrans<stockitem, dynamic>("spStockItemUpdate", item);
+                    if (item.Id != 0)
+                    {
+                        sql.ExecuteTrans<stockitem, dynamic>("spStockItemUpdate", item);
+                    }
+                    else
+                    {
+                        sql.ExecuteTrans<stockitem, dynamic>("spStockItemInsert", item);
+                    }
                 }
                 sql.commitrasaction();
                 return x;
@@ -110,7 +117,6 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-
         public ItemRecit Update(ItemRecit t)
         {
             //spRecitItemsUpdate
