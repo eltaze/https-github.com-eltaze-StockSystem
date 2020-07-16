@@ -117,7 +117,7 @@ namespace StockUI.WinForm.FrmUI
                 decimal c = unitConversions.GetConvert(unit1, unit, itemRecitDetailsDisplay[x].Qty);
                 itemRecitDetailsDisplay[x].UnitId = unit.Id;
                 itemRecitDetailsDisplay[x].UnitName = unit.Name;
-                itemRecitDetailsDisplay[x].Qty = c+ decimal.Parse(TxtQty.Text.ToString());
+                itemRecitDetailsDisplay[x].Qty = c + decimal.Parse(TxtQty.Text.ToString());
                 loadgrid();
                 return;
             }
@@ -137,6 +137,21 @@ namespace StockUI.WinForm.FrmUI
             var x = from b in itemRecitDetailsDisplay
                     select new { الصنف = b.ItemName, الكمية = b.Qty, الوحدة = b.UnitName };
             dataGridView1.DataSource = x.ToList();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int x =0;
+            if (e.RowIndex <= dataGridView1.Rows.Count - 1 && e.RowIndex >= 0)
+            {
+               
+                 x = itemRecitDetailsDisplay.FindIndex(b=>b.ItemName ==(string)dataGridView1[0, e.RowIndex].Value.ToString());
+                CmbDepartment.SelectedValue = items.Where(b => b.Id == itemRecitDetailsDisplay[x].ItemId).FirstOrDefault().DepartmentId;
+                CmbItemName.SelectedValue = itemRecitDetailsDisplay[x].ItemId;
+                CmbUnitId.SelectedValue = itemRecitDetailsDisplay[x].UnitId;
+                TxtQty.Text = itemRecitDetailsDisplay[x].Qty.ToString();
+            }
+           
         }
     }
 }
