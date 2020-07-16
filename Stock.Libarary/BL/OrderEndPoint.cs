@@ -80,7 +80,8 @@ namespace StockSystem.Libarary.BL
             try
             {
                 sql.starttransaction();
-                int x = sql.SaveTrans<Order, dynamic>("spOrdersInsert", new  {stockid=t.StockId,odate=t.ODate,note=t.Note });
+                sql.SaveTrans<Order, dynamic>("spOrdersInsert", new  {stockid=t.StockId,odate=t.ODate,note=t.Note });
+                int x = sql.ReadingTrans<Order, dynamic>("spOrderGetLast", new { }).FirstOrDefault().Id;
                 foreach (OrderDetail item in t.OrderDetails)
                 {
                     item.orderid = x;

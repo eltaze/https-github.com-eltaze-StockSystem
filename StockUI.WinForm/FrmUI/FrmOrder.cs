@@ -113,6 +113,7 @@ namespace StockUI.WinForm.FrmUI
                 var y = stockitems.Where(x => x.StockId == kk).FirstOrDefault();
                 if (y != null)
                 {
+                    //مفروض اشتغل هنا 
                     output = y.Balance;
                 }
             }

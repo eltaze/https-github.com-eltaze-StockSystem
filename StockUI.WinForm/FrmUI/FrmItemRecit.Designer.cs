@@ -59,6 +59,11 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.TxtFrom = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.BtnPrev = new System.Windows.Forms.Button();
+            this.BtnNext = new System.Windows.Forms.Button();
+            this.BtnLast = new System.Windows.Forms.Button();
+            this.BtnFirst = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -208,7 +213,7 @@
             // 
             // TxtItemId
             // 
-            this.TxtItemId.Location = new System.Drawing.Point(9, 19);
+            this.TxtItemId.Location = new System.Drawing.Point(6, 19);
             this.TxtItemId.Name = "TxtItemId";
             this.TxtItemId.Size = new System.Drawing.Size(246, 20);
             this.TxtItemId.TabIndex = 141;
@@ -251,7 +256,7 @@
             // CmbItemName
             // 
             this.CmbItemName.FormattingEnabled = true;
-            this.CmbItemName.Location = new System.Drawing.Point(9, 57);
+            this.CmbItemName.Location = new System.Drawing.Point(6, 57);
             this.CmbItemName.Name = "CmbItemName";
             this.CmbItemName.Size = new System.Drawing.Size(246, 21);
             this.CmbItemName.TabIndex = 128;
@@ -269,7 +274,7 @@
             // 
             // TxtQty
             // 
-            this.TxtQty.Location = new System.Drawing.Point(9, 97);
+            this.TxtQty.Location = new System.Drawing.Point(6, 97);
             this.TxtQty.Name = "TxtQty";
             this.TxtQty.Size = new System.Drawing.Size(246, 20);
             this.TxtQty.TabIndex = 141;
@@ -336,7 +341,6 @@
             this.CmbUnitId.Name = "CmbUnitId";
             this.CmbUnitId.Size = new System.Drawing.Size(246, 21);
             this.CmbUnitId.TabIndex = 128;
-            this.CmbUnitId.SelectedIndexChanged += new System.EventHandler(this.CmbUnitId_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -360,7 +364,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(407, 458);
+            this.dataGridView1.Size = new System.Drawing.Size(407, 486);
             this.dataGridView1.TabIndex = 158;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -381,11 +385,69 @@
             this.label8.TabIndex = 159;
             this.label8.Text = "إستلام من ";
             // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.label9.Location = new System.Drawing.Point(148, 468);
+            this.label9.Name = "label9";
+            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label9.Size = new System.Drawing.Size(91, 23);
+            this.label9.TabIndex = 165;
+            this.label9.Text = "0 OF 0";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BtnPrev
+            // 
+            this.BtnPrev.Location = new System.Drawing.Point(246, 468);
+            this.BtnPrev.Name = "BtnPrev";
+            this.BtnPrev.Size = new System.Drawing.Size(66, 23);
+            this.BtnPrev.TabIndex = 164;
+            this.BtnPrev.Text = ">";
+            this.BtnPrev.UseVisualStyleBackColor = true;
+            this.BtnPrev.Click += new System.EventHandler(this.BtnPrev_Click);
+            // 
+            // BtnNext
+            // 
+            this.BtnNext.Location = new System.Drawing.Point(75, 468);
+            this.BtnNext.Name = "BtnNext";
+            this.BtnNext.Size = new System.Drawing.Size(66, 23);
+            this.BtnNext.TabIndex = 163;
+            this.BtnNext.Text = "<";
+            this.BtnNext.UseVisualStyleBackColor = true;
+            this.BtnNext.Click += new System.EventHandler(this.BtnNext_Click);
+            // 
+            // BtnLast
+            // 
+            this.BtnLast.Location = new System.Drawing.Point(2, 468);
+            this.BtnLast.Name = "BtnLast";
+            this.BtnLast.Size = new System.Drawing.Size(66, 23);
+            this.BtnLast.TabIndex = 162;
+            this.BtnLast.Text = "<<";
+            this.BtnLast.UseVisualStyleBackColor = true;
+            this.BtnLast.Click += new System.EventHandler(this.BtnLast_Click);
+            // 
+            // BtnFirst
+            // 
+            this.BtnFirst.Location = new System.Drawing.Point(319, 468);
+            this.BtnFirst.Name = "BtnFirst";
+            this.BtnFirst.Size = new System.Drawing.Size(66, 23);
+            this.BtnFirst.TabIndex = 161;
+            this.BtnFirst.Text = ">>";
+            this.BtnFirst.UseVisualStyleBackColor = true;
+            this.BtnFirst.Click += new System.EventHandler(this.BtnFirst_Click);
+            // 
             // FrmItemRecit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(807, 467);
+            this.ClientSize = new System.Drawing.Size(807, 497);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.BtnPrev);
+            this.Controls.Add(this.BtnNext);
+            this.Controls.Add(this.BtnLast);
+            this.Controls.Add(this.BtnFirst);
             this.Controls.Add(this.TxtFrom);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dataGridView1);
@@ -454,5 +516,10 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox TxtFrom;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button BtnPrev;
+        private System.Windows.Forms.Button BtnNext;
+        private System.Windows.Forms.Button BtnLast;
+        private System.Windows.Forms.Button BtnFirst;
     }
 }

@@ -79,7 +79,8 @@ namespace StockSystem.Libarary.BL
             try
             {
                 sql.starttransaction();
-                var id = sql.SaveTrans<MoveOrder, dynamic>("spmoveorderInsert", t);
+                 sql.SaveTrans<MoveOrder, dynamic>("spmoveorderInsert", t);
+                var id = sql.ReadingTrans<MoveOrder, dynamic>("spmoveorderGetLast", t).FirstOrDefault().Id;
                 foreach (MoveOrderDetail item in t.moveorderdetails)
                 {
                     item.Moveorderid = id;

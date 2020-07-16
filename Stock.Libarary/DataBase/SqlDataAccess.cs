@@ -76,12 +76,13 @@ namespace StockSystem.Libarary.DataBase
             _connection?.Close();
             IsClosed = false;
         }
-        public  int SaveTrans<T,U>(string storedproc, U parameter)
+        public  void SaveTrans<T,U>(string storedproc, U parameter)
         {
-            int output;
-           output= _connection.Execute(storedproc, parameter,
+            // output;
+            //parameter.Add("ResultCode",  DbType.Int32, direction: ParameterDirection.Output);
+            var output = _connection.Execute(storedproc, parameter,
                 commandType: CommandType.StoredProcedure, transaction: _transaction);
-            return output;
+            
         }
         public void ExecuteTrans<T, U>(string storedproc, U parameter)
         {

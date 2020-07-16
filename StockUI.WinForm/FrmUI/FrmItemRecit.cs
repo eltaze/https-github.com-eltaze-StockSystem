@@ -5,6 +5,7 @@ using StockUI.Libarary.BL;
 using StockUI.Libarary.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -23,10 +24,11 @@ namespace StockUI.WinForm.FrmUI
         private readonly IStockEndPoint stockEndPoint;
         private List<ItemReciteDisplay> itemReciteDisplays = new List<ItemReciteDisplay>();
         private List<Item> items = new List<Item>();
+        int count = 0;
         private List<ItemRecitDetailDisplay> itemRecitDetailsDisplay = new List<ItemRecitDetailDisplay>();
 
         public FrmItemRecit(IRecitItemDetailEndPoint recitItemDetailEndPoint, IDepartmentEndPoint departmentEndPoint
-            , IRecitItemEndPoint recitItemEndPoint,IMapper mapper,IStockItemEndPoint stockItemEndPoint,
+            , IRecitItemEndPoint recitItemEndPoint, IMapper mapper, IStockItemEndPoint stockItemEndPoint,
             IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint, UnitConversions unitConversions, IStockEndPoint stockEndPoint)
         {
             InitializeComponent();
@@ -47,7 +49,61 @@ namespace StockUI.WinForm.FrmUI
             var department = departmentEndPoint.GetAll();
             loadcmb<department>(department.ToList(), CmbDepartment);
             items = itemEndPoint.GetAll();
+            itemReciteDisplays = mapper.Map<List<ItemReciteDisplay>>(recitItemEndPoint.GetAll());
+            if (itemReciteDisplays.Count >0)
+            {
+                navigation(0);
+                count = 0;
+            }
         }
+        #region Of Navigation 
+        private void navigation(int id)
+        {
+            if (id >= 0 && id <= itemReciteDisplays.Count - 1)
+            {
+                TxtId.Text = itemReciteDisplays[id].Id.ToString();
+                TxtFrom.Text = itemReciteDisplays[id].RecitFrom;
+                CmbStock.SelectedValue = itemReciteDisplays[id].StockId;
+                TxtNote.Text = itemReciteDisplays[id].Note;
+                dateTimePicker1.Value = itemReciteDisplays[id].Odate;
+                label9.Text = $"{count + 1} Of {itemReciteDisplays.Count}";
+                itemRecitDetailsDisplay = mapper.Map<List<ItemRecitDetailDisplay>>(recitItemDetailEndPoint.GetByRecitID(itemReciteDisplays[id].Id).ToList());
+                foreach (ItemRecitDetailDisplay item in itemRecitDetailsDisplay)
+                {
+                    int x = items.FindIndex(b => b.Id == item.ItemId);
+                    item.ItemName = items[x].Name;
+                    item.UnitName = unitEndPoint.GetByID(items[x].UnitId).Name;
+                }
+                loadgrid();
+            }
+        }
+        private void BtnNext_Click(object sender, EventArgs e)
+        {
+            if (count > 0)
+            {
+                count -= 1;
+                navigation(count);
+            }
+        }
+        private void BtnPrev_Click(object sender, EventArgs e)
+        {
+            if (count < itemReciteDisplays.Count - 1)
+            {
+                count += 1;
+                navigation(count);
+            }
+        }
+        private void BtnFirst_Click(object sender, EventArgs e)
+        {
+            count = itemReciteDisplays.Count - 1;
+            navigation(count);
+        }
+        private void BtnLast_Click(object sender, EventArgs e)
+        {
+            count = 0;
+            navigation(count);
+        }
+        #endregion
         private void loadcmb<T>(List<T> t, ComboBox comboBox)
         {
             comboBox.DataSource = t;
@@ -62,10 +118,6 @@ namespace StockUI.WinForm.FrmUI
             }
             var x = items.Where(b => b.DepartmentId == int.Parse(CmbDepartment.SelectedValue.ToString())).ToList();
             loadcmb<Item>(x, CmbItemName);
-        }
-        private void CmbUnitId_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
         private void CmbItemName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -169,6 +221,11 @@ namespace StockUI.WinForm.FrmUI
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
+            if ( TxtFrom.Text.Length == 0)
+            {
+                MessageBox.Show("يجب إدخال بيانات المستلم منه  في مستلم من ");
+                return;
+            }
             if (itemRecitDetailsDisplay.Count == 0 )
             {
                 MessageBox.Show("لايمكن إصدار إذن إستلام مخزن من دون أصناف يجب إختيار الأصناف");
@@ -181,8 +238,8 @@ namespace StockUI.WinForm.FrmUI
             }
             ItemRecit itemRecit = new ItemRecit
             {
-                Note =TxtNote.Text,
-                Odate =dateTimePicker1.Value.Date,
+                Note = TxtNote.Text,
+                Odate = dateTimePicker1.Value.Date,
                 RecitFrom = TxtFrom.Text,
                 StockId = int.Parse(CmbStock.SelectedValue.ToString())
             };
@@ -212,8 +269,13 @@ namespace StockUI.WinForm.FrmUI
                 }
                 stockitems.Add(x);
             }
-            recitItemEndPoint.Save(itemRecit, stockitems);
+            int bb =recitItemEndPoint.Save(itemRecit, stockitems);
             MessageBox.Show("تم الحفظ بنجاح");
+            itemRecit.Id = bb;
+            itemReciteDisplays.Add(mapper.Map<ItemReciteDisplay>(itemRecit));
+            count = itemReciteDisplays.Count - 1;
+            navigation(count);
+            BtnNew_Click(sender, e);
         }
         private bool validate()
         {
@@ -233,6 +295,6 @@ namespace StockUI.WinForm.FrmUI
                 return false;
             }
             return true;
-        }
+        }  
     }
 }

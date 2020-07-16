@@ -11,7 +11,7 @@ namespace StockSystem.Libarary.DataBase
         void starttransaction();
         void commitrasaction();
         void rollbacktrasaction();
-        int SaveTrans<T, U>(string storedproc, U parameter);
+        void SaveTrans<T, U>(string storedproc, U parameter);
         List<T> ReadingTrans<T, U>(string storedproc, U parameter);
         void ExecuteTrans<T, U>(string storedproc, U parameter);
         void Dispose();

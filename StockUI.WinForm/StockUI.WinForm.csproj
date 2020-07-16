@@ -224,7 +224,12 @@
     <EmbeddedResource Include="Reporting\RptMoveOrder.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\RptRecitItem.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\StockUI.Libarary.Model.ItemRecitDetailDisplay.datasource" />
+    <None Include="Properties\DataSources\StockUI.Libarary.Model.ItemReciteDisplay.datasource" />
     <None Include="Properties\DataSources\StockUI.Libarary.Model.MoveOrderDetailDisplay.datasource" />
     <None Include="Properties\DataSources\StockUI.Libarary.Model.MoveorderDisplay.datasource" />
     <None Include="Properties\DataSources\StockUI.Libarary.Model.OrderDetailDisplay.datasource" />
