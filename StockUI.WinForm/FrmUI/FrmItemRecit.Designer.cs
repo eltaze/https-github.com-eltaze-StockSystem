@@ -292,6 +292,7 @@
             this.button7.TabIndex = 142;
             this.button7.Text = "تعديل";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // panel1
             // 

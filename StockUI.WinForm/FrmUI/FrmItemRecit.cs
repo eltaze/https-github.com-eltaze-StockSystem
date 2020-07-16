@@ -23,9 +23,9 @@ namespace StockUI.WinForm.FrmUI
         private List<Item> items = new List<Item>();
         private List<ItemRecitDetailDisplay> itemRecitDetailsDisplay = new List<ItemRecitDetailDisplay>();
 
-        public FrmItemRecit(IRecitItemDetailEndPoint recitItemDetailEndPoint,IDepartmentEndPoint departmentEndPoint
-            ,IRecitItemEndPoint recitItemEndPoint,
-            IItemEndPoint itemEndPoint,IUnitEndPoint unitEndPoint,UnitConversions unitConversions ,IStockEndPoint stockEndPoint)
+        public FrmItemRecit(IRecitItemDetailEndPoint recitItemDetailEndPoint, IDepartmentEndPoint departmentEndPoint
+            , IRecitItemEndPoint recitItemEndPoint,
+            IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint, UnitConversions unitConversions, IStockEndPoint stockEndPoint)
         {
             InitializeComponent();
             this.recitItemDetailEndPoint = recitItemDetailEndPoint;
@@ -52,20 +52,20 @@ namespace StockUI.WinForm.FrmUI
         }
         private void CmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CmbDepartment.SelectedIndex ==-1)
+            if (CmbDepartment.SelectedIndex == -1)
             {
                 return;
             }
-            var x  = items.Where(b => b.DepartmentId == int.Parse(CmbDepartment.SelectedValue.ToString())).ToList();
+            var x = items.Where(b => b.DepartmentId == int.Parse(CmbDepartment.SelectedValue.ToString())).ToList();
             loadcmb<Item>(x, CmbItemName);
         }
         private void CmbUnitId_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+
         }
         private void CmbItemName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CmbItemName.Items == null || CmbItemName.SelectedIndex ==-1)
+            if (CmbItemName.Items == null || CmbItemName.SelectedIndex == -1)
             {
                 return;
             }
@@ -89,7 +89,7 @@ namespace StockUI.WinForm.FrmUI
             {
                 BtnNew.Text = "جديد";
                 BtnSave.Enabled = false;
-                BtnUpdate.Enabled = true;  
+                BtnUpdate.Enabled = true;
                 button5.Enabled = false;
                 button7.Enabled = false;
                 button8.Enabled = false;
@@ -98,7 +98,7 @@ namespace StockUI.WinForm.FrmUI
             {
                 itemRecitDetailsDisplay.Clear();
                 dataGridView1.DataSource = null;
-               
+
                 BtnNew.Text = "إلغاء";
                 BtnSave.Enabled = true;
                 BtnUpdate.Enabled = false;
@@ -110,7 +110,7 @@ namespace StockUI.WinForm.FrmUI
         private void button8_Click(object sender, EventArgs e)
         {
             int x = itemRecitDetailsDisplay.FindIndex(b => b.ItemId == int.Parse(TxtItemId.Text.ToString()));
-            if (x >=0)
+            if (x >= 0)
             {
                 Unit unit = unitEndPoint.GetByID(int.Parse(CmbUnitId.SelectedValue.ToString()));
                 Unit unit1 = unitEndPoint.GetByID(itemRecitDetailsDisplay[x].UnitId);
@@ -124,10 +124,10 @@ namespace StockUI.WinForm.FrmUI
             ItemRecitDetailDisplay itemRecitDetail = new ItemRecitDetailDisplay
             {
                 ItemId = int.Parse(TxtItemId.Text.ToString()),
-                Qty =decimal.Parse(TxtQty.Text.ToString()),
-                ItemName =CmbItemName.Text,
+                Qty = decimal.Parse(TxtQty.Text.ToString()),
+                ItemName = CmbItemName.Text,
                 UnitId = int.Parse(CmbUnitId.SelectedValue.ToString()),
-                UnitName =CmbUnitId.Text
+                UnitName = CmbUnitId.Text
             };
             itemRecitDetailsDisplay.Add(itemRecitDetail);
             loadgrid();
@@ -135,23 +135,31 @@ namespace StockUI.WinForm.FrmUI
         private void loadgrid()
         {
             var x = from b in itemRecitDetailsDisplay
-                    select new { الصنف = b.ItemName, الكمية = b.Qty, الوحدة = b.UnitName };
+                    select new { الصنف = b.ItemName, الكمية = b.Qty.ToString("0.000"), الوحدة = b.UnitName };
             dataGridView1.DataSource = x.ToList();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int x =0;
+            int x = 0;
             if (e.RowIndex <= dataGridView1.Rows.Count - 1 && e.RowIndex >= 0)
             {
-               
-                 x = itemRecitDetailsDisplay.FindIndex(b=>b.ItemName ==(string)dataGridView1[0, e.RowIndex].Value.ToString());
+                x = itemRecitDetailsDisplay.FindIndex(b => b.ItemName == (string)dataGridView1[0, e.RowIndex].Value.ToString());
                 CmbDepartment.SelectedValue = items.Where(b => b.Id == itemRecitDetailsDisplay[x].ItemId).FirstOrDefault().DepartmentId;
                 CmbItemName.SelectedValue = itemRecitDetailsDisplay[x].ItemId;
                 CmbUnitId.SelectedValue = itemRecitDetailsDisplay[x].UnitId;
-                TxtQty.Text = itemRecitDetailsDisplay[x].Qty.ToString();
+                TxtQty.Text = itemRecitDetailsDisplay[x].Qty.ToString("0.00");
             }
-           
+        }
+        private void button7_Click(object sender, EventArgs e)
+        {
+            int x = itemRecitDetailsDisplay.FindIndex(b => b.ItemId == int.Parse(TxtItemId.Text.ToString()));
+            Unit unit = unitEndPoint.GetByID(int.Parse(CmbUnitId.SelectedValue.ToString()));
+            Unit unit1 = unitEndPoint.GetByID(itemRecitDetailsDisplay[x].UnitId);
+            itemRecitDetailsDisplay[x].UnitId = unit.Id;
+            itemRecitDetailsDisplay[x].UnitName = unit.Name;
+            itemRecitDetailsDisplay[x].Qty =  decimal.Parse(TxtQty.Text.ToString());
+            loadgrid();
         }
     }
 }
