@@ -125,7 +125,7 @@ namespace StockSystem.Libarary.BL
             //spunitTestParent
             try
             {
-                var output = sql.ReadingData<Unit, dynamic>("spunitTestParent", new { idd = id });
+                var output = sql.ReadingData<Unit, dynamic>("spunitTestParent", new {  id });
                 return output;
             }
             catch (Exception ex)

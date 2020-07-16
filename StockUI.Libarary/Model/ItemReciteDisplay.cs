@@ -10,6 +10,8 @@ namespace StockUI.Libarary.Model
     {
         public int Id { get; set; }
         public int StockId { get; set; }
+        public string StockName { get; set; }
+
         public DateTime Odate { get; set; }
         public string RecitFrom { get; set; }
         public Nullable<int> MoveOrderId { get; set; }

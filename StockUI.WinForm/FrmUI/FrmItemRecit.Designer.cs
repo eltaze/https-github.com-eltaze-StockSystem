@@ -47,19 +47,15 @@
             this.button8 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.CmbItemName = new System.Windows.Forms.ComboBox();
-            this.TxtUnitPrice = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.TxtQty = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.CmbDepartment = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.CmbUnitId = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.TxtItemQtyInStock = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -117,6 +113,7 @@
             this.BtnNew.TabIndex = 126;
             this.BtnNew.Text = "جديد";
             this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // dateTimePicker1
             // 
@@ -197,15 +194,13 @@
             this.panel2.Controls.Add(this.button8);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.CmbItemName);
-            this.panel2.Controls.Add(this.TxtUnitPrice);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.TxtQty);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.button7);
-            this.panel2.Location = new System.Drawing.Point(2, 315);
+            this.panel2.Location = new System.Drawing.Point(1, 282);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(386, 213);
+            this.panel2.Size = new System.Drawing.Size(386, 165);
             this.panel2.TabIndex = 157;
             // 
             // TxtItemId
@@ -220,7 +215,7 @@
             this.button5.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.button5.Enabled = false;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button5.Location = new System.Drawing.Point(181, 172);
+            this.button5.Location = new System.Drawing.Point(167, 131);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(72, 23);
             this.button5.TabIndex = 153;
@@ -232,12 +227,13 @@
             this.button8.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.button8.Enabled = false;
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button8.Location = new System.Drawing.Point(279, 172);
+            this.button8.Location = new System.Drawing.Point(265, 131);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(72, 23);
             this.button8.TabIndex = 154;
             this.button8.Text = "إضافة";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // label1
             // 
@@ -256,14 +252,7 @@
             this.CmbItemName.Name = "CmbItemName";
             this.CmbItemName.Size = new System.Drawing.Size(246, 21);
             this.CmbItemName.TabIndex = 128;
-            // 
-            // TxtUnitPrice
-            // 
-            this.TxtUnitPrice.Location = new System.Drawing.Point(9, 136);
-            this.TxtUnitPrice.Name = "TxtUnitPrice";
-            this.TxtUnitPrice.Size = new System.Drawing.Size(246, 20);
-            this.TxtUnitPrice.TabIndex = 141;
-            this.TxtUnitPrice.Text = "0.00";
+            this.CmbItemName.SelectedIndexChanged += new System.EventHandler(this.CmbItemName_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -292,22 +281,12 @@
             this.label7.TabIndex = 133;
             this.label7.Text = "الكمية";
             // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label8.Location = new System.Drawing.Point(264, 135);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(116, 20);
-            this.label8.TabIndex = 135;
-            this.label8.Text = "سعر الوحدة";
-            // 
             // button7
             // 
             this.button7.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.button7.Enabled = false;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button7.Location = new System.Drawing.Point(68, 172);
+            this.button7.Location = new System.Drawing.Point(54, 131);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(72, 23);
             this.button7.TabIndex = 142;
@@ -322,11 +301,9 @@
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.CmbUnitId);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.TxtItemQtyInStock);
-            this.panel1.Controls.Add(this.label12);
             this.panel1.Location = new System.Drawing.Point(2, 193);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(386, 114);
+            this.panel1.Size = new System.Drawing.Size(386, 83);
             this.panel1.TabIndex = 156;
             // 
             // CmbDepartment
@@ -336,14 +313,15 @@
             this.CmbDepartment.Name = "CmbDepartment";
             this.CmbDepartment.Size = new System.Drawing.Size(246, 21);
             this.CmbDepartment.TabIndex = 152;
+            this.CmbDepartment.SelectedIndexChanged += new System.EventHandler(this.CmbDepartment_SelectedIndexChanged);
             // 
             // label10
             // 
             this.label10.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label10.Location = new System.Drawing.Point(262, 9);
+            this.label10.Location = new System.Drawing.Point(266, 9);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(116, 20);
+            this.label10.Size = new System.Drawing.Size(112, 20);
             this.label10.TabIndex = 153;
             this.label10.Text = "إسم القسم";
             // 
@@ -354,34 +332,17 @@
             this.CmbUnitId.Name = "CmbUnitId";
             this.CmbUnitId.Size = new System.Drawing.Size(246, 21);
             this.CmbUnitId.TabIndex = 128;
+            this.CmbUnitId.SelectedIndexChanged += new System.EventHandler(this.CmbUnitId_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label6.Location = new System.Drawing.Point(262, 46);
+            this.label6.Location = new System.Drawing.Point(266, 46);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(116, 20);
+            this.label6.Size = new System.Drawing.Size(112, 20);
             this.label6.TabIndex = 132;
             this.label6.Text = "الوحدة";
-            // 
-            // TxtItemQtyInStock
-            // 
-            this.TxtItemQtyInStock.Location = new System.Drawing.Point(7, 84);
-            this.TxtItemQtyInStock.Name = "TxtItemQtyInStock";
-            this.TxtItemQtyInStock.ReadOnly = true;
-            this.TxtItemQtyInStock.Size = new System.Drawing.Size(246, 20);
-            this.TxtItemQtyInStock.TabIndex = 141;
-            // 
-            // label12
-            // 
-            this.label12.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label12.Location = new System.Drawing.Point(262, 83);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(116, 20);
-            this.label12.TabIndex = 133;
-            this.label12.Text = "الكمية الموجودة";
             // 
             // dataGridView1
             // 
@@ -395,14 +356,14 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(409, 525);
+            this.dataGridView1.Size = new System.Drawing.Size(407, 442);
             this.dataGridView1.TabIndex = 158;
             // 
             // FrmItemRecit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(807, 533);
+            this.ClientSize = new System.Drawing.Size(807, 452);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -430,7 +391,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -458,19 +418,15 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox CmbItemName;
-        private System.Windows.Forms.TextBox TxtUnitPrice;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox TxtQty;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox CmbDepartment;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox CmbUnitId;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox TxtItemQtyInStock;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
