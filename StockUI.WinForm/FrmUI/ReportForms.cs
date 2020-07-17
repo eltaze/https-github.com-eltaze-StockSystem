@@ -19,6 +19,7 @@ namespace StockUI.WinForm.FrmUI
         }
         public OrderDisplay OrderDisplay = new OrderDisplay();
         public MoveorderDisplay MoveorderDisplay = new MoveorderDisplay();
+        public ItemReciteDisplay ItemReciteDisplay = new ItemReciteDisplay();
         public int start = 0;
         private void ReportForms_Load(object sender, EventArgs e)
         {
@@ -30,6 +31,11 @@ namespace StockUI.WinForm.FrmUI
             {
                 moveorderforms();
             }
+            else if (start ==3)
+            {
+                recitformload();
+            }
+           // this.reportViewer3.RefreshReport();
         }
         private void orderforms()
         {
@@ -50,6 +56,15 @@ namespace StockUI.WinForm.FrmUI
             reportViewer2.LocalReport.EnableExternalImages = true;
             reportViewer1.Visible = false;
             this.reportViewer2.RefreshReport();
+        }
+        private void recitformload()
+        {
+            ItemReciteDisplayBindingSource.DataSource = ItemReciteDisplay;
+            ItemRecitDetailDisplayBindingSource.DataSource = ItemReciteDisplay.recitItemDetails;
+            reportViewer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportViewer3.LocalReport.EnableExternalImages = true;
+            reportViewer3.Visible = true;
+            this.reportViewer3.RefreshReport();
         }
     }
 }

@@ -16,5 +16,7 @@ namespace StockUI.Libarary.Model
         public string UnitName { get; set; }
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
+        public int counter { get; set; }
+        public string BarCode { get; set; }
     }
 }

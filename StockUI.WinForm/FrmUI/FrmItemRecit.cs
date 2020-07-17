@@ -18,6 +18,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly IRecitItemEndPoint recitItemEndPoint;
         private readonly IMapper mapper;
         private readonly IStockItemEndPoint stockItemEndPoint;
+        private readonly ReportForms reportForms;
         private readonly IItemEndPoint itemEndPoint;
         private readonly IUnitEndPoint unitEndPoint;
         private readonly UnitConversions unitConversions;
@@ -28,8 +29,8 @@ namespace StockUI.WinForm.FrmUI
         private List<ItemRecitDetailDisplay> itemRecitDetailsDisplay = new List<ItemRecitDetailDisplay>();
 
         public FrmItemRecit(IRecitItemDetailEndPoint recitItemDetailEndPoint, IDepartmentEndPoint departmentEndPoint
-            , IRecitItemEndPoint recitItemEndPoint, IMapper mapper, IStockItemEndPoint stockItemEndPoint,
-            IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint, UnitConversions unitConversions, IStockEndPoint stockEndPoint)
+            , IRecitItemEndPoint recitItemEndPoint, IMapper mapper, IStockItemEndPoint stockItemEndPoint,ReportForms reportForms
+            ,IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint, UnitConversions unitConversions, IStockEndPoint stockEndPoint)
         {
             InitializeComponent();
             this.recitItemDetailEndPoint = recitItemDetailEndPoint;
@@ -37,6 +38,7 @@ namespace StockUI.WinForm.FrmUI
             this.recitItemEndPoint = recitItemEndPoint;
             this.mapper = mapper;
             this.stockItemEndPoint = stockItemEndPoint;
+            this.reportForms = reportForms;
             this.itemEndPoint = itemEndPoint;
             this.unitEndPoint = unitEndPoint;
             this.unitConversions = unitConversions;
@@ -295,6 +297,33 @@ namespace StockUI.WinForm.FrmUI
                 return false;
             }
             return true;
-        }  
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            reportForms.start = 3;
+            ItemReciteDisplay itemReciteDisplay = new ItemReciteDisplay
+            {
+                Id =itemReciteDisplays[count].Id,
+                Note = itemReciteDisplays[count].Note,
+                Odate = itemReciteDisplays[count].Odate,
+                RecitFrom = itemReciteDisplays[count].RecitFrom,
+                StockName = stockEndPoint.GetByID(itemReciteDisplays[count].StockId).Name,
+                StockId = itemReciteDisplays[count].StockId
+            };
+            int i = 1;
+            foreach (var item in itemRecitDetailsDisplay)
+            {
+                int x = items.FindIndex(b => b.Id == item.ItemId);
+                item.BarCode = items[x].Barcode;
+                item.DepartmentName = departmentEndPoint.GetByID(items[x].DepartmentId).Name;
+                item.counter = i;
+                item.ItemName = items[x].Name;
+                i++;
+            }
+            itemReciteDisplay.recitItemDetails = itemRecitDetailsDisplay;
+            reportForms.ItemReciteDisplay = itemReciteDisplay;
+            reportForms.ShowDialog();
+        }
     }
 }
