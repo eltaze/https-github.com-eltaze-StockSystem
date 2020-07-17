@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
+using StockUI.Libarary.BL;
 using StockUI.Libarary.Model;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly IItemEndPoint itemEndPoint;
         private readonly IBaseStockItemEndPoint baseStockItemEndPoint;
         private readonly IDepartmentEndPoint departmentEndPoint;
+        private readonly UnitConversions unitConversions;
         private readonly IStockEndPoint stockEndPoint;
         private readonly IStockItemEndPoint stockItemEndPoint;
         private readonly ReportForms reportForms;
@@ -33,8 +35,8 @@ namespace StockUI.WinForm.FrmUI
             ,IOrderDetailEndPoint orderDetailEndPoint
             ,IUnitEndPoint unitEndPoint,IItemEndPoint itemEndPoint
             ,IBaseStockItemEndPoint baseStockItemEndPoint
-            ,IDepartmentEndPoint departmentEndPoint,
-            IStockEndPoint stockEndPoint,IStockItemEndPoint stockItemEndPoint,ReportForms reportForms)
+            ,IDepartmentEndPoint departmentEndPoint,UnitConversions unitConversions
+            ,IStockEndPoint stockEndPoint,IStockItemEndPoint stockItemEndPoint,ReportForms reportForms)
         {
             InitializeComponent();
             this.mapper = mapper;
@@ -44,44 +46,48 @@ namespace StockUI.WinForm.FrmUI
             this.itemEndPoint = itemEndPoint;
             this.baseStockItemEndPoint = baseStockItemEndPoint;
             this.departmentEndPoint = departmentEndPoint;
+            this.unitConversions = unitConversions;
             this.stockEndPoint = stockEndPoint;
             this.stockItemEndPoint = stockItemEndPoint;
             this.reportForms = reportForms;
         }
-
-        private void loadstock()
+        private void loadcmb<T>(List<T> t, ComboBox comboBox)
         {
-            var output = stockEndPoint.GetAll().ToList();
-            CmbStock.DataSource = output.ToList();
-            CmbStock.ValueMember = "Id";
-            CmbStock.DisplayMember = "Name";
-        } 
-        private void LoadDepartment()
-        {
-            var output = departmentEndPoint.GetAll();
-            CmbDepartment.DataSource = output.ToList();
-            CmbDepartment.ValueMember = "Id";
-            CmbDepartment.DisplayMember = "Name";
+            comboBox.DataSource = t;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "Name";
         }
         private void calcunit(Item item)
         {
-            var output = unitEndPoint.GetByUnitIdTest(item.UnitId).ToList();
-            unitDisplays = mapper.Map<List<UnitDisplay>>(output);
+            var x = unitConversions.GetUnits(item.UnitId);   
+            unitDisplays = mapper.Map<List<UnitDisplay>>(x);
+            decimal bal = loadBalance().Balance;
             foreach (UnitDisplay unit in unitDisplays)
             {
-                if (unit.Qty != null & item.UnitId != unit.Id)
+                if ( unit.Id != loadBalance().UnitId)
                 {
-                    unit.Qty = unit.Qty * loadBalance();
+                    int z = x.FindIndex(b => b.Id == loadBalance().UnitId);
+                    int c = x.FindIndex(b => b.Id == unit.Id);
+                    unit.Qty = unitConversions.GetConvert(x[z], x[c], bal);
                 }
                 else
                 {
-                    unit.Qty = loadBalance();
+                    unit.Qty = bal;
                 }
             }
-            CmbUnitId.DataSource = unitDisplays.ToList();
-            CmbUnitId.ValueMember = "Id";
-            CmbUnitId.DisplayMember = "Name";
+            loadcmb(unitDisplays, CmbUnitId);
             CmbUnitId.SelectedValue = item.UnitId;
+        }
+        private stockitem loadBalance()
+        {
+            int kk = int.Parse(TxtItemId.Text.ToString());
+            var stockitems = stockItemEndPoint.GetItemByStock(kk).ToList();
+            stockitem output = new stockitem();
+            if (int.TryParse(CmbStock.SelectedValue?.ToString(), out kk))
+            {
+                output = stockitems.Where(x => x.StockId == kk).FirstOrDefault();
+            }
+            return output;
         }
         private void loadItem()
         {
@@ -92,10 +98,8 @@ namespace StockUI.WinForm.FrmUI
                     var output = from b in items
                                  where b.DepartmentId == int.Parse(CmbDepartment.SelectedValue.ToString())
                                  select b;
-                    CmbItemName.DataSource = null;
-                    CmbItemName.DataSource = output.ToList();
-                    CmbItemName.ValueMember = "Id";
-                    CmbItemName.DisplayMember = "Name";
+
+                    loadcmb<ItemDisplay>(output.ToList(), CmbItemName);
                 }
             }
             catch (Exception ex)
@@ -103,22 +107,7 @@ namespace StockUI.WinForm.FrmUI
                 throw new Exception(ex.Message.ToString());
             }
         }
-        private Decimal loadBalance()
-        {
-            int kk = int.Parse(TxtItemId.Text.ToString());
-            var stockitems = stockItemEndPoint.GetItemByStock(kk).ToList();
-            decimal output =0;
-            if (int.TryParse(CmbStock.SelectedValue?.ToString(), out kk))
-            {
-                var y = stockitems.Where(x => x.StockId == kk).FirstOrDefault();
-                if (y != null)
-                {
-                    //مفروض اشتغل هنا 
-                    output = y.Balance;
-                }
-            }
-            return output;
-        }
+     
         private void orderdetails()
         {
             int xx = neworder.OrderDetails.FindIndex(b => b.ItemId == int.Parse(TxtItemId.Text.ToString()) && b.UnitId == int.Parse(CmbUnitId.SelectedValue.ToString()));
@@ -318,8 +307,10 @@ namespace StockUI.WinForm.FrmUI
         private void FrmOrder_Load(object sender, EventArgs e)
         {
             items = mapper.Map<List<ItemDisplay>>(itemEndPoint.GetAll().ToList());
-            loadstock();
-            LoadDepartment();
+            var z = stockEndPoint.GetAll();
+            loadcmb<Stock>(z.ToList(), CmbStock);
+            var x = departmentEndPoint.GetAll();
+            loadcmb<department>(x.ToList(), CmbDepartment);
             var output = orderEndPoint.GetAll().ToList();
             orderDisplays = mapper.Map<List<OrderDisplay>>(output);
             if (orderDisplays.Count > 0)
