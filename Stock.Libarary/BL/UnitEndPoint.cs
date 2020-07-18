@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace StockSystem.Libarary.BL
 {
-    public class UnitEndPoint : Reposit<Unit>, IUnitEndPoint
+    public class UnitEndPoint :  IUnitEndPoint
     {
         private readonly ISqlDataAccess sql;
 
@@ -18,7 +18,7 @@ namespace StockSystem.Libarary.BL
         {
             this.sql = sql;
         }
-        public override void Delete(Unit t)
+        public  void Delete(Unit t)
         {
             //spUnitDelete
             try
@@ -30,7 +30,7 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
-        public override List<Unit> GetAll()
+        public  List<Unit> GetAll()
         {
             //spUnitGetAll
             try
@@ -43,7 +43,7 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
-        public override Unit GetByID(int id)
+        public  Unit GetByID(int id)
         {
             //spUnitGetById
             try
@@ -82,7 +82,7 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
-        public override void Save(Unit t)
+        public  void Save(Unit t)
         {
             //spUnitInsert
             try
@@ -94,7 +94,7 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
-        public override Unit Update(Unit t)
+        public  Unit Update(Unit t)
         {
             //spUnitUpdate
             try
@@ -107,7 +107,7 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
-        public override Unit GetByName(string Name)
+        public  Unit GetByName(string Name)
         {
             //spUnitGetByName
             try

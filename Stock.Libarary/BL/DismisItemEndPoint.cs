@@ -7,34 +7,32 @@ using System.Linq;
 
 namespace StockSystem.Libarary.BL
 {
-    public class RecitItemEndPoint : IRecitItemEndPoint
+    public class DismisItemEndPoint : IDismisItemEndPoint
     {
         private readonly ISqlDataAccess sql;
 
-        public RecitItemEndPoint(ISqlDataAccess sql)
+        public DismisItemEndPoint(ISqlDataAccess sql)
         {
             this.sql = sql;
         }
-
-        public void Delete(ItemRecit t)
+        public void Delete(DismisItem t)
         {
-            //spRecitItemsDelete
+            //spDismisItemsDelete
             try
             {
-                sql.Execute<ItemRecit, dynamic>("spRecitItemsDelete", t);
+                sql.Execute<DismisItem, dynamic>("spDismisItemsDelete", t);
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message.ToString());
             }
         }
-
-        public List<ItemRecit> GetAll()
+        public List<DismisItem> GetAll()
         {
-            //spRecitItemsGetAll
+            //spDismisItemsGetAll
             try
             {
-                var output = sql.ReadingData<ItemRecit, dynamic>("spRecitItemsGetAll", new { });
+                var output = sql.ReadingData<DismisItem, dynamic>("spDismisItemsGetAll", new { });
                 return output;
             }
             catch (Exception ex)
@@ -42,13 +40,12 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-
-        public ItemRecit GetByID(int id)
+        public DismisItem GetByID(int id)
         {
-            //spRecitItemsGetById
+            //spDismisItemsGetById
             try
             {
-                var output = sql.ReadingData<ItemRecit, dynamic>("spRecitItemsGetById", new { id }).FirstOrDefault();
+                var output = sql.ReadingData<DismisItem, dynamic>("spDismisItemsGetById", new { id }).FirstOrDefault();
                 return output;
             }
             catch (Exception ex)
@@ -56,13 +53,12 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-
-        public ItemRecit GetByMoveOrderId(int id)
+        public List<DismisItem> GetByStockId(int id)
         {
-            //spRecitItemsBymoveorderId
+            //spDismisItemsByStockId
             try
             {
-                var output = sql.ReadingData<ItemRecit, dynamic>("spRecitItemsBymoveorderId", new { id }).FirstOrDefault();
+                var output = sql.ReadingData<DismisItem, dynamic>("spDismisItemsByStockId", new { id });
                 return output;
             }
             catch (Exception ex)
@@ -70,35 +66,20 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-
-        public List<ItemRecit> GetByStockId(int id)
+        public int Save(DismisItem t, List<stockitem> stockitems)
         {
-            //spRecitItemsByStockId
-            try
-            {
-                var output = sql.ReadingData<ItemRecit, dynamic>("spRecitItemsByStockId", new { id });
-                return output;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message.ToString());
-            }
-        }
-
-        public int Save(ItemRecit t, List<stockitem> stockitems)
-        {
-            //spRecitItemsInsert
+            //spDismisItemsInsert
             try
             {
                 sql.starttransaction();
 
-              
-                 sql.SaveTrans<ItemRecit, dynamic>("spRecitItemsInsert",new { moveorderid = t.MoveOrderId,  t.Note, odate = t.Odate, t.RecitFrom, stockid = t.StockId });
-                int x = sql.ReadingTrans<ItemRecit, dynamic>("spRecitItemsGetLast", new { }).FirstOrDefault().Id;
-                foreach (ItemRecitDetail item in t.recitItemDetails)
+
+                sql.SaveTrans<DismisItem, dynamic>("spDismisItemsInsert", new { t.Note, odate = t.Odate, t.DismisTo, stockid = t.StockId });
+                int x = sql.ReadingTrans<DismisItem, dynamic>("spDismisItemsGetLast", new { }).FirstOrDefault().Id;
+                foreach (DismisItemDetail item in t.recitItemDetails)
                 {
-                    item.RecitItemId = x;
-                    sql.ExecuteTrans<ItemRecitDetail, dynamic>("spRecitItemDetailInsert", item);
+                    item.DismisItemId = x;
+                    sql.ExecuteTrans<ItemRecitDetail, dynamic>("spDismisItemDetailInsert", item);
                 }
                 foreach (stockitem item in stockitems)
                 {
@@ -124,12 +105,13 @@ namespace StockSystem.Libarary.BL
                 sql.Dispose();
             }
         }
-        public ItemRecit Update(ItemRecit t)
+
+        public DismisItem Update(DismisItem t)
         {
-            //spRecitItemsUpdate
+            //spDismisItemsUpdate
             try
             {
-                sql.Execute<ItemRecit, dynamic>("spRecitItemsUpdate", t);
+                sql.Execute<DismisItem, dynamic>("spDismisItemsUpdate", t);
                 return t;
             }
             catch (Exception ex)

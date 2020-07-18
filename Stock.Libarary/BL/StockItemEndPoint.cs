@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace StockSystem.Libarary.BL
 {
-    public class StockItemEndPoint : Reposit<stockitem>, IStockItemEndPoint
+    public class StockItemEndPoint :  IStockItemEndPoint
     {
         private readonly ISqlDataAccess sql;
 
@@ -17,7 +17,7 @@ namespace StockSystem.Libarary.BL
         {
             this.sql = sql;
         }
-        public override void Delete(stockitem t)
+        public  void Delete(stockitem t)
         {
             //spStockItemDelete
             try
@@ -30,7 +30,7 @@ namespace StockSystem.Libarary.BL
             }
         }
 
-        public override List<stockitem> GetAll()
+        public  List<stockitem> GetAll()
         {
             //spStockItemGetAll
             try
@@ -44,7 +44,7 @@ namespace StockSystem.Libarary.BL
             }
         }
 
-        public override stockitem GetByID(int id)
+        public  stockitem GetByID(int id)
         {
             //spStockItemGetById
             try
@@ -58,7 +58,7 @@ namespace StockSystem.Libarary.BL
             }
         }
 
-        public override void Save(stockitem t)
+        public  void Save(stockitem t)
         {
             //spStockItemInsert
             try
@@ -71,7 +71,7 @@ namespace StockSystem.Libarary.BL
             }
         }
 
-        public override stockitem Update(stockitem t)
+        public  stockitem Update(stockitem t)
         {
             //spStockItemUpdate
             try

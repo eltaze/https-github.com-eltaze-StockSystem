@@ -8,7 +8,7 @@ using System.Text;
 
 namespace StockSystem.Libarary.BL
 {
-    public class StockEndPoint : Reposit<Stock>, IStockEndPoint
+    public class StockEndPoint : IStockEndPoint
     {
         private readonly ISqlDataAccess sql;
 
@@ -16,7 +16,7 @@ namespace StockSystem.Libarary.BL
         {
             this.sql = sql;
         }
-        public override void Delete(Stock t)
+        public  void Delete(Stock t)
         {
             //spStockDelete
             try
@@ -29,7 +29,7 @@ namespace StockSystem.Libarary.BL
             }
         }
 
-        public override List<Stock> GetAll()
+        public  List<Stock> GetAll()
         {
             //spStockGetAll
             try
@@ -43,7 +43,7 @@ namespace StockSystem.Libarary.BL
             }
         }
 
-        public override Stock GetByID(int id)
+        public  Stock GetByID(int id)
         {
             //spStockGetById
             try
@@ -57,7 +57,7 @@ namespace StockSystem.Libarary.BL
             }
         }
 
-        public override void Save(Stock t)
+        public  void Save(Stock t)
         {
             //spStockInsert
             try
@@ -70,7 +70,7 @@ namespace StockSystem.Libarary.BL
             }
         }
 
-        public override Stock Update(Stock t)
+        public  Stock Update(Stock t)
         {
             //spStockUpdate
             try
@@ -83,7 +83,7 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.ToString());
             }
         }
-        public override Stock GetByName(string Name)
+        public  Stock GetByName(string Name)
         {
             //spStockGetByName
             try
