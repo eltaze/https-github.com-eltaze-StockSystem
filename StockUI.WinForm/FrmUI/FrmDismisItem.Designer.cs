@@ -233,6 +233,7 @@
             this.button8.TabIndex = 154;
             this.button8.Text = "إضافة";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // label1
             // 
@@ -308,6 +309,7 @@
             this.TxtQty.Name = "TxtQty";
             this.TxtQty.Size = new System.Drawing.Size(246, 20);
             this.TxtQty.TabIndex = 141;
+            this.TxtQty.Text = "0.00";
             // 
             // label7
             // 
@@ -441,6 +443,7 @@
             this.BtnNew.TabIndex = 166;
             this.BtnNew.Text = "جديد";
             this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // BtnSave
             // 
