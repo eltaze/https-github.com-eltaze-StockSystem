@@ -6,7 +6,9 @@ using StockUI.Libarary.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Windows.Forms;
 
 namespace StockUI.WinForm.FrmUI
@@ -59,7 +61,6 @@ namespace StockUI.WinForm.FrmUI
             comboBox.ValueMember = "Id";
             comboBox.DisplayMember = "Name";
         }
-
         private void CmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CmbDepartment.SelectedIndex ==-1 )
@@ -83,41 +84,46 @@ namespace StockUI.WinForm.FrmUI
                 var x = unitConversions.GetUnits(items[z].Id);
                 units.Clear();
                 units =x;
-                CmbUnitId.DataSource = x.ToList();
-                CmbUnitId.ValueMember = "Id";
-                CmbUnitId.DisplayMember = "Name";
+                loadbalance();
+                loadcmb<Unit>(x, CmbUnitId);
             }
         }
         private void loadbalance()
         {
-            if (CmbUnitId.SelectedIndex == -1)
+            var z = stockItemEndPoint.GetByStockItem(int.Parse(CmbStock.SelectedValue.ToString()), int.Parse(TxtItemId.Text.ToString()));
+            if (z == null)
+            {
+                z = new stockitem();
+                z.ItemId = int.Parse(TxtItemId.Text.ToString());
+                z.Balance = 0;
+                int n = items.FindIndex(b => b.Id == int.Parse(CmbItemName.SelectedValue.ToString()));
+                z.UnitId = items[n].UnitId;
+            }
+            foreach (Unit item in units)
+            {
+                if (item.Id == z.UnitId)
+                {
+                    item.Qty = z.Balance;
+                }
+                else
+                {
+                    int x = units.FindIndex(b => b.Id == z.UnitId);
+                    item.Qty = unitConversions.GetConvert(units[x], item, z.Balance);
+                }
+            }
+        }
+        private void CmbUnitId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CmbUnitId.SelectedValue ==null || CmbUnitId.SelectedIndex ==-1 || CmbUnitId.SelectedItem ==null)
             {
                 return;
             }
             int k;
-            if (!int.TryParse(CmbUnitId.SelectedValue.ToString(),out k))
+            if (int.TryParse(CmbUnitId.SelectedValue.ToString(),out k))
             {
-                return;
+                k = units.FindIndex(b => b.Id == int.Parse(CmbUnitId.SelectedValue.ToString()));
+                TxtBalance.Text = units[k].Qty?.ToString();
             }
-            var x = stockItemEndPoint.GetByStockItem(int.Parse(CmbStock.SelectedValue.ToString()), int.Parse(CmbItemName.SelectedValue.ToString()));
-            foreach (Unit item in units)
-            {
-                if (item.UnitId != x.UnitId)
-                {
-                     k = units.FindIndex(b => b.Id == x.UnitId);
-                    item.Qty = unitConversions.GetConvert(item, units[k], x.Balance);
-                }
-                else
-                {
-                    item.Qty = x.Balance;
-                }
-            }
-        }
-
-        private void CmbUnitId_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int k = units.FindIndex(b => b.Id == int.Parse(CmbUnitId.SelectedValue.ToString()));
-            //TxtBalance.Text = units[k].Qty.ToString();
         }
     }
 }
