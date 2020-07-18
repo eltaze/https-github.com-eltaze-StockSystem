@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.Pkcs;
 using System.Windows.Forms;
 
 namespace StockUI.WinForm.FrmUI
@@ -249,11 +251,6 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show("يجب إدخال الكمية");
                 return false;
             }
-            if (k > decimal.Parse(TxtBalance.Text.ToString()))
-            {
-                MessageBox.Show("لايمكن صرف كميات غير متوفرة في المخزن");
-                return false;
-            }
             return true;
         }
         private void button8_Click(object sender, EventArgs e)
@@ -262,6 +259,13 @@ namespace StockUI.WinForm.FrmUI
             {
                 return;
             }
+            
+            if (decimal.Parse(TxtQty.Text.ToString()) > decimal.Parse(TxtBalance.Text.ToString()))
+            {
+                MessageBox.Show("لايمكن صرف كميات غير متوفرة في المخزن");
+                return ;
+            }
+           
             int x = items.FindIndex(b => b.Id == int.Parse(TxtItemId.Text));
             int xx = dismisItemDetailDisplays.FindIndex(b => b.ItemId == int.Parse(CmbItemName.SelectedValue.ToString()));
             if (xx != -1)
@@ -341,10 +345,32 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show("لايمكن تعديل صنف غير مدرج يجب إدراج الصنف أولا");
                 return;
             }
+            int kx = stockitems.FindIndex(b => b.ItemId == dismisItemDetailDisplays[x].ItemId);
+            stockitems[kx].Balance += dismisItemDetailDisplays[x].Qty;
+            if (stockitems[kx].UnitId == int.Parse(CmbUnitId.SelectedValue.ToString()))
+            {
+                stockitems[kx].Balance -= decimal.Parse(TxtQty.Text.ToString());
+                TxtBalance.Text = stockitems[kx].Balance.ToString("0.00");
+            }
+            else
+            {
+                int id1 = units.FindIndex(b => b.Id == stockitems[kx].UnitId);
+                int id2 = units.FindIndex(b => b.Id == int.Parse(CmbUnitId.SelectedValue.ToString()));
+                decimal tot= unitConversions.GetConvert(units[id1], units[id2], stockitems[kx].Balance);
+                if (tot < decimal.Parse(TxtQty.Text.ToString()))
+                {
+                    MessageBox.Show("الكمية غير متاحة في المخزن");
+                    return;
+                }
+                stockitems[kx].Balance = tot - decimal.Parse(TxtQty.Text.ToString());
+                stockitems[kx].UnitId = int.Parse(CmbUnitId.SelectedValue.ToString());
+                TxtBalance.Text = stockitems[kx].Balance.ToString("0.00");
+            }
             dismisItemDetailDisplays[x].UnitName = CmbUnitId.Text;
             dismisItemDetailDisplays[x].UnitId = int.Parse(CmbUnitId.SelectedValue.ToString());
             dismisItemDetailDisplays[x].Qty = decimal.Parse(TxtQty.Text.ToString());
             dataGridView1.DataSource = null;
+            loadbalance();
             filldate();
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
