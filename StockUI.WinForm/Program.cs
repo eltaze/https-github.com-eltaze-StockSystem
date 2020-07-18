@@ -25,7 +25,7 @@ namespace StockUI.WinForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FrmStock());
-            Application.Run(container.Resolve<FrmItemRecit>());
+            Application.Run(container.Resolve<FrmDismisItem>());
             //Application.Run(container.Resolve<FrmOrder>());
         }
         public static IUnityContainer BuildContainer()
@@ -42,6 +42,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<FrmItems>();
             currentContainer.RegisterType<FrmMoveOrder>();
             currentContainer.RegisterType<ReportForms>();
+            currentContainer.RegisterType<FrmDismisItem>();
             //Registering Database Layer
             currentContainer.RegisterSingleton<ISqlDataAccess, SqlDataAccess>();
             //Configuration AutoMapper
@@ -61,6 +62,8 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<ImoveorderdetailEndPoint, moveorderdetailEndPoint>();
             currentContainer.RegisterType<IRecitItemDetailEndPoint, RecitItemDetailEndPoint>();
             currentContainer.RegisterType<IRecitItemEndPoint, RecitItemEndPoint>();
+            currentContainer.RegisterType<IDismisItemDetailEndPoint, DismisItemDetailEndPoint>();
+            currentContainer.RegisterType<IDismisItemEndPoint, DismisItemEndPoint>();
             //currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             //currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             // note: registering types could be moved off to app config if you want as well
@@ -83,6 +86,8 @@ namespace StockUI.WinForm
                 cfg.CreateMap<MoveOrderDetail, MoveOrderDetailDisplay>().ReverseMap();
                 cfg.CreateMap<ItemRecit, ItemReciteDisplay>().ReverseMap();
                 cfg.CreateMap<ItemRecitDetail, ItemRecitDetailDisplay>().ReverseMap();
+                cfg.CreateMap<DismisItem, DismisItemDisplay>().ReverseMap();
+                cfg.CreateMap<DismisItemDetail, DismisItemDetailDisplay>().ReverseMap();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>().ReverseMap();
                 //cfg.CreateMap<BankTreasury, BankTreasuryDisplay>();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>();

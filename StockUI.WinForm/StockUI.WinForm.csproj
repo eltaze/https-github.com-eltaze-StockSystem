@@ -131,6 +131,12 @@
     <Compile Include="FrmUI\FrmDepartment.Designer.cs">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUI\FrmDismisItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUI\FrmDismisItem.Designer.cs">
+      <DependentUpon>FrmDismisItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUI\FrmItemRecit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,9 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="FrmUI\FrmDepartment.resx">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUI\FrmDismisItem.resx">
+      <DependentUpon>FrmDismisItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUI\FrmItemRecit.resx">
       <DependentUpon>FrmItemRecit.cs</DependentUpon>
