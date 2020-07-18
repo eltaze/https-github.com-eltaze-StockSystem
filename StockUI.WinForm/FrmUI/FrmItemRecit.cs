@@ -214,6 +214,11 @@ namespace StockUI.WinForm.FrmUI
         private void button7_Click(object sender, EventArgs e)
         {
             int x = itemRecitDetailsDisplay.FindIndex(b => b.ItemId == int.Parse(TxtItemId.Text.ToString()));
+            if (x ==-1)
+            {
+                MessageBox.Show("لايمكن تعديل صنف غير مدرج يجب إدراج الصنف أولا");
+                return;
+            }
             Unit unit = unitEndPoint.GetByID(int.Parse(CmbUnitId.SelectedValue.ToString()));
             Unit unit1 = unitEndPoint.GetByID(itemRecitDetailsDisplay[x].UnitId);
             itemRecitDetailsDisplay[x].UnitId = unit.Id;

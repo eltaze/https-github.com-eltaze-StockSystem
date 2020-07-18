@@ -42,7 +42,6 @@
             this.BtnLast = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.TxtItemId = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -92,6 +91,7 @@
             this.BtnPrev.TabIndex = 187;
             this.BtnPrev.Text = ">";
             this.BtnPrev.UseVisualStyleBackColor = true;
+            this.BtnPrev.Click += new System.EventHandler(this.BtnPrev_Click);
             // 
             // BtnNext
             // 
@@ -101,6 +101,7 @@
             this.BtnNext.TabIndex = 186;
             this.BtnNext.Text = "<";
             this.BtnNext.UseVisualStyleBackColor = true;
+            this.BtnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
             // BtnFirst
             // 
@@ -110,6 +111,7 @@
             this.BtnFirst.TabIndex = 184;
             this.BtnFirst.Text = ">>";
             this.BtnFirst.UseVisualStyleBackColor = true;
+            this.BtnFirst.Click += new System.EventHandler(this.BtnFirst_Click);
             // 
             // TxtFrom
             // 
@@ -142,6 +144,8 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(407, 509);
             this.dataGridView1.TabIndex = 181;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+
             // 
             // CmbDepartment
             // 
@@ -189,6 +193,7 @@
             this.BtnLast.TabIndex = 185;
             this.BtnLast.Text = "<<";
             this.BtnLast.UseVisualStyleBackColor = true;
+            this.BtnLast.Click += new System.EventHandler(this.BtnLast_Click);
             // 
             // panel1
             // 
@@ -210,24 +215,12 @@
             this.TxtItemId.Size = new System.Drawing.Size(246, 20);
             this.TxtItemId.TabIndex = 141;
             // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button5.Enabled = false;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button5.Location = new System.Drawing.Point(167, 154);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(72, 23);
-            this.button5.TabIndex = 153;
-            this.button5.Text = "جديد";
-            this.button5.UseVisualStyleBackColor = false;
-            // 
             // button8
             // 
             this.button8.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.button8.Enabled = false;
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button8.Location = new System.Drawing.Point(265, 154);
+            this.button8.Location = new System.Drawing.Point(181, 154);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(72, 23);
             this.button8.TabIndex = 154;
@@ -252,7 +245,6 @@
             this.panel2.Controls.Add(this.TxtBalance);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.TxtItemId);
-            this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.button8);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.CmbItemName);
@@ -326,12 +318,13 @@
             this.button7.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.button7.Enabled = false;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button7.Location = new System.Drawing.Point(54, 154);
+            this.button7.Location = new System.Drawing.Point(67, 154);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(72, 23);
             this.button7.TabIndex = 142;
             this.button7.Text = "تعديل";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // dateTimePicker1
             // 
@@ -517,7 +510,6 @@
         private System.Windows.Forms.Button BtnLast;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox TxtItemId;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
