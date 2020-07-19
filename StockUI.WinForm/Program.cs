@@ -25,8 +25,8 @@ namespace StockUI.WinForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FrmStock());
-            Application.Run(container.Resolve<FrmDismisItem>());
-            //Application.Run(container.Resolve<FrmOrder>());
+           // Application.Run(container.Resolve<FrmDismisItem>());
+            Application.Run(container.Resolve<FrmBarCode>());
         }
         public static IUnityContainer BuildContainer()
         {
@@ -42,6 +42,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<FrmItems>();
             currentContainer.RegisterType<FrmMoveOrder>();
             currentContainer.RegisterType<ReportForms>();
+            currentContainer.RegisterType<FrmBarCode>();
             currentContainer.RegisterType<FrmDismisItem>();
             //Registering Database Layer
             currentContainer.RegisterSingleton<ISqlDataAccess, SqlDataAccess>();
