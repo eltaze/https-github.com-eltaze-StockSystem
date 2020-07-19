@@ -53,12 +53,14 @@ namespace StockUI.WinForm.FrmUI
                     checkBox1.Checked = true;
                     CmbUnitId.SelectedValue = unitDisplays[id].UnitId;
                     TxtQty.Text = unitDisplays[id].Qty.ToString();
+                    TxtQuntityFormBig.Text = unitDisplays[id].QTYTOPARENT.ToString();
                 }
                 else
                 {
                     checkBox1.Checked = false;
                     CmbUnitId.SelectedIndex = -1;
                     TxtQty.Text = "";
+                    TxtQuntityFormBig.Text = "";
                 }
                 label5.Text = $"{count + 1} Of {unitDisplays.Count}";
             }
@@ -107,12 +109,15 @@ namespace StockUI.WinForm.FrmUI
             TxtName.Text = "";
             TxtNote.Text = "";
             TxtQty.Text = "";
+            TxtQuntityFormBig.Text = "";
+            TxtQuntityFormBig.Text = "1";
             checkBox1.Checked = false;
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {      
                 CmbUnitId.Enabled = checkBox1.Checked;
                 TxtQty.ReadOnly = !checkBox1.Checked;
+                TxtQuntityFormBig.ReadOnly = !checkBox1.Checked;
             if (CmbUnitId.Enabled==false)
             {
                 CmbUnitId.SelectedIndex = -1;
@@ -124,19 +129,26 @@ namespace StockUI.WinForm.FrmUI
             Unit unit = new Unit
             {
                 Name = TxtName.Text,
-                Note=TxtNote.Text,
+                Note = TxtNote.Text,
+                QTYTOPARENT = 1
             };
             if(CmbUnitId.Enabled==true)
             {
                 decimal c;
-                if (! decimal.TryParse(TxtQty.Text.ToString(), out c))
+                if (! decimal.TryParse(TxtQty.Text.ToString(), out c) || decimal.TryParse(TxtQuntityFormBig.Text.ToString(),out c))
                 {
                     MessageBox.Show("الكمية لاتكون غير أرقام");
                     TxtQty.Focus();
                     return;
                 }
+                if (decimal.Parse(TxtQuntityFormBig.Text.ToString()) <= 1)
+                {
+                    MessageBox.Show("الكمية للوحدة الأكبر لابد ان تكون أكبر من الواحد "); 
+                    return;
+                }
                 unit.Qty = decimal.Parse(TxtQty.Text.ToString());
                 unit.UnitId = int.Parse(CmbUnitId.SelectedValue.ToString());
+                unit.QTYTOPARENT = decimal.Parse(TxtQuntityFormBig.Text.ToString());
             }
            if(validation.validateUnit(unit))
             {

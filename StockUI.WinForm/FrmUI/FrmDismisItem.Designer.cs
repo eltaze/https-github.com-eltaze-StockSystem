@@ -145,7 +145,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(407, 509);
             this.dataGridView1.TabIndex = 181;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-
             // 
             // CmbDepartment
             // 
@@ -448,6 +447,7 @@
             this.BtnSave.TabIndex = 169;
             this.BtnSave.Text = "حفظ";
             this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // FrmDismisItem
             // 

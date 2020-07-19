@@ -33,7 +33,6 @@ namespace StockUI.WinForm.FrmUI
         private List<DismisItemDetailDisplay> dismisItemDetailDisplays = new List<DismisItemDetailDisplay>();
         int count = 0;
         
-
         public FrmDismisItem(IStockEndPoint stockEndPoint, IMapper mapper, IUnitEndPoint unitEndPoint
                             , IItemEndPoint itemEndPoint, UnitConversions unitConversions
                             , IDepartmentEndPoint departmentEndPoint, IDismisItemDetailEndPoint dismisItemDetailEndPoint
@@ -383,6 +382,33 @@ namespace StockUI.WinForm.FrmUI
                 TxtQty.Text = (string)dataGridView1[1, e.RowIndex].Value.ToString();
                 TxtBalance.Text = (decimal.Parse(TxtBalance.Text.ToString()) + decimal.Parse(TxtQty.Text.ToString())).ToString();
             }
+        }
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            DismisItem dismisItem = new DismisItem
+            {
+                DismisTo = TxtFrom.Text,
+                Note = TxtNote.Text,
+                Odate  = dateTimePicker1.Value,
+                StockId = int.Parse(CmbStock.SelectedValue.ToString())
+            };
+            List<DismisItemDetail> dismisItemDetails = new List<DismisItemDetail>();    
+            dismisItemDetails = mapper.Map<List<DismisItemDetail>>(dismisItemDetailDisplays);
+            dismisItem.recitItemDetails = dismisItemDetails;
+            List<stockitem> stckitems = new List<stockitem>();
+            foreach (DismisItemDetail item in dismisItemDetails)
+            {
+                int kx = stockitems.FindIndex(b => b.ItemId == item.ItemId);
+                if (kx >=0)
+                {
+                    stckitems.Add(stockitems[kx]);
+                }
+            }
+            int x = dismisItemEndPoint.Save(dismisItem, stckitems);
+            dismisItem.Id = x;
+            dismisItemDisplays.Add(mapper.Map<DismisItemDisplay>(dismisItem));
+            count = dismisItemDisplays.Count - 1;
+            navigation(count);
         }
     }
 }

@@ -1,10 +1,9 @@
 ﻿using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
+using StockUI.Libarary.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace StockUI.Libarary.BL
 {
@@ -13,7 +12,6 @@ namespace StockUI.Libarary.BL
         private readonly IUnitEndPoint unitEndPoint;
         private readonly IItemEndPoint itemEndPoint;
         private readonly IStockItemEndPoint stockItemEndPoint;
-
         public UnitConversions(IUnitEndPoint unitEndPoint,IItemEndPoint itemEndPoint,IStockItemEndPoint stockItemEndPoint)
         {
             this.unitEndPoint = unitEndPoint;
@@ -44,11 +42,17 @@ namespace StockUI.Libarary.BL
         {
             var x = unitEndPoint.GetByUnitIdTest(id).ToList();
             var b = unitEndPoint.GetByUnitIdPernt(id).ToList();
-            List<Unit> units = new List<Unit>();
-           
+            List<Unit> units = new List<Unit>();           
             units.AddRange(x);
             units.AddRange(b);
             return units.GroupBy(k=>k.Id).Select(k=>k.First()).ToList();
+        }
+        public List<UnitDisplay> GetDisplay(int id)
+        {
+            ///<summary>
+            ///This Method for Getting All unit include conversion of unit
+            ///</summary>
+            throw new NotImplementedException();
         }
       
     }

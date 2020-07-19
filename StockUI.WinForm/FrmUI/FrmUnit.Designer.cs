@@ -48,6 +48,8 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.TxtQty = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.TxtQuntityFormBig = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label5
@@ -153,14 +155,14 @@
             // 
             // TxtName
             // 
-            this.TxtName.Location = new System.Drawing.Point(140, 129);
+            this.TxtName.Location = new System.Drawing.Point(140, 103);
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(232, 20);
             this.TxtName.TabIndex = 63;
             // 
             // TxtId
             // 
-            this.TxtId.Location = new System.Drawing.Point(140, 90);
+            this.TxtId.Location = new System.Drawing.Point(140, 66);
             this.TxtId.Name = "TxtId";
             this.TxtId.Size = new System.Drawing.Size(232, 20);
             this.TxtId.TabIndex = 62;
@@ -169,7 +171,7 @@
             // 
             this.label4.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label4.Location = new System.Drawing.Point(12, 255);
+            this.label4.Location = new System.Drawing.Point(12, 251);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 20);
             this.label4.TabIndex = 61;
@@ -179,7 +181,7 @@
             // 
             this.label3.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label3.Location = new System.Drawing.Point(12, 129);
+            this.label3.Location = new System.Drawing.Point(12, 103);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(116, 20);
             this.label3.TabIndex = 60;
@@ -189,7 +191,7 @@
             // 
             this.label2.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Location = new System.Drawing.Point(12, 90);
+            this.label2.Location = new System.Drawing.Point(12, 66);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 20);
             this.label2.TabIndex = 59;
@@ -199,7 +201,7 @@
             // 
             this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Location = new System.Drawing.Point(12, 164);
+            this.label1.Location = new System.Drawing.Point(12, 140);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 20);
             this.label1.TabIndex = 74;
@@ -209,7 +211,7 @@
             // 
             this.CmbUnitId.Enabled = false;
             this.CmbUnitId.FormattingEnabled = true;
-            this.CmbUnitId.Location = new System.Drawing.Point(161, 164);
+            this.CmbUnitId.Location = new System.Drawing.Point(161, 140);
             this.CmbUnitId.Name = "CmbUnitId";
             this.CmbUnitId.Size = new System.Drawing.Size(211, 21);
             this.CmbUnitId.TabIndex = 75;
@@ -217,7 +219,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(140, 167);
+            this.checkBox1.Location = new System.Drawing.Point(140, 143);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(15, 14);
             this.checkBox1.TabIndex = 76;
@@ -226,7 +228,7 @@
             // 
             // TxtQty
             // 
-            this.TxtQty.Location = new System.Drawing.Point(140, 210);
+            this.TxtQty.Location = new System.Drawing.Point(140, 177);
             this.TxtQty.Name = "TxtQty";
             this.TxtQty.ReadOnly = true;
             this.TxtQty.Size = new System.Drawing.Size(232, 20);
@@ -236,17 +238,38 @@
             // 
             this.label6.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label6.Location = new System.Drawing.Point(12, 210);
+            this.label6.Location = new System.Drawing.Point(12, 177);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(116, 20);
             this.label6.TabIndex = 77;
             this.label6.Text = "الكمية من الوحدة ";
+            // 
+            // TxtQuntityFormBig
+            // 
+            this.TxtQuntityFormBig.Location = new System.Drawing.Point(140, 214);
+            this.TxtQuntityFormBig.Name = "TxtQuntityFormBig";
+            this.TxtQuntityFormBig.ReadOnly = true;
+            this.TxtQuntityFormBig.Size = new System.Drawing.Size(232, 20);
+            this.TxtQuntityFormBig.TabIndex = 80;
+            this.TxtQuntityFormBig.Text = "1";
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label7.Location = new System.Drawing.Point(12, 214);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(116, 20);
+            this.label7.TabIndex = 79;
+            this.label7.Text = "الكمية من أكبر وحدة";
             // 
             // FrmUnit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(386, 378);
+            this.Controls.Add(this.TxtQuntityFormBig);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.TxtQty);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.checkBox1);
@@ -302,5 +325,7 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TextBox TxtQty;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox TxtQuntityFormBig;
+        private System.Windows.Forms.Label label7;
     }
 }

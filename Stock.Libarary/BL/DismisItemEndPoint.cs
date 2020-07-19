@@ -85,7 +85,7 @@ namespace StockSystem.Libarary.BL
                 {
                     if (item.Id != 0)
                     {
-                        sql.ExecuteTrans<stockitem, dynamic>("spStockItemUpdate", item);
+                        sql.ExecuteTrans<stockitem, dynamic>("spStockItemUpdate", new { Id=item.Id,StockId=item.StockId, ItemId= item.ItemId, Balance =item.Balance, Note=item.Note, unitid=item.UnitId });
                     }
                     else
                     {
