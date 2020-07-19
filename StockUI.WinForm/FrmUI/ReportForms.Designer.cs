@@ -29,29 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource6 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource7 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource8 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource9 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource10 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource11 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource12 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.OrderDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.MoveorderDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.MoveOrderDetailDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ItemReciteDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ItemRecitDetailDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.orderDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.reportViewer3 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.ItemReciteDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ItemRecitDetailDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer4 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.DismisItemDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DismisItemDetailDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.OrderDisplayBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MoveorderDisplayBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MoveOrderDetailDisplayBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemReciteDisplayBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemRecitDetailDisplayBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DismisItemDisplayBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DismisItemDetailDisplayBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // OrderDisplayBindingSource
@@ -66,6 +73,14 @@
             // 
             this.MoveOrderDetailDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.MoveOrderDetailDisplay);
             // 
+            // ItemReciteDisplayBindingSource
+            // 
+            this.ItemReciteDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.ItemReciteDisplay);
+            // 
+            // ItemRecitDetailDisplayBindingSource
+            // 
+            this.ItemRecitDetailDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.ItemRecitDetailDisplay);
+            // 
             // orderDetailsBindingSource
             // 
             this.orderDetailsBindingSource.DataMember = "OrderDetails";
@@ -77,12 +92,12 @@
             // 
             // reportViewer1
             // 
-            reportDataSource7.Name = "DataSet1";
-            reportDataSource7.Value = this.OrderDisplayBindingSource;
-            reportDataSource8.Name = "DataSet2";
-            reportDataSource8.Value = this.OrderDisplayBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource7);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource8);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.OrderDisplayBindingSource;
+            reportDataSource2.Name = "DataSet2";
+            reportDataSource2.Value = this.OrderDisplayBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "StockUI.WinForm.Reporting.OrderReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(611, 12);
             this.reportViewer1.Name = "reportViewer1";
@@ -93,12 +108,12 @@
             // 
             // reportViewer2
             // 
-            reportDataSource9.Name = "DataSet1";
-            reportDataSource9.Value = this.MoveorderDisplayBindingSource;
-            reportDataSource10.Name = "DataSet2";
-            reportDataSource10.Value = this.MoveOrderDetailDisplayBindingSource;
-            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource9);
-            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource10);
+            reportDataSource3.Name = "DataSet1";
+            reportDataSource3.Value = this.MoveorderDisplayBindingSource;
+            reportDataSource4.Name = "DataSet2";
+            reportDataSource4.Value = this.MoveOrderDetailDisplayBindingSource;
+            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource3);
+            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource4);
             this.reportViewer2.LocalReport.ReportEmbeddedResource = "StockUI.WinForm.Reporting.RptMoveOrder.rdlc";
             this.reportViewer2.Location = new System.Drawing.Point(445, 12);
             this.reportViewer2.Name = "reportViewer2";
@@ -109,12 +124,12 @@
             // 
             // reportViewer3
             // 
-            reportDataSource11.Name = "DSItemRecit";
-            reportDataSource11.Value = this.ItemReciteDisplayBindingSource;
-            reportDataSource12.Name = "DSItemRecitDetail";
-            reportDataSource12.Value = this.ItemRecitDetailDisplayBindingSource;
-            this.reportViewer3.LocalReport.DataSources.Add(reportDataSource11);
-            this.reportViewer3.LocalReport.DataSources.Add(reportDataSource12);
+            reportDataSource5.Name = "DSItemRecit";
+            reportDataSource5.Value = this.ItemReciteDisplayBindingSource;
+            reportDataSource6.Name = "DSItemRecitDetail";
+            reportDataSource6.Value = this.ItemRecitDetailDisplayBindingSource;
+            this.reportViewer3.LocalReport.DataSources.Add(reportDataSource5);
+            this.reportViewer3.LocalReport.DataSources.Add(reportDataSource6);
             this.reportViewer3.LocalReport.ReportEmbeddedResource = "StockUI.WinForm.Reporting.RptRecitItem.rdlc";
             this.reportViewer3.Location = new System.Drawing.Point(238, 23);
             this.reportViewer3.Name = "reportViewer3";
@@ -123,19 +138,36 @@
             this.reportViewer3.TabIndex = 2;
             this.reportViewer3.Visible = false;
             // 
-            // ItemReciteDisplayBindingSource
+            // reportViewer4
             // 
-            this.ItemReciteDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.ItemReciteDisplay);
+            reportDataSource7.Name = "DataSet1";
+            reportDataSource7.Value = this.DismisItemDisplayBindingSource;
+            reportDataSource8.Name = "DataSet2";
+            reportDataSource8.Value = this.DismisItemDetailDisplayBindingSource;
+            this.reportViewer4.LocalReport.DataSources.Add(reportDataSource7);
+            this.reportViewer4.LocalReport.DataSources.Add(reportDataSource8);
+            this.reportViewer4.LocalReport.ReportEmbeddedResource = "StockUI.WinForm.Reporting.RptDismisItem.rdlc";
+            this.reportViewer4.Location = new System.Drawing.Point(22, 23);
+            this.reportViewer4.Name = "reportViewer4";
+            this.reportViewer4.ServerReport.BearerToken = null;
+            this.reportViewer4.Size = new System.Drawing.Size(149, 246);
+            this.reportViewer4.TabIndex = 3;
+            this.reportViewer4.Visible = false;
             // 
-            // ItemRecitDetailDisplayBindingSource
+            // DismisItemDisplayBindingSource
             // 
-            this.ItemRecitDetailDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.ItemRecitDetailDisplay);
+            this.DismisItemDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.DismisItemDisplay);
+            // 
+            // DismisItemDetailDisplayBindingSource
+            // 
+            this.DismisItemDetailDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.DismisItemDetailDisplay);
             // 
             // ReportForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.reportViewer4);
             this.Controls.Add(this.reportViewer3);
             this.Controls.Add(this.reportViewer2);
             this.Controls.Add(this.reportViewer1);
@@ -148,10 +180,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.OrderDisplayBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MoveorderDisplayBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MoveOrderDetailDisplayBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemReciteDisplayBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemRecitDetailDisplayBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DismisItemDisplayBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DismisItemDetailDisplayBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -168,5 +202,8 @@
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer3;
         private System.Windows.Forms.BindingSource ItemReciteDisplayBindingSource;
         private System.Windows.Forms.BindingSource ItemRecitDetailDisplayBindingSource;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer4;
+        private System.Windows.Forms.BindingSource DismisItemDisplayBindingSource;
+        private System.Windows.Forms.BindingSource DismisItemDetailDisplayBindingSource;
     }
 }

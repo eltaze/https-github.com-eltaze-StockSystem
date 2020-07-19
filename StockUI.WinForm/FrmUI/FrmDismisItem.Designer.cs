@@ -404,6 +404,7 @@
             this.BtnPrint.TabIndex = 170;
             this.BtnPrint.Text = "طباعة";
             this.BtnPrint.UseVisualStyleBackColor = true;
+            this.BtnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
             // 
             // BtnDelete
             // 

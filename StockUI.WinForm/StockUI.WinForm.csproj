@@ -230,6 +230,7 @@
     <EmbeddedResource Include="Reporting\OrderReport.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\RptDismisItem.rdlc" />
     <EmbeddedResource Include="Reporting\RptMoveOrder.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -237,12 +238,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\StockUI.Libarary.Model.DismisItemDetailDisplay.datasource" />
+    <None Include="Properties\DataSources\StockUI.Libarary.Model.DismisItemDisplay.datasource" />
     <None Include="Properties\DataSources\StockUI.Libarary.Model.ItemRecitDetailDisplay.datasource" />
     <None Include="Properties\DataSources\StockUI.Libarary.Model.ItemReciteDisplay.datasource" />
     <None Include="Properties\DataSources\StockUI.Libarary.Model.MoveOrderDetailDisplay.datasource" />
     <None Include="Properties\DataSources\StockUI.Libarary.Model.MoveorderDisplay.datasource" />
     <None Include="Properties\DataSources\StockUI.Libarary.Model.OrderDetailDisplay.datasource" />
-    <None Include="Properties\DataSources\StockUI.Libarary.Model.OrderDisplay.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

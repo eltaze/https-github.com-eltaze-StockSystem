@@ -10,12 +10,10 @@ namespace StockSystem.Libarary.BL
     public class DismisItemDetailEndPoint : IDismisItemDetailEndPoint
     {
         private readonly ISqlDataAccess sql;
-
         public DismisItemDetailEndPoint(ISqlDataAccess sql)
         {
             this.sql = sql;
         }
-
         public void Delete(DismisItemDetail t)
         {
             //spDismisItemDetailDelete
@@ -28,12 +26,10 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-
         public List<DismisItemDetail> GetAll()
         {
             throw new NotImplementedException();
         }
-
         public List<DismisItemDetail> GetByRecitID(int id)
         {
             //spDismisItemDetailGetByRecitId
@@ -47,7 +43,6 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-
         public List<DismisItemDetail> GetByItemId(int id)
         {
             //spDismisItemDetailGetByItemId
@@ -61,7 +56,6 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-
         public List<DismisItemDetail> GetBySearch(int itemid, int recitid)
         {
             //spDismisItemDetailGetByItemIdRecitId
@@ -75,7 +69,6 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-
         public void Save(DismisItemDetail t)
         {
             //spDismisItemDetailInsert
@@ -88,7 +81,6 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-
         public DismisItemDetail Update(DismisItemDetail t)
         {
             //[spDismisItemDetailUpdate]

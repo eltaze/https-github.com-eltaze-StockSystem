@@ -18,6 +18,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly IStockEndPoint stockEndPoint;
         private readonly IMapper mapper;
         private readonly IUnitEndPoint unitEndPoint;
+        private readonly ReportForms reportForms;
         private readonly IItemEndPoint itemEndPoint;
         private readonly UnitConversions unitConversions;
         private readonly IDepartmentEndPoint departmentEndPoint;
@@ -33,7 +34,7 @@ namespace StockUI.WinForm.FrmUI
         private List<DismisItemDetailDisplay> dismisItemDetailDisplays = new List<DismisItemDetailDisplay>();
         int count = 0;
         
-        public FrmDismisItem(IStockEndPoint stockEndPoint, IMapper mapper, IUnitEndPoint unitEndPoint
+        public FrmDismisItem(IStockEndPoint stockEndPoint, IMapper mapper, IUnitEndPoint unitEndPoint,ReportForms reportForms
                             , IItemEndPoint itemEndPoint, UnitConversions unitConversions
                             , IDepartmentEndPoint departmentEndPoint, IDismisItemDetailEndPoint dismisItemDetailEndPoint
                             , IDismisItemEndPoint dismisItemEndPoint, IStockItemEndPoint stockItemEndPoint)
@@ -42,6 +43,7 @@ namespace StockUI.WinForm.FrmUI
             this.stockEndPoint = stockEndPoint;
             this.mapper = mapper;
             this.unitEndPoint = unitEndPoint;
+            this.reportForms = reportForms;
             this.itemEndPoint = itemEndPoint;
             this.unitConversions = unitConversions;
             this.departmentEndPoint = departmentEndPoint;
@@ -409,6 +411,21 @@ namespace StockUI.WinForm.FrmUI
             dismisItemDisplays.Add(mapper.Map<DismisItemDisplay>(dismisItem));
             count = dismisItemDisplays.Count - 1;
             navigation(count);
+        }
+
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            reportForms.start = 4;
+            reportForms.DismisItemDisplay = dismisItemDisplays[count];
+            reportForms.DismisItemDisplay.StockName = CmbStock.Text;
+            int i = 1;
+            foreach (var item in dismisItemDetailDisplays)
+            {
+                item.counter = i;
+                i++;
+            }
+            reportForms.DismisItemDisplay.dismisItemDetailDisplays = dismisItemDetailDisplays;
+            reportForms.ShowDialog();
         }
     }
 }

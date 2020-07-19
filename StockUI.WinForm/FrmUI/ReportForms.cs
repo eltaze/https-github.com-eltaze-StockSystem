@@ -20,6 +20,7 @@ namespace StockUI.WinForm.FrmUI
         public OrderDisplay OrderDisplay = new OrderDisplay();
         public MoveorderDisplay MoveorderDisplay = new MoveorderDisplay();
         public ItemReciteDisplay ItemReciteDisplay = new ItemReciteDisplay();
+        public DismisItemDisplay DismisItemDisplay = new DismisItemDisplay();
         public int start = 0;
         private void ReportForms_Load(object sender, EventArgs e)
         {
@@ -35,7 +36,12 @@ namespace StockUI.WinForm.FrmUI
             {
                 recitformload();
             }
-           // this.reportViewer3.RefreshReport();
+            else if (start == 4)
+            {
+                recDismisload();
+            }
+            // this.reportViewer3.RefreshReport();
+            //this.reportViewer4.RefreshReport();
         }
         private void orderforms()
         {
@@ -65,6 +71,15 @@ namespace StockUI.WinForm.FrmUI
             reportViewer3.LocalReport.EnableExternalImages = true;
             reportViewer3.Visible = true;
             this.reportViewer3.RefreshReport();
+        }
+        private void recDismisload()
+        {
+            DismisItemDisplayBindingSource.DataSource = DismisItemDisplay;
+            DismisItemDetailDisplayBindingSource.DataSource = DismisItemDisplay.dismisItemDetailDisplays;
+            reportViewer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportViewer4.LocalReport.EnableExternalImages = true;
+            reportViewer4.Visible = true;
+            this.reportViewer4.RefreshReport();
         }
     }
 }
