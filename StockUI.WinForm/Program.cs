@@ -26,7 +26,7 @@ namespace StockUI.WinForm
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FrmStock());
            // Application.Run(container.Resolve<FrmDismisItem>());
-            Application.Run(container.Resolve<FrmBarCode>());
+           Application.Run(container.Resolve<FrmBarCode>());
         }
         public static IUnityContainer BuildContainer()
         {

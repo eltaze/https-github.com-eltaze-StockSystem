@@ -47,12 +47,26 @@ namespace StockUI.Libarary.BL
             units.AddRange(b);
             return units.GroupBy(k=>k.Id).Select(k=>k.First()).ToList();
         }
-        public List<UnitDisplay> GetDisplay(int id)
+        public List<Unit> GetUnits(int id,int stockId=1)
         {
             ///<summary>
             ///This Method for Getting All unit include conversion of unit
             ///</summary>
-            throw new NotImplementedException();
+            var x = GetUnits(id);
+            var y = stockItemEndPoint.GetByStockItem(stockId, id);
+            foreach (Unit item in x)
+            {
+                if (y.UnitId == item.Id)
+                {
+                    item.Qty = y.Balance;
+                }
+                else
+                {
+                    int k = x.FindIndex(b => b.Id == y.UnitId);
+                    item.Qty = GetConvert(x[k], item, y.Balance);
+                }
+            }
+            return x;
         }
       
     }
