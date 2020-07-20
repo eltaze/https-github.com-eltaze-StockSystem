@@ -2,6 +2,7 @@
 using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using StockUI.Libarary.BL;
+using StockUI.Libarary.BL.Helper;
 using StockUI.Libarary.Model;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,11 @@ using System.Windows.Forms;
 
 namespace StockUI.WinForm.FrmUI
 {
-    public partial class FrmOrder : Form
+    public partial class FrmOrder : Form, IBarCode
     {
         private readonly IMapper mapper;
         private readonly IOrderEndPoint orderEndPoint;
+        private readonly FrmBarCode frmBarCode;
         private readonly IOrderDetailEndPoint orderDetailEndPoint;
         private readonly IUnitEndPoint unitEndPoint;
         private readonly IItemEndPoint itemEndPoint;
@@ -24,6 +26,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly IStockEndPoint stockEndPoint;
         private readonly IStockItemEndPoint stockItemEndPoint;
         private readonly ReportForms reportForms;
+       
         private List<ItemDisplay> items = new List<ItemDisplay>();
         private List<OrderDisplay> orderDisplays = new List<OrderDisplay>();
         private List<UnitDisplay> unitDisplays = new List<UnitDisplay>();
@@ -31,7 +34,7 @@ namespace StockUI.WinForm.FrmUI
         private OrderDisplay neworder = new OrderDisplay();
         int count = 0;
         int modification = -1;
-        public FrmOrder(IMapper mapper,IOrderEndPoint orderEndPoint
+        public FrmOrder(IMapper mapper,IOrderEndPoint orderEndPoint,FrmBarCode frmBarCode
             ,IOrderDetailEndPoint orderDetailEndPoint
             ,IUnitEndPoint unitEndPoint,IItemEndPoint itemEndPoint
             ,IBaseStockItemEndPoint baseStockItemEndPoint
@@ -41,6 +44,7 @@ namespace StockUI.WinForm.FrmUI
             InitializeComponent();
             this.mapper = mapper;
             this.orderEndPoint = orderEndPoint;
+            this.frmBarCode = frmBarCode;
             this.orderDetailEndPoint = orderDetailEndPoint;
             this.unitEndPoint = unitEndPoint;
             this.itemEndPoint = itemEndPoint;
@@ -242,6 +246,7 @@ namespace StockUI.WinForm.FrmUI
                 button5.Enabled = false;
                 //button6.Enabled = false;
                 button7.Enabled = false;
+                button1.Enabled = false;
                 button8.Enabled = false;
             }
             else
@@ -251,6 +256,7 @@ namespace StockUI.WinForm.FrmUI
                 BtnUpdate.Enabled = false;
                 neworder = new OrderDisplay();
                 button5.Enabled = true;
+                button1.Enabled = true;
                 //button6.Enabled = true;
                 button7.Enabled = true;
                 button8.Enabled = true;                
@@ -441,5 +447,38 @@ namespace StockUI.WinForm.FrmUI
             reportForms.OrderDisplay = neworder;
             reportForms.ShowDialog();
         }
+
+        public void Test(Bar bar)
+        {
+            object sender = new object();
+            EventArgs e = new EventArgs();
+            fill(bar);
+            button8_Click(sender, e);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmBarCode.barCode = this;
+            int x;
+            if (int.TryParse(CmbStock.SelectedValue?.ToString(), out x) == false)
+            {
+                MessageBox.Show("يجب إختيار المخزن أولا");
+                return;
+            }
+            frmBarCode.stockId = int.Parse(CmbStock.SelectedValue.ToString());
+            frmBarCode.items = itemEndPoint.GetAll();
+            frmBarCode.ShowDialog();
+        }
+        private void fill(Bar bar)
+        {
+            int x = items.FindIndex(b => b.Id == bar.ItemId);
+            CmbDepartment.SelectedValue = items[x].DepartmentId;
+            CmbItemName.SelectedValue = items[x].Id;
+            TxtItemId.Text = bar.ItemId.ToString();
+            TxtQty.Text = bar.QTY.ToString();
+            CmbUnitId.SelectedValue = bar.UnitId;
+            TxtUnitPrice.Text = frmBarCode.unitprice.ToString();
+        }
+
     }
 }

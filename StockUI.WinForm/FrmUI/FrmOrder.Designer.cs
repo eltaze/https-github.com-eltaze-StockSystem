@@ -68,6 +68,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.TxtTotal = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -76,9 +77,9 @@
             // BtnPrint
             // 
             this.BtnPrint.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnPrint.Location = new System.Drawing.Point(320, 12);
+            this.BtnPrint.Location = new System.Drawing.Point(337, 12);
             this.BtnPrint.Name = "BtnPrint";
-            this.BtnPrint.Size = new System.Drawing.Size(72, 37);
+            this.BtnPrint.Size = new System.Drawing.Size(53, 37);
             this.BtnPrint.TabIndex = 125;
             this.BtnPrint.Text = "طباعة";
             this.BtnPrint.UseVisualStyleBackColor = true;
@@ -88,9 +89,9 @@
             // 
             this.BtnDelete.Enabled = false;
             this.BtnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnDelete.Location = new System.Drawing.Point(163, 12);
+            this.BtnDelete.Location = new System.Drawing.Point(139, 12);
             this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(72, 37);
+            this.BtnDelete.Size = new System.Drawing.Size(53, 37);
             this.BtnDelete.TabIndex = 124;
             this.BtnDelete.Text = "حذف";
             this.BtnDelete.UseVisualStyleBackColor = true;
@@ -98,9 +99,9 @@
             // BtnUpdate
             // 
             this.BtnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnUpdate.Location = new System.Drawing.Point(85, 12);
+            this.BtnUpdate.Location = new System.Drawing.Point(73, 12);
             this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(72, 37);
+            this.BtnUpdate.Size = new System.Drawing.Size(53, 37);
             this.BtnUpdate.TabIndex = 123;
             this.BtnUpdate.Text = "تعديل";
             this.BtnUpdate.UseVisualStyleBackColor = true;
@@ -110,7 +111,7 @@
             this.BtnNew.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BtnNew.Location = new System.Drawing.Point(7, 12);
             this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(72, 37);
+            this.BtnNew.Size = new System.Drawing.Size(53, 37);
             this.BtnNew.TabIndex = 122;
             this.BtnNew.Text = "جديد";
             this.BtnNew.UseVisualStyleBackColor = true;
@@ -433,9 +434,9 @@
             // 
             this.BtnSave.Enabled = false;
             this.BtnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnSave.Location = new System.Drawing.Point(242, 12);
+            this.BtnSave.Location = new System.Drawing.Point(205, 12);
             this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(72, 37);
+            this.BtnSave.Size = new System.Drawing.Size(53, 37);
             this.BtnSave.TabIndex = 125;
             this.BtnSave.Text = "حفظ";
             this.BtnSave.UseVisualStyleBackColor = true;
@@ -498,12 +499,25 @@
             this.label11.TabIndex = 156;
             this.label11.Text = "اجمالي الطلب";
             // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button1.Location = new System.Drawing.Point(271, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(53, 37);
+            this.button1.TabIndex = 158;
+            this.button1.Text = "باركود";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FrmOrder
             // 
             this.AcceptButton = this.button7;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(938, 572);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.TxtTotal);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.panel2);
@@ -586,5 +600,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox TxtTotal;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button button1;
     }
 }

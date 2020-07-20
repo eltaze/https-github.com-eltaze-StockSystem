@@ -19,7 +19,7 @@ namespace StockUI.WinForm.FrmUI
         public List<Unit> units = new List<Unit>();
         public FrmDismisItem form;
         public int stockId;
-
+        public decimal unitprice;
         public FrmBarCode(UnitConversions unitConversions,IItemEndPoint itemEndPoint)
         {
             InitializeComponent();
@@ -35,7 +35,11 @@ namespace StockUI.WinForm.FrmUI
 
         private void FrmBarCode_Load(object sender, EventArgs e)
         {
-            ;
+            if (typeof(IBarCode).IsAssignableFrom(typeof(FrmOrder)))
+            {
+                label3.Visible = true;
+                TxtPrice.Visible = true;
+            }
         }
 
         private void CmbUnitId_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,6 +101,11 @@ namespace StockUI.WinForm.FrmUI
                     TxtQty.Text = "0.00";
                     TxtQty.Focus();
                 }
+                if (typeof(IBarCode).IsAssignableFrom(typeof(FrmOrder)))
+                {
+                    TxtPrice.Focus();
+                    return;
+                }
                 BtnNew.Focus();
             }
         }
@@ -127,6 +136,10 @@ namespace StockUI.WinForm.FrmUI
             bar.ItemId = items[x].Id;
             bar.QTY = decimal.Parse(TxtQty.Text.ToString());
             bar.UnitId = int.Parse(CmbUnitId.SelectedValue.ToString());
+            if (TxtPrice.Visible == true)
+            {
+                unitprice = decimal.Parse(TxtPrice.Text.ToString());
+            }
             barCode.Test(bar);
             clear();
         }
@@ -142,7 +155,7 @@ namespace StockUI.WinForm.FrmUI
         private Boolean validate()
         {
             int x;
-            if (int.TryParse(CmbUnitId.SelectedValue.ToString(), out x) == false)
+            if (int.TryParse(CmbUnitId.SelectedValue?.ToString(), out x) == false)
             {
                 MessageBox.Show("يجب إختيار من ضمن اللسته فقط");
                 return false;
@@ -155,6 +168,7 @@ namespace StockUI.WinForm.FrmUI
                 TxtQty.Focus();
                 return false;
             }
+
              x = items.FindIndex(b => b.Barcode == TxtBarcod.Text);
             if (x == -1)
             {
@@ -163,7 +177,33 @@ namespace StockUI.WinForm.FrmUI
                 TxtBarcod.Focus();
                 return false;
             }
+            if (typeof(IBarCode).IsAssignableFrom(typeof(FrmOrder)))
+            {
+                if (decimal.TryParse(TxtPrice.Text.ToString(), out xx) == false)
+                {
+                    MessageBox.Show("يجب إدخال السعر");
+                    TxtPrice.Text = "0.00";
+                    TxtPrice.Focus();
+                    return false;
+                }
+            }
             return true;
+        }
+        private void TxtPrice_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (true)
+            {
+                decimal x;
+                if (decimal.TryParse(TxtPrice.Text.ToString(), out x) == false)
+                {
+                    MessageBox.Show("السعر يجب أن تكون أرقام فقط");
+                    TxtPrice.Text = "0.00";
+                    TxtPrice.Focus();
+                    return;
+                }
+                BtnNew.Focus();
+
+            }
         }
     }
 }

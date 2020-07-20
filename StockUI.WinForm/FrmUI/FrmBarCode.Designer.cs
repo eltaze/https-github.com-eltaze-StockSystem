@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.TxtPrice = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.TxtQty = new System.Windows.Forms.TextBox();
             this.TxtBalance = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -48,6 +50,8 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.TxtPrice);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.TxtQty);
             this.panel1.Controls.Add(this.TxtBalance);
             this.panel1.Controls.Add(this.label7);
@@ -62,6 +66,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(386, 230);
             this.panel1.TabIndex = 183;
+            // 
+            // TxtPrice
+            // 
+            this.TxtPrice.Location = new System.Drawing.Point(5, 194);
+            this.TxtPrice.Name = "TxtPrice";
+            this.TxtPrice.Size = new System.Drawing.Size(246, 20);
+            this.TxtPrice.TabIndex = 192;
+            this.TxtPrice.Text = "0.00";
+            this.TxtPrice.Visible = false;
+            this.TxtPrice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPrice_KeyDown);
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label3.Location = new System.Drawing.Point(257, 194);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(116, 20);
+            this.label3.TabIndex = 193;
+            this.label3.Text = "سعر الوحدة";
+            this.label3.Visible = false;
             // 
             // TxtQty
             // 
@@ -218,5 +243,7 @@
         private System.Windows.Forms.TextBox TxtBarcod;
         private System.Windows.Forms.Button BtnNew;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox TxtPrice;
+        private System.Windows.Forms.Label label3;
     }
 }
