@@ -2,6 +2,7 @@
 using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using StockUI.Libarary.BL;
+using StockUI.Libarary.BL.Helper;
 using StockUI.Libarary.Model;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace StockUI.WinForm.FrmUI
 {
-    public partial class FrmDismisItem : Form
+    public partial class FrmDismisItem : Form,IBarCode
     {
         private readonly IStockEndPoint stockEndPoint;
         private readonly IMapper mapper;
@@ -28,8 +29,8 @@ namespace StockUI.WinForm.FrmUI
         private readonly IStockItemEndPoint stockItemEndPoint;
         private List<Stock> stocks = new List<Stock>();
         private List<department> departments = new List<department>();
-        private List<Item> items = new List<Item>();
-        private List<Unit> units = new List<Unit>();
+        public List<Item> items = new List<Item>();
+        public List<Unit> units = new List<Unit>();
         private List<stockitem> stockitems = new List<stockitem>();
         private List<DismisItemDisplay> dismisItemDisplays = new List<DismisItemDisplay>();
         private List<DismisItemDetailDisplay> dismisItemDetailDisplays = new List<DismisItemDetailDisplay>();
@@ -230,6 +231,7 @@ namespace StockUI.WinForm.FrmUI
                 //button5.Enabled = false;
                 button7.Enabled = false;
                 button8.Enabled = false;
+                button1.Enabled = false;
             }
             else
             {
@@ -239,7 +241,9 @@ namespace StockUI.WinForm.FrmUI
                 //button5.Enabled = true;
                 button7.Enabled = true;
                 button8.Enabled = true;
+                button1.Enabled = true;
             }
+            dismisItemDetailDisplays.Clear();
         }
         private bool validate()
         {
@@ -277,7 +281,7 @@ namespace StockUI.WinForm.FrmUI
                 int id2 = units.FindIndex(b => b.Id == int.Parse(CmbUnitId.SelectedValue.ToString()));
                 if (units[id1].Id == units[id2].Id)
                 {
-                    dismisItemDetailDisplays[x].Qty += decimal.Parse(TxtQty.Text.ToString());
+                    dismisItemDetailDisplays[x].Qty -= decimal.Parse(TxtQty.Text.ToString());
 
                 }
                 else
@@ -432,12 +436,33 @@ namespace StockUI.WinForm.FrmUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmBarCode.form = this;
+            frmBarCode.barCode = this;
+            int x;
+            if (int.TryParse(CmbStock.SelectedValue?.ToString(),out x) == false)
+            {
+                MessageBox.Show("يجب إختيار المخزن أولا");
+                return;
+            }
+            frmBarCode.stockId = int.Parse(CmbStock.SelectedValue.ToString());
+            frmBarCode.items = items;
             frmBarCode.ShowDialog();
         }
-        public void test()
+      
+        public void Test(Bar bar)
         {
-            MessageBox.Show("Done");
+            object sender = new object();
+            EventArgs e = new EventArgs();
+            fill(bar);
+            button8_Click(sender, e);
+        }
+        private void fill(Bar bar)
+        {
+            int x = items.FindIndex(b => b.Id == bar.ItemId);
+            CmbDepartment.SelectedValue = items[x].DepartmentId;
+            CmbItemName.SelectedValue = items[x].Id;
+            TxtItemId.Text = bar.ItemId.ToString();
+            TxtQty.Text = bar.QTY.ToString();
+            CmbUnitId.SelectedValue = bar.UnitId;
         }
     }
 }

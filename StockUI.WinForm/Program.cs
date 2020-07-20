@@ -4,6 +4,7 @@ using StockSystem.Libarary.DataBase;
 using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using StockUI.Libarary.BL;
+using StockUI.Libarary.BL.Helper;
 using StockUI.Libarary.Model;
 using StockUI.WinForm.FrmUI;
 using System;
@@ -25,8 +26,8 @@ namespace StockUI.WinForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FrmStock());
-            //Application.Run(container.Resolve<FrmDismisItem>());
-            Application.Run(container.Resolve<FrmBarCode>());
+            Application.Run(container.Resolve<FrmDismisItem>());
+           // Application.Run(container.Resolve<FrmItems>());
         }
         public static IUnityContainer BuildContainer()
         {
@@ -52,6 +53,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<IDepartmentEndPoint, DepartmentEndPoint>();
             currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             currentContainer.RegisterType<UnitConversions>();
+            //currentContainer.RegisterType<IBarCode>();
             currentContainer.RegisterType<IItemEndPoint, ItemEndPoint>();
             currentContainer.RegisterType<IOrderDetailEndPoint, OrderDetailEndPoint>();
             currentContainer.RegisterType<IOrderEndPoint, OrderEndPoint>();

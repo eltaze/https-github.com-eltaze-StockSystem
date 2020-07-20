@@ -73,6 +73,7 @@ namespace StockUI.WinForm.FrmUI
                 TxtName.Text = itemDisplays[id].Name;
                 TxtNote.Text = itemDisplays[id].Note;
                 CmbDepartment.SelectedValue = itemDisplays[id].DepartmentId;
+                TxtBarcode.Text = itemDisplays[id].Barcode;
                 CmbKind.SelectedValue = itemDisplays[id].kindId;
                 CmbUnit.SelectedValue = itemDisplays[id].UnitId;
                 datagridfill(itemDisplays[id].Id);
@@ -128,6 +129,7 @@ namespace StockUI.WinForm.FrmUI
         {
             TxtId.Text = "";
             TxtName.Text = "";
+            TxtBarcode.Text = "";
             TxtNote.Text = "";
             checkBox1.Checked = false;
             CmbDepartment.SelectedIndex = -1;
@@ -144,10 +146,15 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            string x = barcode();
+            if (TxtBarcode.Text.Length ==0)
+            {
+                MessageBox.Show("يرجي إدخال الباركود أو إنشاء ");
+                return;
+            }
+            //string x = ;
             Item item = new Item
             {
-                Barcode = x,
+                Barcode = TxtBarcode.Text,
                 kindId=int.Parse(CmbKind.SelectedValue.ToString()),
                 DepartmentId = int.Parse(CmbDepartment.SelectedValue.ToString()),
                 UnitId= int.Parse(CmbUnit.SelectedValue.ToString()),
@@ -169,9 +176,15 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            if (TxtBarcode.Text.Length == 0)
+            {
+                MessageBox.Show("يرجي إدخال الباركود أو إنشاء ");
+                return;
+            }
             Item item = new Item
             {
-                Id= int.Parse(TxtId.Text.ToString()),
+                Id = int.Parse(TxtId.Text.ToString()),
+                Barcode = TxtBarcode.Text,
                 kindId = int.Parse(CmbKind.SelectedValue.ToString()),
                 DepartmentId = int.Parse(CmbDepartment.SelectedValue.ToString()),
                 UnitId = int.Parse(CmbUnit.SelectedValue.ToString()),
@@ -190,6 +203,25 @@ namespace StockUI.WinForm.FrmUI
             else
             {
                 MessageBox.Show(validation.massege);
+            }
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            TxtBarcode.Text = barcode();
+            TxtName.Focus();
+        }
+
+        private void TxtBarcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.Enter)
+            {
+                int x = itemDisplays.FindIndex(b => b.Barcode == TxtBarcode.Text);
+                if (x!=-1)
+                {
+                    count = x;
+                    navigation(count);
+                }
+                TxtName.Focus();
             }
         }
     }
