@@ -21,6 +21,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly ReportForms reportForms;
         private readonly IItemEndPoint itemEndPoint;
         private readonly UnitConversions unitConversions;
+        private readonly FrmBarCode frmBarCode;
         private readonly IDepartmentEndPoint departmentEndPoint;
         private readonly IDismisItemDetailEndPoint dismisItemDetailEndPoint;
         private readonly IDismisItemEndPoint dismisItemEndPoint;
@@ -35,7 +36,7 @@ namespace StockUI.WinForm.FrmUI
         int count = 0;
         
         public FrmDismisItem(IStockEndPoint stockEndPoint, IMapper mapper, IUnitEndPoint unitEndPoint,ReportForms reportForms
-                            , IItemEndPoint itemEndPoint, UnitConversions unitConversions
+                            , IItemEndPoint itemEndPoint, UnitConversions unitConversions,FrmBarCode frmBarCode
                             , IDepartmentEndPoint departmentEndPoint, IDismisItemDetailEndPoint dismisItemDetailEndPoint
                             , IDismisItemEndPoint dismisItemEndPoint, IStockItemEndPoint stockItemEndPoint)
         {
@@ -46,6 +47,7 @@ namespace StockUI.WinForm.FrmUI
             this.reportForms = reportForms;
             this.itemEndPoint = itemEndPoint;
             this.unitConversions = unitConversions;
+            this.frmBarCode = frmBarCode;
             this.departmentEndPoint = departmentEndPoint;
             this.dismisItemDetailEndPoint = dismisItemDetailEndPoint;
             this.dismisItemEndPoint = dismisItemEndPoint;
@@ -426,6 +428,16 @@ namespace StockUI.WinForm.FrmUI
             }
             reportForms.DismisItemDisplay.dismisItemDetailDisplays = dismisItemDetailDisplays;
             reportForms.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmBarCode.form = this;
+            frmBarCode.ShowDialog();
+        }
+        public void test()
+        {
+            MessageBox.Show("Done");
         }
     }
 }

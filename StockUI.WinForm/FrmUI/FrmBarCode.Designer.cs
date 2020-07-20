@@ -166,6 +166,7 @@
             this.BtnNew.TabIndex = 0;
             this.BtnNew.Text = "إضـــــــافة";
             this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             this.BtnNew.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnNew_KeyDown);
             // 
             // button1

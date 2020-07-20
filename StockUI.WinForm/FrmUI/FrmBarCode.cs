@@ -21,6 +21,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly IItemEndPoint itemEndPoint;
         public List<Item> items = new List<Item>();
         public List<Unit> units = new List<Unit>();
+        public FrmDismisItem form;
 
         public FrmBarCode(UnitConversions unitConversions,IItemEndPoint itemEndPoint)
         {
@@ -114,6 +115,11 @@ namespace StockUI.WinForm.FrmUI
                 CmbUnitId.DataSource = null;
                 CmbUnitId.Items.Clear();
                 TxtBarcod.Focus();
+                form.test();
+        }
+        private void BtnNew_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

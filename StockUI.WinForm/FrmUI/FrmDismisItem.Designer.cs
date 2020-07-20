@@ -65,21 +65,10 @@
             this.BtnUpdate = new System.Windows.Forms.Button();
             this.BtnNew = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label9
@@ -149,12 +138,12 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(398, 199);
+            this.dataGridView1.Location = new System.Drawing.Point(398, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(386, 316);
+            this.dataGridView1.Size = new System.Drawing.Size(386, 509);
             this.dataGridView1.TabIndex = 181;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -410,9 +399,9 @@
             // BtnPrint
             // 
             this.BtnPrint.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnPrint.Location = new System.Drawing.Point(319, 6);
+            this.BtnPrint.Location = new System.Drawing.Point(336, 6);
             this.BtnPrint.Name = "BtnPrint";
-            this.BtnPrint.Size = new System.Drawing.Size(72, 37);
+            this.BtnPrint.Size = new System.Drawing.Size(53, 37);
             this.BtnPrint.TabIndex = 170;
             this.BtnPrint.Text = "طباعة";
             this.BtnPrint.UseVisualStyleBackColor = true;
@@ -422,9 +411,9 @@
             // 
             this.BtnDelete.Enabled = false;
             this.BtnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnDelete.Location = new System.Drawing.Point(162, 6);
+            this.BtnDelete.Location = new System.Drawing.Point(138, 6);
             this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(72, 37);
+            this.BtnDelete.Size = new System.Drawing.Size(53, 37);
             this.BtnDelete.TabIndex = 168;
             this.BtnDelete.Text = "حذف";
             this.BtnDelete.UseVisualStyleBackColor = true;
@@ -432,9 +421,9 @@
             // BtnUpdate
             // 
             this.BtnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnUpdate.Location = new System.Drawing.Point(84, 6);
+            this.BtnUpdate.Location = new System.Drawing.Point(72, 6);
             this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(72, 37);
+            this.BtnUpdate.Size = new System.Drawing.Size(53, 37);
             this.BtnUpdate.TabIndex = 167;
             this.BtnUpdate.Text = "تعديل";
             this.BtnUpdate.UseVisualStyleBackColor = true;
@@ -444,7 +433,7 @@
             this.BtnNew.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BtnNew.Location = new System.Drawing.Point(6, 6);
             this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(72, 37);
+            this.BtnNew.Size = new System.Drawing.Size(53, 37);
             this.BtnNew.TabIndex = 166;
             this.BtnNew.Text = "جديد";
             this.BtnNew.UseVisualStyleBackColor = true;
@@ -454,135 +443,31 @@
             // 
             this.BtnSave.Enabled = false;
             this.BtnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnSave.Location = new System.Drawing.Point(241, 6);
+            this.BtnSave.Location = new System.Drawing.Point(204, 6);
             this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(72, 37);
+            this.BtnSave.Size = new System.Drawing.Size(53, 37);
             this.BtnSave.TabIndex = 169;
             this.BtnSave.Text = "حفظ";
             this.BtnSave.UseVisualStyleBackColor = true;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.textBox1);
-            this.panel3.Controls.Add(this.label12);
-            this.panel3.Controls.Add(this.textBox2);
-            this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.label14);
-            this.panel3.Controls.Add(this.comboBox1);
-            this.panel3.Controls.Add(this.label15);
-            this.panel3.Controls.Add(this.textBox3);
-            this.panel3.Controls.Add(this.label16);
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Location = new System.Drawing.Point(398, 6);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(386, 187);
-            this.panel3.TabIndex = 189;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 85);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(246, 20);
-            this.textBox1.TabIndex = 156;
-            this.textBox1.Text = "0.00";
-            // 
-            // label12
-            // 
-            this.label12.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label12.Location = new System.Drawing.Point(262, 86);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(116, 20);
-            this.label12.TabIndex = 155;
-            this.label12.Text = "الكمية في المخزن";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(6, 18);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(246, 20);
-            this.textBox2.TabIndex = 141;
-            // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button1.Enabled = false;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Location = new System.Drawing.Point(181, 154);
+            this.button1.Location = new System.Drawing.Point(270, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(72, 23);
-            this.button1.TabIndex = 154;
-            this.button1.Text = "إضافة";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // label14
-            // 
-            this.label14.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label14.Location = new System.Drawing.Point(264, 18);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(116, 20);
-            this.label14.TabIndex = 130;
-            this.label14.Text = "رقم الصنف";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 51);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(246, 21);
-            this.comboBox1.TabIndex = 128;
-            // 
-            // label15
-            // 
-            this.label15.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label15.Location = new System.Drawing.Point(264, 52);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(116, 20);
-            this.label15.TabIndex = 131;
-            this.label15.Text = "إسم الصنف";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(6, 118);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(246, 20);
-            this.textBox3.TabIndex = 141;
-            this.textBox3.Text = "0.00";
-            // 
-            // label16
-            // 
-            this.label16.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label16.Location = new System.Drawing.Point(264, 120);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(116, 20);
-            this.label16.TabIndex = 133;
-            this.label16.Text = "الكمية";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button2.Enabled = false;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(67, 154);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(72, 23);
-            this.button2.TabIndex = 142;
-            this.button2.Text = "تعديل";
-            this.button2.UseVisualStyleBackColor = false;
+            this.button1.Size = new System.Drawing.Size(53, 37);
+            this.button1.TabIndex = 189;
+            this.button1.Text = "باركود";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmDismisItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 518);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.BtnPrev);
             this.Controls.Add(this.BtnNext);
@@ -618,8 +503,6 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -664,16 +547,6 @@
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.TextBox TxtBalance;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Button button2;
     }
 }
