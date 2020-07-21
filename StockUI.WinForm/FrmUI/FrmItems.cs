@@ -4,6 +4,7 @@ using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using StockUI.Libarary.BL;
 using StockUI.Libarary.Model;
+using StockUI.WinForm.Formating;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace StockUI.WinForm.FrmUI
     {
         private readonly IMapper mapper;
         private readonly IUnitEndPoint unitEndPoint;
+        private readonly DataGridFormat dataGridFormat;
         private readonly IKindEndPoint kindEndPoint;
         private readonly IItemEndPoint itemEndPoint;
         private readonly StockItemEndPoint stockItemEndPoint;
@@ -26,8 +28,8 @@ namespace StockUI.WinForm.FrmUI
         private List<ItemDisplay> itemDisplays = new List<ItemDisplay>();
         private List<ItemCardDisplay> itemCardDisplays = new List<ItemCardDisplay>();
         int count = 0;
-        public FrmItems(IMapper mapper,IUnitEndPoint unitEndPoint
-            ,IKindEndPoint kindEndPoint,IItemEndPoint itemEndPoint,StockItemEndPoint stockItemEndPoint
+        public FrmItems(IMapper mapper,IUnitEndPoint unitEndPoint, DataGridFormat dataGridFormat
+            , IKindEndPoint kindEndPoint,IItemEndPoint itemEndPoint,StockItemEndPoint stockItemEndPoint
             ,DepartmentEndPoint departmentEndPoint,Validation validation,IItemCardEndPoint itemCardEndPoint
             ,IBaseStockItemEndPoint baseStockItemEndPoint
             ,IStockEndPoint stockEndPoint)
@@ -35,6 +37,7 @@ namespace StockUI.WinForm.FrmUI
             InitializeComponent();
             this.mapper = mapper;
             this.unitEndPoint = unitEndPoint;
+            this.dataGridFormat = dataGridFormat;
             this.kindEndPoint = kindEndPoint;
             this.itemEndPoint = itemEndPoint;
             this.stockItemEndPoint = stockItemEndPoint;
@@ -81,13 +84,14 @@ namespace StockUI.WinForm.FrmUI
                 TxtBarcode.Text = itemDisplays[id].Barcode;
                 CmbKind.SelectedValue = itemDisplays[id].kindId;
                 CmbUnit.SelectedValue = itemDisplays[id].UnitId;
-                datagridfill(itemDisplays[id].Id);
+                datagridfill(itemDisplays[id].Id);                
                 label5.Text = $"{count + 1} Of {itemDisplays.Count}";
                 int x;
                 if (int.TryParse(CmbStockBrows.SelectedValue?.ToString(), out x))
                 {
                     load(int.Parse(TxtId.Text.ToString()), x);
                 }
+                dataGridFormat.Style(dataGridView1);
             }
         }
         private void datagridfill(int id)
@@ -103,6 +107,7 @@ namespace StockUI.WinForm.FrmUI
                          select new { المخزن = b.Name, الكمية = b.Balance ,الوحدة=b.UnitName}).ToList();
             //dataGridView2.DataSource;
             dataGridView2.DataSource = output;
+            dataGridFormat.Style(dataGridView2);
         }
         private void BtnNext_Click(object sender, EventArgs e)
         {

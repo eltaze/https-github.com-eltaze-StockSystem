@@ -4,6 +4,7 @@ using StockSystem.Libarary.Model;
 using StockUI.Libarary.BL;
 using StockUI.Libarary.BL.Helper;
 using StockUI.Libarary.Model;
+using StockUI.WinForm.Formating;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,6 +19,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly IOrderEndPoint orderEndPoint;
         private readonly FrmBarCode frmBarCode;
         private readonly IOrderDetailEndPoint orderDetailEndPoint;
+        private readonly DataGridFormat dataGridFormat;
         private readonly IUnitEndPoint unitEndPoint;
         private readonly IItemEndPoint itemEndPoint;
         private readonly IBaseStockItemEndPoint baseStockItemEndPoint;
@@ -35,7 +37,7 @@ namespace StockUI.WinForm.FrmUI
         int count = 0;
         int modification = -1;
         public FrmOrder(IMapper mapper,IOrderEndPoint orderEndPoint,FrmBarCode frmBarCode
-            ,IOrderDetailEndPoint orderDetailEndPoint
+            ,IOrderDetailEndPoint orderDetailEndPoint,DataGridFormat dataGridFormat
             ,IUnitEndPoint unitEndPoint,IItemEndPoint itemEndPoint
             ,IBaseStockItemEndPoint baseStockItemEndPoint
             ,IDepartmentEndPoint departmentEndPoint,UnitConversions unitConversions
@@ -46,6 +48,7 @@ namespace StockUI.WinForm.FrmUI
             this.orderEndPoint = orderEndPoint;
             this.frmBarCode = frmBarCode;
             this.orderDetailEndPoint = orderDetailEndPoint;
+            this.dataGridFormat = dataGridFormat;
             this.unitEndPoint = unitEndPoint;
             this.itemEndPoint = itemEndPoint;
             this.baseStockItemEndPoint = baseStockItemEndPoint;
@@ -179,6 +182,7 @@ namespace StockUI.WinForm.FrmUI
                 CmbStock.SelectedValue = orderDisplays[id].StockId;
                 loadDetail(orderDisplays[id].Id);
                 label14.Text = $"{count + 1} Of {orderDisplays.Count}";
+                dataGridFormat.Style(dataGridView1);
             }
         }
         private void loadDetail(int id)
@@ -324,6 +328,7 @@ namespace StockUI.WinForm.FrmUI
                 Navigation(0);
                 count = 0;
             }
+            
         }
         private void CmbStock_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -3,6 +3,7 @@ using StockSystem.Libarary.BL;
 using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using StockUI.Libarary.Model;
+using StockUI.WinForm.Formating;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace StockUI.WinForm.FrmUI
     {
         private readonly IMapper mapper;
         private readonly ImoveorderdetailEndPoint moveorderdetailEndPoint;
+        private readonly DataGridFormat dataGridFormat;
         private readonly ImoveorderEndPoint moveorderEndPoint;
         private readonly IOrderDetailEndPoint orderDetailEndPoint;
         private readonly ReportForms reportForms;
@@ -32,13 +34,14 @@ namespace StockUI.WinForm.FrmUI
         private List<UnitDisplay> unitDisplays = new List<UnitDisplay>();
         int count = 0;
 
-        public FrmMoveOrder(IMapper mapper,ImoveorderdetailEndPoint moveorderdetailEndPoint,
-            ImoveorderEndPoint moveorderEndPoint,IOrderDetailEndPoint orderDetailEndPoint,ReportForms reportForms
+        public FrmMoveOrder(IMapper mapper,ImoveorderdetailEndPoint moveorderdetailEndPoint, DataGridFormat dataGridFormat
+            ,ImoveorderEndPoint moveorderEndPoint,IOrderDetailEndPoint orderDetailEndPoint,ReportForms reportForms
             ,IStockEndPoint stockEndPoint,IItemEndPoint itemEndPoint,IUnitEndPoint unitEndPoint)
         {
             InitializeComponent();
             this.mapper = mapper;
             this.moveorderdetailEndPoint = moveorderdetailEndPoint;
+            this.dataGridFormat = dataGridFormat;
             this.moveorderEndPoint = moveorderEndPoint;
             this.orderDetailEndPoint = orderDetailEndPoint;
             this.reportForms = reportForms;
@@ -74,6 +77,8 @@ namespace StockUI.WinForm.FrmUI
                 label11.Text = $"{count + 1} Of {moveorderDisplays.Count}";
                 loadMoveOrderDetails(moveorderDisplays[id].Id);
                 datagridfill();
+                dataGridFormat.Style(dataGridView1);
+                dataGridFormat.Style(dataGridView2);
             }
         }
         private void loadMoveOrderDetails(int id)

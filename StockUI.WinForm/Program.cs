@@ -6,6 +6,7 @@ using StockSystem.Libarary.Model;
 using StockUI.Libarary.BL;
 using StockUI.Libarary.BL.Helper;
 using StockUI.Libarary.Model;
+using StockUI.WinForm.Formating;
 using StockUI.WinForm.FrmUI;
 using System;
 using System.Windows.Forms;
@@ -37,6 +38,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<FrmKind>();
             currentContainer.RegisterType<FrmDepartment>();
             currentContainer.RegisterType<Validation>();
+            currentContainer.RegisterType<DataGridFormat>();
             currentContainer.RegisterType<StockDisplay>();
             currentContainer.RegisterType<FrmUnit>();
             currentContainer.RegisterType<FrmItemRecit>();

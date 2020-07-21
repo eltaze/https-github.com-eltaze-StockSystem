@@ -3,6 +3,7 @@ using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using StockUI.Libarary.BL;
 using StockUI.Libarary.Model;
+using StockUI.WinForm.Formating;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -21,6 +22,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly ReportForms reportForms;
         private readonly IItemEndPoint itemEndPoint;
         private readonly IUnitEndPoint unitEndPoint;
+        private readonly DataGridFormat dataGridFormat;
         private readonly UnitConversions unitConversions;
         private readonly IStockEndPoint stockEndPoint;
         private List<ItemReciteDisplay> itemReciteDisplays = new List<ItemReciteDisplay>();
@@ -30,7 +32,8 @@ namespace StockUI.WinForm.FrmUI
 
         public FrmItemRecit(IRecitItemDetailEndPoint recitItemDetailEndPoint, IDepartmentEndPoint departmentEndPoint
             , IRecitItemEndPoint recitItemEndPoint, IMapper mapper, IStockItemEndPoint stockItemEndPoint,ReportForms reportForms
-            ,IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint, UnitConversions unitConversions, IStockEndPoint stockEndPoint)
+            ,IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint, DataGridFormat dataGridFormat
+            , UnitConversions unitConversions, IStockEndPoint stockEndPoint)
         {
             InitializeComponent();
             this.recitItemDetailEndPoint = recitItemDetailEndPoint;
@@ -41,6 +44,7 @@ namespace StockUI.WinForm.FrmUI
             this.reportForms = reportForms;
             this.itemEndPoint = itemEndPoint;
             this.unitEndPoint = unitEndPoint;
+            this.dataGridFormat = dataGridFormat;
             this.unitConversions = unitConversions;
             this.stockEndPoint = stockEndPoint;
         }
@@ -77,6 +81,7 @@ namespace StockUI.WinForm.FrmUI
                     item.UnitName = unitEndPoint.GetByID(items[x].UnitId).Name;
                 }
                 loadgrid();
+                dataGridFormat.Style(dataGridView1);
             }
         }
         private void BtnNext_Click(object sender, EventArgs e)

@@ -3,6 +3,7 @@ using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using StockUI.Libarary.BL;
 using StockUI.Libarary.Model;
+using StockUI.WinForm.Formating;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,16 +17,18 @@ namespace StockUI.WinForm.FrmUI
         private readonly Validation validation;
         private readonly IMapper mapper;
         private readonly IBaseStockItemEndPoint baseStockItemEndPoint;
+        private readonly DataGridFormat dataGridFormat;
         private List< StockDisplay> stockDisplay = new List<StockDisplay>();
         private int count = 0;
-        public FrmStock(IMapper mapper, IBaseStockItemEndPoint baseStockItemEndPoint, 
-            IStockEndPoint stockEndPoint, Validation validation)
+        public FrmStock(IMapper mapper, IBaseStockItemEndPoint baseStockItemEndPoint, DataGridFormat dataGridFormat
+            ,IStockEndPoint stockEndPoint, Validation validation)
         {
             InitializeComponent();
             this.stockEndPoint = stockEndPoint;
             this.validation = validation;
             this.mapper = mapper;
             this.baseStockItemEndPoint = baseStockItemEndPoint;
+            this.dataGridFormat = dataGridFormat;
         }
         private void ChkBoxFilter_CheckedChanged(object sender, EventArgs e)
         {
@@ -102,6 +105,7 @@ namespace StockUI.WinForm.FrmUI
                 TxtName.Text = stockDisplay[id].Name;
                 TxtNote.Text = stockDisplay[id].Note;
                 label5.Text = $"{count + 1}  Of {stockDisplay.Count}";
+                dataGridFormat.Style(dataGridView1);
             }
         }
         private void filldategrid(int id)
