@@ -17,15 +17,18 @@ namespace StockUI.WinForm.FrmUI
         private readonly IUnitEndPoint unitEndPoint;
         private readonly IKindEndPoint kindEndPoint;
         private readonly IItemEndPoint itemEndPoint;
+        private readonly StockItemEndPoint stockItemEndPoint;
         private readonly DepartmentEndPoint departmentEndPoint;
         private readonly Validation validation;
+        private readonly IItemCardEndPoint itemCardEndPoint;
         private readonly IBaseStockItemEndPoint baseStockItemEndPoint;
         private readonly IStockEndPoint stockEndPoint;
         private List<ItemDisplay> itemDisplays = new List<ItemDisplay>();
+        private List<ItemCardDisplay> itemCardDisplays = new List<ItemCardDisplay>();
         int count = 0;
         public FrmItems(IMapper mapper,IUnitEndPoint unitEndPoint
-            ,IKindEndPoint kindEndPoint,IItemEndPoint itemEndPoint
-            ,DepartmentEndPoint departmentEndPoint,Validation validation
+            ,IKindEndPoint kindEndPoint,IItemEndPoint itemEndPoint,StockItemEndPoint stockItemEndPoint
+            ,DepartmentEndPoint departmentEndPoint,Validation validation,IItemCardEndPoint itemCardEndPoint
             ,IBaseStockItemEndPoint baseStockItemEndPoint
             ,IStockEndPoint stockEndPoint)
         {
@@ -34,8 +37,10 @@ namespace StockUI.WinForm.FrmUI
             this.unitEndPoint = unitEndPoint;
             this.kindEndPoint = kindEndPoint;
             this.itemEndPoint = itemEndPoint;
+            this.stockItemEndPoint = stockItemEndPoint;
             this.departmentEndPoint = departmentEndPoint;
             this.validation = validation;
+            this.itemCardEndPoint = itemCardEndPoint;
             this.baseStockItemEndPoint = baseStockItemEndPoint;
             this.stockEndPoint = stockEndPoint;
         }
@@ -78,13 +83,24 @@ namespace StockUI.WinForm.FrmUI
                 CmbUnit.SelectedValue = itemDisplays[id].UnitId;
                 datagridfill(itemDisplays[id].Id);
                 label5.Text = $"{count + 1} Of {itemDisplays.Count}";
+                int x;
+                if (int.TryParse(CmbStockBrows.SelectedValue?.ToString(), out x))
+                {
+                    load(int.Parse(TxtId.Text.ToString()), x);
+                }
             }
         }
         private void datagridfill(int id)
         {
             var x = baseStockItemEndPoint.GetAllItemStock(id).ToList();
+            foreach (var item in x)
+            {
+                var z = stockEndPoint.GetByName(item.Name);
+                var y = stockItemEndPoint.GetByStockItem(z.Id, id);
+                item.UnitName = unitEndPoint.GetByID(y.UnitId).Name;
+            }
             var output = (from b in x
-                         select new { المخزن = b.Name, الكمية = b.Balance }).ToList();
+                         select new { المخزن = b.Name, الكمية = b.Balance ,الوحدة=b.UnitName}).ToList();
             //dataGridView2.DataSource;
             dataGridView2.DataSource = output;
         }
@@ -222,6 +238,34 @@ namespace StockUI.WinForm.FrmUI
                     navigation(count);
                 }
                 TxtName.Focus();
+            }
+        }
+        private void load(int itemid,int stockid)
+        {
+            var x = itemCardEndPoint.GetItemCards(itemid, stockid);
+            List<ItemCardDisplay> itemscard = new List<ItemCardDisplay>();
+            itemscard = mapper.Map<List<ItemCardDisplay>>(x);
+            foreach (ItemCardDisplay item in itemscard)
+            {
+                item.UnitName = unitEndPoint.GetByID(item.UnitId).Name;
+            }
+            var y = (from b in itemscard
+                    select new
+                    {
+                       وارد = b.RecitItem,
+                       صادر=b.DismisItem,
+                       رقم_المعاملة=b.ReciId,
+                       الوحدة=b.UnitName,
+                       نوع_المعاملة=b.Nariation           
+                    }).ToList();
+            dataGridView1.DataSource = y;
+        }
+        private void CmbStockBrows_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int x;
+            if (int.TryParse(CmbStockBrows.SelectedValue?.ToString(),out x))
+            {
+                load(int.Parse(TxtId.Text.ToString()), x);
             }
         }
     }

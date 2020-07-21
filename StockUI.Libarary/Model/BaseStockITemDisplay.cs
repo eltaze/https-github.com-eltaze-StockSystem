@@ -12,12 +12,4 @@ namespace StockUI.Libarary.Model
         public decimal Balance { get; set; }
 
     }
-    public class BaseItemStockDisplay
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public Nullable<Decimal> Balance { get; set; }
-
-    }
-
 }

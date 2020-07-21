@@ -10,14 +10,5 @@ namespace StockSystem.Libarary.Model
         public String Name { get; set; }
         public Nullable<int> UnitId { get; set; }
         public decimal Balance { get; set; }
-
     }
-    public class BaseItemStock
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public Nullable<Decimal> Balance { get; set; }
-
-    }
-
 }

@@ -373,6 +373,7 @@
             this.CmbStockBrows.Name = "CmbStockBrows";
             this.CmbStockBrows.Size = new System.Drawing.Size(246, 21);
             this.CmbStockBrows.TabIndex = 120;
+            this.CmbStockBrows.SelectedIndexChanged += new System.EventHandler(this.CmbStockBrows_SelectedIndexChanged);
             // 
             // label12
             // 

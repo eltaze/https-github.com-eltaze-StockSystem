@@ -28,7 +28,7 @@ namespace StockUI.WinForm
             //Application.Run(new FrmStock());
             // Application.Run(container.Resolve<FrmDismisItem>());
             // Application.Run(container.Resolve<FrmItems>());
-            Application.Run(container.Resolve<FrmOrder>());
+            Application.Run(container.Resolve<FrmItems>());
         }
         public static IUnityContainer BuildContainer()
         {
@@ -68,6 +68,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<IRecitItemEndPoint, RecitItemEndPoint>();
             currentContainer.RegisterType<IDismisItemDetailEndPoint, DismisItemDetailEndPoint>();
             currentContainer.RegisterType<IDismisItemEndPoint, DismisItemEndPoint>();
+            currentContainer.RegisterType<IItemCardEndPoint, ItemCardEndPoint>();
             //currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             //currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             // note: registering types could be moved off to app config if you want as well
@@ -92,6 +93,7 @@ namespace StockUI.WinForm
                 cfg.CreateMap<ItemRecitDetail, ItemRecitDetailDisplay>().ReverseMap();
                 cfg.CreateMap<DismisItem, DismisItemDisplay>().ReverseMap();
                 cfg.CreateMap<DismisItemDetail, DismisItemDetailDisplay>().ReverseMap();
+                cfg.CreateMap<ItemCard, ItemCardDisplay>().ReverseMap();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>().ReverseMap();
                 //cfg.CreateMap<BankTreasury, BankTreasuryDisplay>();
                 //cfg.CreateMap<AccountBankTreasuryDashBoard, AccountBankTreasury>();
