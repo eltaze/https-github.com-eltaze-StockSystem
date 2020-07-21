@@ -107,5 +107,18 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
+        public List<MoveOrder> GetMoveOrdersNotRecit()
+        {
+            //[spRecitItemMoveOrderAll]
+            try
+            {
+                var output = sql.ReadingData<MoveOrder, dynamic>("spRecitItemMoveOrderAll", new { });
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }

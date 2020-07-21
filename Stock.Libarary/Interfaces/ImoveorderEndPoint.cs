@@ -12,5 +12,6 @@ namespace StockSystem.Libarary.Interfaces
         List<MoveOrder> GetByStockId(int stockid);
         int Save(MoveOrder t);
         MoveOrder Update(MoveOrder t);
+        List<MoveOrder> GetMoveOrdersNotRecit();
     }
 }

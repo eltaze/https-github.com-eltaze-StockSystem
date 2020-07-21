@@ -168,6 +168,12 @@
     <Compile Include="FrmUI\FrmOrder.Designer.cs">
       <DependentUpon>FrmOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUI\FrmRecitMove.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUI\FrmRecitMove.Designer.cs">
+      <DependentUpon>FrmRecitMove.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUI\FrmStock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUI\FrmOrder.resx">
       <DependentUpon>FrmOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUI\FrmRecitMove.resx">
+      <DependentUpon>FrmRecitMove.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUI\FrmStock.resx">
       <DependentUpon>FrmStock.cs</DependentUpon>

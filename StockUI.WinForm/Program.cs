@@ -29,7 +29,7 @@ namespace StockUI.WinForm
             //Application.Run(new FrmStock());
             // Application.Run(container.Resolve<FrmDismisItem>());
             // Application.Run(container.Resolve<FrmItems>());
-            Application.Run(container.Resolve<FrmItems>());
+            Application.Run(container.Resolve<FrmRecitMove>());
         }
         public static IUnityContainer BuildContainer()
         {
@@ -48,6 +48,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<ReportForms>();
             currentContainer.RegisterType<FrmBarCode>();
             currentContainer.RegisterType<FrmDismisItem>();
+            currentContainer.RegisterType<FrmRecitMove>();
             //Registering Database Layer
             currentContainer.RegisterSingleton<ISqlDataAccess, SqlDataAccess>();
             //Configuration AutoMapper
