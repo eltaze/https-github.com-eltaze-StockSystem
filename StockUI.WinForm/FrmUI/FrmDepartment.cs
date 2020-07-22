@@ -1,17 +1,10 @@
 ﻿using AutoMapper;
-using StockSystem.Libarary.BL;
 using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
 using StockUI.Libarary.BL;
 using StockUI.Libarary.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StockUI.WinForm.FrmUI
@@ -23,7 +16,6 @@ namespace StockUI.WinForm.FrmUI
         private readonly Validation validation;
         private List<DepartmentDisplay> departmentDisplays = new List<DepartmentDisplay>();
         int count = 0;
-
         public FrmDepartment(IMapper mapper,IDepartmentEndPoint departmentEndPoint,Validation validation)
         {
             InitializeComponent();
@@ -31,7 +23,6 @@ namespace StockUI.WinForm.FrmUI
             this.departmentEndPoint = departmentEndPoint;
             this.validation = validation;
         }
-
         private void FrmDepartment_Load(object sender, EventArgs e)
         {
             var output = departmentEndPoint.GetAll();
@@ -80,14 +71,12 @@ namespace StockUI.WinForm.FrmUI
             navigation(count);
         }
         #endregion
-
         private void button2_Click(object sender, EventArgs e)
         {
             TxtId.Text = "";
             TxtName.Text = "";
             TxtNote.Text = "";
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
             department department = new department
@@ -109,7 +98,6 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show(validation.massege);
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             department department = new department

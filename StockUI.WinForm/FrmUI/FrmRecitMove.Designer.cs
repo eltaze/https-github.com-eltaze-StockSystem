@@ -95,14 +95,14 @@
             this.panel2.Controls.Add(this.TxtQty);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.button7);
-            this.panel2.Location = new System.Drawing.Point(562, 3);
+            this.panel2.Location = new System.Drawing.Point(559, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(483, 192);
+            this.panel2.Size = new System.Drawing.Size(456, 178);
             this.panel2.TabIndex = 191;
             // 
             // TxtItemName
             // 
-            this.TxtItemName.Location = new System.Drawing.Point(39, 41);
+            this.TxtItemName.Location = new System.Drawing.Point(10, 41);
             this.TxtItemName.Name = "TxtItemName";
             this.TxtItemName.ReadOnly = true;
             this.TxtItemName.Size = new System.Drawing.Size(309, 20);
@@ -112,7 +112,7 @@
             // 
             this.CmbUnitId.Enabled = false;
             this.CmbUnitId.FormattingEnabled = true;
-            this.CmbUnitId.Location = new System.Drawing.Point(39, 105);
+            this.CmbUnitId.Location = new System.Drawing.Point(10, 105);
             this.CmbUnitId.Name = "CmbUnitId";
             this.CmbUnitId.Size = new System.Drawing.Size(309, 21);
             this.CmbUnitId.TabIndex = 155;
@@ -121,7 +121,7 @@
             // 
             this.label10.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label10.Location = new System.Drawing.Point(357, 105);
+            this.label10.Location = new System.Drawing.Point(328, 105);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 20);
             this.label10.TabIndex = 156;
@@ -130,7 +130,7 @@
             // 
             // TxtItemId
             // 
-            this.TxtItemId.Location = new System.Drawing.Point(39, 9);
+            this.TxtItemId.Location = new System.Drawing.Point(10, 9);
             this.TxtItemId.Name = "TxtItemId";
             this.TxtItemId.ReadOnly = true;
             this.TxtItemId.Size = new System.Drawing.Size(309, 20);
@@ -140,7 +140,7 @@
             // 
             this.button8.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button8.Location = new System.Drawing.Point(345, 149);
+            this.button8.Location = new System.Drawing.Point(308, 140);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(72, 23);
             this.button8.TabIndex = 154;
@@ -152,7 +152,7 @@
             // 
             this.label7.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label7.Location = new System.Drawing.Point(357, 9);
+            this.label7.Location = new System.Drawing.Point(328, 9);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(116, 20);
             this.label7.TabIndex = 130;
@@ -163,7 +163,7 @@
             // 
             this.label8.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label8.Location = new System.Drawing.Point(357, 41);
+            this.label8.Location = new System.Drawing.Point(328, 41);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(116, 20);
             this.label8.TabIndex = 131;
@@ -172,7 +172,7 @@
             // 
             // TxtQty
             // 
-            this.TxtQty.Location = new System.Drawing.Point(39, 73);
+            this.TxtQty.Location = new System.Drawing.Point(10, 73);
             this.TxtQty.Name = "TxtQty";
             this.TxtQty.Size = new System.Drawing.Size(309, 20);
             this.TxtQty.TabIndex = 141;
@@ -181,7 +181,7 @@
             // 
             this.label9.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label9.Location = new System.Drawing.Point(357, 73);
+            this.label9.Location = new System.Drawing.Point(328, 73);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(116, 20);
             this.label9.TabIndex = 133;
@@ -192,12 +192,13 @@
             // 
             this.button7.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button7.Location = new System.Drawing.Point(134, 149);
+            this.button7.Location = new System.Drawing.Point(97, 140);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(72, 23);
             this.button7.TabIndex = 142;
             this.button7.Text = "تعديل";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // dataGridView2
             // 
@@ -222,13 +223,14 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(562, 201);
+            this.dataGridView1.Location = new System.Drawing.Point(559, 187);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(483, 317);
+            this.dataGridView1.Size = new System.Drawing.Size(456, 331);
             this.dataGridView1.TabIndex = 189;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // TxtCity
             // 
@@ -403,7 +405,6 @@
             // 
             // BtnSave
             // 
-            this.BtnSave.Enabled = false;
             this.BtnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BtnSave.Location = new System.Drawing.Point(291, 3);
             this.BtnSave.Name = "BtnSave";
@@ -411,6 +412,7 @@
             this.BtnSave.TabIndex = 173;
             this.BtnSave.Text = "حفظ";
             this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // BtnPrint
             // 
