@@ -37,65 +37,36 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource6 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource7 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource8 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.OrderDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.MoveorderDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.MoveOrderDetailDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ItemReciteDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ItemRecitDetailDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.orderDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.reportViewer3 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.reportViewer4 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.DismisItemDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DismisItemDetailDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.OrderDisplayBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MoveorderDisplayBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MoveOrderDetailDisplayBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemReciteDisplayBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemRecitDetailDisplayBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.ItemReciteDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ItemRecitDetailDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.MoveorderDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.MoveOrderDetailDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.OrderDisplayBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.orderDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DismisItemDisplayBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DismisItemDetailDisplayBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemReciteDisplayBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemRecitDetailDisplayBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MoveorderDisplayBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MoveOrderDetailDisplayBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderDisplayBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // OrderDisplayBindingSource
-            // 
-            this.OrderDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.OrderDetailDisplay);
-            // 
-            // MoveorderDisplayBindingSource
-            // 
-            this.MoveorderDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.MoveorderDisplay);
-            // 
-            // MoveOrderDetailDisplayBindingSource
-            // 
-            this.MoveOrderDetailDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.MoveOrderDetailDisplay);
-            // 
-            // ItemReciteDisplayBindingSource
-            // 
-            this.ItemReciteDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.ItemReciteDisplay);
-            // 
-            // ItemRecitDetailDisplayBindingSource
-            // 
-            this.ItemRecitDetailDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.ItemRecitDetailDisplay);
-            // 
-            // orderDetailsBindingSource
-            // 
-            this.orderDetailsBindingSource.DataMember = "OrderDetails";
-            this.orderDetailsBindingSource.DataSource = this.bindingSource1;
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(StockUI.Libarary.Model.OrderDisplay);
             // 
             // reportViewer1
             // 
             reportDataSource1.Name = "DataSet1";
             reportDataSource1.Value = this.OrderDisplayBindingSource;
             reportDataSource2.Name = "DataSet2";
-            reportDataSource2.Value = this.OrderDisplayBindingSource;
+            reportDataSource2.Value = this.orderDetailsBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "StockUI.WinForm.Reporting.OrderReport.rdlc";
@@ -162,6 +133,35 @@
             // 
             this.DismisItemDetailDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.DismisItemDetailDisplay);
             // 
+            // ItemReciteDisplayBindingSource
+            // 
+            this.ItemReciteDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.ItemReciteDisplay);
+            // 
+            // ItemRecitDetailDisplayBindingSource
+            // 
+            this.ItemRecitDetailDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.ItemRecitDetailDisplay);
+            // 
+            // MoveorderDisplayBindingSource
+            // 
+            this.MoveorderDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.MoveorderDisplay);
+            // 
+            // MoveOrderDetailDisplayBindingSource
+            // 
+            this.MoveOrderDetailDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.MoveOrderDetailDisplay);
+            // 
+            // OrderDisplayBindingSource
+            // 
+            this.OrderDisplayBindingSource.DataSource = typeof(StockUI.Libarary.Model.OrderDetailDisplay);
+            // 
+            // orderDetailsBindingSource
+            // 
+            this.orderDetailsBindingSource.DataMember = "OrderDetails";
+            this.orderDetailsBindingSource.DataSource = this.bindingSource1;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(StockUI.Libarary.Model.OrderDisplay);
+            // 
             // ReportForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,15 +177,15 @@
             this.ShowIcon = false;
             this.Text = "طباعة ";
             this.Load += new System.EventHandler(this.ReportForms_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.OrderDisplayBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MoveorderDisplayBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MoveOrderDetailDisplayBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemReciteDisplayBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ItemRecitDetailDisplayBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DismisItemDisplayBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DismisItemDetailDisplayBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemReciteDisplayBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemRecitDetailDisplayBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MoveorderDisplayBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MoveOrderDetailDisplayBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderDisplayBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -29,12 +29,13 @@ namespace StockUI.WinForm
             //Application.Run(new FrmStock());
             // Application.Run(container.Resolve<FrmDismisItem>());
             // Application.Run(container.Resolve<FrmItems>());
-            Application.Run(container.Resolve<FrmRecitMove>());
+            Application.Run(container.Resolve<FrmDashBoard>());
         }
         public static IUnityContainer BuildContainer()
         {
             var currentContainer = new UnityContainer();
             currentContainer.RegisterType<FrmStock>();
+            currentContainer.RegisterType<FrmLogin>();
             currentContainer.RegisterType<FrmKind>();
             currentContainer.RegisterType<FrmDepartment>();
             currentContainer.RegisterType<Validation>();
@@ -49,6 +50,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<FrmBarCode>();
             currentContainer.RegisterType<FrmDismisItem>();
             currentContainer.RegisterType<FrmRecitMove>();
+            currentContainer.RegisterType<FrmDashBoard>();
             //Registering Database Layer
             currentContainer.RegisterSingleton<ISqlDataAccess, SqlDataAccess>();
             //Configuration AutoMapper

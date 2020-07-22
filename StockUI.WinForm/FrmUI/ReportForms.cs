@@ -50,7 +50,7 @@ namespace StockUI.WinForm.FrmUI
           //  this.reportViewer1.LocalReport.ReportEmbeddedResource = "StockUI.WinForm.Reporting.OrderReport.rdlc";
             reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             reportViewer1.LocalReport.EnableExternalImages = true;
-            reportViewer2.Visible = false;
+            reportViewer1.Visible = true;
             this.reportViewer1.RefreshReport();
         }
         private void moveorderforms()
@@ -60,7 +60,7 @@ namespace StockUI.WinForm.FrmUI
             //this.reportViewer2.LocalReport.ReportEmbeddedResource = "StockUI.WinForm.Reporting.RptMoveOrder.rdlc";
             reportViewer2.Dock= System.Windows.Forms.DockStyle.Fill;
             reportViewer2.LocalReport.EnableExternalImages = true;
-            reportViewer1.Visible = false;
+            reportViewer2.Visible = true;
             this.reportViewer2.RefreshReport();
         }
         private void recitformload()

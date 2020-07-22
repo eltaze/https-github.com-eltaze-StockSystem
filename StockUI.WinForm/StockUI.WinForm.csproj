@@ -132,6 +132,12 @@
     <Compile Include="FrmUI\FrmBarCode.Designer.cs">
       <DependentUpon>FrmBarCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUI\FrmDashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUI\FrmDashBoard.Designer.cs">
+      <DependentUpon>FrmDashBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUI\FrmDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,12 @@
     </Compile>
     <Compile Include="FrmUI\FrmKind.Designer.cs">
       <DependentUpon>FrmKind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUI\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUI\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUI\FrmMoveOrder.cs">
       <SubType>Form</SubType>
@@ -204,6 +216,9 @@
     <EmbeddedResource Include="FrmUI\FrmBarCode.resx">
       <DependentUpon>FrmBarCode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmUI\FrmDashBoard.resx">
+      <DependentUpon>FrmDashBoard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmUI\FrmDepartment.resx">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
     </EmbeddedResource>
@@ -215,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUI\FrmKind.resx">
       <DependentUpon>FrmKind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUI\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUI\FrmMoveOrder.resx">
       <DependentUpon>FrmMoveOrder.cs</DependentUpon>
@@ -245,6 +263,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Reporting\OrderReport.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -288,6 +307,27 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\pngfuel.com.png" />
+    <None Include="Resources\pngfuel.com %281%29.png" />
+    <None Include="Resources\pngfuel.com %282%29.png" />
+    <None Include="Resources\pngfuel.com %283%29.png" />
+    <None Include="Resources\pngfuel.com %284%29.png" />
+    <None Include="Resources\pngfuel.com %285%29.png" />
+    <None Include="Resources\pngfuel.com %286%29.png" />
+    <None Include="Resources\pngfuel.com %287%29.png" />
+    <None Include="Resources\pngfuel.com %288%29.png" />
+    <None Include="Resources\pngfuel.com %289%29.png" />
+    <None Include="Resources\pngfuel.com %2810%29.png" />
+    <None Include="Resources\pngfuel.com %2811%29.png" />
+    <None Include="Resources\pngfuel.com %2812%29.png" />
+    <None Include="Resources\pngfuel.com %2813%29.png" />
+    <None Include="Resources\pngfuel.com %2817%29.png" />
+    <None Include="Resources\pngfuel.com %2816%29.png" />
+    <None Include="Resources\pngfuel.com %2815%29.png" />
+    <None Include="Resources\pngfuel.com %2814%29.png" />
+    <None Include="Resources\pngfuel.com %2818%29.png" />
+    <None Include="Resources\pngfuel.com %2817%291.png" />
+    <None Include="Resources\pngfuel.com %2819%29.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
