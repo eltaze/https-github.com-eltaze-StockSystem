@@ -19,16 +19,23 @@ namespace StockUI.WinForm.FrmUI
         private readonly FrmKind frmKind;
         private readonly FrmStock frmStock;
         private readonly FrmLogin frmLogin;
+       
         private readonly FrmRecitMove frmRecitMove;
         private readonly FrmDismisItem frmDismisItem;
         private readonly FrmOrder frmOrder;
         private readonly FrmItemRecit frmItemRecit;
         public string UserName="User Name";
         public FrmDashBoard(FrmItems frmItems,FrmMoveOrder frmMoveOrder,FrmUnit frmUnit,FrmDepartment frmDepartment
-                            ,FrmKind frmKind, FrmStock frmStock,FrmLogin frmLogin
+                            , FrmKind frmKind, FrmStock frmStock, FrmLogin frmLogin
                             , FrmRecitMove frmRecitMove,FrmDismisItem frmDismisItem
                             ,FrmOrder frmOrder,FrmItemRecit frmItemRecit)
         {
+            frmLogin.ShowDialog();
+            if (frmLogin.validate() == false)
+            {
+                this.Dispose();
+            }
+          
             InitializeComponent();
             this.frmItems = frmItems;
             this.frmMoveOrder = frmMoveOrder;
@@ -36,7 +43,7 @@ namespace StockUI.WinForm.FrmUI
             this.frmDepartment = frmDepartment;
             this.frmKind = frmKind;
             this.frmStock = frmStock;
-            this.frmLogin = frmLogin;
+            this.frmLogin = frmLogin;       
             this.frmRecitMove = frmRecitMove;
             this.frmDismisItem = frmDismisItem;
             this.frmOrder = frmOrder;
@@ -68,25 +75,20 @@ namespace StockUI.WinForm.FrmUI
         }
         private void FrmDashBoard_Load(object sender, EventArgs e)
         {
-            frmLogin.ShowDialog();
             LblUser.Text = UserName;
         }
-
         private void button7_Click(object sender, EventArgs e)
         {
             frmUnit.ShowDialog();
         }
-
         private void button8_Click(object sender, EventArgs e)
         {
             frmDepartment.ShowDialog();
         }
-
         private void button9_Click(object sender, EventArgs e)
         {
             frmStock.ShowDialog();
         }
-
         private void button10_Click(object sender, EventArgs e)
         {
             frmKind.ShowDialog();

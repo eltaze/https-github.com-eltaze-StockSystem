@@ -59,6 +59,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<IDepartmentEndPoint, DepartmentEndPoint>();
             currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             currentContainer.RegisterType<UnitConversions>();
+            currentContainer.RegisterType<Encode>();
             //currentContainer.RegisterType<IBarCode>();
             currentContainer.RegisterType<IItemEndPoint, ItemEndPoint>();
             currentContainer.RegisterType<IOrderDetailEndPoint, OrderDetailEndPoint>();

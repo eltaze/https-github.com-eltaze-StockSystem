@@ -10,25 +10,11 @@ using System.Windows.Forms;
 
 namespace StockUI.WinForm.FrmUI
 {
-    public partial class FrmLogin : Form
+    public partial class FrmRegsterUser : Form
     {
-        public FrmLogin()
+        public FrmRegsterUser()
         {
             InitializeComponent();
-        }
-
-        private void FrmLogin_Load(object sender, EventArgs e)
-        {
-
-        }
-        public Boolean validate()
-        {
-            return true;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
