@@ -19,23 +19,18 @@ namespace StockUI.WinForm.FrmUI
         private readonly FrmKind frmKind;
         private readonly FrmStock frmStock;
         private readonly FrmLogin frmLogin;
-       
+        private readonly FrmUserRegister frmUserRegister;
         private readonly FrmRecitMove frmRecitMove;
         private readonly FrmDismisItem frmDismisItem;
         private readonly FrmOrder frmOrder;
         private readonly FrmItemRecit frmItemRecit;
         public string UserName="User Name";
         public FrmDashBoard(FrmItems frmItems,FrmMoveOrder frmMoveOrder,FrmUnit frmUnit,FrmDepartment frmDepartment
-                            , FrmKind frmKind, FrmStock frmStock, FrmLogin frmLogin
+                            , FrmKind frmKind, FrmStock frmStock, FrmLogin frmLogin,FrmUserRegister frmUserRegister
                             , FrmRecitMove frmRecitMove,FrmDismisItem frmDismisItem
                             ,FrmOrder frmOrder,FrmItemRecit frmItemRecit)
         {
-            frmLogin.ShowDialog();
-            if (frmLogin.validate() == false)
-            {
-                this.Dispose();
-            }
-          
+
             InitializeComponent();
             this.frmItems = frmItems;
             this.frmMoveOrder = frmMoveOrder;
@@ -43,7 +38,8 @@ namespace StockUI.WinForm.FrmUI
             this.frmDepartment = frmDepartment;
             this.frmKind = frmKind;
             this.frmStock = frmStock;
-            this.frmLogin = frmLogin;       
+            this.frmLogin = frmLogin;
+            this.frmUserRegister = frmUserRegister;
             this.frmRecitMove = frmRecitMove;
             this.frmDismisItem = frmDismisItem;
             this.frmOrder = frmOrder;
@@ -51,47 +47,64 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            frmMoveOrder.ShowDialog();
+            LoadForm(frmMoveOrder);
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            frmItems.ShowDialog();
+            LoadForm(frmItems);
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            frmOrder.ShowDialog();
+            LoadForm(frmOrder);
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            frmItemRecit.ShowDialog();
+            LoadForm(frmItemRecit);
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            frmRecitMove.ShowDialog();
+            LoadForm(frmRecitMove);
         }
         private void button6_Click(object sender, EventArgs e)
         {
-            frmDismisItem.ShowDialog();
+            LoadForm(frmDismisItem);
         }
         private void FrmDashBoard_Load(object sender, EventArgs e)
         {
+            frmLogin.frmDashBoard = this;
+            frmLogin.ShowDialog();
+            if (frmLogin.validate() == false)
+            {
+                this.Dispose();
+            }
             LblUser.Text = UserName;
         }
         private void button7_Click(object sender, EventArgs e)
         {
-            frmUnit.ShowDialog();
+            LoadForm(frmUnit);
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            frmDepartment.ShowDialog();
+            LoadForm(frmDepartment);
         }
         private void button9_Click(object sender, EventArgs e)
         {
-            frmStock.ShowDialog();
+            LoadForm(frmStock);
         }
         private void button10_Click(object sender, EventArgs e)
         {
-            frmKind.ShowDialog();
+            LoadForm (frmKind);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            LoadForm(frmUserRegister);
+        }
+        private void LoadForm(Form form)
+        {
+            form.InitializeLifetimeService();
+            form.StartPosition = FormStartPosition.CenterParent;
+            form.ShowDialog();
         }
     }
 }

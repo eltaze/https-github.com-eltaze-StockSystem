@@ -204,6 +204,12 @@
     <Compile Include="FrmUI\FrmItems.Designer.cs">
       <DependentUpon>FrmItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUI\FrmUserRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUI\FrmUserRegister.Designer.cs">
+      <DependentUpon>FrmUserRegister.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUI\ReportForms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUI\FrmItems.resx">
       <DependentUpon>FrmItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUI\FrmUserRegister.resx">
+      <DependentUpon>FrmUserRegister.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUI\ReportForms.resx">
       <DependentUpon>ReportForms.cs</DependentUpon>

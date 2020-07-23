@@ -51,6 +51,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<FrmDismisItem>();
             currentContainer.RegisterType<FrmRecitMove>();
             currentContainer.RegisterType<FrmDashBoard>();
+            currentContainer.RegisterType<FrmUserRegister>();
             //Registering Database Layer
             currentContainer.RegisterSingleton<ISqlDataAccess, SqlDataAccess>();
             //Configuration AutoMapper
@@ -75,6 +76,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<IDismisItemDetailEndPoint, DismisItemDetailEndPoint>();
             currentContainer.RegisterType<IDismisItemEndPoint, DismisItemEndPoint>();
             currentContainer.RegisterType<IItemCardEndPoint, ItemCardEndPoint>();
+            currentContainer.RegisterType<IUserEndPoint, UserEndPoint>();
             //currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             //currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             // note: registering types could be moved off to app config if you want as well
