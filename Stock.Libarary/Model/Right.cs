@@ -4,11 +4,11 @@ using System.Text;
 
 namespace StockSystem.Libarary.Model
 {
-    public class User
+   public class Right
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Password { get; set; }
-        public List<Right> Rights { get; set; } = new List<Right>();
+        public string Note { get; set; }
+        public List<User> Users { get; set; } = new List<User>();
     }
 }

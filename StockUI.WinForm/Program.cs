@@ -58,6 +58,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterInstance(ConfigurAtuoMaper());
             //Registering BL DataAccess Clasess
             currentContainer.RegisterType<IDepartmentEndPoint, DepartmentEndPoint>();
+            currentContainer.RegisterType<IUserRightEndPoint, UserRightEndPoint>();
             currentContainer.RegisterType<IBaseStockItemEndPoint, BaseStockItemEndPoint>();
             currentContainer.RegisterType<UnitConversions>();
             currentContainer.RegisterType<Encode>();

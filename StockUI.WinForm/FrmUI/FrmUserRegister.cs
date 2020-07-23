@@ -17,17 +17,23 @@ namespace StockUI.WinForm.FrmUI
     {
         private readonly IUserEndPoint userEndPoint;
         private readonly Encode encode;
+        private readonly IUserRightEndPoint userRightEndPoint;
         private List<User> users = new List<User>();
-
-        public FrmUserRegister(IUserEndPoint userEndPoint, Encode encode)
+        private List<Right> rights = new List<Right>();
+        public FrmUserRegister(IUserEndPoint userEndPoint, Encode encode,IUserRightEndPoint userRightEndPoint)
         {
             InitializeComponent();
             this.userEndPoint = userEndPoint;
             this.encode = encode;
+            this.userRightEndPoint = userRightEndPoint;
         }
 
         private void FrmUserRegister_Load(object sender, EventArgs e)
         {
+            rights = userRightEndPoint.GetRights();
+            CmbRight.DataSource = rights.ToList();
+            CmbRight.ValueMember = "Id";
+            CmbRight.DisplayMember = "Note";
             users = userEndPoint.GetAll();
         }
 
@@ -51,7 +57,6 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show("إسم المستخدم مدخل مسبقا");
                 return;
             }
-
             User user = new User
             {
                 Name = TxtId.Text,
