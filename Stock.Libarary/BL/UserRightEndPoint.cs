@@ -16,6 +16,57 @@ namespace StockSystem.Libarary.BL
         {
             this.sql = sql;
         }
+        /// <summary>
+        /// This user must have one right to remove per time (only zone 0 active
+        /// Rights[0].Id that is it
+        /// </summary>
+        /// <param name="t"></param>
+        public void DeleteRight(User t)
+        {
+            //spRightByUserDelete
+            try
+            {
+                sql.Execute<User, dynamic>("spRightByUserDelete", new { userid = t.Id, RightId = t.Rights[0].Id });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+        public void updateRight(User t)
+        {
+            //spRightByUserupdate
+            try
+            {
+                sql.Execute<User, dynamic>("spRightByUserupdate", new
+                {
+                    userid = t.Id, RightId = t.Rights[0].Id ,
+                    Read = t.Rights[0].Read, Edit = t.Rights[0].Edit , Delete = t.Rights[0].Delete});
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+        public void insertUserRight(User t)
+        {
+            //spRightByUserInsert
+            try
+            {
+                sql.Execute<User, dynamic>("spRightByUserInsert", new
+                {
+                    userid = t.Id,
+                    RightId = t.Rights[0].Id,
+                    Read = t.Rights[0].Read,
+                    Edit = t.Rights[0].Edit,
+                    Delete = t.Rights[0].Delete
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
         public User GetRight(int id)
         {
             try

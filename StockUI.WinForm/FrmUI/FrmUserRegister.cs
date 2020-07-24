@@ -41,8 +41,8 @@ namespace StockUI.WinForm.FrmUI
             users = userEndPoint.GetAll();
             if (users.Count >0)
             {
-                navigation(0);
                 count = 0;
+                navigation(0);
             }
         }
         #region Naigation system
@@ -54,6 +54,7 @@ namespace StockUI.WinForm.FrmUI
                 var x = userRightEndPoint.GetRight(users[id].Id);
                 rights = x.Rights;
                 filldate();
+                label5.Text = $"{count + 1} Of {users.Count}";
             }
         }
         private void filldate()
@@ -61,7 +62,10 @@ namespace StockUI.WinForm.FrmUI
             var xx = from b in rights
                      select new
                      {
-                        الصلاحيات=b.Note
+                        الصلاحيات=b.Note,
+                        كتابة_و_قراءة=b.Read,
+                        التعديل=b.Edit,
+                        الحذف=b.Delete
                      };
             dataGridView1.DataSource = xx.ToList();
             dataGridFormat.Style(dataGridView1);
@@ -124,22 +128,7 @@ namespace StockUI.WinForm.FrmUI
             count = users.Count - 1;
             navigation(count);
         }
-        private void button5_Click(object sender, EventArgs e)
-        {
-            if (RdAdd.Checked==false && RdDelete.Checked ==false)
-            {
-                MessageBox.Show("يرجي تحديد إضافة أم حذف");
-                return;
-            }
-            if (RdAdd.Checked)
-            {
-                add();
-            }
-            else
-            {
-                remove();
-            }
-        }
+       
         private void add()
         {
             int x = rights.FindIndex(b => b.Id == int.Parse(CmbRight.SelectedValue.ToString()));
@@ -152,6 +141,18 @@ namespace StockUI.WinForm.FrmUI
                 Id = int.Parse(CmbRight.SelectedValue.ToString()),
                 Note = CmbRight.Text
             };
+            if (ChkDelete.Checked)
+            {
+                right.Delete = true;
+            }
+            if (ChkEdit.Checked)
+            {
+                right.Edit = true;
+            }
+            if (ChkRead.Checked)
+            {
+                right.Read = true;
+            }
             rights.Add(right);
             filldate();
         }
@@ -164,14 +165,57 @@ namespace StockUI.WinForm.FrmUI
                 filldate();
             }
         }
+        private void chekc()
+        {
+            ChkDelete.Checked = false;
+            ChkEdit.Checked = false;
+            ChkRead.Checked = false;
+            RdAdd.Checked = false;
+            RdDelete.Checked = false;
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex <= dataGridView1.Rows.Count - 1 && e.RowIndex >= 0)
             {
+                chekc();
                 string x = (string)dataGridView1[0, e.RowIndex].Value.ToString();
                 int y = rights.FindIndex(b => b.Note == x);
                 CmbRight.SelectedValue = rights[y].Id;
+                if (rights[y].Read==true)
+                {
+                    ChkRead.Checked = true;
+                }
+                if (rights[y].Edit == true)
+                {
+                    ChkEdit.Checked = true;
+                }
+                if (rights[y].Delete == true)
+                {
+                    ChkDelete.Checked = true;
+                }
             }
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (RdAdd.Checked == false && RdDelete.Checked == false)
+            {
+                MessageBox.Show("يرجي تحديد إضافة أم حذف");
+                return;
+            }
+            if (RdAdd.Checked)
+            {
+                add();
+            }
+            else
+            {
+                remove();
+            }
+            chekc();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

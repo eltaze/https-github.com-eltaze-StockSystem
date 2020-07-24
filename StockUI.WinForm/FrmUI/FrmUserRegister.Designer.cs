@@ -47,9 +47,9 @@
             this.CmbRight = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.ChkDelete = new System.Windows.Forms.CheckBox();
+            this.ChkEdit = new System.Windows.Forms.CheckBox();
+            this.ChkRead = new System.Windows.Forms.CheckBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.RdDelete = new System.Windows.Forms.RadioButton();
@@ -242,9 +242,9 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.checkBox3);
-            this.panel1.Controls.Add(this.checkBox2);
-            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.ChkDelete);
+            this.panel1.Controls.Add(this.ChkEdit);
+            this.panel1.Controls.Add(this.ChkRead);
             this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.RdDelete);
@@ -255,44 +255,45 @@
             this.panel1.Size = new System.Drawing.Size(261, 85);
             this.panel1.TabIndex = 165;
             // 
-            // checkBox3
+            // ChkDelete
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(83, 14);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(47, 17);
-            this.checkBox3.TabIndex = 171;
-            this.checkBox3.Text = "حذف";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.ChkDelete.AutoSize = true;
+            this.ChkDelete.Location = new System.Drawing.Point(83, 14);
+            this.ChkDelete.Name = "ChkDelete";
+            this.ChkDelete.Size = new System.Drawing.Size(47, 17);
+            this.ChkDelete.TabIndex = 171;
+            this.ChkDelete.Text = "حذف";
+            this.ChkDelete.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // ChkEdit
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(14, 14);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(52, 17);
-            this.checkBox2.TabIndex = 170;
-            this.checkBox2.Text = "تعديل";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.ChkEdit.AutoSize = true;
+            this.ChkEdit.Location = new System.Drawing.Point(14, 14);
+            this.ChkEdit.Name = "ChkEdit";
+            this.ChkEdit.Size = new System.Drawing.Size(52, 17);
+            this.ChkEdit.TabIndex = 170;
+            this.ChkEdit.Text = "تعديل";
+            this.ChkEdit.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // ChkRead
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(147, 14);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(103, 17);
-            this.checkBox1.TabIndex = 169;
-            this.checkBox1.Text = "إستعراض / كتابة";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.ChkRead.AutoSize = true;
+            this.ChkRead.Location = new System.Drawing.Point(147, 14);
+            this.ChkRead.Name = "ChkRead";
+            this.ChkRead.Size = new System.Drawing.Size(103, 17);
+            this.ChkRead.TabIndex = 169;
+            this.ChkRead.Text = "إستعراض / كتابة";
+            this.ChkRead.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(72, 46);
+            this.button6.Location = new System.Drawing.Point(70, 46);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(60, 27);
             this.button6.TabIndex = 168;
             this.button6.Text = "حفظ";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
@@ -300,8 +301,9 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(60, 27);
             this.button5.TabIndex = 167;
-            this.button5.Text = "تعديل";
+            this.button5.Text = "إضافة";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // RdDelete
             // 
@@ -397,9 +399,9 @@
         private System.Windows.Forms.ComboBox CmbRight;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox ChkDelete;
+        private System.Windows.Forms.CheckBox ChkEdit;
+        private System.Windows.Forms.CheckBox ChkRead;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.RadioButton RdDelete;
