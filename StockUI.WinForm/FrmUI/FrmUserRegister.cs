@@ -19,8 +19,8 @@ namespace StockUI.WinForm.FrmUI
         private List<User> users = new List<User>();
         private List<Right> rights = new List<Right>();
         int count = 0;
-        public FrmUserRegister(IUserEndPoint userEndPoint, Encode encode,DataGridFormat dataGridFormat
-                               ,IUserRightEndPoint userRightEndPoint)
+        public FrmUserRegister(IUserEndPoint userEndPoint, Encode encode, DataGridFormat dataGridFormat
+                               , IUserRightEndPoint userRightEndPoint)
         {
             InitializeComponent();
             this.userEndPoint = userEndPoint;
@@ -33,13 +33,13 @@ namespace StockUI.WinForm.FrmUI
         {
             rights = userRightEndPoint.GetRights();
             var x = from b in rights
-                    where  b.Note != ""
+                    where b.Note != ""
                     select b;
             CmbRight.DataSource = x.ToList();
             CmbRight.ValueMember = "Id";
             CmbRight.DisplayMember = "Note";
             users = userEndPoint.GetAll();
-            if (users.Count >0)
+            if (users.Count > 0)
             {
                 count = 0;
                 navigation(0);
@@ -48,10 +48,13 @@ namespace StockUI.WinForm.FrmUI
         #region Naigation system
         private void navigation(int id)
         {
-            if (id>=0 && id <=users.Count-1)
+            if (id >= 0 && id <= users.Count - 1)
             {
                 TxtId.Text = users[id].Name;
                 var x = userRightEndPoint.GetRight(users[id].Id);
+                TxtName.Text = "";
+                TxtPassword.Text = "";
+                rights.Clear();
                 rights = x.Rights;
                 filldate();
                 label5.Text = $"{count + 1} Of {users.Count}";
@@ -62,17 +65,17 @@ namespace StockUI.WinForm.FrmUI
             var xx = from b in rights
                      select new
                      {
-                        الصلاحيات=b.Note,
-                        كتابة_و_قراءة=b.Read,
-                        التعديل=b.Edit,
-                        الحذف=b.Delete
+                         الصلاحيات = b.Note,
+                         كتابة_و_قراءة = b.Read,
+                         التعديل = b.Edit,
+                         الحذف = b.Delete
                      };
             dataGridView1.DataSource = xx.ToList();
             dataGridFormat.Style(dataGridView1);
         }
         private void BtnNext_Click(object sender, EventArgs e)
         {
-            if (count > users.Count - 1)
+            if (count < users.Count )
             {
                 count += 1;
                 navigation(count);
@@ -102,10 +105,14 @@ namespace StockUI.WinForm.FrmUI
             TxtId.Text = "";
             TxtName.Text = "";
             TxtPassword.Text = "";
+            CmbRight.SelectedIndex = -1;
+            rights.Clear();
+            chekc();
+            filldate();
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            if (TxtId.Text.Length ==0 || TxtName.Text.Length<6 || TxtPassword.Text != TxtName.Text)
+            if (TxtId.Text.Length == 0 || TxtName.Text.Length < 6 || TxtPassword.Text != TxtName.Text)
             {
                 MessageBox.Show("كلمة المرور يجب أن تكون أعلي من 6 أحرف ويجب تأكيد كلمة المرور والإسم لايمكن أن يكون خالي");
                 return;
@@ -123,17 +130,30 @@ namespace StockUI.WinForm.FrmUI
             };
             userEndPoint.Save(user);
             MessageBox.Show("تم حفظ بنجاح");
-            var xx =userEndPoint.GetByName(user.Name);
+            var xx = userEndPoint.GetByName(user.Name);
             users.Add(xx);
+            button6_Click(sender, e);
             count = users.Count - 1;
             navigation(count);
         }
-       
         private void add()
         {
             int x = rights.FindIndex(b => b.Id == int.Parse(CmbRight.SelectedValue.ToString()));
-            if (x !=-1)
+            if (x != -1)
             {
+                if (ChkDelete.Checked)
+                {
+                    rights[x].Delete = true;
+                }
+                if (ChkEdit.Checked)
+                {
+                    rights[x].Edit = true;
+                }
+                if (ChkRead.Checked)
+                {
+                    rights[x].Read = true;
+                }
+                filldate();
                 return;
             }
             Right right = new Right
@@ -181,7 +201,7 @@ namespace StockUI.WinForm.FrmUI
                 string x = (string)dataGridView1[0, e.RowIndex].Value.ToString();
                 int y = rights.FindIndex(b => b.Note == x);
                 CmbRight.SelectedValue = rights[y].Id;
-                if (rights[y].Read==true)
+                if (rights[y].Read == true)
                 {
                     ChkRead.Checked = true;
                 }
@@ -212,10 +232,54 @@ namespace StockUI.WinForm.FrmUI
             }
             chekc();
         }
-
         private void button6_Click(object sender, EventArgs e)
         {
+            foreach (Right item in rights)
+            {
+                User f = new User();
+                f = users[count];
+                f.Rights.Clear();
+                var x = userRightEndPoint.SelectUserRight(users[count].Id, item.Id);
+                if (x != null)
+                {
+                    f.Rights.Add(item);
+                    userRightEndPoint.updateRight(f);
+                }
+                else
+                {
+                    f.Rights.Add(item);
+                    userRightEndPoint.insertUserRight(f);
+                }
+            }
+            MessageBox.Show("تم الحفظ التعديلات في الصلاحيات بنجاح");
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+          if(  TxtName.Text.Length < 6 || TxtPassword.Text != TxtName.Text)
+           {
+                MessageBox.Show("الكلمة مرور غير متطابقة أو أقل من 6 أحرف");
+                return;
+           }
+            users[count].Password = encode.Base64Encode(TxtName.Text);
+            userEndPoint.Update(users[count]);
+            MessageBox.Show("تم تغير كلمة المرور بنجاح");
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            foreach (Right item in rights)
+            {
+                User f = new User();
+                f = users[count];
+                f.Rights.Clear();
+                f.Rights.Add(item);
+                userRightEndPoint.DeleteRight(f);
+            }
+            userEndPoint.Delete(users[count]);
+            users.RemoveAt(count);
+            count = users.Count - 1;
+            navigation(count);
+            MessageBox.Show("تم مسح المستخدم بنجاح");
         }
     }
 }

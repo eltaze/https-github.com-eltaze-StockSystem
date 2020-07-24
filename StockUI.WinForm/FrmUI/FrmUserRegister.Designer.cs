@@ -124,13 +124,13 @@
             // 
             // button3
             // 
-            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(207, 9);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(72, 37);
             this.button3.TabIndex = 97;
             this.button3.Text = "حذف";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button1
             // 
@@ -140,6 +140,7 @@
             this.button1.TabIndex = 96;
             this.button1.Text = "تعديل";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 

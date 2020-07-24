@@ -67,6 +67,19 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
+        public Right SelectUserRight(int userid,int rightid)
+        {
+            //spRightByUserInsert
+            try
+            {
+                var x = sql.ReadingData<Right, dynamic>("spRightByUserselect", new { userid, rightid }).FirstOrDefault();
+                return x;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
         public User GetRight(int id)
         {
             try

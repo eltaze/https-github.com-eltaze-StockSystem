@@ -26,5 +26,6 @@ namespace StockSystem.Libarary.Interfaces
         /// </summary>
         /// <param name="t"></param>
         void DeleteRight(User t);
+        Right SelectUserRight(int userid, int rightid);
     }
 }

@@ -20,7 +20,7 @@ namespace StockSystem.Libarary.BL
             //[spUserDelete]
             try
             {
-                sql.Execute<User, dynamic>("spUserDelete", t);
+                sql.Execute<User, dynamic>("spUserDelete", new { id=t.Id,name=t.Name,password=t.Password });
             }
             catch (Exception ex)
             {
@@ -70,7 +70,7 @@ namespace StockSystem.Libarary.BL
             //[spUserInsert]
             try
             {
-                sql.Execute<User, dynamic>("spUserInsert", t);
+                sql.Execute<User, dynamic>("spUserInsert", new { id=t.Id,name=t.Name,password=t.Password });
             }
             catch (Exception ex)
             {
@@ -82,7 +82,7 @@ namespace StockSystem.Libarary.BL
             //[spUserUpdate]
             try
             {
-                sql.Execute<User, dynamic>("spUserUpdate", t);
+                sql.Execute<User, dynamic>("spUserUpdate", new { id =t.Id,name = t.Name,password=t.Password});
                 return t;
             }
             catch (Exception ex)
