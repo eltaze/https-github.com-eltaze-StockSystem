@@ -178,10 +178,6 @@ namespace StockUI.WinForm.FrmUI
             ////buttonColumn = "حذف";
             //dataGridView2.Columns.Add(buttonColumn);
         }
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
         private void calcunit(int id, int itemid)
         {
             var output = unitEndPoint.GetByUnitIdTest(id).ToList();

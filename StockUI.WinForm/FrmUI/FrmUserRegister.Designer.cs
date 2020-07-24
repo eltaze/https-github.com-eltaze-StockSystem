@@ -44,11 +44,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.RdAdd = new System.Windows.Forms.RadioButton();
+            this.RdDelete = new System.Windows.Forms.RadioButton();
             this.CmbRight = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,6 +74,7 @@
             this.BtnPrev.TabIndex = 102;
             this.BtnPrev.Text = ">";
             this.BtnPrev.UseVisualStyleBackColor = true;
+            this.BtnPrev.Click += new System.EventHandler(this.BtnPrev_Click);
             // 
             // BtnNext
             // 
@@ -82,6 +84,7 @@
             this.BtnNext.TabIndex = 101;
             this.BtnNext.Text = "<";
             this.BtnNext.UseVisualStyleBackColor = true;
+            this.BtnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
             // BtnLast
             // 
@@ -91,6 +94,7 @@
             this.BtnLast.TabIndex = 100;
             this.BtnLast.Text = "<<";
             this.BtnLast.UseVisualStyleBackColor = true;
+            this.BtnLast.Click += new System.EventHandler(this.BtnLast_Click);
             // 
             // BtnFirst
             // 
@@ -100,6 +104,7 @@
             this.BtnFirst.TabIndex = 99;
             this.BtnFirst.Text = ">>";
             this.BtnFirst.UseVisualStyleBackColor = true;
+            this.BtnFirst.Click += new System.EventHandler(this.BtnFirst_Click);
             // 
             // button4
             // 
@@ -203,27 +208,27 @@
             this.label1.TabIndex = 105;
             this.label1.Text = "الصلاحيات";
             // 
-            // radioButton1
+            // RdAdd
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(140, 193);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(53, 17);
-            this.radioButton1.TabIndex = 107;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "إضافة";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.RdAdd.AutoSize = true;
+            this.RdAdd.Location = new System.Drawing.Point(140, 193);
+            this.RdAdd.Name = "RdAdd";
+            this.RdAdd.Size = new System.Drawing.Size(53, 17);
+            this.RdAdd.TabIndex = 107;
+            this.RdAdd.TabStop = true;
+            this.RdAdd.Text = "إضافة";
+            this.RdAdd.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // RdDelete
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(233, 193);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(46, 17);
-            this.radioButton2.TabIndex = 108;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "حذف";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.RdDelete.AutoSize = true;
+            this.RdDelete.Location = new System.Drawing.Point(202, 193);
+            this.RdDelete.Name = "RdDelete";
+            this.RdDelete.Size = new System.Drawing.Size(46, 17);
+            this.RdDelete.TabIndex = 108;
+            this.RdDelete.TabStop = true;
+            this.RdDelete.Text = "حذف";
+            this.RdDelete.UseVisualStyleBackColor = true;
             // 
             // CmbRight
             // 
@@ -247,26 +252,38 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(379, 180);
             this.dataGridView1.TabIndex = 159;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(314, 188);
+            this.button5.Location = new System.Drawing.Point(254, 188);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(72, 27);
+            this.button5.Size = new System.Drawing.Size(60, 27);
             this.button5.TabIndex = 160;
-            this.button5.Text = "إضافة";
+            this.button5.Text = "تعديل";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(326, 188);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(60, 27);
+            this.button6.TabIndex = 161;
+            this.button6.Text = "حفظ";
+            this.button6.UseVisualStyleBackColor = true;
             // 
             // FrmUserRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(393, 450);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.CmbRight);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.RdDelete);
+            this.Controls.Add(this.RdAdd);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TxtPassword);
             this.Controls.Add(this.label5);
@@ -315,10 +332,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtPassword;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton RdAdd;
+        private System.Windows.Forms.RadioButton RdDelete;
         private System.Windows.Forms.ComboBox CmbRight;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

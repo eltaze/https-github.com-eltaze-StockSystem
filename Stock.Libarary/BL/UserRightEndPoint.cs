@@ -20,9 +20,14 @@ namespace StockSystem.Libarary.BL
         {
             try
             {
+                //[spUserGetId]
                 //[spUserRights]
-                var x = sql.ReadingData<User, dynamic>("spUserRights", new { id }).FirstOrDefault();
-                var output = sql.ReadingData<Right, dynamic>("", new { id });
+                var x = sql.ReadingData<User, dynamic>("spUserGetId", new { id }).FirstOrDefault();
+               if(x == null)
+                {
+                    return x;
+                }
+                var output = sql.ReadingData<Right, dynamic>("spUserRights", new { id });
                 x.Rights = output;
                 return x;
             }
