@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockUI.Libarary.BL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,12 +23,13 @@ namespace StockUI.WinForm.FrmUI
         private readonly FrmUserRegister frmUserRegister;
         private readonly FrmRecitMove frmRecitMove;
         private readonly FrmDismisItem frmDismisItem;
+        private readonly UserValidation userValidation;
         private readonly FrmOrder frmOrder;
         private readonly FrmItemRecit frmItemRecit;
         public string UserName="User Name";
         public FrmDashBoard(FrmItems frmItems,FrmMoveOrder frmMoveOrder,FrmUnit frmUnit,FrmDepartment frmDepartment
                             , FrmKind frmKind, FrmStock frmStock, FrmLogin frmLogin,FrmUserRegister frmUserRegister
-                            , FrmRecitMove frmRecitMove,FrmDismisItem frmDismisItem
+                            , FrmRecitMove frmRecitMove,FrmDismisItem frmDismisItem,UserValidation userValidation
                             ,FrmOrder frmOrder,FrmItemRecit frmItemRecit)
         {
 
@@ -42,6 +44,7 @@ namespace StockUI.WinForm.FrmUI
             this.frmUserRegister = frmUserRegister;
             this.frmRecitMove = frmRecitMove;
             this.frmDismisItem = frmDismisItem;
+            this.userValidation = userValidation;
             this.frmOrder = frmOrder;
             this.frmItemRecit = frmItemRecit;
         }
@@ -72,12 +75,14 @@ namespace StockUI.WinForm.FrmUI
         private void FrmDashBoard_Load(object sender, EventArgs e)
         {
             frmLogin.frmDashBoard = this;
+            frmLogin.userValidation = userValidation;
             frmLogin.ShowDialog();
             if (frmLogin.validate() == false)
             {
                 this.Dispose();
             }
             LblUser.Text = UserName;
+            validate();
         }
         private void button7_Click(object sender, EventArgs e)
         {
@@ -93,9 +98,13 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button10_Click(object sender, EventArgs e)
         {
+            if (userValidation.validateForm("FrmKind") == false)
+            {
+                MessageBox.Show("لايمكنك الدخول برجاء مراجعة الإدارة");
+                return;
+            }
             LoadForm (frmKind);
         }
-
         private void button12_Click(object sender, EventArgs e)
         {
             LoadForm(frmUserRegister);
@@ -105,6 +114,13 @@ namespace StockUI.WinForm.FrmUI
             form.InitializeLifetimeService();
             form.StartPosition = FormStartPosition.CenterParent;
             form.ShowDialog();
+        }
+        private void validate()
+        {
+            if (userValidation.validateForm("FrmOrder")==false)
+            {
+                BtnOrder.Enabled = false;
+            }
         }
     }
 }

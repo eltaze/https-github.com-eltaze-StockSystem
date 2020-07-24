@@ -52,6 +52,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<FrmRecitMove>();
             currentContainer.RegisterType<FrmDashBoard>();
             currentContainer.RegisterType<FrmUserRegister>();
+            currentContainer.RegisterSingleton<UserValidation>();
             //Registering Database Layer
             currentContainer.RegisterSingleton<ISqlDataAccess, SqlDataAccess>();
             //Configuration AutoMapper

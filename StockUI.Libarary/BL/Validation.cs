@@ -1,13 +1,10 @@
 ﻿using StockSystem.Libarary.BL;
 using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StockUI.Libarary.BL
 {
-   public class Validation
+    public class Validation
     {
         public string massege;
         private readonly IStockEndPoint stockEndPoint;

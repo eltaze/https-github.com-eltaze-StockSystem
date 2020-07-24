@@ -1,7 +1,5 @@
 ﻿using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
-using StockUI.Libarary.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -67,7 +65,6 @@ namespace StockUI.Libarary.BL
                 }
             }
             return x;
-        }
-      
+        }      
     }
 }

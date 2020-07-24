@@ -17,20 +17,18 @@ namespace StockUI.WinForm.FrmUI
     {
         private readonly IUserEndPoint userEndPoint;
         private readonly Encode encode;
+        private readonly IUserRightEndPoint userRightEndPoint;
         public FrmDashBoard frmDashBoard;
+        public UserValidation userValidation;
         private bool loged = false;
-        public FrmLogin(IUserEndPoint userEndPoint,Encode encode)
+        public FrmLogin(IUserEndPoint userEndPoint,Encode encode,IUserRightEndPoint userRightEndPoint)
         {
             InitializeComponent();
             this.userEndPoint = userEndPoint;
             this.encode = encode;
-            
+            this.userRightEndPoint = userRightEndPoint;
         }
 
-        private void FrmLogin_Load(object sender, EventArgs e)
-        {
-
-        }
         public Boolean validate()
         {
             return loged;
@@ -45,6 +43,8 @@ namespace StockUI.WinForm.FrmUI
                 loged = false;
                 return;
             }
+            x.Rights = userRightEndPoint.GetRight(x.Id).Rights;
+            userValidation.user = x;
             MessageBox.Show($"مرحبا بك {TxtId.Text}");
             frmDashBoard.UserName = TxtId.Text;
             loged = true;

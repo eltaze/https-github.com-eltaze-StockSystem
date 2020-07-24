@@ -90,6 +90,5 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
-        
     }
 }
