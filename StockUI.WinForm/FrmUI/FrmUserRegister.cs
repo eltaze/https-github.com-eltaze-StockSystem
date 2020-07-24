@@ -58,7 +58,6 @@ namespace StockUI.WinForm.FrmUI
         }
         private void filldate()
         {
-           
             var xx = from b in rights
                      select new
                      {
