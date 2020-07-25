@@ -2,6 +2,7 @@
 using StockSystem.Libarary.BL;
 using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
+using StockUI.Libarary.BL;
 using StockUI.Libarary.Model;
 using StockUI.WinForm.Formating;
 using System;
@@ -25,6 +26,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly ImoveorderEndPoint moveorderEndPoint;
         private readonly IOrderDetailEndPoint orderDetailEndPoint;
         private readonly ReportForms reportForms;
+        private readonly UserValidation userValidation;
         private readonly IStockEndPoint stockEndPoint;
         private readonly IItemEndPoint itemEndPoint;
         private readonly IUnitEndPoint unitEndPoint;
@@ -35,7 +37,8 @@ namespace StockUI.WinForm.FrmUI
         int count = 0;
 
         public FrmMoveOrder(IMapper mapper,ImoveorderdetailEndPoint moveorderdetailEndPoint, DataGridFormat dataGridFormat
-            ,ImoveorderEndPoint moveorderEndPoint,IOrderDetailEndPoint orderDetailEndPoint,ReportForms reportForms
+            ,ImoveorderEndPoint moveorderEndPoint,IOrderDetailEndPoint orderDetailEndPoint
+            ,ReportForms reportForms,UserValidation userValidation
             ,IStockEndPoint stockEndPoint,IItemEndPoint itemEndPoint,IUnitEndPoint unitEndPoint)
         {
             InitializeComponent();
@@ -45,12 +48,15 @@ namespace StockUI.WinForm.FrmUI
             this.moveorderEndPoint = moveorderEndPoint;
             this.orderDetailEndPoint = orderDetailEndPoint;
             this.reportForms = reportForms;
+            this.userValidation = userValidation;
             this.stockEndPoint = stockEndPoint;
             this.itemEndPoint = itemEndPoint;
             this.unitEndPoint = unitEndPoint;
         }
         private void FrmMoveOrder_Load(object sender, EventArgs e)
         {
+            BtnDelete.Enabled = userValidation.validateDelete("FrmMoveOrder");
+            BtnUpdate.Enabled = userValidation.validateEdit("FrmMoveOrder");
             var stocks =stockEndPoint.GetAll();
             CmbStock.DataSource = stocks.ToList();
             CmbStock.ValueMember = "Id";
@@ -130,7 +136,7 @@ namespace StockUI.WinForm.FrmUI
             {
                 BtnNew.Text = "جديد";
                 BtnSave.Enabled = false;
-                BtnUpdate.Enabled = true;
+                //BtnUpdate.Enabled = true;
                 Navigation(count);
                 //button5.Enabled = false;
                 //button6.Enabled = false;
@@ -142,7 +148,7 @@ namespace StockUI.WinForm.FrmUI
             {
                 BtnNew.Text = "إلغاء";
                 BtnSave.Enabled = true;
-                BtnUpdate.Enabled = false;
+                //BtnUpdate.Enabled = false;
                 fillDataGridOrder();
                // button5.Enabled = true;
                 //button6.Enabled = true;

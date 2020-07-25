@@ -19,18 +19,22 @@ namespace StockUI.WinForm.FrmUI
     {
         private readonly IMapper mapper;
         private readonly IUnitEndPoint unitEndPoint;
+        private readonly UserValidation userValidation;
         private readonly Validation validation;
         private List<UnitDisplay> unitDisplays = new List<UnitDisplay>();
         private int count = 0;
-        public FrmUnit(IMapper mapper ,IUnitEndPoint unitEndPoint,Validation validation)
+        public FrmUnit(IMapper mapper ,IUnitEndPoint unitEndPoint,UserValidation userValidation,Validation validation)
         {
             InitializeComponent();
             this.mapper = mapper;
             this.unitEndPoint = unitEndPoint;
+            this.userValidation = userValidation;
             this.validation = validation;
         }
         private void FrmUnit_Load(object sender, EventArgs e)
         {
+            BtnEdit.Enabled = userValidation.validateEdit("FrmUnit");
+            Btndelete.Enabled = userValidation.validateDelete("FrmUnit");
             var output = unitEndPoint.GetAll();
             unitDisplays = mapper.Map<List<UnitDisplay>>(output);
             if (unitDisplays.Count>0)

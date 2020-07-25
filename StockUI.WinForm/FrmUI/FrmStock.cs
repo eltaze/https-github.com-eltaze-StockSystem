@@ -18,9 +18,11 @@ namespace StockUI.WinForm.FrmUI
         private readonly IMapper mapper;
         private readonly IBaseStockItemEndPoint baseStockItemEndPoint;
         private readonly DataGridFormat dataGridFormat;
+        private readonly UserValidation userValidation;
         private List< StockDisplay> stockDisplay = new List<StockDisplay>();
         private int count = 0;
-        public FrmStock(IMapper mapper, IBaseStockItemEndPoint baseStockItemEndPoint, DataGridFormat dataGridFormat
+        public FrmStock(IMapper mapper, IBaseStockItemEndPoint baseStockItemEndPoint, 
+            DataGridFormat dataGridFormat,UserValidation userValidation
             ,IStockEndPoint stockEndPoint, Validation validation)
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace StockUI.WinForm.FrmUI
             this.mapper = mapper;
             this.baseStockItemEndPoint = baseStockItemEndPoint;
             this.dataGridFormat = dataGridFormat;
+            this.userValidation = userValidation;
         }
         private void ChkBoxFilter_CheckedChanged(object sender, EventArgs e)
         {
@@ -37,6 +40,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void FrmStock_Load(object sender, EventArgs e)
         {
+            BtnDelete.Enabled = userValidation.validateDelete("FrmStock");
+            BtnEdit.Enabled = userValidation.validateEdit("FrmStock");
             var output = stockEndPoint.GetAll();
             stockDisplay = mapper.Map<List<StockDisplay>>(output);
             if (stockDisplay.Count>0)

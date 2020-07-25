@@ -87,7 +87,6 @@
             // 
             // BtnDelete
             // 
-            this.BtnDelete.Enabled = false;
             this.BtnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BtnDelete.Location = new System.Drawing.Point(139, 12);
             this.BtnDelete.Name = "BtnDelete";
@@ -95,6 +94,7 @@
             this.BtnDelete.TabIndex = 124;
             this.BtnDelete.Text = "حذف";
             this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnUpdate
             // 

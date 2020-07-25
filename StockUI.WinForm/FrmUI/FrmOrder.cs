@@ -22,6 +22,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly DataGridFormat dataGridFormat;
         private readonly IUnitEndPoint unitEndPoint;
         private readonly IItemEndPoint itemEndPoint;
+        private readonly UserValidation userValidation;
         private readonly IBaseStockItemEndPoint baseStockItemEndPoint;
         private readonly IDepartmentEndPoint departmentEndPoint;
         private readonly UnitConversions unitConversions;
@@ -38,7 +39,7 @@ namespace StockUI.WinForm.FrmUI
         int modification = -1;
         public FrmOrder(IMapper mapper,IOrderEndPoint orderEndPoint,FrmBarCode frmBarCode
             ,IOrderDetailEndPoint orderDetailEndPoint,DataGridFormat dataGridFormat
-            ,IUnitEndPoint unitEndPoint,IItemEndPoint itemEndPoint
+            ,IUnitEndPoint unitEndPoint,IItemEndPoint itemEndPoint,UserValidation userValidation
             ,IBaseStockItemEndPoint baseStockItemEndPoint
             ,IDepartmentEndPoint departmentEndPoint,UnitConversions unitConversions
             ,IStockEndPoint stockEndPoint,IStockItemEndPoint stockItemEndPoint,ReportForms reportForms)
@@ -51,6 +52,7 @@ namespace StockUI.WinForm.FrmUI
             this.dataGridFormat = dataGridFormat;
             this.unitEndPoint = unitEndPoint;
             this.itemEndPoint = itemEndPoint;
+            this.userValidation = userValidation;
             this.baseStockItemEndPoint = baseStockItemEndPoint;
             this.departmentEndPoint = departmentEndPoint;
             this.unitConversions = unitConversions;
@@ -60,6 +62,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void loadcmb<T>(List<T> t, ComboBox comboBox)
         {
+            BtnDelete.Enabled = userValidation.validateDelete("FrmOrder");
+            BtnUpdate.Enabled = userValidation.validateEdit("FrmOrder");
             comboBox.DataSource = t;
             comboBox.ValueMember = "Id";
             comboBox.DisplayMember = "Name";
@@ -245,7 +249,7 @@ namespace StockUI.WinForm.FrmUI
             {
                 BtnNew.Text = "جديد";
                 BtnSave.Enabled = false;
-                BtnUpdate.Enabled = true;
+                //BtnUpdate.Enabled = true;
                 Navigation(count);
                 button5.Enabled = false;
                 //button6.Enabled = false;
@@ -257,7 +261,7 @@ namespace StockUI.WinForm.FrmUI
             {
                 BtnNew.Text = "إلغاء";
                 BtnSave.Enabled = true;
-                BtnUpdate.Enabled = false;
+                //BtnUpdate.Enabled = false;
                 neworder = new OrderDisplay();
                 button5.Enabled = true;
                 button1.Enabled = true;
@@ -485,5 +489,9 @@ namespace StockUI.WinForm.FrmUI
             TxtUnitPrice.Text = frmBarCode.unitprice.ToString();
         }
 
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

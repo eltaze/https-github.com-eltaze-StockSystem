@@ -34,8 +34,8 @@
             this.BtnLast = new System.Windows.Forms.Button();
             this.BtnFirst = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnDelete = new System.Windows.Forms.Button();
+            this.BtnUpdate = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.TxtNote = new System.Windows.Forms.TextBox();
             this.TxtName = new System.Windows.Forms.TextBox();
@@ -132,25 +132,25 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button3
+            // BtnDelete
             // 
-            this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(211, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(72, 37);
-            this.button3.TabIndex = 97;
-            this.button3.Text = "حذف";
-            this.button3.UseVisualStyleBackColor = true;
+            this.BtnDelete.Enabled = false;
+            this.BtnDelete.Location = new System.Drawing.Point(211, 12);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(72, 37);
+            this.BtnDelete.TabIndex = 97;
+            this.BtnDelete.Text = "حذف";
+            this.BtnDelete.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // BtnUpdate
             // 
-            this.button1.Location = new System.Drawing.Point(109, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(72, 37);
-            this.button1.TabIndex = 96;
-            this.button1.Text = "تعديل";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BtnUpdate.Location = new System.Drawing.Point(109, 12);
+            this.BtnUpdate.Name = "BtnUpdate";
+            this.BtnUpdate.Size = new System.Drawing.Size(72, 37);
+            this.BtnUpdate.TabIndex = 96;
+            this.BtnUpdate.Text = "تعديل";
+            this.BtnUpdate.UseVisualStyleBackColor = true;
+            this.BtnUpdate.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -454,8 +454,8 @@
             this.Controls.Add(this.BtnLast);
             this.Controls.Add(this.BtnFirst);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnDelete);
+            this.Controls.Add(this.BtnUpdate);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.TxtNote);
             this.Controls.Add(this.TxtName);
@@ -487,8 +487,8 @@
         private System.Windows.Forms.Button BtnLast;
         private System.Windows.Forms.Button BtnFirst;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnDelete;
+        private System.Windows.Forms.Button BtnUpdate;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox TxtNote;
         private System.Windows.Forms.TextBox TxtName;

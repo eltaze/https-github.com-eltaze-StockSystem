@@ -24,6 +24,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly Validation validation;
         private readonly IItemCardEndPoint itemCardEndPoint;
         private readonly IBaseStockItemEndPoint baseStockItemEndPoint;
+        private readonly UserValidation userValidation;
         private readonly IStockEndPoint stockEndPoint;
         private List<ItemDisplay> itemDisplays = new List<ItemDisplay>();
         private List<ItemCardDisplay> itemCardDisplays = new List<ItemCardDisplay>();
@@ -31,7 +32,7 @@ namespace StockUI.WinForm.FrmUI
         public FrmItems(IMapper mapper,IUnitEndPoint unitEndPoint, DataGridFormat dataGridFormat
             , IKindEndPoint kindEndPoint,IItemEndPoint itemEndPoint,StockItemEndPoint stockItemEndPoint
             ,DepartmentEndPoint departmentEndPoint,Validation validation,IItemCardEndPoint itemCardEndPoint
-            ,IBaseStockItemEndPoint baseStockItemEndPoint
+            ,IBaseStockItemEndPoint baseStockItemEndPoint,UserValidation userValidation
             ,IStockEndPoint stockEndPoint)
         {
             InitializeComponent();
@@ -45,6 +46,7 @@ namespace StockUI.WinForm.FrmUI
             this.validation = validation;
             this.itemCardEndPoint = itemCardEndPoint;
             this.baseStockItemEndPoint = baseStockItemEndPoint;
+            this.userValidation = userValidation;
             this.stockEndPoint = stockEndPoint;
         }
         private void loadcmb<T>(List<T> t,ComboBox comboBox)
@@ -55,6 +57,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void Items_Load(object sender, EventArgs e)
         {
+            BtnDelete.Enabled = userValidation.validateDelete("FrmItems");
+            BtnUpdate.Enabled = userValidation.validateEdit("FrmItems");
             var outkind = kindEndPoint.GetAll();
             loadcmb<Kind>(outkind, CmbKind);
             var outunit = unitEndPoint.GetAll();

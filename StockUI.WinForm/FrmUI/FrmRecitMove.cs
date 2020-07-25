@@ -22,6 +22,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly ReportForms reportForms;
         private readonly IStockItemEndPoint stockItemEndPoint;
         private readonly IRecitItemEndPoint recitItemEndPoint;
+        private readonly UserValidation userValidation;
         private readonly IStockEndPoint stockEndPoint;
         private readonly UnitConversions unitConversions;
         private readonly IItemEndPoint itemEndPoint;
@@ -36,7 +37,7 @@ namespace StockUI.WinForm.FrmUI
 
         public FrmRecitMove(IMapper mapper, ImoveorderdetailEndPoint moveorderdetailEndPoint, DataGridFormat dataGridFormat
             , ImoveorderEndPoint moveorderEndPoint, IOrderDetailEndPoint orderDetailEndPoint, ReportForms reportForms 
-            ,IStockItemEndPoint stockItemEndPoint,IRecitItemEndPoint recitItemEndPoint
+            ,IStockItemEndPoint stockItemEndPoint,IRecitItemEndPoint recitItemEndPoint,UserValidation userValidation
             , IStockEndPoint stockEndPoint, UnitConversions unitConversions
             , IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint)
         {
@@ -49,6 +50,7 @@ namespace StockUI.WinForm.FrmUI
             this.reportForms = reportForms;
             this.stockItemEndPoint = stockItemEndPoint;
             this.recitItemEndPoint = recitItemEndPoint;
+            this.userValidation = userValidation;
             this.stockEndPoint = stockEndPoint;
             this.unitConversions = unitConversions;
             this.itemEndPoint = itemEndPoint;
@@ -56,6 +58,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void FrmRecitMove_Load(object sender, EventArgs e)
         {
+            BtnUpdate.Enabled = userValidation.validateEdit("FrmRecitMove");
+            BtnDelete.Enabled = userValidation.validateDelete("FrmRecitMove");
             moveorderDisplays = mapper.Map<List<MoveorderDisplay>>(moveorderEndPoint.GetMoveOrdersNotRecit());
             stocks = stockEndPoint.GetAll();
             CmbStock.DataSource = stocks.ToList();
@@ -276,6 +280,11 @@ namespace StockUI.WinForm.FrmUI
             itemRecit.recitItemDetails = mapper.Map<List<ItemRecitDetail>>(ItemRecitDetailDisplays);
             int x = recitItemEndPoint.Save(itemRecit, stockitems);
             MessageBox.Show("تم الحفظ بنجاح");
+        }
+
+        private void BtnNew_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

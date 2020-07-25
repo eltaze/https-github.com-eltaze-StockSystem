@@ -454,6 +454,7 @@
             this.BtnNew.TabIndex = 170;
             this.BtnNew.Text = "جديد";
             this.BtnNew.UseVisualStyleBackColor = true;
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // button1
             // 

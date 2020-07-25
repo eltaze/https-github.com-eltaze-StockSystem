@@ -23,6 +23,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly IItemEndPoint itemEndPoint;
         private readonly IUnitEndPoint unitEndPoint;
         private readonly DataGridFormat dataGridFormat;
+        private readonly UserValidation userValidation;
         private readonly UnitConversions unitConversions;
         private readonly IStockEndPoint stockEndPoint;
         private List<ItemReciteDisplay> itemReciteDisplays = new List<ItemReciteDisplay>();
@@ -32,7 +33,8 @@ namespace StockUI.WinForm.FrmUI
 
         public FrmItemRecit(IRecitItemDetailEndPoint recitItemDetailEndPoint, IDepartmentEndPoint departmentEndPoint
             , IRecitItemEndPoint recitItemEndPoint, IMapper mapper, IStockItemEndPoint stockItemEndPoint,ReportForms reportForms
-            ,IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint, DataGridFormat dataGridFormat
+            ,IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint
+            , DataGridFormat dataGridFormat,UserValidation userValidation
             , UnitConversions unitConversions, IStockEndPoint stockEndPoint)
         {
             InitializeComponent();
@@ -45,11 +47,14 @@ namespace StockUI.WinForm.FrmUI
             this.itemEndPoint = itemEndPoint;
             this.unitEndPoint = unitEndPoint;
             this.dataGridFormat = dataGridFormat;
+            this.userValidation = userValidation;
             this.unitConversions = unitConversions;
             this.stockEndPoint = stockEndPoint;
         }
         private void FrmItemRecit_Load(object sender, EventArgs e)
         {
+            BtnUpdate.Enabled = userValidation.validateEdit("FrmItemRecit");
+            BtnDelete.Enabled = userValidation.validateDelete("FrmItemRecit");
             var x = stockEndPoint.GetAll();
             loadcmb<Stock>(x.ToList(), CmbStock);
             var department = departmentEndPoint.GetAll();
@@ -152,7 +157,7 @@ namespace StockUI.WinForm.FrmUI
             {
                 BtnNew.Text = "جديد";
                 BtnSave.Enabled = false;
-                BtnUpdate.Enabled = true;
+            //    BtnUpdate.Enabled = true;
                 button5.Enabled = false;
                 button7.Enabled = false;
                 button8.Enabled = false;
@@ -163,7 +168,7 @@ namespace StockUI.WinForm.FrmUI
                 dataGridView1.DataSource = null;
                 BtnNew.Text = "إلغاء";
                 BtnSave.Enabled = true;
-                BtnUpdate.Enabled = false;
+              //  BtnUpdate.Enabled = false;
                 button5.Enabled = true;
                 button7.Enabled = true;
                 button8.Enabled = true;

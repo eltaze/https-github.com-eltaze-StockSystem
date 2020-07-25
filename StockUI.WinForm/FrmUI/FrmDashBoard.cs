@@ -1,12 +1,5 @@
 ﻿using StockUI.Libarary.BL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StockUI.WinForm.FrmUI
@@ -97,12 +90,7 @@ namespace StockUI.WinForm.FrmUI
             LoadForm(frmStock);
         }
         private void button10_Click(object sender, EventArgs e)
-        {
-            if (userValidation.validateForm("FrmKind") == false)
-            {
-                MessageBox.Show("لايمكنك الدخول برجاء مراجعة الإدارة");
-                return;
-            }
+        {         
             LoadForm (frmKind);
         }
         private void button12_Click(object sender, EventArgs e)
@@ -117,10 +105,17 @@ namespace StockUI.WinForm.FrmUI
         }
         private void validate()
         {
-            if (userValidation.validateForm("FrmOrder")==false)
-            {
-                BtnOrder.Enabled = false;
-            }
+            //BtnUsers.Enabled = userValidation.validateForm("frmUserRegister");
+            BtnOrder.Enabled = userValidation.validateForm("FrmOrder");
+            BtnMoveOrder.Enabled = userValidation.validateForm("frmMoveOrder");
+            BtnRecitItem.Enabled = userValidation.validateForm("frmItemRecit");
+            BtnRecitMove.Enabled = userValidation.validateForm("frmRecitMove");
+            BtnRecitItem.Enabled = userValidation.validateForm("frmDismisItem");
+            BtnUnit.Enabled = userValidation.validateForm("frmUnit");
+            BtnDepartment.Enabled = userValidation.validateForm("frmDepartment");
+            BtnStock.Enabled = userValidation.validateForm("frmStock");
+            BtnKind.Enabled = userValidation.validateForm("FrmKind");
+            BtnItems.Enabled = userValidation.validateForm("frmItems");
         }
     }
 }

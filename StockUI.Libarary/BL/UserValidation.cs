@@ -18,5 +18,23 @@ namespace StockUI.Libarary.BL
             }
             return true;
         }
+        public bool validateEdit(string Name)
+        {
+            var x = user.Rights.FindIndex(b => b.Name == Name);
+            if (user.Rights[x].Edit == true)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool validateDelete(string Name)
+        {
+            var x = user.Rights.FindIndex(b => b.Name == Name);
+            if (user.Rights[x].Edit == true)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

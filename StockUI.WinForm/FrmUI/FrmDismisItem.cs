@@ -25,6 +25,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly UnitConversions unitConversions;
         private readonly FrmBarCode frmBarCode;
         private readonly DataGridFormat dataGridFormat;
+        private readonly UserValidation userValidation;
         private readonly IDepartmentEndPoint departmentEndPoint;
         private readonly IDismisItemDetailEndPoint dismisItemDetailEndPoint;
         private readonly IDismisItemEndPoint dismisItemEndPoint;
@@ -39,7 +40,8 @@ namespace StockUI.WinForm.FrmUI
         int count = 0;
         
         public FrmDismisItem(IStockEndPoint stockEndPoint, IMapper mapper, IUnitEndPoint unitEndPoint,ReportForms reportForms
-                            , IItemEndPoint itemEndPoint, UnitConversions unitConversions,FrmBarCode frmBarCode, DataGridFormat dataGridFormat
+                            , IItemEndPoint itemEndPoint, UnitConversions unitConversions,FrmBarCode frmBarCode
+                            , DataGridFormat dataGridFormat,UserValidation userValidation
                             , IDepartmentEndPoint departmentEndPoint, IDismisItemDetailEndPoint dismisItemDetailEndPoint
                             , IDismisItemEndPoint dismisItemEndPoint, IStockItemEndPoint stockItemEndPoint)
         {
@@ -52,6 +54,7 @@ namespace StockUI.WinForm.FrmUI
             this.unitConversions = unitConversions;
             this.frmBarCode = frmBarCode;
             this.dataGridFormat = dataGridFormat;
+            this.userValidation = userValidation;
             this.departmentEndPoint = departmentEndPoint;
             this.dismisItemDetailEndPoint = dismisItemDetailEndPoint;
             this.dismisItemEndPoint = dismisItemEndPoint;
@@ -59,6 +62,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void FrmDismisItem_Load(object sender, EventArgs e)
         {
+            BtnDelete.Enabled = userValidation.validateDelete("FrmDismisItem");
+            BtnUpdate.Enabled = userValidation.validateEdit("FrmDismisItem");
             loadlist();
             var st = stockEndPoint.GetAll();
             loadcmb<Stock>(st.ToList(), CmbStock);
@@ -231,7 +236,7 @@ namespace StockUI.WinForm.FrmUI
             {
                 BtnNew.Text = "جديد";
                 BtnSave.Enabled = false;
-                BtnUpdate.Enabled = true;
+                //BtnUpdate.Enabled = true;
                 //button5.Enabled = false;
                 button7.Enabled = false;
                 button8.Enabled = false;
@@ -241,7 +246,7 @@ namespace StockUI.WinForm.FrmUI
             {
                 BtnNew.Text = "إلغاء";
                 BtnSave.Enabled = true;
-                BtnUpdate.Enabled = false;
+               // BtnUpdate.Enabled = false;
                 //button5.Enabled = true;
                 button7.Enabled = true;
                 button8.Enabled = true;

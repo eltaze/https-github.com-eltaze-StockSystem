@@ -16,17 +16,21 @@ namespace StockUI.WinForm.FrmUI
         private readonly IMapper mapper;
         private readonly Validation validation;
         private readonly IKindEndPoint kindEndPoint;
+        private readonly UserValidation userValidation;
         private List<KindDisplay> kindDisplays = new List<KindDisplay>();
         int count = 0;
-        public FrmKind(IMapper mapper, Validation validation,IKindEndPoint kindEndPoint)
+        public FrmKind(IMapper mapper, Validation validation,IKindEndPoint kindEndPoint,UserValidation userValidation)
         {
             InitializeComponent();
             this.mapper = mapper;
             this.validation = validation;
             this.kindEndPoint = kindEndPoint;
+            this.userValidation = userValidation;
         }
         private void FrmKind_Load(object sender, EventArgs e)
         {
+            BtnDelete.Enabled = userValidation.validateDelete("FrmKind");
+            BtnEdit.Enabled = userValidation.validateEdit("FrmKind");
             var output = kindEndPoint.GetAll().ToList();
             kindDisplays = mapper.Map<List<KindDisplay>>(output);
             if (kindDisplays.Count>0)

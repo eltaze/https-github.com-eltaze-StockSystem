@@ -32,11 +32,11 @@
             this.button13 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.button12 = new System.Windows.Forms.Button();
+            this.BtnUsers = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.LblUser = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.BtnDismisItem = new System.Windows.Forms.Button();
+            this.BtnRecitMove = new System.Windows.Forms.Button();
             this.BtnRecitItem = new System.Windows.Forms.Button();
             this.BtnOrder = new System.Windows.Forms.Button();
             this.BtnMoveOrder = new System.Windows.Forms.Button();
@@ -45,34 +45,34 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BtnItems = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
+            this.BtnKind = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
+            this.BtnStock = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
+            this.BtnDepartment = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
+            this.BtnUnit = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.listBox2 = new System.Windows.Forms.ListBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.listBox3 = new System.Windows.Forms.ListBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -81,11 +81,11 @@
             this.panel1.Controls.Add(this.button13);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.button12);
+            this.panel1.Controls.Add(this.BtnUsers);
             this.panel1.Controls.Add(this.button11);
             this.panel1.Controls.Add(this.LblUser);
-            this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.button5);
+            this.panel1.Controls.Add(this.BtnDismisItem);
+            this.panel1.Controls.Add(this.BtnRecitMove);
             this.panel1.Controls.Add(this.BtnRecitItem);
             this.panel1.Controls.Add(this.BtnOrder);
             this.panel1.Controls.Add(this.BtnMoveOrder);
@@ -106,7 +106,7 @@
             this.button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button13.Location = new System.Drawing.Point(12, 7);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(48, 65);
+            this.button13.Size = new System.Drawing.Size(61, 64);
             this.button13.TabIndex = 37;
             this.button13.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button13.UseVisualStyleBackColor = true;
@@ -129,17 +129,17 @@
             this.label11.TabIndex = 37;
             this.label11.Text = "الصلاحيات";
             // 
-            // button12
+            // BtnUsers
             // 
-            this.button12.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__12_;
-            this.button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button12.Location = new System.Drawing.Point(153, 7);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(85, 70);
-            this.button12.TabIndex = 36;
-            this.button12.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.BtnUsers.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__12_;
+            this.BtnUsers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnUsers.Location = new System.Drawing.Point(153, 7);
+            this.BtnUsers.Name = "BtnUsers";
+            this.BtnUsers.Size = new System.Drawing.Size(85, 70);
+            this.BtnUsers.TabIndex = 36;
+            this.BtnUsers.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnUsers.UseVisualStyleBackColor = true;
+            this.BtnUsers.Click += new System.EventHandler(this.button12_Click);
             // 
             // button11
             // 
@@ -155,35 +155,35 @@
             // LblUser
             // 
             this.LblUser.AutoSize = true;
-            this.LblUser.Location = new System.Drawing.Point(14, 74);
+            this.LblUser.Location = new System.Drawing.Point(21, 74);
             this.LblUser.Name = "LblUser";
             this.LblUser.Size = new System.Drawing.Size(42, 13);
             this.LblUser.TabIndex = 25;
             this.LblUser.Text = "الأصناف";
             // 
-            // button6
+            // BtnDismisItem
             // 
-            this.button6.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__4_;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Location = new System.Drawing.Point(814, 7);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(85, 70);
-            this.button6.TabIndex = 24;
-            this.button6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.BtnDismisItem.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__4_;
+            this.BtnDismisItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnDismisItem.Location = new System.Drawing.Point(814, 7);
+            this.BtnDismisItem.Name = "BtnDismisItem";
+            this.BtnDismisItem.Size = new System.Drawing.Size(85, 70);
+            this.BtnDismisItem.TabIndex = 24;
+            this.BtnDismisItem.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnDismisItem.UseVisualStyleBackColor = true;
+            this.BtnDismisItem.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button5
+            // BtnRecitMove
             // 
-            this.button5.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__3_;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.Location = new System.Drawing.Point(708, 7);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(85, 70);
-            this.button5.TabIndex = 23;
-            this.button5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.BtnRecitMove.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__3_;
+            this.BtnRecitMove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnRecitMove.Location = new System.Drawing.Point(708, 7);
+            this.BtnRecitMove.Name = "BtnRecitMove";
+            this.BtnRecitMove.Size = new System.Drawing.Size(85, 70);
+            this.BtnRecitMove.TabIndex = 23;
+            this.BtnRecitMove.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnRecitMove.UseVisualStyleBackColor = true;
+            this.BtnRecitMove.Click += new System.EventHandler(this.button5_Click);
             // 
             // BtnRecitItem
             // 
@@ -266,30 +266,30 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "إذن  صرف";
             // 
-            // button2
+            // BtnItems
             // 
-            this.button2.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__7_;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(23, 397);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(55, 53);
-            this.button2.TabIndex = 20;
-            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.BtnItems.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__7_;
+            this.BtnItems.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnItems.Location = new System.Drawing.Point(23, 397);
+            this.BtnItems.Name = "BtnItems";
+            this.BtnItems.Size = new System.Drawing.Size(55, 53);
+            this.BtnItems.TabIndex = 20;
+            this.BtnItems.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnItems.UseVisualStyleBackColor = true;
+            this.BtnItems.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Desktop;
             this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.button10);
+            this.panel3.Controls.Add(this.BtnKind);
             this.panel3.Controls.Add(this.label10);
-            this.panel3.Controls.Add(this.button9);
+            this.panel3.Controls.Add(this.BtnStock);
             this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.button8);
-            this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.BtnDepartment);
+            this.panel3.Controls.Add(this.BtnItems);
             this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.button7);
+            this.panel3.Controls.Add(this.BtnUnit);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 104);
@@ -309,17 +309,17 @@
             this.label6.TabIndex = 34;
             this.label6.Text = "الأصناف";
             // 
-            // button10
+            // BtnKind
             // 
-            this.button10.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__10_;
-            this.button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button10.Location = new System.Drawing.Point(23, 294);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(55, 53);
-            this.button10.TabIndex = 33;
-            this.button10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.BtnKind.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__10_;
+            this.BtnKind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnKind.Location = new System.Drawing.Point(23, 294);
+            this.BtnKind.Name = "BtnKind";
+            this.BtnKind.Size = new System.Drawing.Size(55, 53);
+            this.BtnKind.TabIndex = 33;
+            this.BtnKind.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnKind.UseVisualStyleBackColor = true;
+            this.BtnKind.Click += new System.EventHandler(this.button10_Click);
             // 
             // label10
             // 
@@ -333,17 +333,17 @@
             this.label10.TabIndex = 32;
             this.label10.Text = "الأنواع";
             // 
-            // button9
+            // BtnStock
             // 
-            this.button9.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__1_;
-            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button9.Location = new System.Drawing.Point(23, 194);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(55, 53);
-            this.button9.TabIndex = 31;
-            this.button9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.BtnStock.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__1_;
+            this.BtnStock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnStock.Location = new System.Drawing.Point(23, 194);
+            this.BtnStock.Name = "BtnStock";
+            this.BtnStock.Size = new System.Drawing.Size(55, 53);
+            this.BtnStock.TabIndex = 31;
+            this.BtnStock.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnStock.UseVisualStyleBackColor = true;
+            this.BtnStock.Click += new System.EventHandler(this.button9_Click);
             // 
             // label9
             // 
@@ -357,17 +357,17 @@
             this.label9.TabIndex = 30;
             this.label9.Text = "المخازن";
             // 
-            // button8
+            // BtnDepartment
             // 
-            this.button8.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__16_;
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button8.Location = new System.Drawing.Point(23, 96);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(55, 53);
-            this.button8.TabIndex = 29;
-            this.button8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.BtnDepartment.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__16_;
+            this.BtnDepartment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnDepartment.Location = new System.Drawing.Point(23, 96);
+            this.BtnDepartment.Name = "BtnDepartment";
+            this.BtnDepartment.Size = new System.Drawing.Size(55, 53);
+            this.BtnDepartment.TabIndex = 29;
+            this.BtnDepartment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnDepartment.UseVisualStyleBackColor = true;
+            this.BtnDepartment.Click += new System.EventHandler(this.button8_Click);
             // 
             // label8
             // 
@@ -381,17 +381,17 @@
             this.label8.TabIndex = 28;
             this.label8.Text = "الأقسام";
             // 
-            // button7
+            // BtnUnit
             // 
-            this.button7.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__14_;
-            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button7.Location = new System.Drawing.Point(23, 6);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(55, 53);
-            this.button7.TabIndex = 27;
-            this.button7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.BtnUnit.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__14_;
+            this.BtnUnit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnUnit.Location = new System.Drawing.Point(23, 6);
+            this.BtnUnit.Name = "BtnUnit";
+            this.BtnUnit.Size = new System.Drawing.Size(55, 53);
+            this.BtnUnit.TabIndex = 27;
+            this.BtnUnit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnUnit.UseVisualStyleBackColor = true;
+            this.BtnUnit.Click += new System.EventHandler(this.button7_Click);
             // 
             // label7
             // 
@@ -405,52 +405,6 @@
             this.label7.TabIndex = 26;
             this.label7.Text = "الوحدات";
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.listBox1);
-            this.panel2.Controls.Add(this.pictureBox13);
-            this.panel2.Location = new System.Drawing.Point(597, 123);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(310, 130);
-            this.panel2.TabIndex = 14;
-            // 
-            // listBox1
-            // 
-            this.listBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "إجمالي حركات المخزن",
-            "=============",
-            "1-إذن صرف",
-            "2-إذن استلام"});
-            this.listBox1.Location = new System.Drawing.Point(110, 2);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(194, 121);
-            this.listBox1.TabIndex = 14;
-            // 
-            // pictureBox13
-            // 
-            this.pictureBox13.Image = global::StockUI.WinForm.Properties.Resources.pngfuel_com__9_;
-            this.pictureBox13.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(90, 86);
-            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox13.TabIndex = 13;
-            this.pictureBox13.TabStop = false;
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.Image = global::StockUI.WinForm.Properties.Resources.pngfuel_com__10_;
-            this.pictureBox10.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(90, 86);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox10.TabIndex = 11;
-            this.pictureBox10.TabStop = false;
-            // 
             // pictureBox11
             // 
             this.pictureBox11.Image = global::StockUI.WinForm.Properties.Resources.pngfuel_com__11_;
@@ -460,32 +414,6 @@
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox11.TabIndex = 12;
             this.pictureBox11.TabStop = false;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.listBox2);
-            this.panel4.Controls.Add(this.pictureBox10);
-            this.panel4.Location = new System.Drawing.Point(597, 269);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(310, 130);
-            this.panel4.TabIndex = 15;
-            // 
-            // listBox2
-            // 
-            this.listBox2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Items.AddRange(new object[] {
-            "إجمالي حركات المخزن",
-            "=============",
-            "1-إذن صرف",
-            "2-إذن استلام"});
-            this.listBox2.Location = new System.Drawing.Point(110, 2);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(194, 121);
-            this.listBox2.TabIndex = 14;
             // 
             // panel5
             // 
@@ -513,6 +441,78 @@
             this.listBox3.Size = new System.Drawing.Size(194, 121);
             this.listBox3.TabIndex = 14;
             // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = global::StockUI.WinForm.Properties.Resources.pngfuel_com__10_;
+            this.pictureBox10.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(90, 86);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox10.TabIndex = 11;
+            this.pictureBox10.TabStop = false;
+            // 
+            // listBox2
+            // 
+            this.listBox2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Items.AddRange(new object[] {
+            "إجمالي حركات المخزن",
+            "=============",
+            "1-إذن صرف",
+            "2-إذن استلام"});
+            this.listBox2.Location = new System.Drawing.Point(110, 2);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(194, 121);
+            this.listBox2.TabIndex = 14;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.listBox2);
+            this.panel4.Controls.Add(this.pictureBox10);
+            this.panel4.Location = new System.Drawing.Point(597, 269);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(310, 130);
+            this.panel4.TabIndex = 15;
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.Image = global::StockUI.WinForm.Properties.Resources.pngfuel_com__9_;
+            this.pictureBox13.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(90, 86);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox13.TabIndex = 13;
+            this.pictureBox13.TabStop = false;
+            // 
+            // listBox1
+            // 
+            this.listBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "إجمالي حركات المخزن",
+            "=============",
+            "1-إذن صرف",
+            "2-إذن استلام"});
+            this.listBox1.Location = new System.Drawing.Point(110, 2);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(194, 121);
+            this.listBox1.TabIndex = 14;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.listBox1);
+            this.panel2.Controls.Add(this.pictureBox13);
+            this.panel2.Location = new System.Drawing.Point(597, 123);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(310, 130);
+            this.panel2.TabIndex = 14;
+            // 
             // FrmDashBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -536,12 +536,12 @@
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -550,40 +550,40 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnMoveOrder;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BtnItems;
         private System.Windows.Forms.Button BtnOrder;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button BtnRecitMove;
         private System.Windows.Forms.Button BtnRecitItem;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button BtnDismisItem;
         private System.Windows.Forms.Label LblUser;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button BtnUnit;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button BtnStock;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button BtnDepartment;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button BtnKind;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button BtnUsers;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
