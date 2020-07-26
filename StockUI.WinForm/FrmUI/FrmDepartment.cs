@@ -123,5 +123,19 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show(validation.massege);
             }
         }
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            department department = new department
+            {
+                Id = departmentDisplays[count].Id,
+                Name = departmentDisplays[count].Name,
+                Note = departmentDisplays[count].Note
+            };
+            departmentEndPoint.Delete(department);
+            departmentDisplays.RemoveAt(count);
+            MessageBox.Show("تم الحذف بنجاح");
+            count = departmentDisplays.Count - 1;
+            navigation(count);
+        }
     }
 }

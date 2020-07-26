@@ -204,5 +204,21 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show(validation.massege);
             }
         }
+
+        private void Btndelete_Click(object sender, EventArgs e)
+        {
+            Unit unit = new Unit
+            {
+                Id = unitDisplays[count].Id,
+                Name = unitDisplays[count].Name,
+                Note = unitDisplays[count].Note,
+                Qty = unitDisplays[count].Qty
+            };
+            unitEndPoint.Delete(unit);
+            unitDisplays.RemoveAt(count);
+            MessageBox.Show("تم الحذف بنجاح");
+            count = unitDisplays.Count - 1;
+            navigation(count);
+        }
     }
 }

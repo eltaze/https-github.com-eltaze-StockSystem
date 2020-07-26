@@ -1,11 +1,8 @@
 ﻿using StockSystem.Libarary.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StockUI.Libarary.BL
 {
-   public class UserValidation
+    public class UserValidation
     {
         public User user { get; set; }
 

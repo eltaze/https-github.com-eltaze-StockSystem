@@ -148,5 +148,20 @@ namespace StockUI.WinForm.FrmUI
         }
 
         #endregion
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            Stock stock = new Stock
+            {
+                Id = stockDisplay[count].Id,
+                Name =stockDisplay[count].Name,
+                Note = stockDisplay[count].Note
+            };
+            stockEndPoint.Delete(stock);
+            stockDisplay.RemoveAt(count);
+            MessageBox.Show("تم الحذف بنجاح");
+            count = stockDisplay.Count - 1;
+            navigation(count);
+        }
     }
 }

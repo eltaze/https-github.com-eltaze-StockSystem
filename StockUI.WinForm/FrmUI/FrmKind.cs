@@ -140,5 +140,20 @@ namespace StockUI.WinForm.FrmUI
             //    MessageBox.Show(validation.massege);
             //}
         }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            Kind kind = new Kind
+            {
+                Id = kindDisplays[count].Id,
+                Name = kindDisplays[count].Name,
+                Note = kindDisplays[count].Note
+            };
+            kindEndPoint.Delete(kind);
+            kindDisplays.RemoveAt(count);
+            MessageBox.Show("تم الحذف بنجاح");
+            count = kindDisplays.Count - 1;
+            navigation(count);
+        }
     }
 }

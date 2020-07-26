@@ -235,7 +235,6 @@ namespace StockUI.WinForm.FrmUI
             TxtBarcode.Text = barcode();
             TxtName.Focus();
         }
-
         private void TxtBarcode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode==Keys.Enter)
@@ -276,6 +275,24 @@ namespace StockUI.WinForm.FrmUI
             {
                 load(int.Parse(TxtId.Text.ToString()), x);
             }
+        }
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            Item item = new Item
+            {
+                Id = itemDisplays[count].Id,
+                Barcode = itemDisplays[count].Barcode,
+                kindId = itemDisplays[count].kindId,
+                DepartmentId = itemDisplays[count].DepartmentId,
+                UnitId = itemDisplays[count].UnitId,
+                Name = itemDisplays[count].Name,
+                Note = itemDisplays[count].Note
+            };
+            itemEndPoint.Delete(item);
+            itemDisplays.RemoveAt(count);
+            MessageBox.Show("تم الحذف بنجاح");
+            count = itemDisplays.Count - 1;
+            navigation(count);
         }
     }
 }
