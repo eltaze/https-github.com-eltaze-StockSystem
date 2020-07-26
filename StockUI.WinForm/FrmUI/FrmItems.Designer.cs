@@ -315,6 +315,7 @@
             this.TxtQty.ReadOnly = true;
             this.TxtQty.Size = new System.Drawing.Size(246, 20);
             this.TxtQty.TabIndex = 114;
+            this.TxtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQty_KeyPress);
             // 
             // checkBox1
             // 

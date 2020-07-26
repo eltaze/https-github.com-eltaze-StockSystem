@@ -107,15 +107,15 @@ namespace StockUI.WinForm.FrmUI
         {
             //BtnUsers.Enabled = userValidation.validateForm("frmUserRegister");
             BtnOrder.Enabled = userValidation.validateForm("FrmOrder");
-            BtnMoveOrder.Enabled = userValidation.validateForm("frmMoveOrder");
-            BtnRecitItem.Enabled = userValidation.validateForm("frmItemRecit");
-            BtnRecitMove.Enabled = userValidation.validateForm("frmRecitMove");
-            BtnRecitItem.Enabled = userValidation.validateForm("frmDismisItem");
-            BtnUnit.Enabled = userValidation.validateForm("frmUnit");
-            BtnDepartment.Enabled = userValidation.validateForm("frmDepartment");
-            BtnStock.Enabled = userValidation.validateForm("frmStock");
+            BtnMoveOrder.Enabled = userValidation.validateForm("FrmMoveOrder");
+            BtnRecitItem.Enabled = userValidation.validateForm("FrmItemRecit");
+            BtnRecitMove.Enabled = userValidation.validateForm("FrmRecitMove");
+            BtnRecitItem.Enabled = userValidation.validateForm("FrmDismisItem");
+            BtnUnit.Enabled = userValidation.validateForm("FrmUnit");
+            BtnDepartment.Enabled = userValidation.validateForm("FrmDepartment");
+            BtnStock.Enabled = userValidation.validateForm("FrmStock");
             BtnKind.Enabled = userValidation.validateForm("FrmKind");
-            BtnItems.Enabled = userValidation.validateForm("frmItems");
+            BtnItems.Enabled = userValidation.validateForm("FrmItems");
         }
     }
 }

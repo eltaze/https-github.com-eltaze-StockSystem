@@ -25,6 +25,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly UserValidation userValidation;
         private readonly IStockEndPoint stockEndPoint;
         private readonly UnitConversions unitConversions;
+        private readonly Validation validation;
         private readonly IItemEndPoint itemEndPoint;
         private readonly IUnitEndPoint unitEndPoint;
         private List<Stock> stocks = new List<Stock>();
@@ -38,7 +39,7 @@ namespace StockUI.WinForm.FrmUI
         public FrmRecitMove(IMapper mapper, ImoveorderdetailEndPoint moveorderdetailEndPoint, DataGridFormat dataGridFormat
             , ImoveorderEndPoint moveorderEndPoint, IOrderDetailEndPoint orderDetailEndPoint, ReportForms reportForms 
             ,IStockItemEndPoint stockItemEndPoint,IRecitItemEndPoint recitItemEndPoint,UserValidation userValidation
-            , IStockEndPoint stockEndPoint, UnitConversions unitConversions
+            , IStockEndPoint stockEndPoint, UnitConversions unitConversions,Validation validation
             , IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint)
         {
             InitializeComponent();
@@ -53,6 +54,7 @@ namespace StockUI.WinForm.FrmUI
             this.userValidation = userValidation;
             this.stockEndPoint = stockEndPoint;
             this.unitConversions = unitConversions;
+            this.validation = validation;
             this.itemEndPoint = itemEndPoint;
             this.unitEndPoint = unitEndPoint;
         }
@@ -285,6 +287,11 @@ namespace StockUI.WinForm.FrmUI
         private void BtnNew_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e);
         }
     }
 }

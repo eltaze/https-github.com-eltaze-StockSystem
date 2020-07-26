@@ -284,7 +284,6 @@
             this.dataGridView2.Size = new System.Drawing.Size(544, 287);
             this.dataGridView2.TabIndex = 163;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
-           // this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // panel2
             // 
@@ -382,6 +381,7 @@
             this.TxtQty.Name = "TxtQty";
             this.TxtQty.Size = new System.Drawing.Size(309, 20);
             this.TxtQty.TabIndex = 141;
+            this.TxtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQty_KeyPress);
             // 
             // label9
             // 

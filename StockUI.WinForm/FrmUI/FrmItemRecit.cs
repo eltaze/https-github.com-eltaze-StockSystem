@@ -22,6 +22,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly ReportForms reportForms;
         private readonly IItemEndPoint itemEndPoint;
         private readonly IUnitEndPoint unitEndPoint;
+        private readonly Validation validation;
         private readonly DataGridFormat dataGridFormat;
         private readonly UserValidation userValidation;
         private readonly UnitConversions unitConversions;
@@ -33,7 +34,7 @@ namespace StockUI.WinForm.FrmUI
 
         public FrmItemRecit(IRecitItemDetailEndPoint recitItemDetailEndPoint, IDepartmentEndPoint departmentEndPoint
             , IRecitItemEndPoint recitItemEndPoint, IMapper mapper, IStockItemEndPoint stockItemEndPoint,ReportForms reportForms
-            ,IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint
+            ,IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint,Validation validation
             , DataGridFormat dataGridFormat,UserValidation userValidation
             , UnitConversions unitConversions, IStockEndPoint stockEndPoint)
         {
@@ -46,6 +47,7 @@ namespace StockUI.WinForm.FrmUI
             this.reportForms = reportForms;
             this.itemEndPoint = itemEndPoint;
             this.unitEndPoint = unitEndPoint;
+            this.validation = validation;
             this.dataGridFormat = dataGridFormat;
             this.userValidation = userValidation;
             this.unitConversions = unitConversions;
@@ -339,6 +341,11 @@ namespace StockUI.WinForm.FrmUI
             itemReciteDisplay.recitItemDetails = itemRecitDetailsDisplay;
             reportForms.ItemReciteDisplay = itemReciteDisplay;
             reportForms.ShowDialog();
+        }
+
+        private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e);
         }
     }
 }

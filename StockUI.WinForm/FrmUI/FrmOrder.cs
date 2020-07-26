@@ -24,6 +24,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly IItemEndPoint itemEndPoint;
         private readonly UserValidation userValidation;
         private readonly IBaseStockItemEndPoint baseStockItemEndPoint;
+        private readonly Validation validation;
         private readonly IDepartmentEndPoint departmentEndPoint;
         private readonly UnitConversions unitConversions;
         private readonly IStockEndPoint stockEndPoint;
@@ -40,7 +41,7 @@ namespace StockUI.WinForm.FrmUI
         public FrmOrder(IMapper mapper,IOrderEndPoint orderEndPoint,FrmBarCode frmBarCode
             ,IOrderDetailEndPoint orderDetailEndPoint,DataGridFormat dataGridFormat
             ,IUnitEndPoint unitEndPoint,IItemEndPoint itemEndPoint,UserValidation userValidation
-            ,IBaseStockItemEndPoint baseStockItemEndPoint
+            ,IBaseStockItemEndPoint baseStockItemEndPoint,Validation validation
             ,IDepartmentEndPoint departmentEndPoint,UnitConversions unitConversions
             ,IStockEndPoint stockEndPoint,IStockItemEndPoint stockItemEndPoint,ReportForms reportForms)
         {
@@ -54,6 +55,7 @@ namespace StockUI.WinForm.FrmUI
             this.itemEndPoint = itemEndPoint;
             this.userValidation = userValidation;
             this.baseStockItemEndPoint = baseStockItemEndPoint;
+            this.validation = validation;
             this.departmentEndPoint = departmentEndPoint;
             this.unitConversions = unitConversions;
             this.stockEndPoint = stockEndPoint;
@@ -62,8 +64,7 @@ namespace StockUI.WinForm.FrmUI
         }
         private void loadcmb<T>(List<T> t, ComboBox comboBox)
         {
-            BtnDelete.Enabled = userValidation.validateDelete("FrmOrder");
-            BtnUpdate.Enabled = userValidation.validateEdit("FrmOrder");
+            
             comboBox.DataSource = t;
             comboBox.ValueMember = "Id";
             comboBox.DisplayMember = "Name";
@@ -320,6 +321,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void FrmOrder_Load(object sender, EventArgs e)
         {
+            BtnDelete.Enabled = userValidation.validateDelete("FrmOrder");
+            BtnUpdate.Enabled = userValidation.validateEdit("FrmOrder");
             items = mapper.Map<List<ItemDisplay>>(itemEndPoint.GetAll().ToList());
             var z = stockEndPoint.GetAll();
             loadcmb<Stock>(z.ToList(), CmbStock);
@@ -492,6 +495,16 @@ namespace StockUI.WinForm.FrmUI
         private void BtnDelete_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e);
+        }
+
+        private void TxtUnitPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e);
         }
     }
 }

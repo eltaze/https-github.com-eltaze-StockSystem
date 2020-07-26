@@ -234,6 +234,7 @@
             this.TxtQty.ReadOnly = true;
             this.TxtQty.Size = new System.Drawing.Size(232, 20);
             this.TxtQty.TabIndex = 78;
+            this.TxtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQty_KeyPress);
             // 
             // label6
             // 
@@ -253,6 +254,7 @@
             this.TxtQuntityFormBig.Size = new System.Drawing.Size(232, 20);
             this.TxtQuntityFormBig.TabIndex = 80;
             this.TxtQuntityFormBig.Text = "1";
+            this.TxtQuntityFormBig.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQuntityFormBig_KeyPress);
             // 
             // label7
             // 

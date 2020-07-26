@@ -1,6 +1,7 @@
 ﻿using StockSystem.Libarary.BL;
 using StockSystem.Libarary.Interfaces;
 using StockSystem.Libarary.Model;
+using System.Windows.Forms;
 
 namespace StockUI.Libarary.BL
 {
@@ -116,6 +117,19 @@ namespace StockUI.Libarary.BL
             }
             massege = "";
             return true;
+        }
+        public void validateText(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

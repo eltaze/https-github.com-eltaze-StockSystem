@@ -26,6 +26,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly FrmBarCode frmBarCode;
         private readonly DataGridFormat dataGridFormat;
         private readonly UserValidation userValidation;
+        private readonly Validation validation;
         private readonly IDepartmentEndPoint departmentEndPoint;
         private readonly IDismisItemDetailEndPoint dismisItemDetailEndPoint;
         private readonly IDismisItemEndPoint dismisItemEndPoint;
@@ -41,7 +42,7 @@ namespace StockUI.WinForm.FrmUI
         
         public FrmDismisItem(IStockEndPoint stockEndPoint, IMapper mapper, IUnitEndPoint unitEndPoint,ReportForms reportForms
                             , IItemEndPoint itemEndPoint, UnitConversions unitConversions,FrmBarCode frmBarCode
-                            , DataGridFormat dataGridFormat,UserValidation userValidation
+                            , DataGridFormat dataGridFormat,UserValidation userValidation,Validation validation
                             , IDepartmentEndPoint departmentEndPoint, IDismisItemDetailEndPoint dismisItemDetailEndPoint
                             , IDismisItemEndPoint dismisItemEndPoint, IStockItemEndPoint stockItemEndPoint)
         {
@@ -55,6 +56,7 @@ namespace StockUI.WinForm.FrmUI
             this.frmBarCode = frmBarCode;
             this.dataGridFormat = dataGridFormat;
             this.userValidation = userValidation;
+            this.validation = validation;
             this.departmentEndPoint = departmentEndPoint;
             this.dismisItemDetailEndPoint = dismisItemDetailEndPoint;
             this.dismisItemEndPoint = dismisItemEndPoint;
@@ -472,6 +474,11 @@ namespace StockUI.WinForm.FrmUI
             TxtItemId.Text = bar.ItemId.ToString();
             TxtQty.Text = bar.QTY.ToString();
             CmbUnitId.SelectedValue = bar.UnitId;
+        }
+
+        private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e);
         }
     }
 }

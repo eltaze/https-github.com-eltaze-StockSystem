@@ -18,7 +18,7 @@ namespace StockUI.Libarary.BL
         public bool validateEdit(string Name)
         {
             var x = user.Rights.FindIndex(b => b.Name == Name);
-            if (user.Rights[x].Edit == true)
+            if (user.Rights[x]?.Edit == true)
             {
                 return true;
             }

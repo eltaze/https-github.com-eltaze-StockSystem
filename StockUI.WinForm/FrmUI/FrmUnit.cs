@@ -220,5 +220,15 @@ namespace StockUI.WinForm.FrmUI
             count = unitDisplays.Count - 1;
             navigation(count);
         }
+
+        private void TxtQuntityFormBig_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e);
+        }
+
+        private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e);
+        }
     }
 }

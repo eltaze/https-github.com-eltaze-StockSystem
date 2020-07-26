@@ -27,6 +27,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly IOrderDetailEndPoint orderDetailEndPoint;
         private readonly ReportForms reportForms;
         private readonly UserValidation userValidation;
+        private readonly Validation validation;
         private readonly IStockEndPoint stockEndPoint;
         private readonly IItemEndPoint itemEndPoint;
         private readonly IUnitEndPoint unitEndPoint;
@@ -38,7 +39,7 @@ namespace StockUI.WinForm.FrmUI
 
         public FrmMoveOrder(IMapper mapper,ImoveorderdetailEndPoint moveorderdetailEndPoint, DataGridFormat dataGridFormat
             ,ImoveorderEndPoint moveorderEndPoint,IOrderDetailEndPoint orderDetailEndPoint
-            ,ReportForms reportForms,UserValidation userValidation
+            ,ReportForms reportForms,UserValidation userValidation,Validation validation
             ,IStockEndPoint stockEndPoint,IItemEndPoint itemEndPoint,IUnitEndPoint unitEndPoint)
         {
             InitializeComponent();
@@ -49,6 +50,7 @@ namespace StockUI.WinForm.FrmUI
             this.orderDetailEndPoint = orderDetailEndPoint;
             this.reportForms = reportForms;
             this.userValidation = userValidation;
+            this.validation = validation;
             this.stockEndPoint = stockEndPoint;
             this.itemEndPoint = itemEndPoint;
             this.unitEndPoint = unitEndPoint;
@@ -354,6 +356,11 @@ namespace StockUI.WinForm.FrmUI
             reportForms.start = 2;
             reportForms.MoveorderDisplay = moveorderDisplays[count];
             reportForms.ShowDialog();
+        }
+
+        private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e);
         }
     }
 }
