@@ -9,18 +9,17 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Cryptography.Pkcs;
 using System.Windows.Forms;
 
 namespace StockUI.WinForm.FrmUI
 {
-    public partial class FrmDismisItem : Form,IBarCode
+    public partial class FrmDismisItem : Form, IBarCode
     {
         private readonly IStockEndPoint stockEndPoint;
         private readonly IMapper mapper;
         private readonly IUnitEndPoint unitEndPoint;
         private readonly ReportForms reportForms;
+        private readonly stockItemCalc stockItemCalc;
         private readonly IItemEndPoint itemEndPoint;
         private readonly UnitConversions unitConversions;
         private readonly FrmBarCode frmBarCode;
@@ -39,10 +38,10 @@ namespace StockUI.WinForm.FrmUI
         private List<DismisItemDisplay> dismisItemDisplays = new List<DismisItemDisplay>();
         private List<DismisItemDetailDisplay> dismisItemDetailDisplays = new List<DismisItemDetailDisplay>();
         int count = 0;
-        
-        public FrmDismisItem(IStockEndPoint stockEndPoint, IMapper mapper, IUnitEndPoint unitEndPoint,ReportForms reportForms
-                            , IItemEndPoint itemEndPoint, UnitConversions unitConversions,FrmBarCode frmBarCode
-                            , DataGridFormat dataGridFormat,UserValidation userValidation,Validation validation
+        public FrmDismisItem(IStockEndPoint stockEndPoint, IMapper mapper, IUnitEndPoint unitEndPoint
+                            , ReportForms reportForms, stockItemCalc stockItemCalc
+                            , IItemEndPoint itemEndPoint, UnitConversions unitConversions, FrmBarCode frmBarCode
+                            , DataGridFormat dataGridFormat, UserValidation userValidation, Validation validation
                             , IDepartmentEndPoint departmentEndPoint, IDismisItemDetailEndPoint dismisItemDetailEndPoint
                             , IDismisItemEndPoint dismisItemEndPoint, IStockItemEndPoint stockItemEndPoint)
         {
@@ -51,6 +50,7 @@ namespace StockUI.WinForm.FrmUI
             this.mapper = mapper;
             this.unitEndPoint = unitEndPoint;
             this.reportForms = reportForms;
+            this.stockItemCalc = stockItemCalc;
             this.itemEndPoint = itemEndPoint;
             this.unitConversions = unitConversions;
             this.frmBarCode = frmBarCode;
@@ -70,7 +70,7 @@ namespace StockUI.WinForm.FrmUI
             var st = stockEndPoint.GetAll();
             loadcmb<Stock>(st.ToList(), CmbStock);
             loadcmb<department>(departments, CmbDepartment);
-            if (dismisItemDisplays.Count >0)
+            if (dismisItemDisplays.Count > 0)
             {
                 navigation(0);
                 count = 0;
@@ -79,7 +79,7 @@ namespace StockUI.WinForm.FrmUI
         private void loadlist()
         {
             dismisItemDisplays = mapper.Map<List<DismisItemDisplay>>(dismisItemEndPoint.GetAll());
-            stockitems = stockItemEndPoint.GetAll();
+            //stockitems = stockItemEndPoint.GetAll();
             items = itemEndPoint.GetAll();
             departments = departmentEndPoint.GetAll();
         }
@@ -93,13 +93,13 @@ namespace StockUI.WinForm.FrmUI
         #region Navigation for system
         private void navigation(int id)
         {
-            if (id >=0 && id <= dismisItemDisplays.Count -1)
+            if (id >= 0 && id <= dismisItemDisplays.Count - 1)
             {
                 TxtId.Text = dismisItemDisplays[id].Id.ToString();
                 CmbStock.SelectedValue = dismisItemDisplays[id].StockId;
                 TxtFrom.Text = dismisItemDisplays[id].DismisTo;
                 dateTimePicker1.Value = dismisItemDisplays[id].Odate;
-                TxtQty.Text = dismisItemDisplays[id].Note;
+                
                 loadDismisDetail(dismisItemDisplays[id].Id);
                 filldate();
                 dataGridFormat.Style(dataGridView1);
@@ -109,7 +109,7 @@ namespace StockUI.WinForm.FrmUI
         private void loadDismisDetail(int id)
         {
             dismisItemDetailDisplays.Clear();
-            dismisItemDetailDisplays = mapper.Map<List< DismisItemDetailDisplay>>(dismisItemDetailEndPoint.GetByRecitID(id));
+            dismisItemDetailDisplays = mapper.Map<List<DismisItemDetailDisplay>>(dismisItemDetailEndPoint.GetByRecitID(id));
             foreach (DismisItemDetailDisplay item in dismisItemDetailDisplays)
             {
                 int x = items.FindIndex(b => b.Id == item.ItemId);
@@ -117,7 +117,7 @@ namespace StockUI.WinForm.FrmUI
                 item.BarCode = items[x].Barcode;
                 item.UnitName = unitEndPoint.GetByID(item.UnitId).Name;
                 x = departments.FindIndex(b => b.Id == items[x].DepartmentId);
-                item.DepartmentName = departments[x].Name;          
+                item.DepartmentName = departments[x].Name;
             }
         }
         private void BtnNext_Click(object sender, EventArgs e)
@@ -182,20 +182,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void loadbalance()
         {
-            int v = stockitems.FindIndex(b => b.StockId == int.Parse(CmbStock.SelectedValue.ToString()) && b.ItemId == int.Parse(TxtItemId.Text.ToString()));
-            stockitem z;
-            if (v == -1)
-            {
-                z = new stockitem();
-                z.ItemId = int.Parse(TxtItemId.Text.ToString());
-                z.Balance = 0;
-                int n = items.FindIndex(b => b.Id == int.Parse(CmbItemName.SelectedValue.ToString()));
-                z.UnitId = items[n].UnitId;
-            }
-            else
-            {
-                z = stockitems[v];
-            }
+            stockitem z = stockItemCalc.GetStockitem(int.Parse(CmbStock.SelectedValue.ToString())
+                                                    , int.Parse(TxtItemId.Text.ToString()));  
             foreach (Unit item in units)
             {
                 if (item.Id == z.UnitId)
@@ -248,7 +236,7 @@ namespace StockUI.WinForm.FrmUI
             {
                 BtnNew.Text = "إلغاء";
                 BtnSave.Enabled = true;
-               // BtnUpdate.Enabled = false;
+                // BtnUpdate.Enabled = false;
                 //button5.Enabled = true;
                 button7.Enabled = true;
                 button8.Enabled = true;
@@ -273,17 +261,16 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            if (validate() ==false )
+            if (validate() == false)
             {
                 return;
             }
-            
             if (decimal.Parse(TxtQty.Text.ToString()) > decimal.Parse(TxtBalance.Text.ToString()))
             {
                 MessageBox.Show("لايمكن صرف كميات غير متوفرة في المخزن");
-                return ;
+                return;
             }
-           
+
             int x = items.FindIndex(b => b.Id == int.Parse(TxtItemId.Text));
             int xx = dismisItemDetailDisplays.FindIndex(b => b.ItemId == int.Parse(CmbItemName.SelectedValue.ToString()));
             if (xx != -1)
@@ -292,8 +279,7 @@ namespace StockUI.WinForm.FrmUI
                 int id2 = units.FindIndex(b => b.Id == int.Parse(CmbUnitId.SelectedValue.ToString()));
                 if (units[id1].Id == units[id2].Id)
                 {
-                    dismisItemDetailDisplays[x].Qty -= decimal.Parse(TxtQty.Text.ToString());
-
+                    dismisItemDetailDisplays[x].Qty += decimal.Parse(TxtQty.Text.ToString());
                 }
                 else
                 {
@@ -301,10 +287,11 @@ namespace StockUI.WinForm.FrmUI
                     dismisItemDetailDisplays[x].UnitId = units[id2].Id;
                     dismisItemDetailDisplays[x].UnitName = units[id2].Name;
                 }
-                x = stockitems.FindIndex(b => b.ItemId == dismisItemDetailDisplays[x].ItemId && b.StockId == int.Parse(CmbStock.SelectedValue.ToString()));
-                stockitems[x].Balance = decimal.Parse(TxtBalance.Text.ToString()) - decimal.Parse(TxtQty.Text.ToString());
-                stockitems[x].UnitId = dismisItemDetailDisplays[x].UnitId;
-                TxtBalance.Text = stockitems[x].Balance.ToString("0.00");
+
+                var stockitem1 = stockItemCalc.GetStockitem(int.Parse(CmbStock.SelectedValue.ToString()), dismisItemDetailDisplays[x].ItemId);
+                stockitem1.Balance = decimal.Parse(TxtBalance.Text.ToString()) - decimal.Parse(TxtQty.Text.ToString());
+                stockitem1.UnitId = dismisItemDetailDisplays[x].UnitId;
+                TxtBalance.Text = stockitem1.Balance.ToString("0.00");
                 loadbalance();
                 filldate();
                 return;
@@ -321,10 +308,10 @@ namespace StockUI.WinForm.FrmUI
                 Qty = decimal.Parse(TxtQty.Text.ToString())
             };
             dismisItemDetailDisplays.Add(dismisItemDetailDisplay);
-            x = stockitems.FindIndex(b => b.ItemId == dismisItemDetailDisplay.ItemId && b.StockId == int.Parse(CmbStock.SelectedValue.ToString()));
-            stockitems[x].Balance = decimal.Parse(TxtBalance.Text.ToString()) - decimal.Parse(TxtQty.Text.ToString());
-            stockitems[x].UnitId = dismisItemDetailDisplay.UnitId;
-            TxtBalance.Text = stockitems[x].Balance.ToString("0.00");
+            var stockitem = stockItemCalc.GetStockitem(int.Parse(CmbStock.SelectedValue.ToString()), dismisItemDetailDisplays[x].ItemId);
+            stockitem.Balance = decimal.Parse(TxtBalance.Text.ToString()) - decimal.Parse(TxtQty.Text.ToString());
+            stockitem.UnitId = dismisItemDetailDisplays[x].UnitId;
+            TxtBalance.Text = stockitem.Balance.ToString("0.00");
             loadbalance();
             filldate();
         }
@@ -353,7 +340,7 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button7_Click(object sender, EventArgs e)
         {
-            if (validate()==false)
+            if (validate() == false)
             {
                 return;
             }
@@ -363,26 +350,27 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show("لايمكن تعديل صنف غير مدرج يجب إدراج الصنف أولا");
                 return;
             }
-            int kx = stockitems.FindIndex(b => b.ItemId == dismisItemDetailDisplays[x].ItemId);
-            stockitems[kx].Balance += dismisItemDetailDisplays[x].Qty;
-            if (stockitems[kx].UnitId == int.Parse(CmbUnitId.SelectedValue.ToString()))
+           // int kx = stockitems.FindIndex(b => b.ItemId == dismisItemDetailDisplays[x].ItemId);
+            var stockitem = stockItemCalc.GetStockitem(int.Parse(CmbStock.SelectedValue.ToString()), int.Parse(CmbItemName.SelectedValue.ToString()));
+            stockitem.Balance += dismisItemDetailDisplays[x].Qty;
+            if (stockitem.UnitId == int.Parse(CmbUnitId.SelectedValue.ToString()))
             {
-                stockitems[kx].Balance -= decimal.Parse(TxtQty.Text.ToString());
-                TxtBalance.Text = stockitems[kx].Balance.ToString("0.00");
+                stockitem.Balance -= decimal.Parse(TxtQty.Text.ToString());
+                TxtBalance.Text = stockitem.Balance.ToString("0.00");
             }
             else
             {
-                int id1 = units.FindIndex(b => b.Id == stockitems[kx].UnitId);
+                int id1 = units.FindIndex(b => b.Id == stockitem.UnitId);
                 int id2 = units.FindIndex(b => b.Id == int.Parse(CmbUnitId.SelectedValue.ToString()));
-                decimal tot= unitConversions.GetConvert(units[id1], units[id2], stockitems[kx].Balance);
+                decimal tot = unitConversions.GetConvert(units[id1], units[id2], stockitem.Balance);
                 if (tot < decimal.Parse(TxtQty.Text.ToString()))
                 {
                     MessageBox.Show("الكمية غير متاحة في المخزن");
                     return;
                 }
-                stockitems[kx].Balance = tot - decimal.Parse(TxtQty.Text.ToString());
-                stockitems[kx].UnitId = int.Parse(CmbUnitId.SelectedValue.ToString());
-                TxtBalance.Text = stockitems[kx].Balance.ToString("0.00");
+                stockitem.Balance = tot - decimal.Parse(TxtQty.Text.ToString());
+                stockitem.UnitId = int.Parse(CmbUnitId.SelectedValue.ToString());
+                TxtBalance.Text = stockitem.Balance.ToString("0.00");
             }
             dismisItemDetailDisplays[x].UnitName = CmbUnitId.Text;
             dismisItemDetailDisplays[x].UnitId = int.Parse(CmbUnitId.SelectedValue.ToString());
@@ -401,6 +389,7 @@ namespace StockUI.WinForm.FrmUI
                 TxtQty.Text = (string)dataGridView1[1, e.RowIndex].Value.ToString();
                 TxtBalance.Text = (decimal.Parse(TxtBalance.Text.ToString()) + decimal.Parse(TxtQty.Text.ToString())).ToString();
             }
+            button7.Enabled = userValidation.validateEdit("FrmDismisItem");
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
@@ -408,17 +397,17 @@ namespace StockUI.WinForm.FrmUI
             {
                 DismisTo = TxtFrom.Text,
                 Note = TxtNote.Text,
-                Odate  = dateTimePicker1.Value,
+                Odate = dateTimePicker1.Value,
                 StockId = int.Parse(CmbStock.SelectedValue.ToString())
             };
-            List<DismisItemDetail> dismisItemDetails = new List<DismisItemDetail>();    
+            List<DismisItemDetail> dismisItemDetails = new List<DismisItemDetail>();
             dismisItemDetails = mapper.Map<List<DismisItemDetail>>(dismisItemDetailDisplays);
             dismisItem.recitItemDetails = dismisItemDetails;
             List<stockitem> stckitems = new List<stockitem>();
             foreach (DismisItemDetail item in dismisItemDetails)
             {
                 int kx = stockitems.FindIndex(b => b.ItemId == item.ItemId);
-                if (kx >=0)
+                if (kx >= 0)
                 {
                     stckitems.Add(stockitems[kx]);
                 }
@@ -429,7 +418,6 @@ namespace StockUI.WinForm.FrmUI
             count = dismisItemDisplays.Count - 1;
             navigation(count);
         }
-
         private void BtnPrint_Click(object sender, EventArgs e)
         {
             reportForms.start = 4;
@@ -444,12 +432,11 @@ namespace StockUI.WinForm.FrmUI
             reportForms.DismisItemDisplay.dismisItemDetailDisplays = dismisItemDetailDisplays;
             reportForms.ShowDialog();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             frmBarCode.barCode = this;
             int x;
-            if (int.TryParse(CmbStock.SelectedValue?.ToString(),out x) == false)
+            if (int.TryParse(CmbStock.SelectedValue?.ToString(), out x) == false)
             {
                 MessageBox.Show("يجب إختيار المخزن أولا");
                 return;
@@ -458,7 +445,6 @@ namespace StockUI.WinForm.FrmUI
             frmBarCode.items = items;
             frmBarCode.ShowDialog();
         }
-      
         public void Test(Bar bar)
         {
             object sender = new object();
@@ -475,10 +461,64 @@ namespace StockUI.WinForm.FrmUI
             TxtQty.Text = bar.QTY.ToString();
             CmbUnitId.SelectedValue = bar.UnitId;
         }
-
         private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             validation.validateText(sender, e);
+        }
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            var x = dismisItemEndPoint.GetByID(dismisItemDisplays[count].Id);
+            DismisItem dismisItem = new DismisItem
+            {
+                Id = dismisItemDisplays[count].Id,
+                DismisTo = TxtFrom.Text,
+                StockId = int.Parse(CmbStock.SelectedValue.ToString()),
+                Note = TxtNote.Text,
+                Odate = dateTimePicker1.Value,
+            };
+            if (dismisItem != x)
+            {
+                dismisItemEndPoint.Update(dismisItem);
+            }
+            var y = dismisItemDetailEndPoint.GetByRecitID(dismisItem.Id);
+            foreach (DismisItemDetail item in y)
+            {
+                var t = stockItemCalc.GetNewStockitem(item.Qty, item.ItemId, item.UnitId, int.Parse(CmbStock.SelectedValue.ToString()));
+                stockItemEndPoint.Update(t);
+                dismisItemDetailEndPoint.Delete(item);
+            }
+            foreach (DismisItemDetailDisplay item in dismisItemDetailDisplays)
+            {
+                item.DismisItemId = dismisItem.Id;
+                var t = stockItemCalc.GetNewStockitem(-item.Qty, item.ItemId, item.UnitId, int.Parse(CmbStock.SelectedValue.ToString()));
+                stockItemEndPoint.Update(t);
+                dismisItemDetailEndPoint.Save(mapper.Map<DismisItemDetail>(item));
+            }
+            filldate();
+            MessageBox.Show("تم الحفظ بنجاح ");
+        }
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            DismisItem dismisItem = new DismisItem
+            {
+                Id = dismisItemDisplays[count].Id,
+                DismisTo = TxtFrom.Text,
+                StockId = int.Parse(CmbStock.SelectedValue.ToString()),
+                Note = TxtNote.Text,
+                Odate = dateTimePicker1.Value,
+            };
+            foreach (DismisItemDetailDisplay item in dismisItemDetailDisplays)
+            {
+                var t = stockItemCalc.GetNewStockitem(item.Qty, item.ItemId, item.UnitId, int.Parse(CmbStock.SelectedValue.ToString()));
+                stockItemEndPoint.Update(t);
+                dismisItemDetailEndPoint.Delete(mapper.Map<DismisItemDetail>(item));
+            }
+            dismisItemEndPoint.Delete(dismisItem);
+            MessageBox.Show("تم الحذف بنجاح ");
+            dismisItemDetailDisplays.Clear();
+            dismisItemDisplays.RemoveAt(count);
+            count = dismisItemDisplays.Count - 1;
+            navigation(count);
         }
     }
 }

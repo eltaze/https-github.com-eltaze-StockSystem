@@ -418,6 +418,7 @@
             this.BtnDelete.TabIndex = 168;
             this.BtnDelete.Text = "حذف";
             this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnUpdate
             // 
@@ -428,6 +429,7 @@
             this.BtnUpdate.TabIndex = 167;
             this.BtnUpdate.Text = "تعديل";
             this.BtnUpdate.UseVisualStyleBackColor = true;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // BtnNew
             // 

@@ -118,6 +118,10 @@ namespace StockUI.Libarary.BL
             massege = "";
             return true;
         }
+        ///<summary>
+        ///This validation for textbox number only and one point decimal
+        /// sender and e paramter 
+        ///</summary>
         public void validateText(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))

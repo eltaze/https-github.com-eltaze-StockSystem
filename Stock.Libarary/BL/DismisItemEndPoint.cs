@@ -111,7 +111,14 @@ namespace StockSystem.Libarary.BL
             //spDismisItemsUpdate
             try
             {
-                sql.Execute<DismisItem, dynamic>("spDismisItemsUpdate", t);
+                sql.Execute<DismisItem, dynamic>("spDismisItemsUpdate",new 
+                {
+                    Id =t.Id,
+                    stockid =t.StockId,
+                    odate =t.Odate,
+                    RecitFrom = t.DismisTo,
+                    Note = t.Note
+                });
                 return t;
             }
             catch (Exception ex)

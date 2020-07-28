@@ -284,11 +284,6 @@ namespace StockUI.WinForm.FrmUI
             MessageBox.Show("تم الحفظ بنجاح");
         }
 
-        private void BtnNew_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             validation.validateText(sender, e);

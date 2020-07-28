@@ -8,7 +8,7 @@ namespace StockUI.Libarary.BL
 
         public bool validateForm(string Name)
         {
-            var x = user.Rights.FindIndex(b => b.Name == Name);
+            var x = user?.Rights?.FindIndex(b => b.Name == Name);
             if (x ==-1)
             {
                 return false;
