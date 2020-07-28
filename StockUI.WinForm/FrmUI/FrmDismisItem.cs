@@ -406,15 +406,13 @@ namespace StockUI.WinForm.FrmUI
             List<stockitem> stckitems = new List<stockitem>();
             foreach (DismisItemDetail item in dismisItemDetails)
             {
-                int kx = stockitems.FindIndex(b => b.ItemId == item.ItemId);
-                if (kx >= 0)
-                {
-                    stckitems.Add(stockitems[kx]);
-                }
+                var xk = stockItemCalc.GetFinalDismisStock(item.Qty, item.ItemId, item.UnitId, int.Parse(CmbStock.SelectedValue.ToString()));
+                stckitems.Add(xk);
             }
             int x = dismisItemEndPoint.Save(dismisItem, stckitems);
             dismisItem.Id = x;
             dismisItemDisplays.Add(mapper.Map<DismisItemDisplay>(dismisItem));
+            MessageBox.Show("تم الحفظ بنجاح");
             count = dismisItemDisplays.Count - 1;
             navigation(count);
         }

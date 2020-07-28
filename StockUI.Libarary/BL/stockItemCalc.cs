@@ -89,5 +89,25 @@ namespace StockUI.Libarary.BL
                 return output;
             }    
         }
+        public stockitem GetFinalDismisStock(decimal qty,int itemid,int unitid,int stockid)
+        {
+            stockitem output = new stockitem();
+            var stockitem = stockItemEndPoint.GetByStockItem(stockid, itemid);
+            if (stockitem.UnitId ==unitid)
+            {
+                stockitem.Balance -= qty;
+                output = stockitem;
+                return output;
+            }
+            else
+            {
+                var x = unitEndPoint.GetByID(unitid);
+                var y = unitEndPoint.GetByID(stockitem.UnitId);
+                stockitem.UnitId = unitid;
+                stockitem.Balance = unitConversions.GetConvert(y, x, stockitem.Balance) - qty;
+                output = stockitem;
+            }
+            return output;
+        }
     }
 }
