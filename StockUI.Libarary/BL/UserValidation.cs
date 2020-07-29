@@ -18,6 +18,10 @@ namespace StockUI.Libarary.BL
         public bool validateEdit(string Name)
         {
             var x = user.Rights.FindIndex(b => b.Name == Name);
+            if (x <0)
+            {
+                return false;
+            }
             if (user.Rights[x]?.Edit == true)
             {
                 return true;
@@ -27,6 +31,10 @@ namespace StockUI.Libarary.BL
         public bool validateDelete(string Name)
         {
             var x = user.Rights.FindIndex(b => b.Name == Name);
+            if (x < 0)
+            {
+                return false;
+            }
             if (user.Rights[x].Edit == true)
             {
                 return true;

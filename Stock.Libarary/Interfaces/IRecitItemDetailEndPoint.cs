@@ -12,5 +12,6 @@ namespace StockSystem.Libarary.Interfaces
         List<ItemRecitDetail> GetBySearch(int itemid, int recitid);
         void Save(ItemRecitDetail t);
         ItemRecitDetail Update(ItemRecitDetail t);
+        
     }
 }

@@ -1,6 +1,9 @@
-﻿using StockUI.Libarary.BL;
+﻿using StockSystem.Libarary.Model;
+using StockUI.Libarary.BL;
+using StockUI.Libarary.BL.Helper;
 using System;
 using System.Windows.Forms;
+using Unity;
 
 namespace StockUI.WinForm.FrmUI
 {
@@ -19,11 +22,11 @@ namespace StockUI.WinForm.FrmUI
         private readonly UserValidation userValidation;
         private readonly FrmOrder frmOrder;
         private readonly FrmItemRecit frmItemRecit;
-        public string UserName="User Name";
-        public FrmDashBoard(FrmItems frmItems,FrmMoveOrder frmMoveOrder,FrmUnit frmUnit,FrmDepartment frmDepartment
-                            , FrmKind frmKind, FrmStock frmStock, FrmLogin frmLogin,FrmUserRegister frmUserRegister
-                            , FrmRecitMove frmRecitMove,FrmDismisItem frmDismisItem,UserValidation userValidation
-                            ,FrmOrder frmOrder,FrmItemRecit frmItemRecit)
+        public string UserName = "User Name";
+        public FrmDashBoard(FrmItems frmItems, FrmMoveOrder frmMoveOrder, FrmUnit frmUnit, FrmDepartment frmDepartment
+                            , FrmKind frmKind, FrmStock frmStock, FrmLogin frmLogin, FrmUserRegister frmUserRegister
+                            , FrmRecitMove frmRecitMove, FrmDismisItem frmDismisItem, UserValidation userValidation
+                            , FrmOrder frmOrder, FrmItemRecit frmItemRecit)
         {
 
             InitializeComponent();
@@ -55,6 +58,7 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button4_Click(object sender, EventArgs e)
         {
+            frmItemRecit.reset();
             LoadForm(frmItemRecit);
         }
         private void button5_Click(object sender, EventArgs e)
@@ -63,6 +67,7 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button6_Click(object sender, EventArgs e)
         {
+            frmDismisItem.reset();
             LoadForm(frmDismisItem);
         }
         private void FrmDashBoard_Load(object sender, EventArgs e)
@@ -90,15 +95,17 @@ namespace StockUI.WinForm.FrmUI
             LoadForm(frmStock);
         }
         private void button10_Click(object sender, EventArgs e)
-        {         
-            LoadForm (frmKind);
+        {
+            LoadForm(frmKind);
         }
         private void button12_Click(object sender, EventArgs e)
         {
+
             LoadForm(frmUserRegister);
         }
         private void LoadForm(Form form)
         {
+
             form.InitializeLifetimeService();
             form.StartPosition = FormStartPosition.CenterParent;
             form.ShowDialog();
@@ -110,7 +117,7 @@ namespace StockUI.WinForm.FrmUI
             BtnMoveOrder.Enabled = userValidation.validateForm("FrmMoveOrder");
             BtnRecitItem.Enabled = userValidation.validateForm("FrmItemRecit");
             BtnRecitMove.Enabled = userValidation.validateForm("FrmRecitMove");
-            BtnRecitItem.Enabled = userValidation.validateForm("FrmDismisItem");
+            BtnDismisItem.Enabled = userValidation.validateForm("FrmDismisItem");
             BtnUnit.Enabled = userValidation.validateForm("FrmUnit");
             BtnDepartment.Enabled = userValidation.validateForm("FrmDepartment");
             BtnStock.Enabled = userValidation.validateForm("FrmStock");

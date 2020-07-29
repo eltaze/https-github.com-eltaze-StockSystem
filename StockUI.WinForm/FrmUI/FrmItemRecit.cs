@@ -6,7 +6,6 @@ using StockUI.Libarary.Model;
 using StockUI.WinForm.Formating;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -25,6 +24,7 @@ namespace StockUI.WinForm.FrmUI
         private readonly Validation validation;
         private readonly DataGridFormat dataGridFormat;
         private readonly UserValidation userValidation;
+        private readonly stockItemCalc stockItemCalc;
         private readonly UnitConversions unitConversions;
         private readonly IStockEndPoint stockEndPoint;
         private List<ItemReciteDisplay> itemReciteDisplays = new List<ItemReciteDisplay>();
@@ -33,9 +33,9 @@ namespace StockUI.WinForm.FrmUI
         private List<ItemRecitDetailDisplay> itemRecitDetailsDisplay = new List<ItemRecitDetailDisplay>();
 
         public FrmItemRecit(IRecitItemDetailEndPoint recitItemDetailEndPoint, IDepartmentEndPoint departmentEndPoint
-            , IRecitItemEndPoint recitItemEndPoint, IMapper mapper, IStockItemEndPoint stockItemEndPoint,ReportForms reportForms
-            ,IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint,Validation validation
-            , DataGridFormat dataGridFormat,UserValidation userValidation
+            , IRecitItemEndPoint recitItemEndPoint, IMapper mapper, IStockItemEndPoint stockItemEndPoint, ReportForms reportForms
+            , IItemEndPoint itemEndPoint, IUnitEndPoint unitEndPoint, Validation validation
+            , DataGridFormat dataGridFormat, UserValidation userValidation, stockItemCalc stockItemCalc
             , UnitConversions unitConversions, IStockEndPoint stockEndPoint)
         {
             InitializeComponent();
@@ -50,10 +50,15 @@ namespace StockUI.WinForm.FrmUI
             this.validation = validation;
             this.dataGridFormat = dataGridFormat;
             this.userValidation = userValidation;
+            this.stockItemCalc = stockItemCalc;
             this.unitConversions = unitConversions;
             this.stockEndPoint = stockEndPoint;
         }
         private void FrmItemRecit_Load(object sender, EventArgs e)
+        {
+            onload();
+        }
+        public void onload()
         {
             BtnUpdate.Enabled = userValidation.validateEdit("FrmItemRecit");
             BtnDelete.Enabled = userValidation.validateDelete("FrmItemRecit");
@@ -63,7 +68,7 @@ namespace StockUI.WinForm.FrmUI
             loadcmb<department>(department.ToList(), CmbDepartment);
             items = itemEndPoint.GetAll();
             itemReciteDisplays = mapper.Map<List<ItemReciteDisplay>>(recitItemEndPoint.GetAll());
-            if (itemReciteDisplays.Count >0)
+            if (itemReciteDisplays.Count > 0)
             {
                 navigation(0);
                 count = 0;
@@ -159,9 +164,9 @@ namespace StockUI.WinForm.FrmUI
             {
                 BtnNew.Text = "جديد";
                 BtnSave.Enabled = false;
-            //    BtnUpdate.Enabled = true;
+                //    BtnUpdate.Enabled = true;
                 button5.Enabled = false;
-                button7.Enabled = false;
+                button7.Enabled = userValidation.validateEdit("FrmItemRecit"); ;
                 button8.Enabled = false;
             }
             else
@@ -170,9 +175,9 @@ namespace StockUI.WinForm.FrmUI
                 dataGridView1.DataSource = null;
                 BtnNew.Text = "إلغاء";
                 BtnSave.Enabled = true;
-              //  BtnUpdate.Enabled = false;
+                //  BtnUpdate.Enabled = false;
                 button5.Enabled = true;
-                button7.Enabled = true;
+                button7.Enabled = userValidation.validateEdit("FrmItemRecit");
                 button8.Enabled = true;
             }
         }
@@ -226,7 +231,7 @@ namespace StockUI.WinForm.FrmUI
         private void button7_Click(object sender, EventArgs e)
         {
             int x = itemRecitDetailsDisplay.FindIndex(b => b.ItemId == int.Parse(TxtItemId.Text.ToString()));
-            if (x ==-1)
+            if (x == -1)
             {
                 MessageBox.Show("لايمكن تعديل صنف غير مدرج يجب إدراج الصنف أولا");
                 return;
@@ -240,12 +245,12 @@ namespace StockUI.WinForm.FrmUI
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if ( TxtFrom.Text.Length == 0)
+            if (TxtFrom.Text.Length == 0)
             {
                 MessageBox.Show("يجب إدخال بيانات المستلم منه  في مستلم من ");
                 return;
             }
-            if (itemRecitDetailsDisplay.Count == 0 )
+            if (itemRecitDetailsDisplay.Count == 0)
             {
                 MessageBox.Show("لايمكن إصدار إذن إستلام مخزن من دون أصناف يجب إختيار الأصناف");
                 return;
@@ -288,7 +293,7 @@ namespace StockUI.WinForm.FrmUI
                 }
                 stockitems.Add(x);
             }
-            int bb =recitItemEndPoint.Save(itemRecit, stockitems);
+            int bb = recitItemEndPoint.Save(itemRecit, stockitems);
             MessageBox.Show("تم الحفظ بنجاح");
             itemRecit.Id = bb;
             itemReciteDisplays.Add(mapper.Map<ItemReciteDisplay>(itemRecit));
@@ -315,13 +320,12 @@ namespace StockUI.WinForm.FrmUI
             }
             return true;
         }
-
         private void BtnPrint_Click(object sender, EventArgs e)
         {
             reportForms.start = 3;
             ItemReciteDisplay itemReciteDisplay = new ItemReciteDisplay
             {
-                Id =itemReciteDisplays[count].Id,
+                Id = itemReciteDisplays[count].Id,
                 Note = itemReciteDisplays[count].Note,
                 Odate = itemReciteDisplays[count].Odate,
                 RecitFrom = itemReciteDisplays[count].RecitFrom,
@@ -342,10 +346,90 @@ namespace StockUI.WinForm.FrmUI
             reportForms.ItemReciteDisplay = itemReciteDisplay;
             reportForms.ShowDialog();
         }
-
+        public void reset()
+        {
+            TxtId.Text = "";
+            TxtItemId.Text = "";
+            CmbItemName.SelectedIndex = -1;
+            CmbStock.SelectedIndex = -1;
+            CmbUnitId.SelectedIndex = -1;
+            TxtNote.Text = "";
+            TxtQty.Text = "0.00";
+            CmbDepartment.SelectedIndex = -1;
+            itemRecitDetailsDisplay.Clear();
+            dataGridView1.DataSource = null;
+            BtnNew.Text = "جديد";
+            BtnSave.Enabled = false;
+            //    BtnUpdate.Enabled = true;
+            button5.Enabled = false;
+            button7.Enabled = userValidation.validateEdit("FrmItemRecit");
+            button8.Enabled = false;
+            itemReciteDisplays = new List<ItemReciteDisplay>();
+            items = new List<Item>();
+            count = 0;
+            itemRecitDetailsDisplay = new List<ItemRecitDetailDisplay>();
+            onload();
+        }
         private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             validation.validateText(sender, e);
+        }
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            ItemRecit itemRecit = new ItemRecit
+            {
+                Id = itemReciteDisplays[count].Id
+            };
+
+            foreach (ItemRecitDetailDisplay item in itemRecitDetailsDisplay)
+            {
+                stockitem stokc = stockItemCalc.GetNewStockitem(-item.Qty, item.ItemId, item.UnitId, int.Parse(CmbStock.SelectedValue.ToString()));
+                stockItemEndPoint.Update(stokc);
+                ItemRecitDetail item1 = new ItemRecitDetail();
+                item1.Id = item.Id;
+                recitItemDetailEndPoint.Delete(item1);
+            }
+            itemRecitDetailsDisplay = new List<ItemRecitDetailDisplay>();
+            recitItemEndPoint.Delete(itemRecit);
+            MessageBox.Show("تم الحذف بنجاح");
+            itemReciteDisplays.RemoveAt(count);
+            count = itemReciteDisplays.Count - 1;
+            navigation(count);
+        }
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            ItemRecit itemRecit = new ItemRecit
+            {
+                Id = itemReciteDisplays[count].Id,
+                Note = TxtNote.Text,
+                Odate = dateTimePicker1.Value.Date,
+                RecitFrom = TxtFrom.Text,
+                StockId = int.Parse(CmbStock.SelectedValue.ToString())
+            };
+            List<ItemRecitDetail> details = new List<ItemRecitDetail>();
+            details = recitItemDetailEndPoint.GetByRecitID(itemReciteDisplays[count].Id);
+            List<stockitem> stockitems = new List<stockitem>();
+            foreach (ItemRecitDetailDisplay item in itemRecitDetailsDisplay)
+            {
+                decimal xx;
+                var x = details.Find(b => b.ItemId == item.ItemId);
+                if (x.UnitId == item.UnitId)
+                {
+                    xx = item.Qty - x.Qty;
+                }
+                else
+                {
+                    var uni1 = unitEndPoint.GetByID(x.UnitId);
+                    var uni2 = unitEndPoint.GetByID(item.UnitId);
+                    xx = item.Qty - unitConversions.GetConvert(uni1, uni2, x.Qty);
+                }
+                ItemRecitDetail item1 = new ItemRecitDetail { Id = item.Id  , Qty =item.Qty,UnitId = item.UnitId,ItemId = item.ItemId,RecitItemId = item.RecitItemId};
+                recitItemDetailEndPoint.Update(item1);
+                stockitem stokc = stockItemCalc.GetNewStockitem(xx, item.ItemId, item.UnitId, int.Parse(CmbStock.SelectedValue.ToString()));
+                stockItemEndPoint.Update(stokc);
+            }
+            recitItemEndPoint.Update(itemRecit);
+            MessageBox.Show("تم حفظ التعديل بنجاح");
         }
     }
 }

@@ -7,8 +7,7 @@ using System.Text;
 namespace StockUI.Libarary.BL.Helper
 {
     public interface IBarCode
-    {
-      
+    {      
         void Test(Bar bar);
     }
 }

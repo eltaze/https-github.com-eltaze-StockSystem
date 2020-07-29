@@ -62,7 +62,7 @@ namespace StockUI.WinForm.FrmUI
             this.dismisItemEndPoint = dismisItemEndPoint;
             this.stockItemEndPoint = stockItemEndPoint;
         }
-        private void FrmDismisItem_Load(object sender, EventArgs e)
+        public void loading()
         {
             BtnDelete.Enabled = userValidation.validateDelete("FrmDismisItem");
             BtnUpdate.Enabled = userValidation.validateEdit("FrmDismisItem");
@@ -75,6 +75,10 @@ namespace StockUI.WinForm.FrmUI
                 navigation(0);
                 count = 0;
             }
+        }
+        private void FrmDismisItem_Load(object sender, EventArgs e)
+        {
+            loading();
         }
         private void loadlist()
         {
@@ -99,7 +103,7 @@ namespace StockUI.WinForm.FrmUI
                 CmbStock.SelectedValue = dismisItemDisplays[id].StockId;
                 TxtFrom.Text = dismisItemDisplays[id].DismisTo;
                 dateTimePicker1.Value = dismisItemDisplays[id].Odate;
-                
+
                 loadDismisDetail(dismisItemDisplays[id].Id);
                 filldate();
                 dataGridFormat.Style(dataGridView1);
@@ -183,7 +187,7 @@ namespace StockUI.WinForm.FrmUI
         private void loadbalance()
         {
             stockitem z = stockItemCalc.GetStockitem(int.Parse(CmbStock.SelectedValue.ToString())
-                                                    , int.Parse(TxtItemId.Text.ToString()));  
+                                                    , int.Parse(TxtItemId.Text.ToString()));
             foreach (Unit item in units)
             {
                 if (item.Id == z.UnitId)
@@ -350,7 +354,7 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show("لايمكن تعديل صنف غير مدرج يجب إدراج الصنف أولا");
                 return;
             }
-           // int kx = stockitems.FindIndex(b => b.ItemId == dismisItemDetailDisplays[x].ItemId);
+            // int kx = stockitems.FindIndex(b => b.ItemId == dismisItemDetailDisplays[x].ItemId);
             var stockitem = stockItemCalc.GetStockitem(int.Parse(CmbStock.SelectedValue.ToString()), int.Parse(CmbItemName.SelectedValue.ToString()));
             stockitem.Balance += dismisItemDetailDisplays[x].Qty;
             if (stockitem.UnitId == int.Parse(CmbUnitId.SelectedValue.ToString()))
@@ -494,6 +498,35 @@ namespace StockUI.WinForm.FrmUI
             }
             filldate();
             MessageBox.Show("تم الحفظ بنجاح ");
+        }
+        public void reset()
+        {
+            TxtId.Text = "";
+            TxtItemId.Text = "";
+            TxtNote.Text = "";
+            TxtQty.Text = "";
+            CmbItemName.SelectedIndex = -1;
+            CmbDepartment.SelectedIndex = -1;
+            CmbStock.SelectedIndex = -1;
+            CmbUnitId.SelectedIndex = -1;
+            dataGridView1.DataSource = "";
+            dataGridView1.Columns.Clear();
+            stocks = new List<Stock>();
+            departments = new List<department>();
+            items = new List<Item>();
+            units = new List<Unit>();
+            stockitems = new List<stockitem>();
+            dismisItemDisplays = new List<DismisItemDisplay>();
+            dismisItemDetailDisplays = new List<DismisItemDetailDisplay>();
+            count = 0;
+            BtnNew.Text = "جديد";
+            BtnSave.Enabled = false;
+            //BtnUpdate.Enabled = true;
+            //button5.Enabled = false;
+            button7.Enabled = false;
+            button8.Enabled = false;
+            button1.Enabled = false;
+            loading();
         }
         private void BtnDelete_Click(object sender, EventArgs e)
         {

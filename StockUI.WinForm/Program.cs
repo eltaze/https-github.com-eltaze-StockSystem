@@ -11,15 +11,18 @@ using StockUI.WinForm.FrmUI;
 using System;
 using System.Windows.Forms;
 using Unity;
+using Unity.Injection;
+using Unity.Lifetime;
 
 namespace StockUI.WinForm
 {
-    static class Program
+    public static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
+
        
         static void Main()
         {
@@ -31,6 +34,12 @@ namespace StockUI.WinForm
             // Application.Run(container.Resolve<FrmItems>());
             Application.Run(container.Resolve<FrmDashBoard>());
         }
+     
+        //public static IUnityContainer GetConfiguredContainer()
+        //{
+        //    var container = BuildContainer();
+        //    return container;
+        //}
         public static IUnityContainer BuildContainer()
         {
             var currentContainer = new UnityContainer();
@@ -42,7 +51,7 @@ namespace StockUI.WinForm
             currentContainer.RegisterType<DataGridFormat>();
             currentContainer.RegisterType<StockDisplay>();
             currentContainer.RegisterType<FrmUnit>();
-            currentContainer.RegisterType<FrmItemRecit>();
+            currentContainer.RegisterType<FrmItemRecit>(new PerResolveLifetimeManager());
             currentContainer.RegisterType<FrmOrder>();
             currentContainer.RegisterType<FrmItems>();
             currentContainer.RegisterType<FrmMoveOrder>();

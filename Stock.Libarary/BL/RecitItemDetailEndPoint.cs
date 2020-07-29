@@ -92,7 +92,8 @@ namespace StockSystem.Libarary.BL
             //[spRecitItemDetailUpdate]
             try
             {
-                sql.ReadingData<ItemRecitDetail, dynamic>("spRecitItemDetailUpdate", new { t });
+                sql.ReadingData<ItemRecitDetail, dynamic>("spRecitItemDetailUpdate", new {id = t.Id, RecitItemid=t.RecitItemId,
+                itemid=t.ItemId,note=t.Note,qty=t.Qty,unitid=t.UnitId});
                 return t;
             }
             catch (Exception ex)

@@ -21,7 +21,7 @@ namespace StockSystem.Libarary.BL
             //spRecitItemsDelete
             try
             {
-                sql.Execute<ItemRecit, dynamic>("spRecitItemsDelete", t);
+                sql.Execute<ItemRecit, dynamic>("spRecitItemsDelete", new { id= t.Id });
             }
             catch (Exception ex)
             {
@@ -129,7 +129,14 @@ namespace StockSystem.Libarary.BL
             //spRecitItemsUpdate
             try
             {
-                sql.Execute<ItemRecit, dynamic>("spRecitItemsUpdate", t);
+                sql.Execute<ItemRecit, dynamic>("spRecitItemsUpdate", new {
+                    Id=t.Id,
+                    stockid=t.StockId,
+                    odate =t.Odate,
+                    RecitFrom=t.RecitFrom,
+                    moveorderid=t.MoveOrderId,
+                    Note=t.Note
+                });
                 return t;
             }
             catch (Exception ex)

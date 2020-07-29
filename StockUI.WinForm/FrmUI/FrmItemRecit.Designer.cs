@@ -102,6 +102,7 @@
             this.BtnDelete.TabIndex = 128;
             this.BtnDelete.Text = "حذف";
             this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnUpdate
             // 
@@ -112,6 +113,7 @@
             this.BtnUpdate.TabIndex = 127;
             this.BtnUpdate.Text = "تعديل";
             this.BtnUpdate.UseVisualStyleBackColor = true;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // BtnNew
             // 
@@ -222,7 +224,6 @@
             // button5
             // 
             this.button5.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button5.Enabled = false;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button5.Location = new System.Drawing.Point(167, 131);
             this.button5.Name = "button5";
@@ -234,7 +235,6 @@
             // button8
             // 
             this.button8.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button8.Enabled = false;
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button8.Location = new System.Drawing.Point(265, 131);
             this.button8.Name = "button8";
@@ -294,7 +294,6 @@
             // button7
             // 
             this.button7.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button7.Enabled = false;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button7.Location = new System.Drawing.Point(54, 131);
             this.button7.Name = "button7";
