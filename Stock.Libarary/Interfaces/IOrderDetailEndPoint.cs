@@ -13,5 +13,6 @@ namespace StockSystem.Libarary.Interfaces
         OrderDetail Update(OrderDetail t);
         OrderDetail GetLastPriceByItem(int id);
         List<OrderDetail> GetOrderDetailsByMoveOrder();
+        void DeleteByOrderId(int id);
     }
 }

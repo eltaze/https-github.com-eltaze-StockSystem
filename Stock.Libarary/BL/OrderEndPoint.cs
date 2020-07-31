@@ -32,18 +32,11 @@ namespace StockSystem.Libarary.BL
             //sporderDelete
             try
             {
-                sql.starttransaction();
-               var output= orderDetailEndPoint.GetByID(t.Id).ToList();
-                foreach (var item in output)
-                {
-                    sql.ExecuteTrans<OrderDetail, dynamic>("sporderdetailDelete", item);
-                }
-                sql.ExecuteTrans<Order, dynamic>("sporderDelete", t);
-                sql.commitrasaction();
+                sql.Execute<Order, dynamic>("sporderDelete", new { t.Id});  
             }
             catch (Exception ex)
             {
-                sql.rollbacktrasaction();
+                
                 throw new Exception(ex.Message.ToString());
             }
         }
@@ -102,7 +95,7 @@ namespace StockSystem.Libarary.BL
             ////spOrderUpdate
             try
             {
-                sql.Execute<Order, dynamic>("spOrderUpdate", t);
+                sql.Execute<Order, dynamic>("spOrderUpdate", new { t.Id,t.Note,t.ODate,t.StockId });
                 return t;
             }
             catch (Exception ex)

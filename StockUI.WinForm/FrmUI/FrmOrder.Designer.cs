@@ -105,6 +105,7 @@
             this.BtnUpdate.TabIndex = 123;
             this.BtnUpdate.Text = "تعديل";
             this.BtnUpdate.UseVisualStyleBackColor = true;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // BtnNew
             // 

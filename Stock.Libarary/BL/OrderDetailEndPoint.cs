@@ -43,6 +43,11 @@ namespace StockSystem.Libarary.BL
             }
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// Get All Byt Order Id and not orderdetail Id
+        /// </summary>
+        /// <param name="id">this is orderid not orderdetail id</param>
+        /// <returns></returns>
         public List<OrderDetail> GetByID(int id)
         {
             //sporderdetailsGetById -order id
@@ -115,6 +120,18 @@ namespace StockSystem.Libarary.BL
             {
                 var output = sql.ReadingData<OrderDetail, dynamic>("spOrderDetailsMoveOrder", new { }).ToList();
                 return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+        public void DeleteByOrderId(int id)
+        {
+            //[sporderdetailDeleteByOrderId]
+            try
+            {
+                sql.Execute<OrderDetail, dynamic>("sporderdetailDeleteByOrderId", new {id });
             }
             catch (Exception ex)
             {

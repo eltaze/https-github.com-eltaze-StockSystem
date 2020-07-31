@@ -58,7 +58,7 @@ namespace StockUI.WinForm.FrmUI
         private void FrmMoveOrder_Load(object sender, EventArgs e)
         {
             BtnDelete.Enabled = userValidation.validateDelete("FrmMoveOrder");
-            BtnUpdate.Enabled = userValidation.validateEdit("FrmMoveOrder");
+            BtnUpdate.Enabled = userValidation.validateEdit("FrmMoveOrder");        
             var stocks =stockEndPoint.GetAll();
             CmbStock.DataSource = stocks.ToList();
             CmbStock.ValueMember = "Id";

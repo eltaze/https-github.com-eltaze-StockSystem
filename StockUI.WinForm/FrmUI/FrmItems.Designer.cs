@@ -64,6 +64,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.TxtBarcode = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -273,7 +275,7 @@
             // 
             this.label9.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label9.Location = new System.Drawing.Point(9, 231);
+            this.label9.Location = new System.Drawing.Point(9, 269);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(116, 20);
             this.label9.TabIndex = 111;
@@ -283,7 +285,7 @@
             // 
             this.label10.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label10.Location = new System.Drawing.Point(9, 259);
+            this.label10.Location = new System.Drawing.Point(9, 297);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 20);
             this.label10.TabIndex = 112;
@@ -293,7 +295,7 @@
             // 
             this.label11.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label11.Location = new System.Drawing.Point(9, 287);
+            this.label11.Location = new System.Drawing.Point(9, 325);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(116, 20);
             this.label11.TabIndex = 112;
@@ -303,14 +305,14 @@
             // 
             this.CmbStock.Enabled = false;
             this.CmbStock.FormattingEnabled = true;
-            this.CmbStock.Location = new System.Drawing.Point(139, 259);
+            this.CmbStock.Location = new System.Drawing.Point(139, 297);
             this.CmbStock.Name = "CmbStock";
             this.CmbStock.Size = new System.Drawing.Size(246, 21);
             this.CmbStock.TabIndex = 113;
             // 
             // TxtQty
             // 
-            this.TxtQty.Location = new System.Drawing.Point(139, 287);
+            this.TxtQty.Location = new System.Drawing.Point(139, 325);
             this.TxtQty.Name = "TxtQty";
             this.TxtQty.ReadOnly = true;
             this.TxtQty.Size = new System.Drawing.Size(246, 20);
@@ -320,7 +322,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(141, 234);
+            this.checkBox1.Location = new System.Drawing.Point(141, 272);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(15, 14);
             this.checkBox1.TabIndex = 115;
@@ -347,7 +349,7 @@
             // 
             this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Location = new System.Drawing.Point(9, 315);
+            this.label1.Location = new System.Drawing.Point(9, 353);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 20);
             this.label1.TabIndex = 117;
@@ -360,12 +362,12 @@
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(139, 317);
+            this.dataGridView2.Location = new System.Drawing.Point(139, 355);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(247, 154);
+            this.dataGridView2.Size = new System.Drawing.Size(247, 124);
             this.dataGridView2.TabIndex = 118;
             // 
             // CmbStockBrows
@@ -427,11 +429,32 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(141, 236);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(15, 14);
+            this.checkBox2.TabIndex = 126;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.label14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label14.Location = new System.Drawing.Point(9, 233);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(116, 20);
+            this.label14.TabIndex = 125;
+            this.label14.Text = "العرض في الرئيسية";
+            // 
             // FrmItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 513);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.TxtBarcode);
             this.Controls.Add(this.label13);
@@ -519,5 +542,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox TxtBarcode;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label14;
     }
 }

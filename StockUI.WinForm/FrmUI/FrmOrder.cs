@@ -231,6 +231,13 @@ namespace StockUI.WinForm.FrmUI
             Navigation(count);
         }
         #endregion
+        private void button()
+        {
+           
+            button8.Enabled=userValidation.validateEdit("FrmOrder");
+            button5.Enabled= userValidation.validateEdit("FrmOrder");
+            button7.Enabled = userValidation.validateEdit("FrmOrder");
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             TxtId.Text = "";
@@ -252,11 +259,8 @@ namespace StockUI.WinForm.FrmUI
                 BtnSave.Enabled = false;
                 //BtnUpdate.Enabled = true;
                 Navigation(count);
-                button5.Enabled = false;
-                //button6.Enabled = false;
-                button7.Enabled = false;
+                button();
                 button1.Enabled = false;
-                button8.Enabled = false;
             }
             else
             {
@@ -264,11 +268,10 @@ namespace StockUI.WinForm.FrmUI
                 BtnSave.Enabled = true;
                 //BtnUpdate.Enabled = false;
                 neworder = new OrderDisplay();
-                button5.Enabled = true;
                 button1.Enabled = true;
                 //button6.Enabled = true;
-                button7.Enabled = true;
-                button8.Enabled = true;                
+                button();
+                             
             }
         }
         private void CmbItemName_SelectedIndexChanged(object sender, EventArgs e)
@@ -323,6 +326,7 @@ namespace StockUI.WinForm.FrmUI
         {
             BtnDelete.Enabled = userValidation.validateDelete("FrmOrder");
             BtnUpdate.Enabled = userValidation.validateEdit("FrmOrder");
+            button();
             items = mapper.Map<List<ItemDisplay>>(itemEndPoint.GetAll().ToList());
             var z = stockEndPoint.GetAll();
             loadcmb<Stock>(z.ToList(), CmbStock);
@@ -494,7 +498,18 @@ namespace StockUI.WinForm.FrmUI
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-
+            Order order = new Order
+            {
+                Id = int.Parse(TxtId.Text.ToString())
+            };
+            List<OrderDetail> details = new List<OrderDetail>();
+            orderDetailEndPoint.DeleteByOrderId(order.Id);
+            orderEndPoint.Delete(order);
+            orderDetailDisplays.Clear();
+            
+            count = orderDisplays.Count - 1;
+            MessageBox.Show("تم الحذف بنجاح");
+            Navigation(count);
         }
 
         private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
@@ -505,6 +520,28 @@ namespace StockUI.WinForm.FrmUI
         private void TxtUnitPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
             validation.validateText(sender, e);
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            Order order = new Order
+            {
+                Id = int.Parse(TxtId.Text.ToString()),
+                Note =TxtNote.Text,
+                ODate=dateTimePicker1.Value,
+                StockId = int.Parse(CmbStock.SelectedValue.ToString())
+            };
+            orderDetailEndPoint.DeleteByOrderId(order.Id);
+            List<OrderDetail> details = new List<OrderDetail>();
+            details = mapper.Map<List<OrderDetail>>(neworder.OrderDetails);
+            foreach (OrderDetail item in details)
+            {
+                item.Id = 0;
+                item.orderid = order.Id;
+                orderDetailEndPoint.Save(item);
+            }
+            orderEndPoint.Update(order);
+            MessageBox.Show("تم حفظ التعديلات بنجاح");
         }
     }
 }
