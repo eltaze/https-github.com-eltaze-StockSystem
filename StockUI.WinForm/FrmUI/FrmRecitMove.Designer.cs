@@ -62,9 +62,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnPrint = new System.Windows.Forms.Button();
-            this.BtnDelete = new System.Windows.Forms.Button();
-            this.BtnUpdate = new System.Windows.Forms.Button();
-            this.BtnNew = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -407,7 +404,7 @@
             // BtnSave
             // 
             this.BtnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnSave.Location = new System.Drawing.Point(291, 3);
+            this.BtnSave.Location = new System.Drawing.Point(35, 5);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(72, 37);
             this.BtnSave.TabIndex = 173;
@@ -418,44 +415,12 @@
             // BtnPrint
             // 
             this.BtnPrint.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnPrint.Location = new System.Drawing.Point(385, 3);
+            this.BtnPrint.Location = new System.Drawing.Point(296, 5);
             this.BtnPrint.Name = "BtnPrint";
-            this.BtnPrint.Size = new System.Drawing.Size(72, 37);
+            this.BtnPrint.Size = new System.Drawing.Size(79, 37);
             this.BtnPrint.TabIndex = 174;
             this.BtnPrint.Text = "طباعة";
             this.BtnPrint.UseVisualStyleBackColor = true;
-            // 
-            // BtnDelete
-            // 
-            this.BtnDelete.Enabled = false;
-            this.BtnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnDelete.Location = new System.Drawing.Point(197, 3);
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(72, 37);
-            this.BtnDelete.TabIndex = 172;
-            this.BtnDelete.Text = "حذف";
-            this.BtnDelete.UseVisualStyleBackColor = true;
-            // 
-            // BtnUpdate
-            // 
-            this.BtnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnUpdate.Location = new System.Drawing.Point(103, 3);
-            this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(72, 37);
-            this.BtnUpdate.TabIndex = 171;
-            this.BtnUpdate.Text = "تعديل";
-            this.BtnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // BtnNew
-            // 
-            this.BtnNew.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.BtnNew.Location = new System.Drawing.Point(9, 3);
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(72, 37);
-            this.BtnNew.TabIndex = 170;
-            this.BtnNew.Text = "جديد";
-            this.BtnNew.UseVisualStyleBackColor = true;
-            
             // 
             // button1
             // 
@@ -498,9 +463,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.BtnPrint);
-            this.Controls.Add(this.BtnDelete);
-            this.Controls.Add(this.BtnUpdate);
-            this.Controls.Add(this.BtnNew);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmRecitMove";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -552,9 +514,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Button BtnPrint;
-        private System.Windows.Forms.Button BtnDelete;
-        private System.Windows.Forms.Button BtnUpdate;
-        private System.Windows.Forms.Button BtnNew;
         private System.Windows.Forms.Button button1;
     }
 }

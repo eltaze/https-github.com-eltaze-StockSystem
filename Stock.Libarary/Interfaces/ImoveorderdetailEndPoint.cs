@@ -13,5 +13,6 @@ namespace StockSystem.Libarary.Interfaces
         void Save(MoveOrderDetail t);
         MoveOrderDetail Update(MoveOrderDetail t);
         List<MoveOrderDetail> GetByMoveOrderId(int id);
+        void DeleteByMoveOrderId(int id);
     }
 }

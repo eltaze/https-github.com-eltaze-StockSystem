@@ -65,6 +65,26 @@
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.listBox4 = new System.Windows.Forms.ListBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.listBox5 = new System.Windows.Forms.ListBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.listBox6 = new System.Windows.Forms.ListBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
@@ -73,6 +93,13 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -104,7 +131,7 @@
             // 
             this.button13.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__13_;
             this.button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button13.Location = new System.Drawing.Point(12, 7);
+            this.button13.Location = new System.Drawing.Point(23, 7);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(61, 64);
             this.button13.TabIndex = 37;
@@ -155,7 +182,7 @@
             // LblUser
             // 
             this.LblUser.AutoSize = true;
-            this.LblUser.Location = new System.Drawing.Point(21, 74);
+            this.LblUser.Location = new System.Drawing.Point(32, 74);
             this.LblUser.Name = "LblUser";
             this.LblUser.Size = new System.Drawing.Size(42, 13);
             this.LblUser.TabIndex = 25;
@@ -422,7 +449,7 @@
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel5.Controls.Add(this.listBox3);
             this.panel5.Controls.Add(this.pictureBox11);
-            this.panel5.Location = new System.Drawing.Point(601, 415);
+            this.panel5.Location = new System.Drawing.Point(505, 278);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(310, 130);
             this.panel5.TabIndex = 16;
@@ -472,7 +499,7 @@
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.listBox2);
             this.panel4.Controls.Add(this.pictureBox10);
-            this.panel4.Location = new System.Drawing.Point(597, 269);
+            this.panel4.Location = new System.Drawing.Point(505, 110);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(310, 130);
             this.panel4.TabIndex = 15;
@@ -508,16 +535,262 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.listBox1);
             this.panel2.Controls.Add(this.pictureBox13);
-            this.panel2.Location = new System.Drawing.Point(597, 123);
+            this.panel2.Location = new System.Drawing.Point(115, 110);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(310, 130);
             this.panel2.TabIndex = 14;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel6.Controls.Add(this.listBox4);
+            this.panel6.Controls.Add(this.pictureBox1);
+            this.panel6.Location = new System.Drawing.Point(115, 278);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(310, 130);
+            this.panel6.TabIndex = 17;
+            // 
+            // listBox4
+            // 
+            this.listBox4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.listBox4.FormattingEnabled = true;
+            this.listBox4.Items.AddRange(new object[] {
+            "إجمالي حركات المخزن",
+            "=============",
+            "1-إذن صرف",
+            "2-إذن استلام"});
+            this.listBox4.Location = new System.Drawing.Point(110, 2);
+            this.listBox4.Name = "listBox4";
+            this.listBox4.Size = new System.Drawing.Size(194, 121);
+            this.listBox4.TabIndex = 14;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::StockUI.WinForm.Properties.Resources.pngfuel_com__11_;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(90, 86);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel7.Controls.Add(this.listBox5);
+            this.panel7.Controls.Add(this.pictureBox2);
+            this.panel7.Location = new System.Drawing.Point(115, 446);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(310, 130);
+            this.panel7.TabIndex = 19;
+            // 
+            // listBox5
+            // 
+            this.listBox5.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.listBox5.FormattingEnabled = true;
+            this.listBox5.Items.AddRange(new object[] {
+            "إجمالي حركات المخزن",
+            "=============",
+            "1-إذن صرف",
+            "2-إذن استلام"});
+            this.listBox5.Location = new System.Drawing.Point(110, 2);
+            this.listBox5.Name = "listBox5";
+            this.listBox5.Size = new System.Drawing.Size(194, 121);
+            this.listBox5.TabIndex = 14;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::StockUI.WinForm.Properties.Resources.pngfuel_com__11_;
+            this.pictureBox2.Location = new System.Drawing.Point(7, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(90, 86);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.panel8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel8.Controls.Add(this.listBox6);
+            this.panel8.Controls.Add(this.pictureBox3);
+            this.panel8.Location = new System.Drawing.Point(505, 446);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(310, 130);
+            this.panel8.TabIndex = 18;
+            // 
+            // listBox6
+            // 
+            this.listBox6.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.listBox6.FormattingEnabled = true;
+            this.listBox6.Items.AddRange(new object[] {
+            "إجمالي حركات المخزن",
+            "=============",
+            "1-إذن صرف",
+            "2-إذن استلام"});
+            this.listBox6.Location = new System.Drawing.Point(110, 2);
+            this.listBox6.Name = "listBox6";
+            this.listBox6.Size = new System.Drawing.Size(194, 121);
+            this.listBox6.TabIndex = 14;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::StockUI.WinForm.Properties.Resources.pngfuel_com__11_;
+            this.pictureBox3.Location = new System.Drawing.Point(7, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(90, 86);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 12;
+            this.pictureBox3.TabStop = false;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel9.Controls.Add(this.label13);
+            this.panel9.Controls.Add(this.button1);
+            this.panel9.Controls.Add(this.label14);
+            this.panel9.Controls.Add(this.button2);
+            this.panel9.Controls.Add(this.label15);
+            this.panel9.Controls.Add(this.button3);
+            this.panel9.Controls.Add(this.button4);
+            this.panel9.Controls.Add(this.label16);
+            this.panel9.Controls.Add(this.button5);
+            this.panel9.Controls.Add(this.label17);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel9.Location = new System.Drawing.Point(822, 104);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(99, 487);
+            this.panel9.TabIndex = 20;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label13.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label13.Location = new System.Drawing.Point(29, 453);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(44, 15);
+            this.label13.TabIndex = 34;
+            this.label13.Text = "الأصناف";
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__10_;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Location = new System.Drawing.Point(23, 294);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(55, 53);
+            this.button1.TabIndex = 33;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label14.Location = new System.Drawing.Point(30, 350);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(38, 15);
+            this.label14.TabIndex = 32;
+            this.label14.Text = "الأنواع";
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__1_;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Location = new System.Drawing.Point(23, 194);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(55, 53);
+            this.button2.TabIndex = 31;
+            this.button2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label15.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label15.Location = new System.Drawing.Point(28, 250);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(43, 15);
+            this.label15.TabIndex = 30;
+            this.label15.Text = "المخازن";
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__16_;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.Location = new System.Drawing.Point(23, 96);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(55, 53);
+            this.button3.TabIndex = 29;
+            this.button3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__7_;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.Location = new System.Drawing.Point(23, 397);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(55, 53);
+            this.button4.TabIndex = 20;
+            this.button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label16.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label16.Location = new System.Drawing.Point(28, 152);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(42, 15);
+            this.label16.TabIndex = 28;
+            this.label16.Text = "الأقسام";
+            // 
+            // button5
+            // 
+            this.button5.BackgroundImage = global::StockUI.WinForm.Properties.Resources.pngfuel_com__14_;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.Location = new System.Drawing.Point(23, 6);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(55, 53);
+            this.button5.TabIndex = 27;
+            this.button5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label17.Location = new System.Drawing.Point(27, 62);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(44, 15);
+            this.label17.TabIndex = 26;
+            this.label17.Text = "الوحدات";
             // 
             // FrmDashBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 591);
+            this.Controls.Add(this.panel9);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.panel8);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
@@ -542,6 +815,14 @@
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -585,5 +866,25 @@
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.ListBox listBox4;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.ListBox listBox5;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.ListBox listBox6;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label17;
     }
 }

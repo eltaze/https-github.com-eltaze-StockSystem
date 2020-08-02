@@ -18,7 +18,16 @@ namespace StockSystem.Libarary.BL
 
         public void Delete(MoveOrder t)
         {
-            throw new NotImplementedException();
+            //[spmoveorDelte]
+            try
+            {
+                sql.Execute<MoveOrder, dynamic>("spmoveorDelte", new { t.Id });
+              
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
         }
 
         public List<MoveOrder> GetAll()
@@ -99,7 +108,7 @@ namespace StockSystem.Libarary.BL
             //spomveorderUpdate
             try
             {
-                sql.Execute<MoveOrder, dynamic>("spomveorderUpdate", t);
+                sql.Execute<MoveOrder, dynamic>("spomveorderUpdate", new { t.Id,t.Note,t.Odete,t.StockId,t.BarCode,t.CarBlate,t.DriverName });
                 return t;
             }
             catch (Exception ex)

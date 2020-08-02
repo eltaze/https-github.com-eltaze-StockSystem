@@ -11,6 +11,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -58,7 +60,8 @@ namespace StockUI.WinForm.FrmUI
         private void FrmMoveOrder_Load(object sender, EventArgs e)
         {
             BtnDelete.Enabled = userValidation.validateDelete("FrmMoveOrder");
-            BtnUpdate.Enabled = userValidation.validateEdit("FrmMoveOrder");        
+            BtnUpdate.Enabled = userValidation.validateEdit("FrmMoveOrder");
+            button();
             var stocks =stockEndPoint.GetAll();
             CmbStock.DataSource = stocks.ToList();
             CmbStock.ValueMember = "Id";
@@ -77,7 +80,7 @@ namespace StockUI.WinForm.FrmUI
             {
                 TxtId.Text = moveorderDisplays[id].Id.ToString();
                 CmbStock.SelectedValue = moveorderDisplays[id].StockId;
-                //dateTimePicker1.Value = moveorderDisplays[id].Odate.Date;
+                dateTimePicker1.Value = moveorderDisplays[id].Odete.Date;
                 TxtNote.Text = moveorderDisplays[id].Note;
                 TxtDriveName.Text = moveorderDisplays[id].DriverName;
                 TxtCarBlate.Text = moveorderDisplays[id].CarBlate;
@@ -94,7 +97,7 @@ namespace StockUI.WinForm.FrmUI
             moveOrderDetailDisplays = mapper.Map<List<MoveOrderDetailDisplay>>(moveorderdetailEndPoint.GetByMoveOrderId(id));
             foreach (MoveOrderDetailDisplay item in moveOrderDetailDisplays)
             {
-                item.ItemName = itemEndPoint.GetByID(item.Id).Name;
+                item.ItemName = itemEndPoint.GetByID(item.ItemId).Name;
                 item.UnitName = unitEndPoint.GetByID(item.UnitId).Name;
             }
         }
@@ -143,8 +146,7 @@ namespace StockUI.WinForm.FrmUI
                 //button5.Enabled = false;
                 //button6.Enabled = false;
                 dataGridView2.DataSource = null;
-                button7.Enabled = false;
-                button8.Enabled = false;
+                button();
             }
             else
             {
@@ -152,11 +154,18 @@ namespace StockUI.WinForm.FrmUI
                 BtnSave.Enabled = true;
                 //BtnUpdate.Enabled = false;
                 fillDataGridOrder();
-               // button5.Enabled = true;
+                // button5.Enabled = true;
                 //button6.Enabled = true;
+                button();
+            }           
+        }
+        private void button()
+        {
+            if (userValidation.validateDelete("FrmMoveOrder")|| userValidation.validateEdit("FrmMoveOrder"))
+            {
                 button7.Enabled = true;
                 button8.Enabled = true;
-            }           
+            }
         }
        private void fillDataGridOrder()
         {
@@ -288,7 +297,7 @@ namespace StockUI.WinForm.FrmUI
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex <= dataGridView2.Rows.Count - 1 && e.RowIndex >= 0)
+            if (e.RowIndex <= dataGridView1.Rows.Count - 1 && e.RowIndex >= 0)
             {
                 TxtItemName.Text = (string)dataGridView1[0, e.RowIndex].Value.ToString();
                 TxtQty.Text = (string)dataGridView1[2, e.RowIndex].Value.ToString();
@@ -320,7 +329,7 @@ namespace StockUI.WinForm.FrmUI
                 StockId = int.Parse(CmbStock.SelectedValue.ToString()),
                 DriverName =TxtDriveName.Text,
                 CarBlate = TxtCarBlate.Text,
-                Odate =dateTimePicker1.Value,
+                Odete =dateTimePicker1.Value,
                 Note = TxtNote.Text
             };
             moveOrder.moveorderdetailDisplays = moveOrderDetailDisplays;
@@ -361,6 +370,52 @@ namespace StockUI.WinForm.FrmUI
         private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             validation.validateText(sender, e);
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            MoveOrder moveOrder = new MoveOrder
+            {
+                Id = int.Parse(TxtId.Text.ToString())
+            };
+            moveorderdetailEndPoint.DeleteByMoveOrderId(moveOrder.Id);
+            moveorderEndPoint.Delete(moveOrder);
+            moveOrderDetailDisplays.Clear();
+            moveorderDisplays.RemoveAt(count);
+            count = moveorderDisplays.Count - 1;
+            MessageBox.Show("تم الحذف بنجاح");
+            Navigation(count);
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            MoveOrder moveOrder = new MoveOrder
+            {
+                Id = int.Parse(TxtId.Text.ToString()),
+                CarBlate= TxtCarBlate.Text,
+                DriverName=TxtDriveName.Text,
+                Note = TxtNote.Text,
+                Odete =dateTimePicker1.Value,
+                BarCode = "",
+                StockId =int.Parse(CmbStock.SelectedValue.ToString())
+            };
+
+            moveorderdetailEndPoint.DeleteByMoveOrderId(moveOrder.Id);
+            foreach (MoveOrderDetailDisplay item in moveOrderDetailDisplays)
+            {
+                MoveOrderDetail detail = new MoveOrderDetail
+                {
+
+                    ItemId =item.ItemId,
+                    Moveorderid = moveOrder.Id,
+                    Note = item.Note,
+                    Qty = item.Qty,
+                    UnitId =item.UnitId
+                };
+                moveorderdetailEndPoint.Save(detail);
+            }
+            moveorderEndPoint.Update(moveOrder);
+            MessageBox.Show("تم حفظ التعديل بنجاح");
         }
     }
 }

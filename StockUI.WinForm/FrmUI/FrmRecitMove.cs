@@ -60,8 +60,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void FrmRecitMove_Load(object sender, EventArgs e)
         {
-            BtnUpdate.Enabled = userValidation.validateEdit("FrmRecitMove");
-            BtnDelete.Enabled = userValidation.validateDelete("FrmRecitMove");
+            //BtnUpdate.Enabled = userValidation.validateEdit("FrmRecitMove");
+            //BtnDelete.Enabled = userValidation.validateDelete("FrmRecitMove");
             moveorderDisplays = mapper.Map<List<MoveorderDisplay>>(moveorderEndPoint.GetMoveOrdersNotRecit());
             stocks = stockEndPoint.GetAll();
             CmbStock.DataSource = stocks.ToList();

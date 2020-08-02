@@ -108,5 +108,17 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
+        public void DeleteByMoveOrderId(int id)
+        {
+            //[spmoveorderdetailDelteByMoveOrder]
+            try
+            {
+                 sql.Execute<MoveOrderDetail, dynamic>("spmoveorderdetailDelteByMoveOrder", new { id });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }
