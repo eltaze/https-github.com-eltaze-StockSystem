@@ -5,12 +5,6 @@ using StockUI.Libarary.BL;
 using StockUI.Libarary.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StockUI.WinForm.FrmUI
@@ -130,13 +124,8 @@ namespace StockUI.WinForm.FrmUI
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Unit unit = new Unit
-            {
-                Name = TxtName.Text,
-                Note = TxtNote.Text,
-                QTYTOPARENT = 1
-            };
-            if(CmbUnitId.Enabled==true)
+            Unit unit = GetUnit();
+            if (CmbUnitId.Enabled==true)
             {
                 decimal c;
                 if (! decimal.TryParse(TxtQty.Text.ToString(), out c) || decimal.TryParse(TxtQuntityFormBig.Text.ToString(),out c))
@@ -150,6 +139,7 @@ namespace StockUI.WinForm.FrmUI
                     MessageBox.Show("الكمية للوحدة الأكبر لابد ان تكون أكبر من الواحد "); 
                     return;
                 }
+               
                 unit.Qty = decimal.Parse(TxtQty.Text.ToString());
                 unit.UnitId = int.Parse(CmbUnitId.SelectedValue.ToString());
                 unit.QTYTOPARENT = decimal.Parse(TxtQuntityFormBig.Text.ToString());
@@ -168,15 +158,23 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show(validation.massege);
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        public Unit GetUnit()
         {
             Unit unit = new Unit
             {
-                Id=int.Parse(TxtId.Text.ToString()),
                 Name = TxtName.Text,
                 Note = TxtNote.Text,
             };
+            if (TxtId.Text.Length>0)
+            {
+                unit.Id = int.Parse(TxtId.Text.ToString());
+            }
+            return unit;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Unit unit = GetUnit();
+            
             if (checkBox1.Checked)
             {
                 decimal c;
@@ -207,13 +205,7 @@ namespace StockUI.WinForm.FrmUI
 
         private void Btndelete_Click(object sender, EventArgs e)
         {
-            Unit unit = new Unit
-            {
-                Id = unitDisplays[count].Id,
-                Name = unitDisplays[count].Name,
-                Note = unitDisplays[count].Note,
-                Qty = unitDisplays[count].Qty
-            };
+            Unit unit = GetUnit();     
             unitEndPoint.Delete(unit);
             unitDisplays.RemoveAt(count);
             MessageBox.Show("تم الحذف بنجاح");
@@ -229,6 +221,11 @@ namespace StockUI.WinForm.FrmUI
         private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             validation.validateText(sender, e);
+        }
+
+        private void TxtId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e, 1);
         }
     }
 }

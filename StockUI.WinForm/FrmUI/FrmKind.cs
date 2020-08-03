@@ -85,11 +85,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            Kind kind = new Kind
-            {
-                Name = TxtName.Text,
-                Note=TxtNote.Text
-            };
+            Kind kind = GetKind();
+            
             if (validation.validateKind(kind))
             {
                 kindEndPoint.Save(kind);
@@ -104,14 +101,23 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show(validation.massege);
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        public Kind GetKind()
         {
             Kind kind = new Kind
             {
-                Id = int.Parse(TxtId.Text.ToString()),
                 Name = TxtName.Text,
                 Note = TxtNote.Text
             };
+            if (TxtId.Text.Length>0)
+            {
+                kind.Id = int.Parse(TxtId.Text.ToString());
+            }
+            return kind;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Kind kind = GetKind();
+           
             if (validation.validateKind(kind))
             {
                 kindEndPoint.Update(kind);
@@ -143,17 +149,17 @@ namespace StockUI.WinForm.FrmUI
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            Kind kind = new Kind
-            {
-                Id = kindDisplays[count].Id,
-                Name = kindDisplays[count].Name,
-                Note = kindDisplays[count].Note
-            };
+            Kind kind = GetKind();
             kindEndPoint.Delete(kind);
             kindDisplays.RemoveAt(count);
             MessageBox.Show("تم الحذف بنجاح");
             count = kindDisplays.Count - 1;
             navigation(count);
+        }
+
+        private void TxtId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e, 1);
         }
     }
 }

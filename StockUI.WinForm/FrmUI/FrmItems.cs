@@ -176,16 +176,7 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show("يرجي إدخال الباركود أو إنشاء ");
                 return;
             }
-            //string x = ;
-            Item item = new Item
-            {
-                Barcode = TxtBarcode.Text,
-                kindId=int.Parse(CmbKind.SelectedValue.ToString()),
-                DepartmentId = int.Parse(CmbDepartment.SelectedValue.ToString()),
-                UnitId= int.Parse(CmbUnit.SelectedValue.ToString()),
-                Name=TxtName.Text,
-                Note=TxtNote.Text
-            };
+            Item item = GetItem();
             if (validation.validateItem(item))
             {
                 itemEndPoint.Save(item);
@@ -199,16 +190,10 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show(validation.massege);
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        public Item GetItem()
         {
-            if (TxtBarcode.Text.Length == 0)
-            {
-                MessageBox.Show("يرجي إدخال الباركود أو إنشاء ");
-                return;
-            }
             Item item = new Item
             {
-                Id = int.Parse(TxtId.Text.ToString()),
                 Barcode = TxtBarcode.Text,
                 kindId = int.Parse(CmbKind.SelectedValue.ToString()),
                 DepartmentId = int.Parse(CmbDepartment.SelectedValue.ToString()),
@@ -216,6 +201,25 @@ namespace StockUI.WinForm.FrmUI
                 Name = TxtName.Text,
                 Note = TxtNote.Text
             };
+            if (TxtId.Text.Length>0)
+            {
+                item.Id = int.Parse(TxtId.Text.ToString());
+            }
+            if (checkBox2.Checked)
+            {
+                item.DisplayInDash = true;
+            }
+            return item;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (TxtBarcode.Text.Length == 0)
+            {
+                MessageBox.Show("يرجي إدخال الباركود أو إنشاء ");
+                return;
+            }
+            Item item = GetItem();
+           
             if (validation.validateItem(item))
             {
                 itemEndPoint.Update(item);
@@ -278,16 +282,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            Item item = new Item
-            {
-                Id = itemDisplays[count].Id,
-                Barcode = itemDisplays[count].Barcode,
-                kindId = itemDisplays[count].kindId,
-                DepartmentId = itemDisplays[count].DepartmentId,
-                UnitId = itemDisplays[count].UnitId,
-                Name = itemDisplays[count].Name,
-                Note = itemDisplays[count].Note
-            };
+            Item item = GetItem();
+            
             itemEndPoint.Delete(item);
             itemDisplays.RemoveAt(count);
             MessageBox.Show("تم الحذف بنجاح");
@@ -297,6 +293,11 @@ namespace StockUI.WinForm.FrmUI
         private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             validation.validateText(sender, e);
+        }
+
+        private void TxtId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e, 1);
         }
     }
 }

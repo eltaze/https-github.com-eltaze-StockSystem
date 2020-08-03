@@ -60,11 +60,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            Stock stock = new Stock
-            {
-                Name = TxtName.Text,
-                Note = TxtNote.Text
-            };
+            Stock stock = GetStock();
+           
             if (validation.validatestock(stock))
             {
                 stockEndPoint.Save(stock);
@@ -80,14 +77,23 @@ namespace StockUI.WinForm.FrmUI
                 return;
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        public Stock GetStock()
         {
             Stock stock = new Stock
             {
-                Id = int.Parse(TxtId.Text.ToString()),
                 Name = TxtName.Text,
                 Note = TxtNote.Text
             };
+            if (TxtId.Text.Length>0)
+            {
+                stock.Id = int.Parse(TxtId.Text.ToString());
+            }
+            return stock;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Stock stock = GetStock();
+          
             if (validation.validatestock(stock))
             {
                 stockEndPoint.Update(stock);
@@ -151,17 +157,17 @@ namespace StockUI.WinForm.FrmUI
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            Stock stock = new Stock
-            {
-                Id = stockDisplay[count].Id,
-                Name =stockDisplay[count].Name,
-                Note = stockDisplay[count].Note
-            };
+            Stock stock = GetStock(); 
             stockEndPoint.Delete(stock);
             stockDisplay.RemoveAt(count);
             MessageBox.Show("تم الحذف بنجاح");
             count = stockDisplay.Count - 1;
             navigation(count);
+        }
+
+        private void TxtId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e, 1);
         }
     }
 }

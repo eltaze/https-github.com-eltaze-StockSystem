@@ -323,6 +323,7 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show("لايمكن أن يكون اسم المخزن أو اسم السائق أو رقم العربة أو المدينة خالية");
                 return;
             }
+           
             MoveorderDisplay moveOrder = new MoveorderDisplay
             {
                 BarCode="",
@@ -331,7 +332,7 @@ namespace StockUI.WinForm.FrmUI
                 CarBlate = TxtCarBlate.Text,
                 Odete =dateTimePicker1.Value,
                 Note = TxtNote.Text
-            };
+            };                  
             moveOrder.moveorderdetailDisplays = moveOrderDetailDisplays;
             try
             {
@@ -386,20 +387,28 @@ namespace StockUI.WinForm.FrmUI
             MessageBox.Show("تم الحذف بنجاح");
             Navigation(count);
         }
-
-        private void BtnUpdate_Click(object sender, EventArgs e)
+        public MoveOrder GetMoveOrder()
         {
             MoveOrder moveOrder = new MoveOrder
             {
-                Id = int.Parse(TxtId.Text.ToString()),
-                CarBlate= TxtCarBlate.Text,
-                DriverName=TxtDriveName.Text,
+               
+                CarBlate = TxtCarBlate.Text,
+                DriverName = TxtDriveName.Text,
                 Note = TxtNote.Text,
-                Odete =dateTimePicker1.Value,
+                Odete = dateTimePicker1.Value,
                 BarCode = "",
-                StockId =int.Parse(CmbStock.SelectedValue.ToString())
+                StockId = int.Parse(CmbStock.SelectedValue.ToString())
             };
-
+            if (TxtId.Text.Length>0)
+            {
+                moveOrder.Id = int.Parse(TxtId.Text.ToString());
+            }
+            return moveOrder;
+        }
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            MoveOrder moveOrder = GetMoveOrder();
+            
             moveorderdetailEndPoint.DeleteByMoveOrderId(moveOrder.Id);
             foreach (MoveOrderDetailDisplay item in moveOrderDetailDisplays)
             {
@@ -416,6 +425,11 @@ namespace StockUI.WinForm.FrmUI
             }
             moveorderEndPoint.Update(moveOrder);
             MessageBox.Show("تم حفظ التعديل بنجاح");
+        }
+
+        private void TxtId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender,e,1);
         }
     }
 }

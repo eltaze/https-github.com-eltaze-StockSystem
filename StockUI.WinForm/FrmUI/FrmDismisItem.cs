@@ -397,13 +397,7 @@ namespace StockUI.WinForm.FrmUI
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            DismisItem dismisItem = new DismisItem
-            {
-                DismisTo = TxtFrom.Text,
-                Note = TxtNote.Text,
-                Odate = dateTimePicker1.Value,
-                StockId = int.Parse(CmbStock.SelectedValue.ToString())
-            };
+            DismisItem dismisItem = GetDismisItem();
             List<DismisItemDetail> dismisItemDetails = new List<DismisItemDetail>();
             dismisItemDetails = mapper.Map<List<DismisItemDetail>>(dismisItemDetailDisplays);
             dismisItem.recitItemDetails = dismisItemDetails;
@@ -467,17 +461,26 @@ namespace StockUI.WinForm.FrmUI
         {
             validation.validateText(sender, e);
         }
-        private void BtnUpdate_Click(object sender, EventArgs e)
+        public DismisItem GetDismisItem()
         {
-            var x = dismisItemEndPoint.GetByID(dismisItemDisplays[count].Id);
             DismisItem dismisItem = new DismisItem
             {
-                Id = dismisItemDisplays[count].Id,
+                
                 DismisTo = TxtFrom.Text,
                 StockId = int.Parse(CmbStock.SelectedValue.ToString()),
                 Note = TxtNote.Text,
                 Odate = dateTimePicker1.Value,
             };
+            if (TxtId.Text.Length>0)
+            {
+                dismisItem.Id = int.Parse(TxtId.Text.ToString());
+            }
+            return dismisItem;
+        }
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            var x = dismisItemEndPoint.GetByID(dismisItemDisplays[count].Id);
+            DismisItem dismisItem = GetDismisItem();
             if (dismisItem != x)
             {
                 dismisItemEndPoint.Update(dismisItem);
@@ -530,14 +533,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            DismisItem dismisItem = new DismisItem
-            {
-                Id = dismisItemDisplays[count].Id,
-                DismisTo = TxtFrom.Text,
-                StockId = int.Parse(CmbStock.SelectedValue.ToString()),
-                Note = TxtNote.Text,
-                Odate = dateTimePicker1.Value,
-            };
+            DismisItem dismisItem = GetDismisItem();
+           
             foreach (DismisItemDetailDisplay item in dismisItemDetailDisplays)
             {
                 var t = stockItemCalc.GetNewStockitem(item.Qty, item.ItemId, item.UnitId, int.Parse(CmbStock.SelectedValue.ToString()));
@@ -550,6 +547,11 @@ namespace StockUI.WinForm.FrmUI
             dismisItemDisplays.RemoveAt(count);
             count = dismisItemDisplays.Count - 1;
             navigation(count);
+        }
+
+        private void TxtId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e, 1);
         }
     }
 }

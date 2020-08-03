@@ -160,6 +160,7 @@
             this.TxtId.Name = "TxtId";
             this.TxtId.Size = new System.Drawing.Size(232, 20);
             this.TxtId.TabIndex = 62;
+            this.TxtId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtId_KeyPress);
             // 
             // label4
             // 

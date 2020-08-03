@@ -521,16 +521,25 @@ namespace StockUI.WinForm.FrmUI
         {
             validation.validateText(sender, e);
         }
-
-        private void BtnUpdate_Click(object sender, EventArgs e)
+        public Order GetOrder()
         {
             Order order = new Order
             {
-                Id = int.Parse(TxtId.Text.ToString()),
-                Note =TxtNote.Text,
-                ODate=dateTimePicker1.Value,
+               
+                Note = TxtNote.Text,
+                ODate = dateTimePicker1.Value,
                 StockId = int.Parse(CmbStock.SelectedValue.ToString())
             };
+            if (TxtId.Text.Length>0)
+            {
+                order.Id = int.Parse(TxtId.Text.ToString()),
+            }
+            return order;
+        }
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            Order order = GetOrder();
+            
             orderDetailEndPoint.DeleteByOrderId(order.Id);
             List<OrderDetail> details = new List<OrderDetail>();
             details = mapper.Map<List<OrderDetail>>(neworder.OrderDetails);

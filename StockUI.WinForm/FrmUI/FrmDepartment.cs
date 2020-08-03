@@ -84,11 +84,8 @@ namespace StockUI.WinForm.FrmUI
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            department department = new department
-            {
-                Name = TxtName.Text,
-                Note = TxtNote.Text
-            };
+            department department = GetDepartment();
+            
             if (validation.validatedepartment(department))
             {
                 departmentEndPoint.Save(department);
@@ -103,14 +100,23 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show(validation.massege);
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        public department GetDepartment()
         {
             department department = new department
             {
-                Id = int.Parse(TxtId.Text.ToString()),
                 Name = TxtName.Text,
                 Note = TxtNote.Text
             };
+            if (TxtId.Text.Length > 0)
+            {
+                department.Id = int.Parse(TxtId.Text.ToString());
+            }
+            return department;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            department department = GetDepartment();
+           
             if (validation.validatedepartment(department))
             {
                 departmentEndPoint.Update(department);
@@ -125,17 +131,18 @@ namespace StockUI.WinForm.FrmUI
         }
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            department department = new department
-            {
-                Id = departmentDisplays[count].Id,
-                Name = departmentDisplays[count].Name,
-                Note = departmentDisplays[count].Note
-            };
+            department department = GetDepartment();
+            
             departmentEndPoint.Delete(department);
             departmentDisplays.RemoveAt(count);
             MessageBox.Show("تم الحذف بنجاح");
             count = departmentDisplays.Count - 1;
             navigation(count);
+        }
+
+        private void TxtId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e,1);
         }
     }
 }

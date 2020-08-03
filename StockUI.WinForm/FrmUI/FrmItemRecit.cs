@@ -260,13 +260,7 @@ namespace StockUI.WinForm.FrmUI
                 MessageBox.Show("يجب إختيار المخزن أولا");
                 return;
             }
-            ItemRecit itemRecit = new ItemRecit
-            {
-                Note = TxtNote.Text,
-                Odate = dateTimePicker1.Value.Date,
-                RecitFrom = TxtFrom.Text,
-                StockId = int.Parse(CmbStock.SelectedValue.ToString())
-            };
+            ItemRecit itemRecit = GetItemRecit();        
             itemRecit.recitItemDetails.AddRange(mapper.Map<List<ItemRecitDetail>>(itemRecitDetailsDisplay));
             List<stockitem> stockitems = new List<stockitem>();
             foreach (var item in itemRecitDetailsDisplay)
@@ -396,16 +390,25 @@ namespace StockUI.WinForm.FrmUI
             count = itemReciteDisplays.Count - 1;
             navigation(count);
         }
-        private void BtnUpdate_Click(object sender, EventArgs e)
+        public ItemRecit GetItemRecit()
         {
             ItemRecit itemRecit = new ItemRecit
             {
-                Id = itemReciteDisplays[count].Id,
+                
                 Note = TxtNote.Text,
                 Odate = dateTimePicker1.Value.Date,
                 RecitFrom = TxtFrom.Text,
                 StockId = int.Parse(CmbStock.SelectedValue.ToString())
             };
+            if (TxtId.Text.Length>0)
+            {
+                itemRecit.Id = int.Parse(TxtId.Text.ToString());
+            }
+            return itemRecit;
+        }
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            ItemRecit itemRecit = GetItemRecit();
             List<ItemRecitDetail> details = new List<ItemRecitDetail>();
             details = recitItemDetailEndPoint.GetByRecitID(itemReciteDisplays[count].Id);
             List<stockitem> stockitems = new List<stockitem>();
@@ -430,6 +433,11 @@ namespace StockUI.WinForm.FrmUI
             }
             recitItemEndPoint.Update(itemRecit);
             MessageBox.Show("تم حفظ التعديل بنجاح");
+        }
+
+        private void TxtId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e, 1);
         }
     }
 }
