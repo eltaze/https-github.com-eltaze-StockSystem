@@ -437,7 +437,7 @@ namespace StockUI.WinForm.FrmUI
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            Order order = new Order();
+            Order order = GetOrder();
             List<OrderDetail> details = new List<OrderDetail>();
             details = mapper.Map<List<OrderDetail>>(neworder.OrderDetails);
             order = mapper.Map<Order>(neworder);
@@ -532,7 +532,7 @@ namespace StockUI.WinForm.FrmUI
             };
             if (TxtId.Text.Length>0)
             {
-                order.Id = int.Parse(TxtId.Text.ToString()),
+                order.Id = int.Parse(TxtId.Text.ToString());
             }
             return order;
         }
@@ -551,6 +551,11 @@ namespace StockUI.WinForm.FrmUI
             }
             orderEndPoint.Update(order);
             MessageBox.Show("تم حفظ التعديلات بنجاح");
+        }
+
+        private void TxtId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validation.validateText(sender, e, 1);
         }
     }
 }
