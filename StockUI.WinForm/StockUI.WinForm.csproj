@@ -342,6 +342,7 @@
     <None Include="Resources\pngfuel.com %2819%29.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icons8-business-report-100.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
