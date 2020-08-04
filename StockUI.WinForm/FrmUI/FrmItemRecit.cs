@@ -434,7 +434,6 @@ namespace StockUI.WinForm.FrmUI
             recitItemEndPoint.Update(itemRecit);
             MessageBox.Show("تم حفظ التعديل بنجاح");
         }
-
         private void TxtId_KeyPress(object sender, KeyPressEventArgs e)
         {
             validation.validateText(sender, e, 1);

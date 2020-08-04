@@ -538,9 +538,9 @@ namespace StockUI.WinForm.FrmUI
             foreach (DismisItemDetailDisplay item in dismisItemDetailDisplays)
             {
                 var t = stockItemCalc.GetNewStockitem(item.Qty, item.ItemId, item.UnitId, int.Parse(CmbStock.SelectedValue.ToString()));
-                stockItemEndPoint.Update(t);
-                dismisItemDetailEndPoint.Delete(mapper.Map<DismisItemDetail>(item));
+                stockItemEndPoint.Update(t); 
             }
+            dismisItemDetailEndPoint.DismisItemDeleteByDismisId(dismisItem.Id);
             dismisItemEndPoint.Delete(dismisItem);
             MessageBox.Show("تم الحذف بنجاح ");
             dismisItemDetailDisplays.Clear();

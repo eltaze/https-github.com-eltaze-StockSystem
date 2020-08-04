@@ -11,6 +11,7 @@ namespace StockSystem.Libarary.Interfaces
         List<DismisItemDetail> GetByRecitID(int id);
         List<DismisItemDetail> GetBySearch(int itemid, int recitid);
         void Save(DismisItemDetail t);
+        void DismisItemDeleteByDismisId(int id)
         DismisItemDetail Update(DismisItemDetail t);
     }
 }

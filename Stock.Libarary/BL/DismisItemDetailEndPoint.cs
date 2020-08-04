@@ -94,5 +94,22 @@ namespace StockSystem.Libarary.BL
                 throw new Exception(ex.Message.ToString());
             }
         }
+        /// <summary>
+        /// Delete All Detail for DismisItem
+        /// </summary>
+        /// <param name="id"></param>
+        public void DismisItemDeleteByDismisId(int id)
+        {
+            //[spDismisItemDetailDeleteByDismisId]
+            try
+            {
+                sql.Execute<DismisItemDetail, dynamic>("spDismisItemDetailDeleteByDismisId", new { id });
+                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }
